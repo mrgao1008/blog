@@ -52,39 +52,6 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-04-01T07:43:47.758Z"><a href="/blog/2016/04/01/网站访问记录/">2016-04-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/blog/2016/04/01/网站访问记录/"></a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>#网站访问记录</p>
-<h2 id="1-记录访问的时间，ip，次数。"><a href="#1-记录访问的时间，ip，次数。" class="headerlink" title="1.记录访问的时间，ip，次数。"></a>1.记录访问的时间，ip，次数。</h2><h2 id="2-画图"><a href="#2-画图" class="headerlink" title="2.画图"></a>2.画图</h2><h2 id="3-可视化"><a href="#3-可视化" class="headerlink" title="3.可视化"></a>3.可视化</h2>
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
         <time datetime="2016-04-01T07:43:47.758Z"><a href="/blog/2016/04/01/锁与进程间通信/">2016-04-01</a></time>
       
       
@@ -226,29 +193,67 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-04-01T07:43:47.758Z"><a href="/blog/2016/04/01/数据库系统原理与应用（第三版）2/">2016-04-01</a></time>
+        <time datetime="2016-04-01T07:43:47.758Z"><a href="/blog/2016/04/01/网站访问记录/">2016-04-01</a></time>
       
       
   
-    <h1 class="title"><a href="/blog/2016/04/01/数据库系统原理与应用（第三版）2/"></a></h1>
+    <h1 class="title"><a href="/blog/2016/04/01/网站访问记录/"></a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h1 id="分布式数据库技术"><a href="#分布式数据库技术" class="headerlink" title="分布式数据库技术"></a>分布式数据库技术</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>通过使用分散在不同地理位置的计算机来满足本地用户需要的计算方式称为分布式计算，使用到的数据库是分布式数据库，涉及的数据库技术是分布式数据库技术。</p>
-<p>分布式数据库是与集中式数据库相对的概念，其主要差别在于处理的数据处于不同的地理位置。集中式数据库强调的是所有的数据存储在一个唯一的地方，而分布式数据库强调的是所有的数据作为一个整体存储在多个不同的地理位置。</p>
-<h2 id="分布式数据库的概念和特定"><a href="#分布式数据库的概念和特定" class="headerlink" title="分布式数据库的概念和特定"></a>分布式数据库的概念和特定</h2><p>在分布式计算方式中，数据库管理系统安装在多个所处地理位置不同的服务器上，用户的数据也是分布在不同的服务器中。但从逻辑上来讲，这些用户的数据是一个整体，构成一个逻辑数据库。本地服务器的用户不仅可以访问本地服务器上数据库中的数据，也可以访问异地服务器上数据库中的数据。</p>
-<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>分布式数据库具有物理分布性、逻辑整体性、场地自治性、数据共享性和系统可用性五个特点。自治表示自己管理自己，场地自治性表示每个场地的集中式数据库系统都是自己来管理自己的数据。数据共享性强调的是系统具有统一的模式，所有的用户都可以使用分布式数据库中的数据。系统可用性则是如果某个场地的数据发生了故障，用户还可以通过其他场地访问这些数据。</p>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>第一，系统实现技术更加复杂、难度更大。<br>第二，系统的安全性更难处理。</p>
-<h2 id="分布式数据存储技术"><a href="#分布式数据存储技术" class="headerlink" title="分布式数据存储技术"></a>分布式数据存储技术</h2><p>在分布式数据库中，数据的存储可以通过三种方式实现，即复制存储方式、分片存储方式和混合存储方式。</p>
-<h3 id="数据复制"><a href="#数据复制" class="headerlink" title="数据复制"></a>数据复制</h3><p>通过把数据库中的一个关系存储多次而实现分布式存储。数据复制的有点事提高可用性、增加数据库系统的并行度、增强并发能力。数据复制也存在明显的缺点，即数据更新成本大大增加。</p>
-<h3 id="数据分片"><a href="#数据分片" class="headerlink" title="数据分片"></a>数据分片</h3><p>通过把数据库中的一个关系分成多个片断，每个片断都存储在不同场地上，且所有的片断包含的信息足够重构原始关系，该数据存储方式成为数据分片。</p>
-<p>数据分片分为水平分片、垂直分片和混合分片。</p>
-<h3 id="数据混合存储"><a href="#数据混合存储" class="headerlink" title="数据混合存储"></a>数据混合存储</h3><p>在数据存储过程中，既包含了水平分片存储方式，又包含了垂直分片存储方式，则将这种方式称为数据混合存储方式。</p>
-<h2 id="分布式数据查询技术"><a href="#分布式数据查询技术" class="headerlink" title="分布式数据查询技术"></a>分布式数据查询技术</h2><p>在集中式数据库的数据查询中，查询代价主要是本地处理代价，具体内容包括CPU代价和I/O代价。但是，分布式数据库的数据查询中，查询代价除了本地处理代价之外，还包括网络传输代价。</p>
-<p><strong>基于半连接的优化策略</strong>，在执行分布式查询时，只传输参与连接运算的数据，不传输不参与连接运算的数据。</p>
-<p><strong>基于连接的优化策略</strong>，在对于网络传输代价要求比较严格时，可以使用半连接优化策略。但对于网络传输代价要求比较低，对本地处理代价要求比较高时，可以考虑使用基于连接的优化策略。基于连接的优化策略的事项是把某个场地的整个关系的元组传输到另外的场地执行连接操作。</p>
+        <p>#网站访问记录</p>
+<h2 id="1-记录访问的时间，ip，次数。"><a href="#1-记录访问的时间，ip，次数。" class="headerlink" title="1.记录访问的时间，ip，次数。"></a>1.记录访问的时间，ip，次数。</h2><h2 id="2-画图"><a href="#2-画图" class="headerlink" title="2.画图"></a>2.画图</h2><h2 id="3-可视化"><a href="#3-可视化" class="headerlink" title="3.可视化"></a>3.可视化</h2>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T07:43:47.758Z"><a href="/blog/2016/04/01/怎么在sublime中写markdown/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/01/怎么在sublime中写markdown/"></a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="怎么在Sublime中写Markdown"><a href="#怎么在Sublime中写Markdown" class="headerlink" title="怎么在Sublime中写Markdown"></a>怎么在Sublime中写Markdown</h1><p>Tags:sublime markdown</p>
+<h2 id="Sublime安装"><a href="#Sublime安装" class="headerlink" title="Sublime安装"></a>Sublime安装</h2><p>Sublime2官网:<a href="http://www.sublimetext.com/2" target="_blank" rel="external">http://www.sublimetext.com/2</a></p>
+<p>Sublime3官网:<a href="http://www.sublimetext.com/3" target="_blank" rel="external">http://www.sublimetext.com/3</a></p>
+<h2 id="安装Markdown-Preview"><a href="#安装Markdown-Preview" class="headerlink" title="安装Markdown Preview"></a>安装Markdown Preview</h2><p><strong>sublime2（<code>未验证</code>）</strong><br>打开Ctrl+~,输入如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import urllib2,os; pf=&apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), &apos;wb&apos; ).write( urllib2.urlopen( &apos;http://sublime.wbond.net/&apos; +pf.replace( &apos; &apos;,&apos;%20&apos; )).read()); print( &apos;Please restart Sublime Text to finish installation&apos;)</span><br></pre></td></tr></table></figure></p>
+<p><strong>sublime3（<code>未验证</code>)</strong><br>打开Ctrl+~,输入如下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request,os; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &apos;wb&apos;).write(urllib.request.urlopen( &apos;http://sublime.wbond.net/&apos; + pf.replace(&apos; &apos;,&apos;%20&apos;)).read())</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>Ctrl+Shift+p 打开Package Control 输入install,选择 install package</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/mrgao1008/picture/master/sublime_install_package.png" alt="install_package"></p>
+<p>-. 输入markdown 选择preview安装</p>
+<p><img src="https://raw.githubusercontent.com/mrgao1008/picture/master/markdown_preview.png" alt="markdown_preview"></p>
+<h2 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h2><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>通过在句首加入#，表示标题</p>
+<h1 id="标题1"><a href="#标题1" class="headerlink" title="标题1"></a>标题1</h1><h2 id="标题2"><a href="#标题2" class="headerlink" title="标题2"></a>标题2</h2><p>…</p>
+<h6 id="标题6"><a href="#标题6" class="headerlink" title="标题6"></a>标题6</h6><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	printf(&quot;hello world\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>为了使的图片在互联网上能够访问，需要将图片上传到网盘上，比如github.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![name](url)来表示图片</span><br></pre></td></tr></table></figure></p>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>链接和图片类似<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[name](url)</span><br></pre></td></tr></table></figure></p>
+<h3 id="加粗和斜体"><a href="#加粗和斜体" class="headerlink" title="加粗和斜体"></a>加粗和斜体</h3><p><strong>加粗</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**加粗**</span><br></pre></td></tr></table></figure></p>
+<p><em>斜体</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*斜体*</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -396,300 +401,29 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-04-01T07:43:47.758Z"><a href="/blog/2016/04/01/怎么在sublime中写markdown/">2016-04-01</a></time>
+        <time datetime="2016-04-01T07:43:47.758Z"><a href="/blog/2016/04/01/数据库系统原理与应用（第三版）2/">2016-04-01</a></time>
       
       
   
-    <h1 class="title"><a href="/blog/2016/04/01/怎么在sublime中写markdown/"></a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="怎么在Sublime中写Markdown"><a href="#怎么在Sublime中写Markdown" class="headerlink" title="怎么在Sublime中写Markdown"></a>怎么在Sublime中写Markdown</h1><p>Tags:sublime markdown</p>
-<h2 id="Sublime安装"><a href="#Sublime安装" class="headerlink" title="Sublime安装"></a>Sublime安装</h2><p>Sublime2官网:<a href="http://www.sublimetext.com/2" target="_blank" rel="external">http://www.sublimetext.com/2</a></p>
-<p>Sublime3官网:<a href="http://www.sublimetext.com/3" target="_blank" rel="external">http://www.sublimetext.com/3</a></p>
-<h2 id="安装Markdown-Preview"><a href="#安装Markdown-Preview" class="headerlink" title="安装Markdown Preview"></a>安装Markdown Preview</h2><p><strong>sublime2（<code>未验证</code>）</strong><br>打开Ctrl+~,输入如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import urllib2,os; pf=&apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), &apos;wb&apos; ).write( urllib2.urlopen( &apos;http://sublime.wbond.net/&apos; +pf.replace( &apos; &apos;,&apos;%20&apos; )).read()); print( &apos;Please restart Sublime Text to finish installation&apos;)</span><br></pre></td></tr></table></figure></p>
-<p><strong>sublime3（<code>未验证</code>)</strong><br>打开Ctrl+~,输入如下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request,os; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &apos;wb&apos;).write(urllib.request.urlopen( &apos;http://sublime.wbond.net/&apos; + pf.replace(&apos; &apos;,&apos;%20&apos;)).read())</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>Ctrl+Shift+p 打开Package Control 输入install,选择 install package</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/mrgao1008/picture/master/sublime_install_package.png" alt="install_package"></p>
-<p>-. 输入markdown 选择preview安装</p>
-<p><img src="https://raw.githubusercontent.com/mrgao1008/picture/master/markdown_preview.png" alt="markdown_preview"></p>
-<h2 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h2><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>通过在句首加入#，表示标题</p>
-<h1 id="标题1"><a href="#标题1" class="headerlink" title="标题1"></a>标题1</h1><h2 id="标题2"><a href="#标题2" class="headerlink" title="标题2"></a>标题2</h2><p>…</p>
-<h6 id="标题6"><a href="#标题6" class="headerlink" title="标题6"></a>标题6</h6><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	printf(&quot;hello world\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>为了使的图片在互联网上能够访问，需要将图片上传到网盘上，比如github.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![name](url)来表示图片</span><br></pre></td></tr></table></figure></p>
-<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>链接和图片类似<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[name](url)</span><br></pre></td></tr></table></figure></p>
-<h3 id="加粗和斜体"><a href="#加粗和斜体" class="headerlink" title="加粗和斜体"></a>加粗和斜体</h3><p><strong>加粗</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**加粗**</span><br></pre></td></tr></table></figure></p>
-<p><em>斜体</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*斜体*</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/并行计算与分布式计算原理/">2016-04-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/blog/2016/04/01/并行计算与分布式计算原理/"></a></h1>
+    <h1 class="title"><a href="/blog/2016/04/01/数据库系统原理与应用（第三版）2/"></a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h1 id="并行计算与分布式计算原理"><a href="#并行计算与分布式计算原理" class="headerlink" title="并行计算与分布式计算原理"></a>并行计算与分布式计算原理</h1><p><em>深入理解云计算——基本原理和应用程序编程技术，第二章</em></p>
-<!-- MarkdownTOC -->
-<ul>
-<li><a href="#并行计算和分布式计算">并行计算和分布式计算</a></li>
-<li><a href="#并行计算基本要素">并行计算基本要素</a><ul>
-<li><a href="#什么是并行处理">什么是并行处理</a></li>
-<li><a href="#并行处理硬件架构">并行处理硬件架构</a></li>
-<li><a href="#并行编程方法">并行编程方法</a></li>
-<li><a href="#并行性的级别">并行性的级别</a></li>
-<li><a href="#注意事项">注意事项</a></li>
-</ul>
-</li>
-<li><a href="#分布式计算基本要素">分布式计算基本要素</a><ul>
-<li><a href="#通用概念和定义">通用概念和定义</a></li>
-<li><a href="#分布式系统组件">分布式系统组件</a></li>
-<li><a href="#分布式计算架构模式">分布式计算架构模式</a></li>
-<li><a href="#进程间通信模型">进程间通信模型</a></li>
-</ul>
-</li>
-<li><a href="#分布式计算技术">分布式计算技术</a></li>
-</ul>
-<!-- /MarkdownTOC -->
-<p><a name="并行计算和分布式计算"></a></p>
-<h2 id="并行计算和分布式计算"><a href="#并行计算和分布式计算" class="headerlink" title="并行计算和分布式计算"></a>并行计算和分布式计算</h2><p>并行计算和分布式计算存在细微差别。并行代表一类紧耦合系统，分布式代表更更广泛的一类系统，包括紧耦合系统。</p>
-<p><strong>并行计算</strong>指将计算任务分配给几个共享相同内存的处理器的计算模式。并行计算系统的架构通常表现为组件的同构性：每个处理器都是相同类型的，且拥有相同的处理性能。共享内存有一个独立的地址空间，可供所有处理器访问。并行程序被分成若干执行单元并分配给不同的处理器，它们之间依靠共享内存相互通信。</p>
-<p><strong>分布式计算</strong>指哪些将计算任务进行划分，并在不同计算单元中同时执行的架构或系统，不论计算单元是不同节点上的处理器，或是同一计算机上的处理器，再或是同一处理器中的内核。相比并行计算，分布式计算包含的系统和应用程序的范围更广，是更为通用的概念。分布式这一术语通常以为着计算单元的位置不同，且这些单元在硬件和软件功能上也可能各不相同。典型的分布式系统实例是计算网格或互谅网计算系统，分布式系统再全球范围内集成各种架构、系统和应用。</p>
-<p><a name="并行计算基本要素"></a></p>
-<h2 id="并行计算基本要素"><a href="#并行计算基本要素" class="headerlink" title="并行计算基本要素"></a>并行计算基本要素</h2><p><a name="什么是并行处理"></a></p>
-<h3 id="什么是并行处理"><a href="#什么是并行处理" class="headerlink" title="什么是并行处理"></a>什么是并行处理</h3><p>同时在多个处理器上处理多个任务成为<strong>并行处理</strong>。并行程序由多个活跃进程（任务）组成，同时解决给定的问题。运用分治法将一个给定的任务分为多个子任务，每个子任务在不同的中央处理器（CPU）中进行处理。运用分治法在多处理器系统上编程称作<strong>并行编程</strong>。</p>
-<p>历史背景和推动技术<br>…</p>
-<p><a name="并行处理硬件架构"></a></p>
-<h3 id="并行处理硬件架构"><a href="#并行处理硬件架构" class="headerlink" title="并行处理硬件架构"></a>并行处理硬件架构</h3><p>并行处理的核心元素是CPU。根据可以同时处理的指令流和数据流的数量，计算机系统可以分为以下四类：</p>
-<ul>
-<li>单指令流单数据流（SISD）系统</li>
-<li>单指令流多数据流（SIMD）系统</li>
-<li>多指令流单数据流（MISD）系统</li>
-<li>多指令流多数据流（MIMD）系统<ul>
-<li>共享内存MIMD计算机</li>
-<li>分布式内存MIMD计算机</li>
-</ul>
-</li>
-</ul>
-<p><a name="并行编程方法"></a></p>
-<h3 id="并行编程方法"><a href="#并行编程方法" class="headerlink" title="并行编程方法"></a>并行编程方法</h3><p>顺序程序运行在单个处理器上且有单一控制线程。为了让几个处理器共同处理同一程序，就必须将该程序分成更小的、独立的块，这样每个处理器只需处理单独的一小块程序。以这种方式分解的程序就是并行程序。</p>
-<p>并行程序设计有多种方法，最著名的几种是：</p>
-<ul>
-<li>数据并行</li>
-<li>处理并行</li>
-<li>“农场主和工作者”模式</li>
-</ul>
-<p><a name="并行性的级别"></a></p>
-<h3 id="并行性的级别"><a href="#并行性的级别" class="headerlink" title="并行性的级别"></a>并行性的级别</h3><table>
-<thead>
-<tr>
-<th><em>颗粒大小</em></th>
-<th><em>代码</em></th>
-<th><em>并行化执行者</em></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>大</td>
-<td>独立的或重量级进程</td>
-<td>程序设计员</td>
-</tr>
-<tr>
-<td>中</td>
-<td>函数或过程</td>
-<td>程序设计员</td>
-</tr>
-<tr>
-<td>小</td>
-<td>循环或指令块</td>
-<td>并行编译器</td>
-</tr>
-<tr>
-<td>极小</td>
-<td>指令</td>
-<td>处理器</td>
-</tr>
-</tbody>
-</table>
-<p><a name="注意事项"></a></p>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>例如，对于给定的n个处理器，用户希望速度也增加n倍，但这只是理想情况，由于通信开销而不太可能实现。</p>
-<p>两个重要原则</p>
-<ul>
-<li>计算速度和系统成本的平方根成反比</li>
-<li>并行计算速度和处理器数量成对数冠以（y=klog(N)）</li>
-</ul>
-<p><a name="分布式计算基本要素"></a></p>
-<h2 id="分布式计算基本要素"><a href="#分布式计算基本要素" class="headerlink" title="分布式计算基本要素"></a>分布式计算基本要素</h2><p><a name="通用概念和定义"></a></p>
-<h3 id="通用概念和定义"><a href="#通用概念和定义" class="headerlink" title="通用概念和定义"></a>通用概念和定义</h3><p>分布式计算主要研究用于构建和管理分布式系统的模型、架构和算法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">分布式系统是独立计算机的集合，对于用户来说是一个整体系统。</span><br></pre></td></tr></table></figure>
-<p>该定义大致包括了多种类型的分布式计算系统，这些系统统一使用和集成分布式资源。本章重点讲解将多个独立计算机转化为整体系统的架构模型。通信是分布式计算的基础之一。由于分布式系统由协同工作的多个计算机组成，所以有必要利用网络实现多计算机之间的数据和信息交换：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">分布式系统组件位于仅能通过传递消息来通信和协调活动的网络计算机中。</span><br></pre></td></tr></table></figure>
-<p><a name="分布式系统组件"></a></p>
-<h3 id="分布式系统组件"><a href="#分布式系统组件" class="headerlink" title="分布式系统组件"></a>分布式系统组件</h3><p>分布式系统是从硬件到软件的整个计算层次模型中多个组件交互的结果。许多组件协同工作，为用户呈现出一个单一的整体系统。</p>
-<p>在底层，计算机和网络硬件构成了物理基础设置，这些组件由操作系统直接管理。操作系统负责提供基础服务，用于进程间通信、进程调度和管理、文件系统和本地设备的资源管理。将网络和计算机这两层合并为一个平台，在这个平台上配置特定软件，便可将联网计算机组成一个分布式系统。</p>
-<p>将公认的标准应用到操作系统层甚至硬件网络层中，利用异构组件可以很容易地构造一个统一的集成系统。例如，不同设备之间的网络连接由协议进行控制，实现设备无缝执行交互。在操作系统层，进程间通信服务在标准化通信协议下执行，例如TCP/IP协议、UDP协议等。</p>
-<p>中间件层利用这些服务构建了一个开发和部署分布式应用程序的统一环境。这一层支持分布式系统的编程范式，我们将在本书第5~7章进行描述。依靠操作系统提供的服务，中间件层可开发协议、数据格式以及用于开发分布式应用程序的编程语言和框架。这些为分布式应用程序开发人员提供了同一接口，完全独立于底层操作系统且屏蔽了底层的异构性。</p>
-<p><a name="分布式计算架构模式"></a></p>
-<h3 id="分布式计算架构模式"><a href="#分布式计算架构模式" class="headerlink" title="分布式计算架构模式"></a>分布式计算架构模式</h3><p>尽管分布式系统包含若干层之间的交互，但只有中间件层才能够进行分布式计算，因为中间件层为应用提供了同一的整体运行环境。可采用多种不同的方式来组织组件，整合并购成分布式计算系统。这些组件之间的交互以及组件的职责决定了中间件的结构和类型，话句话说，也就是定义了中间件架构。了解架构模式有助于从整体上理解和划分软件系统结构，尤其是分布式计算结构。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">架构模式组要用于决定组件和连接器，组件、连接器以及结合条件一起作为架构模式的实例。</span><br></pre></td></tr></table></figure>
-<p>架构模式分为两大类：</p>
-<ul>
-<li>软件架构模式</li>
-<li>系统架构模式</li>
-</ul>
-<p>第一类与软件的逻辑结构有关，第二类包括从组件方面描述分布式软件系统物理结构的所有方式。</p>
-<h4 id="组件和连接器"><a href="#组件和连接器" class="headerlink" title="组件和连接器"></a>组件和连接器</h4><p><em>组件</em>代表一个封装了系统的功能或特性的软件单元。组件实例可以是程序、对象、进程、管道或过滤器。连接器是一种允许组件之间进行合作和协调的通信机制。与组件不同的是，连接器不封装在单一实体中，而是以分布式方式由多个系统组件实现。</p>
-<h4 id="软件架构模式"><a href="#软件架构模式" class="headerlink" title="软件架构模式"></a>软件架构模式</h4><table>
-<thead>
-<tr>
-<th><em>种类</em></th>
-<th><em>最常用的架构模式</em></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>数据中心</td>
-<td>仓库<br>黑板</td>
-</tr>
-<tr>
-<td>数据流</td>
-<td>管道和过滤器<br>顺序批处理</td>
-</tr>
-<tr>
-<td>虚拟机</td>
-<td>基于规则的系统<br>解释器</td>
-</tr>
-<tr>
-<td>调用和返回</td>
-<td>主程序和子程序调用/自上而下的系统<br>面向对象系统<br>分层系统</td>
-</tr>
-<tr>
-<td>独立组件</td>
-<td>通信系统<br>事件系统</td>
-</tr>
-</tbody>
-</table>
-<h4 id="系统架构模式"><a href="#系统架构模式" class="headerlink" title="系统架构模式"></a>系统架构模式</h4><ul>
-<li><p>客户端/服务器</p>
-</li>
-<li><p>对等</p>
-</li>
-</ul>
-<p><a name="进程间通信模型"></a></p>
-<h3 id="进程间通信模型"><a href="#进程间通信模型" class="headerlink" title="进程间通信模型"></a>进程间通信模型</h3><p>分布式系统由一组通过网络连接的、交互的并发进程组成。因此，进程间通信（IPC）是分布式系统设计和实现的基础。IPC既用于交换数据和信息，也用于协调进程活动。IPC将分布式系统的不同组件连接起来，使其成为一个系统。</p>
-<h4 id="基于消息的通信"><a href="#基于消息的通信" class="headerlink" title="基于消息的通信"></a>基于消息的通信</h4><ul>
-<li>消息传递<br>  MPI，OpenMP</li>
-<li>远程过程调用<br>  RPC</li>
-<li>分布式对象<br>  RPC模型基于面向对象范式的实现，将方法的远程调用看做对象。CORBA,COM，DCOM,COM+,RMI,.net</li>
-<li>分布式代理和活动对象</li>
-<li>web服务<br>  SOAP,REST</li>
-</ul>
-<h4 id="基于消息的通信模型"><a href="#基于消息的通信模型" class="headerlink" title="基于消息的通信模型"></a>基于消息的通信模型</h4><ul>
-<li>点对点消息模型</li>
-<li>发布和订阅消息模型</li>
-<li>请求-应答消息模型</li>
-</ul>
-<p><a name="分布式计算技术"></a></p>
-<h2 id="分布式计算技术"><a href="#分布式计算技术" class="headerlink" title="分布式计算技术"></a>分布式计算技术</h2>
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/fgetc 0x1A EOF/">2016-04-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/blog/2016/04/01/fgetc 0x1A EOF/"></a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="fgetc-0x1A-EOF"><a href="#fgetc-0x1A-EOF" class="headerlink" title="fgetc 0x1A EOF"></a>fgetc 0x1A EOF</h1><p>历史遗留问题，将fopen中的r改为rb即可</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/exe文件分解/">2016-04-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/blog/2016/04/01/exe文件分解/"></a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="exe文件分解"><a href="#exe文件分解" class="headerlink" title="exe文件分解"></a>exe文件分解</h1><h2 id="分解算法"><a href="#分解算法" class="headerlink" title="分解算法"></a>分解算法</h2><h2 id="PE文件载入步骤"><a href="#PE文件载入步骤" class="headerlink" title="PE文件载入步骤"></a>PE文件载入步骤</h2><ul>
-<li>文件Load进入内存        （ReadFile）</li>
-<li>申请内存存放不同的节    （placeSection）</li>
-<li>载入dll和设置IAT        （loadDll and setIAT）</li>
-<li>重定位                （funcReloc）</li>
-<li>运行EXE或者DLL        （doEntryPoint）</li>
-</ul>
-<p><del>aaa</del></p>
+        <h1 id="分布式数据库技术"><a href="#分布式数据库技术" class="headerlink" title="分布式数据库技术"></a>分布式数据库技术</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>通过使用分散在不同地理位置的计算机来满足本地用户需要的计算方式称为分布式计算，使用到的数据库是分布式数据库，涉及的数据库技术是分布式数据库技术。</p>
+<p>分布式数据库是与集中式数据库相对的概念，其主要差别在于处理的数据处于不同的地理位置。集中式数据库强调的是所有的数据存储在一个唯一的地方，而分布式数据库强调的是所有的数据作为一个整体存储在多个不同的地理位置。</p>
+<h2 id="分布式数据库的概念和特定"><a href="#分布式数据库的概念和特定" class="headerlink" title="分布式数据库的概念和特定"></a>分布式数据库的概念和特定</h2><p>在分布式计算方式中，数据库管理系统安装在多个所处地理位置不同的服务器上，用户的数据也是分布在不同的服务器中。但从逻辑上来讲，这些用户的数据是一个整体，构成一个逻辑数据库。本地服务器的用户不仅可以访问本地服务器上数据库中的数据，也可以访问异地服务器上数据库中的数据。</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>分布式数据库具有物理分布性、逻辑整体性、场地自治性、数据共享性和系统可用性五个特点。自治表示自己管理自己，场地自治性表示每个场地的集中式数据库系统都是自己来管理自己的数据。数据共享性强调的是系统具有统一的模式，所有的用户都可以使用分布式数据库中的数据。系统可用性则是如果某个场地的数据发生了故障，用户还可以通过其他场地访问这些数据。</p>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>第一，系统实现技术更加复杂、难度更大。<br>第二，系统的安全性更难处理。</p>
+<h2 id="分布式数据存储技术"><a href="#分布式数据存储技术" class="headerlink" title="分布式数据存储技术"></a>分布式数据存储技术</h2><p>在分布式数据库中，数据的存储可以通过三种方式实现，即复制存储方式、分片存储方式和混合存储方式。</p>
+<h3 id="数据复制"><a href="#数据复制" class="headerlink" title="数据复制"></a>数据复制</h3><p>通过把数据库中的一个关系存储多次而实现分布式存储。数据复制的有点事提高可用性、增加数据库系统的并行度、增强并发能力。数据复制也存在明显的缺点，即数据更新成本大大增加。</p>
+<h3 id="数据分片"><a href="#数据分片" class="headerlink" title="数据分片"></a>数据分片</h3><p>通过把数据库中的一个关系分成多个片断，每个片断都存储在不同场地上，且所有的片断包含的信息足够重构原始关系，该数据存储方式成为数据分片。</p>
+<p>数据分片分为水平分片、垂直分片和混合分片。</p>
+<h3 id="数据混合存储"><a href="#数据混合存储" class="headerlink" title="数据混合存储"></a>数据混合存储</h3><p>在数据存储过程中，既包含了水平分片存储方式，又包含了垂直分片存储方式，则将这种方式称为数据混合存储方式。</p>
+<h2 id="分布式数据查询技术"><a href="#分布式数据查询技术" class="headerlink" title="分布式数据查询技术"></a>分布式数据查询技术</h2><p>在集中式数据库的数据查询中，查询代价主要是本地处理代价，具体内容包括CPU代价和I/O代价。但是，分布式数据库的数据查询中，查询代价除了本地处理代价之外，还包括网络传输代价。</p>
+<p><strong>基于半连接的优化策略</strong>，在执行分布式查询时，只传输参与连接运算的数据，不传输不参与连接运算的数据。</p>
+<p><strong>基于连接的优化策略</strong>，在对于网络传输代价要求比较严格时，可以使用半连接优化策略。但对于网络传输代价要求比较低，对本地处理代价要求比较高时，可以考虑使用基于连接的优化策略。基于连接的优化策略的事项是把某个场地的整个关系的元组传输到另外的场地执行连接操作。</p>
 
       
     </div>
@@ -760,99 +494,288 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/libvmi介绍/">2016-04-01</a></time>
+        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/c++学习文档/">2016-04-01</a></time>
       
       
   
-    <h1 class="title"><a href="/blog/2016/04/01/libvmi介绍/"></a></h1>
+    <h1 class="title"><a href="/blog/2016/04/01/c++学习文档/"></a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h1 id="libvmi介绍"><a href="#libvmi介绍" class="headerlink" title="libvmi介绍"></a>libvmi介绍</h1><p>libvmi提供了大量的库函数用于开发基于VMI的安全软件。</p>
-<h2 id="libvmi的接口"><a href="#libvmi的接口" class="headerlink" title="libvmi的接口"></a>libvmi的接口</h2><ol>
-<li>VMI构造和析构</li>
-<li>VM基本信息获取</li>
-<li>VM地址转换、pid页表转换</li>
-<li>VM读写内存</li>
-<li>VMIcache操作函数</li>
-<li>事件注册通知</li>
-</ol>
-<h3 id="VMI构造和析构"><a href="#VMI构造和析构" class="headerlink" title="VMI构造和析构"></a>VMI构造和析构</h3><p>接口包括下面这些</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vmi_init</span><br><span class="line">vmi_init_custom</span><br><span class="line">vmi_init_complete</span><br><span class="line">vmi_init_complete_custom</span><br><span class="line">vmi_init_paging</span><br><span class="line">vmi_destroy</span><br></pre></td></tr></table></figure>
-<p>带有custom表示从内存结构中读取配置，否则从文件中读取配置。<br>complete用在vmi_init中以partial方式初始化后（这种状态下只提供物理地址读写），经过启发式方法确定了特别偏移量后，进行完全初始化，这样才能够用其他方式比如符号、虚拟地址读写。</p>
-<h3 id="VM基本信息获取"><a href="#VM基本信息获取" class="headerlink" title="VM基本信息获取"></a>VM基本信息获取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vmi_get_name -&gt;driver_get_name</span><br><span class="line">vmi_get_vmid -&gt;driver_get_id</span><br><span class="line">vmi_get_access_mode //xen kvm file</span><br><span class="line">vmi_get_page_mode</span><br><span class="line">vmi_get_address_width</span><br><span class="line">vmi_get_ostype</span><br><span class="line">vmi_get_winver</span><br><span class="line">vmi_get_winver_str</span><br><span class="line">vmi_get_winver_manual</span><br><span class="line">vmi_get_offset</span><br><span class="line">vmi_get_memsize</span><br></pre></td></tr></table></figure>
-<p>windows能够设置和得到的符号包括如下表</p>
-<table>
+        <p>title：c++ 学习文档<br>date：2016.4.1</p>
+<h2 id="tags：c"><a href="#tags：c" class="headerlink" title="tags：c++"></a>tags：c++</h2><h1 id="c-学习文档"><a href="#c-学习文档" class="headerlink" title="c++ 学习文档"></a>c++ 学习文档</h1><p><em>C++Primer中文版（第四版）</em></p>
+<h2 id="第二章-变量和基本类型"><a href="#第二章-变量和基本类型" class="headerlink" title="第二章-变量和基本类型"></a>第二章-变量和基本类型</h2><h3 id="基本内置类型"><a href="#基本内置类型" class="headerlink" title="基本内置类型"></a>基本内置类型</h3><table>
 <thead>
 <tr>
-<th>符号名字</th>
-<th>意义</th>
+<th>类型</th>
+<th>含义</th>
+<th>最小存储空间</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>win_ntoskrnl</td>
-<td></td>
+<td>bool</td>
+<td>布尔型</td>
+<td>-</td>
 </tr>
 <tr>
-<td>win_tasks</td>
-<td></td>
+<td>char</td>
+<td>字符型</td>
+<td>8位</td>
 </tr>
 <tr>
-<td>win_pdbase</td>
-<td></td>
+<td>wchar_t</td>
+<td>宽字符型</td>
+<td>16位</td>
 </tr>
 <tr>
-<td>win_pid</td>
-<td></td>
+<td>short</td>
+<td>短整型</td>
+<td>16位</td>
 </tr>
 <tr>
-<td>win_pname</td>
-<td></td>
+<td>int</td>
+<td>整型</td>
+<td>16位</td>
 </tr>
 <tr>
-<td>win_kdvb</td>
-<td></td>
+<td>long</td>
+<td>长整型</td>
+<td>32位</td>
 </tr>
 <tr>
-<td>win_sysproc</td>
-<td></td>
+<td>float</td>
+<td>单精度浮点型</td>
+<td>6位有效数字</td>
 </tr>
 <tr>
-<td>win_kpcr</td>
-<td></td>
+<td>double</td>
+<td>双精度浮点型</td>
+<td>10位有效数字</td>
 </tr>
 <tr>
-<td>win_kdbg</td>
-<td></td>
-</tr>
-<tr>
-<td>ostype<br>os_type</td>
-<td></td>
-</tr>
-<tr>
-<td>sysmap</td>
-<td></td>
-</tr>
-<tr>
-<td>name</td>
-<td></td>
-</tr>
-<tr>
-<td>domid</td>
+<td>long double</td>
+<td>扩展精度浮点型</td>
+<td>10位有效数字</td>
 </tr>
 </tbody>
 </table>
-<h3 id="VM地址转换、pid页表转换"><a href="#VM地址转换、pid页表转换" class="headerlink" title="VM地址转换、pid页表转换"></a>VM地址转换、pid页表转换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vmi_translate_kv2p</span><br><span class="line">vmi_translate_uv2p</span><br><span class="line">vmi_translate_ksym2v</span><br><span class="line">vmi_translate_sym2v  //遍历PE导出表</span><br><span class="line">vmi_translate_v2sym</span><br><span class="line">vmi_pid_to_dtb</span><br><span class="line">vmi_dtb_to_pid</span><br><span class="line">vmi_pagetable_lookup //虚拟地址转化为物理地址</span><br><span class="line">vmi_pagetable_lookup_extended</span><br></pre></td></tr></table></figure>
-<h3 id="VM读写内存"><a href="#VM读写内存" class="headerlink" title="VM读写内存"></a>VM读写内存</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vmi_read(write)</span><br><span class="line">vmi_read(write)_a_b //a=[8,16,32,64,addr,str],b=[pa,va,ksym]</span><br><span class="line">vmi_read_unicode_str_va</span><br><span class="line">vmi_convert_str_encoding</span><br><span class="line">vmi_print_hex_a //a=[pa,va,ksym]</span><br></pre></td></tr></table></figure>
-<h3 id="VMIcache操作函数"><a href="#VMIcache操作函数" class="headerlink" title="VMIcache操作函数"></a>VMIcache操作函数</h3><p>v2pcache表示内部虚拟地址到物理地址转换</p>
-<p>symcache 符号到虚拟地址转换</p>
-<p>rvacache rva到符号的转换</p>
-<p>pidcache pid到dtb的转换</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vmi_a_add //a=[v2pcache,symcache,rvacache,pidcache]</span><br><span class="line">vmi_a_flush //a=[v2pcache,symcache,rvacache,pidcache]</span><br></pre></td></tr></table></figure>
-<h3 id="事件注册通知"><a href="#事件注册通知" class="headerlink" title="事件注册通知"></a>事件注册通知</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">static inline status_t</span><br><span class="line">driver_xen_setup(vmi_instance_t vmi)</span><br><span class="line">&#123;</span><br><span class="line">    driver_interface_t driver = &#123; 0 &#125;;</span><br><span class="line">    driver.initialized = true;</span><br><span class="line">    driver.init_ptr = &amp;xen_init;</span><br><span class="line">    driver.init_vmi_ptr = &amp;xen_init_vmi;</span><br><span class="line">    driver.destroy_ptr = &amp;xen_destroy;</span><br><span class="line">    driver.get_id_from_name_ptr = &amp;xen_get_domainid_from_name;</span><br><span class="line">    driver.get_name_from_id_ptr = &amp;xen_get_name_from_domainid;</span><br><span class="line">    driver.get_id_ptr = &amp;xen_get_domainid;</span><br><span class="line">    driver.set_id_ptr = &amp;xen_set_domainid;</span><br><span class="line">    driver.check_id_ptr = &amp;xen_check_domainid;</span><br><span class="line">    driver.get_name_ptr = &amp;xen_get_domainname;</span><br><span class="line">    driver.set_name_ptr = &amp;xen_set_domainname;</span><br><span class="line">    driver.get_memsize_ptr = &amp;xen_get_memsize;</span><br><span class="line">    driver.get_vcpureg_ptr = &amp;xen_get_vcpureg;</span><br><span class="line">    driver.set_vcpureg_ptr = &amp;xen_set_vcpureg;</span><br><span class="line">    driver.get_address_width_ptr = &amp;xen_get_address_width;</span><br><span class="line">    driver.read_page_ptr = &amp;xen_read_page;</span><br><span class="line">    driver.write_ptr = &amp;xen_write;</span><br><span class="line">    driver.is_pv_ptr = &amp;xen_is_pv;</span><br><span class="line">    driver.pause_vm_ptr = &amp;xen_pause_vm;</span><br><span class="line">    driver.resume_vm_ptr = &amp;xen_resume_vm;</span><br><span class="line">#if ENABLE_SHM_SNAPSHOT == 1</span><br><span class="line">    driver.create_shm_snapshot_ptr = &amp;xen_create_shm_snapshot;</span><br><span class="line">    driver.destroy_shm_snapshot_ptr = &amp;xen_destroy_shm_snapshot;</span><br><span class="line">    driver.get_dgpma_ptr = &amp;xen_get_dgpma;</span><br><span class="line">#endif</span><br><span class="line">#if ENABLE_XEN_EVENTS == 1</span><br><span class="line">    driver.events_listen_ptr = &amp;xen_events_listen;</span><br><span class="line">    driver.are_events_pending_ptr = &amp;xen_are_events_pending;</span><br><span class="line">    driver.set_reg_access_ptr = &amp;xen_set_reg_access;</span><br><span class="line">    driver.set_intr_access_ptr = &amp;xen_set_intr_access;</span><br><span class="line">    driver.set_mem_access_ptr = &amp;xen_set_mem_access;</span><br><span class="line">    driver.start_single_step_ptr = &amp;xen_start_single_step;</span><br><span class="line">    driver.stop_single_step_ptr = &amp;xen_stop_single_step;</span><br><span class="line">    driver.shutdown_single_step_ptr = &amp;xen_shutdown_single_step;</span><br><span class="line">#endif</span><br><span class="line">    vmi-&gt;driver = driver;</span><br><span class="line">    return VMI_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="字面值常量表示方式"><a href="#字面值常量表示方式" class="headerlink" title="字面值常量表示方式"></a>字面值常量表示方式</h4><p>10,8,16进制表示方式.以0开头的常量表示8进制，以0x或0X开头的表示十六进制。字面值整数常量的类型默认为int或long。其精度类型决定于字面值。通过增加后缀，能够强制将字面值整数常量转换为long,unsigned,unsigned long类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">20 // decimal</span><br><span class="line">024 // octal</span><br><span class="line">0x14 // hexdecimal</span><br><span class="line"></span><br><span class="line">128u /* unsigned */  1024UL /* unsigned long */</span><br><span class="line">1L /* long*/ 8Lu /* unsigned long*/</span><br></pre></td></tr></table></figure>
+<p>通常可以用十进制或者科学计数法来表示浮点字面值常量。指数用E或e表示，默认为double。在数值后加上F或f表示单精度。加上L或l表示扩展精度（不提倡使用l,因为和1很像）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3.14159F .001f 12.345L 0.</span><br><span class="line">3.14159E0f 1E-3F 1.2345E1L 0e0</span><br></pre></td></tr></table></figure>
+<p>布尔用true和false。字符型用单引号。不可打印的可以用转义字符。也可以用通用转义字符\ooo(3个8进制数字).16进制表示为\xddd</p>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>变量提供了程序可以操作的有名字的存储区。C++程序员常把变量称为”变量”</p>
+<p>C++两种表达式：左值（可以出现在赋值语句左边和右边）和右值（只能出现在赋值语句右边）。</p>
+<p>对象就是内存中具有类型的区域。计算左值表达式就会产生对象。</p>
+<p>变量名，即变量的标识符，可以由字符、数字和下划线组成。变量名必须以字母或下划线开头，并且区分大小写字母。变量名不应该太长。</p>
+<p>变量命名习惯</p>
+<ul>
+<li>变量名一般用小写字母。</li>
+<li>标识符应该使用能够帮助记忆的名字</li>
+<li>2中风格。student_loan 或 studenLoan</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/fgetc 0x1A EOF/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/01/fgetc 0x1A EOF/"></a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="fgetc-0x1A-EOF"><a href="#fgetc-0x1A-EOF" class="headerlink" title="fgetc 0x1A EOF"></a>fgetc 0x1A EOF</h1><p>历史遗留问题，将fopen中的r改为rb即可</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/Windows API hook 开发环境配置/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/01/Windows API hook 开发环境配置/"></a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Windows-API-Hook-开发环境配置"><a href="#Windows-API-Hook-开发环境配置" class="headerlink" title="Windows API Hook 开发环境配置"></a>Windows API Hook 开发环境配置</h1><p><span id="top"></span><br><!-- MarkdownTOC --></p>
+<ul>
+<li><a href="#detours安装和配置">Detours安装和配置</a><ul>
+<li><a href="#detours介绍">Detours介绍</a></li>
+<li><a href="#detours安装">Detours安装</a></li>
+<li><a href="#detours编译">Detours编译</a></li>
+</ul>
+</li>
+<li><a href="#windows-api-hook例子">Windows API Hook例子</a><ul>
+<li><a href="#加入detours头文件和动态库文件">加入detours头文件和动态库文件</a></li>
+</ul>
+</li>
+<li><a href="#利用withdll进行远程dll注入">利用withdll进行远程dll注入</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+<p><a name="detours安装和配置"></a></p>
+<h2 id="Detours安装和配置"><a href="#Detours安装和配置" class="headerlink" title="Detours安装和配置"></a>Detours安装和配置</h2><p><a name="detours介绍"></a></p>
+<h3 id="Detours介绍"><a href="#Detours介绍" class="headerlink" title="Detours介绍"></a>Detours介绍</h3><p>Detours是Windows下一个API Hook 开源框架。<br><a href="http://research.microsoft.com/en-us/projects/detours/" target="_blank" rel="external">Detours官网</a><br><a href="http://research.microsoft.com/en-us/downloads/d36340fb-4d3c-4ddd-bf5b-1db25d03713d/default.aspx" target="_blank" rel="external">Detours 3.0下载地址</a></p>
+<p><a name="detours安装"></a></p>
+<h3 id="Detours安装"><a href="#Detours安装" class="headerlink" title="Detours安装"></a>Detours安装</h3><p>msi文件一路next。记下安装目录。</p>
+<p><a name="detours编译"></a></p>
+<h3 id="Detours编译"><a href="#Detours编译" class="headerlink" title="Detours编译"></a>Detours编译</h3><p>安装完成后，进入目录<code>C:\Program Files\Microsoft Research\Detours Express 3.0</code>会看到下面的目录结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">samples\</span><br><span class="line">	...</span><br><span class="line">	simple\</span><br><span class="line">	...</span><br><span class="line">	withdll\</span><br><span class="line">	...</span><br><span class="line">src\</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>其中src是需要编译的detours源码。simple和withdll是实现windows API Hook需要用到的2个示例。</p>
+<p>编译步骤如下:</p>
+<ul>
+<li>以管理员权限启动cmd</li>
+<li><p>设置环境变量，不然nmake会出错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &quot;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\vcvars32.bat&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入detours的src文件夹并进行编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\src</span><br><span class="line"># nmake</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>编译在src和samples同一目录会生成lib.X86文件夹，里面的detours.lib就是我们需要的。</p>
+<p><a name="windows-api-hook例子"></a></p>
+<h2 id="Windows-API-Hook例子"><a href="#Windows-API-Hook例子" class="headerlink" title="Windows API Hook例子"></a>Windows API Hook例子</h2><p><a name="加入detours头文件和动态库文件"></a></p>
+<h3 id="加入detours头文件和动态库文件"><a href="#加入detours头文件和动态库文件" class="headerlink" title="加入detours头文件和动态库文件"></a>加入detours头文件和动态库文件</h3><p>在vs中新建windows控制台程序，设置解决方案的属性。</p>
+<ul>
+<li>打开<strong>项目</strong>–<strong>XXX 属性</strong></li>
+<li><p><strong>配置属性</strong>–<strong>C/C++</strong>–<strong>常规</strong> 在<strong>附加目录项</strong>中加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\include</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>配置属性</strong>–<strong>链接器</strong>–<strong>常规</strong> 在<strong>附加库目录</strong>中加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\lib.X86</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>配置属性</strong>–<strong>链接器</strong>–<strong>输入</strong> 在<strong>附加依赖项</strong>中加入<code>detours.lib</code></p>
+</li>
+<li><strong>配置属性</strong>–<strong>C/C++</strong>–<strong>代码生成</strong> 在<strong>运行库</strong>选择<code>/MT</code></li>
+<li><strong>配置属性</strong>–<strong>常规</strong> 在<strong>字符集</strong>选择<code>未设置</code></li>
+<li>在命令栏中选择<code>release</code>版本</li>
+</ul>
+<h4 id="withdll的编译"><a href="#withdll的编译" class="headerlink" title="withdll的编译"></a>withdll的编译</h4><p>在源文件中新建cpp文件，拷贝detours安装目录下的<code>samples\withdll\withdll.cpp</code>内容到cpp中。编译。</p>
+<h4 id="simple的编译"><a href="#simple的编译" class="headerlink" title="simple的编译"></a>simple的编译</h4><p>在vs新建项目时，选择windows控制台程序，并选择dll。设置解决方案属性。拷贝<code>samples\simple\simple.cpp</code>到新建的cpp文件中，编译。</p>
+<p><a name="利用withdll进行远程dll注入"></a></p>
+<h2 id="利用withdll进行远程dll注入"><a href="#利用withdll进行远程dll注入" class="headerlink" title="利用withdll进行远程dll注入"></a>利用withdll进行远程dll注入</h2><p><code>withdll /d:simple.dll a.exe</code>会将simple.dll注入到a.exe中。注意<code>/d:simple.dll</code>分号后不要有空格。exe和dll用绝对地址和相对地址都可以。</p>
+<p><a href="#top">回到顶部</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/python tk/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/01/python tk/"></a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="tk-编程"><a href="#tk-编程" class="headerlink" title="tk 编程"></a>tk 编程</h1><h2 id="标准属性"><a href="#标准属性" class="headerlink" title="标准属性"></a>标准属性</h2><h3 id="dimensions"><a href="#dimensions" class="headerlink" title="dimensions"></a>dimensions</h3><p>尺寸包含4种</p>
+<table>
+<thead>
+<tr>
+<th>字母</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c</td>
+<td>厘米</td>
+</tr>
+<tr>
+<td>i</td>
+<td>英寸</td>
+</tr>
+<tr>
+<td>m</td>
+<td>毫米</td>
+</tr>
+<tr>
+<td>p</td>
+<td>打印机的点？？</td>
+</tr>
+</tbody>
+</table>
+<h3 id="坐标"><a href="#坐标" class="headerlink" title="坐标"></a>坐标</h3><h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><p>||#rgb||four bits per color||<br>||#rrggbb||eight bits per color||<br>||#rrrgggbbb||twelve bits per color||</p>
+<p>还一可以指定关键词’white’,’black’,’red’,’green’,’blue’,’cyan’,’yellow’,’magenta’</p>
+<h3 id="fonts"><a href="#fonts" class="headerlink" title="fonts"></a>fonts</h3><p>1.元组表示,第一表示字体，第二个表示大小，正数为points，负数为像素点，后续为其他一些特别设置<br>(‘Helvetica’,’16’)<br>(‘Times’,’24’,’bold italic’)<br>(‘Times’,-20,’bold’)</p>
+<p>2.字体对象 tkFont</p>
+<p>3.X font names.</p>
+<h3 id="锚"><a href="#锚" class="headerlink" title="锚"></a>锚</h3><p>N S W E CENTER<br>NW NE SW SE</p>
+<h3 id="释放样式"><a href="#释放样式" class="headerlink" title="释放样式"></a>释放样式</h3><p>FLAT RAISED SUNKEN GROOVE RIDGE</p>
+<h3 id="Bitmaps"><a href="#Bitmaps" class="headerlink" title="Bitmaps"></a>Bitmaps</h3><p>button支持 error gray75 gray50 gray25 gray12 hourglass info questhead question warning</p>
+<p>也可以使用.xbm(X bit map)使用@path</p>
+<h3 id="cursors"><a href="#cursors" class="headerlink" title="cursors"></a>cursors</h3><h3 id="images"><a href="#images" class="headerlink" title="images"></a>images</h3><p>BitmapImage 支持 .xbm<br>PhotoImage 支持 .gif .pgm .ppm<br>ImageTk 支持更多格式</p>
+<h4 id="the-BitmapImage-class"><a href="#the-BitmapImage-class" class="headerlink" title="the BitmapImage class"></a>the BitmapImage class</h4><p>原型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tk.BitmapImage(file=f[, background=b][, foreground=c])</span><br></pre></td></tr></table></figure></p>
+<p>实例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logo = tk.BitmapImage(<span class="string">'logo.xbm'</span>, foreground=<span class="string">'red'</span>)</span><br><span class="line">Label(image=logo).grid()</span><br></pre></td></tr></table></figure></p>
+<h4 id="the-PhotoImage-class"><a href="#the-PhotoImage-class" class="headerlink" title="the PhotoImage class"></a>the PhotoImage class</h4><p>原型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tk.PhotoImage(file=f)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Geometry-strings"><a href="#Geometry-strings" class="headerlink" title="Geometry strings"></a>Geometry strings</h3><p>A geometry string is a standard way of describing the size and location of a top-level window on a desktop.<br>format: ‘wxh±x±y’<br>+x left side<br>-x right side<br>+y top<br>-y bottom</p>
+<h3 id="window-names"><a href="#window-names" class="headerlink" title="window names"></a>window names</h3><p>hierarchical window path name<br>root window ‘.’<br>child name ‘.n’<br>child windows of child ‘p.n’, p is the name of the parent window</p>
+<p>str(w): to get the path name of a widget w</p>
+<h3 id="cap-and-join-styles"><a href="#cap-and-join-styles" class="headerlink" title="cap and join styles"></a>cap and join styles</h3><p>cap style: tk.BUTT, tk.PROJECTING, tk.ROUND<br>join style: tk.ROUND, tk.BEVEL, tk.MITER</p>
+<h3 id="dash-patterns"><a href="#dash-patterns" class="headerlink" title="dash patterns"></a>dash patterns</h3><p>dash=(3,5)<br>dash=(7,1,1,1)<br>dash=(5,1,2,1),dashoff=3</p>
+<h2 id="tk-TclError"><a href="#tk-TclError" class="headerlink" title="tk.TclError"></a>tk.TclError</h2>
       
     </div>
     <footer>
@@ -872,14 +795,14 @@
 <nav id="pagination">
   
   
-    <a href="/blog/page/2/" class="alignright next">Next</a>
+    <a href="/blog/page/2/" class="alignright next">Nächste Seite</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="search" name="q" results="0" placeholder="Suche">
     <input type="hidden" name="q" value="site:mrgao1008.github.io/blog">
   </form>
 </div>
