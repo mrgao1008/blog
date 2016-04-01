@@ -1,0 +1,241 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>c++ 学习文档 | Mrgao1008&#39;s blog</title>
+  <meta name="author" content="mrgao1008@gmail.com">
+  
+  <meta name="description" content="Some documents when reading books">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="c++ 学习文档"/>
+  <meta property="og:site_name" content="Mrgao1008&#39;s blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/blog/favicon.png" rel="icon">
+  <link rel="alternate" href="/blog/atom.xml" title="Mrgao1008&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/blog/">Mrgao1008&#39;s blog</a></h1>
+  <h2><a href="/blog/">technology documents</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/blog/">Home</a></li>
+    
+      <li><a href="/blog/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-03-31T16:00:00.000Z"><a href="/blog/2016/04/01/c++学习文档/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title">c++ 学习文档</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="c-学习文档"><a href="#c-学习文档" class="headerlink" title="c++ 学习文档"></a>c++ 学习文档</h1><p><em>C++Primer中文版（第四版）</em></p>
+<h2 id="第二章-变量和基本类型"><a href="#第二章-变量和基本类型" class="headerlink" title="第二章-变量和基本类型"></a>第二章-变量和基本类型</h2><h3 id="基本内置类型"><a href="#基本内置类型" class="headerlink" title="基本内置类型"></a>基本内置类型</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>含义</th>
+<th>最小存储空间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bool</td>
+<td>布尔型</td>
+<td>-</td>
+</tr>
+<tr>
+<td>char</td>
+<td>字符型</td>
+<td>8位</td>
+</tr>
+<tr>
+<td>wchar_t</td>
+<td>宽字符型</td>
+<td>16位</td>
+</tr>
+<tr>
+<td>short</td>
+<td>短整型</td>
+<td>16位</td>
+</tr>
+<tr>
+<td>int</td>
+<td>整型</td>
+<td>16位</td>
+</tr>
+<tr>
+<td>long</td>
+<td>长整型</td>
+<td>32位</td>
+</tr>
+<tr>
+<td>float</td>
+<td>单精度浮点型</td>
+<td>6位有效数字</td>
+</tr>
+<tr>
+<td>double</td>
+<td>双精度浮点型</td>
+<td>10位有效数字</td>
+</tr>
+<tr>
+<td>long double</td>
+<td>扩展精度浮点型</td>
+<td>10位有效数字</td>
+</tr>
+</tbody>
+</table>
+<h4 id="字面值常量表示方式"><a href="#字面值常量表示方式" class="headerlink" title="字面值常量表示方式"></a>字面值常量表示方式</h4><p>10,8,16进制表示方式.以0开头的常量表示8进制，以0x或0X开头的表示十六进制。字面值整数常量的类型默认为int或long。其精度类型决定于字面值。通过增加后缀，能够强制将字面值整数常量转换为long,unsigned,unsigned long类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">20 // decimal</span><br><span class="line">024 // octal</span><br><span class="line">0x14 // hexdecimal</span><br><span class="line"></span><br><span class="line">128u /* unsigned */  1024UL /* unsigned long */</span><br><span class="line">1L /* long*/ 8Lu /* unsigned long*/</span><br></pre></td></tr></table></figure>
+<p>通常可以用十进制或者科学计数法来表示浮点字面值常量。指数用E或e表示，默认为double。在数值后加上F或f表示单精度。加上L或l表示扩展精度（不提倡使用l,因为和1很像）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3.14159F .001f 12.345L 0.</span><br><span class="line">3.14159E0f 1E-3F 1.2345E1L 0e0</span><br></pre></td></tr></table></figure>
+<p>布尔用true和false。字符型用单引号。不可打印的可以用转义字符。也可以用通用转义字符\ooo(3个8进制数字).16进制表示为\xddd</p>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>变量提供了程序可以操作的有名字的存储区。C++程序员常把变量称为”变量”</p>
+<p>C++两种表达式：左值（可以出现在赋值语句左边和右边）和右值（只能出现在赋值语句右边）。</p>
+<p>对象就是内存中具有类型的区域。计算左值表达式就会产生对象。</p>
+<p>变量名，即变量的标识符，可以由字符、数字和下划线组成。变量名必须以字母或下划线开头，并且区分大小写字母。变量名不应该太长。</p>
+<p>变量命名习惯</p>
+<ul>
+<li>变量名一般用小写字母。</li>
+<li>标识符应该使用能够帮助记忆的名字</li>
+<li>2中风格。student_loan 或 studenLoan</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/blog/tags/c/">c++</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://mrgao1008.github.io/blog/2016/04/01/c++学习文档/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:mrgao1008.github.io/blog">
+  </form>
+</div>
+
+  
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/blog/tags/c/">c++</a><small>1</small></li>
+  
+    <li><a href="/blog/tags/site/">site</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 mrgao1008@gmail.com
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
