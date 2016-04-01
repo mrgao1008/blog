@@ -238,6 +238,56 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-04-01T07:43:47.758Z"><a href="/blog/2016/04/01/怎么在sublime中写markdown/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/01/怎么在sublime中写markdown/"></a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="怎么在Sublime中写Markdown"><a href="#怎么在Sublime中写Markdown" class="headerlink" title="怎么在Sublime中写Markdown"></a>怎么在Sublime中写Markdown</h1><p>Tags:sublime markdown</p>
+<h2 id="Sublime安装"><a href="#Sublime安装" class="headerlink" title="Sublime安装"></a>Sublime安装</h2><p>Sublime2官网:<a href="http://www.sublimetext.com/2" target="_blank" rel="external">http://www.sublimetext.com/2</a></p>
+<p>Sublime3官网:<a href="http://www.sublimetext.com/3" target="_blank" rel="external">http://www.sublimetext.com/3</a></p>
+<h2 id="安装Markdown-Preview"><a href="#安装Markdown-Preview" class="headerlink" title="安装Markdown Preview"></a>安装Markdown Preview</h2><p><strong>sublime2（<code>未验证</code>）</strong><br>打开Ctrl+~,输入如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import urllib2,os; pf=&apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), &apos;wb&apos; ).write( urllib2.urlopen( &apos;http://sublime.wbond.net/&apos; +pf.replace( &apos; &apos;,&apos;%20&apos; )).read()); print( &apos;Please restart Sublime Text to finish installation&apos;)</span><br></pre></td></tr></table></figure></p>
+<p><strong>sublime3（<code>未验证</code>)</strong><br>打开Ctrl+~,输入如下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request,os; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &apos;wb&apos;).write(urllib.request.urlopen( &apos;http://sublime.wbond.net/&apos; + pf.replace(&apos; &apos;,&apos;%20&apos;)).read())</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>Ctrl+Shift+p 打开Package Control 输入install,选择 install package</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/mrgao1008/picture/master/sublime_install_package.png" alt="install_package"></p>
+<p>-. 输入markdown 选择preview安装</p>
+<p><img src="https://raw.githubusercontent.com/mrgao1008/picture/master/markdown_preview.png" alt="markdown_preview"></p>
+<h2 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h2><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>通过在句首加入#，表示标题</p>
+<h1 id="标题1"><a href="#标题1" class="headerlink" title="标题1"></a>标题1</h1><h2 id="标题2"><a href="#标题2" class="headerlink" title="标题2"></a>标题2</h2><p>…</p>
+<h6 id="标题6"><a href="#标题6" class="headerlink" title="标题6"></a>标题6</h6><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	printf(&quot;hello world\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>为了使的图片在互联网上能够访问，需要将图片上传到网盘上，比如github.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![name](url)来表示图片</span><br></pre></td></tr></table></figure></p>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>链接和图片类似<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[name](url)</span><br></pre></td></tr></table></figure></p>
+<h3 id="加粗和斜体"><a href="#加粗和斜体" class="headerlink" title="加粗和斜体"></a>加粗和斜体</h3><p><strong>加粗</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**加粗**</span><br></pre></td></tr></table></figure></p>
+<p><em>斜体</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*斜体*</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-04-01T07:43:47.758Z"><a href="/blog/2016/04/01/数据库系统原理与应用（第三版）1/">2016-04-01</a></time>
       
       
@@ -363,34 +413,135 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-04-01T07:43:47.758Z"><a href="/blog/2016/04/01/怎么在sublime中写markdown/">2016-04-01</a></time>
+        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/fgetc 0x1A EOF/">2016-04-01</a></time>
       
       
   
-    <h1 class="title"><a href="/blog/2016/04/01/怎么在sublime中写markdown/"></a></h1>
+    <h1 class="title"><a href="/blog/2016/04/01/fgetc 0x1A EOF/"></a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h1 id="怎么在Sublime中写Markdown"><a href="#怎么在Sublime中写Markdown" class="headerlink" title="怎么在Sublime中写Markdown"></a>怎么在Sublime中写Markdown</h1><p>Tags:sublime markdown</p>
-<h2 id="Sublime安装"><a href="#Sublime安装" class="headerlink" title="Sublime安装"></a>Sublime安装</h2><p>Sublime2官网:<a href="http://www.sublimetext.com/2" target="_blank" rel="external">http://www.sublimetext.com/2</a></p>
-<p>Sublime3官网:<a href="http://www.sublimetext.com/3" target="_blank" rel="external">http://www.sublimetext.com/3</a></p>
-<h2 id="安装Markdown-Preview"><a href="#安装Markdown-Preview" class="headerlink" title="安装Markdown Preview"></a>安装Markdown Preview</h2><p><strong>sublime2（<code>未验证</code>）</strong><br>打开Ctrl+~,输入如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import urllib2,os; pf=&apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), &apos;wb&apos; ).write( urllib2.urlopen( &apos;http://sublime.wbond.net/&apos; +pf.replace( &apos; &apos;,&apos;%20&apos; )).read()); print( &apos;Please restart Sublime Text to finish installation&apos;)</span><br></pre></td></tr></table></figure></p>
-<p><strong>sublime3（<code>未验证</code>)</strong><br>打开Ctrl+~,输入如下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request,os; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &apos;wb&apos;).write(urllib.request.urlopen( &apos;http://sublime.wbond.net/&apos; + pf.replace(&apos; &apos;,&apos;%20&apos;)).read())</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>Ctrl+Shift+p 打开Package Control 输入install,选择 install package</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/mrgao1008/picture/master/sublime_install_package.png" alt="install_package"></p>
-<p>-. 输入markdown 选择preview安装</p>
-<p><img src="https://raw.githubusercontent.com/mrgao1008/picture/master/markdown_preview.png" alt="markdown_preview"></p>
-<h2 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h2><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>通过在句首加入#，表示标题</p>
-<h1 id="标题1"><a href="#标题1" class="headerlink" title="标题1"></a>标题1</h1><h2 id="标题2"><a href="#标题2" class="headerlink" title="标题2"></a>标题2</h2><p>…</p>
-<h6 id="标题6"><a href="#标题6" class="headerlink" title="标题6"></a>标题6</h6><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	printf(&quot;hello world\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>为了使的图片在互联网上能够访问，需要将图片上传到网盘上，比如github.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![name](url)来表示图片</span><br></pre></td></tr></table></figure></p>
-<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>链接和图片类似<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[name](url)</span><br></pre></td></tr></table></figure></p>
-<h3 id="加粗和斜体"><a href="#加粗和斜体" class="headerlink" title="加粗和斜体"></a>加粗和斜体</h3><p><strong>加粗</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**加粗**</span><br></pre></td></tr></table></figure></p>
-<p><em>斜体</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*斜体*</span><br></pre></td></tr></table></figure></p>
+        <h1 id="fgetc-0x1A-EOF"><a href="#fgetc-0x1A-EOF" class="headerlink" title="fgetc 0x1A EOF"></a>fgetc 0x1A EOF</h1><p>历史遗留问题，将fopen中的r改为rb即可</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/如何给Linux kernel提交代码/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/01/如何给Linux kernel提交代码/"></a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>#如何给Linux Kernel提交代码</p>
+<p><strong><a href="http://kernelnewbies.org/UpstreamMerge/SubmittingPatches" target="_blank" rel="external">英文</a></strong></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><span id="前言">前言</span></h2><p>个人或者公司如果不熟悉提交代码流程，代码很难被接受。利用本文给出一些建议将会大大的增加代码被接受的概率。</p>
+<p>在提交代码之前，你需要阅读一些注意事项<code>Documentation\SubmitChecklist</code>。如果是提交的驱动，同时也请阅读<code>Documentation\SubmittingDrivers</code>。</p>
+<h2 id="创造并提交改动"><a href="#创造并提交改动" class="headerlink" title="创造并提交改动"></a>创造并提交改动</h2><p>###diff -up</p>
+<p>利用<code>diff -up</code>或者<code>diff -uprN</code>创造patch文件。</p>
+<p>linux所有的更改都以patche方式存在。patch命令中<code>-u</code>代表<code>unified diff</code>,<code>-p</code>会显示哪个函数发生了改变。patche都是以linux源码的根目录为其实点。<br>比如你更改了一个文件。你需要进行下面的操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SRCTREE= linux-2.6</span><br><span class="line">MYFILE= drivers/net/mydriver.c</span><br><span class="line"></span><br><span class="line">cd $SRCTREE</span><br><span class="line">cp $MYFILE $MYFILE.orig</span><br><span class="line">vi $MYFILE       # make your change</span><br><span class="line">cd ..</span><br><span class="line">diff -up $SRCTREE/$MYFILE&#123;.orig,&#125; &gt; /tmp/patch</span><br></pre></td></tr></table></figure></p>
+<p>如果更改了多个文件，你需要解压一个<code>vanilla</code>或者原版linux kernel。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MYSRC= /devel/linux-2.6</span><br><span class="line"></span><br><span class="line">tar xvfz linux-2.6.12.tar.gz</span><br><span class="line">mv linux-2.6.12 linux-2.6.12-vanilla</span><br><span class="line">diff -uprN -X linux-2.6.12-vanilla/Documentation/dontdiff \</span><br><span class="line">    linux-2.6.12-vanilla $MYSRC &gt; /tmp/patch</span><br></pre></td></tr></table></figure></p>
+<p>其中<code>dontdiff</code>是diff需要忽略的文件列表。</p>
+<p>确保patche中不包含其他无关文件。</p>
+<p>如果你的更改比较巨大，可以按照逻辑分成几个部分。这方便其他内核开发者审查。</p>
+<p>patch管理工具<a href="http://savannah.nongnu.org/projects/quilt" target="_blank" rel="external">Quilt</a>.一些脚本工具<a href="http://userweb.kernel.org/~akpm/stuff/patch-scripts.tar.gz" target="_blank" rel="external">Scripts</a></p>
+<p>###描述更改</p>
+<p>描述更改过程中的技术细节，做到尽可能清晰。如果描述过长，可能你需要分成几个patch。</p>
+<p>###分割更改</p>
+<p>按照逻辑分割patch文件。<br>比如，你填补了一个驱动的bug同时还提高了它的性能，那么你需要将他分成多个patche。如果你更改了一个API,并提供一个新的驱动利用了该API，这需要分成2个patch。另一方面，如果你只是更改了很多不同文件的同一个地方，你需要将更改放在同一个patch中。如果你的patch比如依赖另外一个patch，你需要在描述patch时说明<code>this patch depends on patch X</code>。</p>
+<p>###检查代码风格</p>
+<p>按照<code>Documentation/Codingstyle</code>中的描述，检查更改的编码风格。没有进行这一步的代码可能在甚至没有被阅读情况下被拒绝。最基本的，你可以采用<code>scripts/checkpatch.pl</code>检查patch的编码风格，并且修改所有不恰当的地方。</p>
+<p>###选择发送者</p>
+<p>linux主线的每一部分都由一个维护者负责。更改属于哪一部分就发给对应的维护者。如果维护者没有列出，或者不回应邮件，你可以将patch发给<code>linux-kernel@vger.kernel.org</code>。</p>
+<p>Linus Torvalds是接受更改的仲裁者，但是一般不要给他发邮件。比较明显的bug修复或者不需要讨论的patch可以直接抄送给Linux Torvalds。如果Patch没有明显的优势或者需要讨论，你需要先发给linux-kernel.</p>
+<p>###选择抄送人</p>
+<p>如果没有特别原因需要抄送给<code>linux-kernel@vger.kernel.org</code>。这样可以让其他开发者可以检查代码和提出意见。</p>
+<p>如果你的更改影响了用户和内核接口，请抄送给MAN-PAGES维护者，方便他们做更改。<br>小的更改：比如字符拼写错误等你需要抄送给<code>trivial@kernel.org</code>。<br>比如在文档中的拼写错误等。关于小错误的定义可以查看<a href="http://www.kernel.org/pub/linux/kernel/people/juhl/trivial/" target="_blank" rel="external">trivial</a>。</p>
+<p>###只允许文字（没有多媒体，链接，压缩，附件）</p>
+<p>所以patch都写在邮件中。</p>
+<p>###email的大小</p>
+<p>email的大小如果超过40kb，你需要放到网络上，并提供链接。</p>
+<p>###指明kernel版本</p>
+<p>你需要指明patch的kernel版本，如果patch不适用于最新的kernel，linus不会接受。</p>
+<p>###别沮丧，重新提交</p>
+<p>提交更改后，需要耐心等待。如果更改没有出现在下一个版本中，那么可能是一下原因：</p>
+<ul>
+<li>更改不适用于最新内核版本</li>
+<li>更改没有经过足够讨论</li>
+<li>代码风格问题</li>
+<li>e-mail格式问题</li>
+<li>更改存在技术问题</li>
+<li>意外丢失</li>
+<li>你太烦了</li>
+</ul>
+<p>如果有疑问，可以在linux-kernel邮件列表上询问。</p>
+<p>###在邮件主题上加上[PATCH]</p>
+<p>###签名</p>
+<p>为了方便跟踪作者和管理复杂的更改，引入了签名机制。如果确认一下4点就可以在对patch的描述后加上一句：<br>Signed-off-by: Random J Developer <a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#111;&#x3a;&#114;&#x61;&#x6e;&#x64;&#111;&#x6d;&#64;&#100;&#101;&#118;&#x65;&#x6c;&#111;&#x70;&#101;&#x72;&#x2e;&#x65;&#120;&#x61;&#x6d;&#112;&#108;&#101;&#x2e;&#x6f;&#x72;&#103;">&#114;&#x61;&#x6e;&#x64;&#111;&#x6d;&#64;&#100;&#101;&#118;&#x65;&#x6c;&#111;&#x70;&#101;&#x72;&#x2e;&#x65;&#120;&#x61;&#x6d;&#112;&#108;&#101;&#x2e;&#x6f;&#x72;&#103;</a></p>
+<ul>
+<li>更改部分或者全部由我完成。我有权利开源</li>
+<li>更改基于一个开源项目，需提交到同一个开源license下。否则可以提交给别的开源license</li>
+<li>更改由别人转交给我，别人确认1,2,3条，我没有修改更改</li>
+<li>我知道这是一个开源项目，并且贡献有可能不被记录</li>
+</ul>
+<p>###Acked-by</p>
+<p>子系统的维护者需要这么做，表示patch你觉得还不错。</p>
+<p>###Tested-by和Reviewed-by</p>
+<p>Tested-by表示某人在某种环境下patch测试是有效的。<br>Reviewed-by表示这个patch被检查，说明你对patch的观点。</p>
+<p>###patch的规范格式</p>
+<p>主题：[PATCH 001/123] 子系统: 总结</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from:</span><br><span class="line">空行</span><br><span class="line">patch的描述</span><br><span class="line">Signed-off-by:</span><br><span class="line">标识符---</span><br><span class="line">其他一些评论</span><br><span class="line">diff output</span><br></pre></td></tr></table></figure>
+<p>主题的2个示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Subject: [patch 2/5] ext2: improve scalability of bitmap searching</span><br><span class="line">Subject: [PATCHv2 001/207] x86: fix eflags tracking</span><br></pre></td></tr></table></figure></p>
+<p>from行的示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">From: Original Author &lt;author@example.com&gt;</span><br></pre></td></tr></table></figure></p>
+<p>—表示改动日志的结束。<br>其他一些评论可以用来写上<code>diffstat -p 1 -w 70</code>。</p>
+<p>###发送git pull请求</p>
+<p>发送从哪能够获得更改，格式如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Please pull from</span><br><span class="line">        git://jdelvare.pck.nerim.net/jdelvare-2.6 i2c-for-linus</span><br><span class="line"> to get these changes:</span><br></pre></td></tr></table></figure></p>
+<p>同时用<code>git diff -M --stat --summary</code>生成diffstat.</p>
+<h2 id="忠告、建议、技巧"><a href="#忠告、建议、技巧" class="headerlink" title="忠告、建议、技巧"></a>忠告、建议、技巧</h2><ul>
+<li><p>阅读Documentation/CodingStyle</p>
+<p>  可以利用scripts/checkpatch.pl来检查代码风格。这个脚本会提供3种水平的忠告</p>
+<ul>
+<li>ERROR: 很可能有错</li>
+<li>WARNING: 需要认真检查</li>
+<li>CHECK：需要考虑</li>
+</ul>
+</li>
+<li><p>不要在函数内使用ifdef。<br>  例如：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dev = alloc_etherdev (sizeof(struct funky_private));</span><br><span class="line">if (!dev)</span><br><span class="line">        return -ENODEV;</span><br><span class="line">#ifdef CONFIG_NET_FUNKINESS</span><br><span class="line">init_funky_net(dev);</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+<p>  上面的可以更改为</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(in header)</span><br><span class="line">    #ifndef CONFIG_NET_FUNKINESS</span><br><span class="line">    static inline void init_funky_net (struct net_device *d) &#123;&#125;</span><br><span class="line">    #endif</span><br><span class="line">(in the code itself)</span><br><span class="line">    dev = alloc_etherdev (sizeof(struct funky_private));</span><br><span class="line">    if (!dev)</span><br><span class="line">            return -ENODEV;</span><br><span class="line">    init_funky_net(dev);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>static inline 比宏更好</p>
+</li>
+<li><p>不要过度设计</p>
+<p>  Make it as simple as you can, and no simpler.</p>
+</li>
+</ul>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>这篇文章翻译于<a href="http://kernelnewbies.org/UpstreamMerge/SubmittingPatches" target="_blank" rel="external">英文原稿</a>.</p>
+<p><a href="#前言">回到顶部</a></p>
 
       
     </div>
@@ -453,73 +604,99 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/Windows API hook 开发环境配置/">2016-04-01</a></time>
+        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/libvmi介绍/">2016-04-01</a></time>
       
       
   
-    <h1 class="title"><a href="/blog/2016/04/01/Windows API hook 开发环境配置/"></a></h1>
+    <h1 class="title"><a href="/blog/2016/04/01/libvmi介绍/"></a></h1>
   
 
     </header>
     <div class="entry">
       
-        <h1 id="Windows-API-Hook-开发环境配置"><a href="#Windows-API-Hook-开发环境配置" class="headerlink" title="Windows API Hook 开发环境配置"></a>Windows API Hook 开发环境配置</h1><p><span id="top"></span><br><!-- MarkdownTOC --></p>
-<ul>
-<li><a href="#detours安装和配置">Detours安装和配置</a><ul>
-<li><a href="#detours介绍">Detours介绍</a></li>
-<li><a href="#detours安装">Detours安装</a></li>
-<li><a href="#detours编译">Detours编译</a></li>
-</ul>
-</li>
-<li><a href="#windows-api-hook例子">Windows API Hook例子</a><ul>
-<li><a href="#加入detours头文件和动态库文件">加入detours头文件和动态库文件</a></li>
-</ul>
-</li>
-<li><a href="#利用withdll进行远程dll注入">利用withdll进行远程dll注入</a></li>
-</ul>
-<!-- /MarkdownTOC -->
-<p><a name="detours安装和配置"></a></p>
-<h2 id="Detours安装和配置"><a href="#Detours安装和配置" class="headerlink" title="Detours安装和配置"></a>Detours安装和配置</h2><p><a name="detours介绍"></a></p>
-<h3 id="Detours介绍"><a href="#Detours介绍" class="headerlink" title="Detours介绍"></a>Detours介绍</h3><p>Detours是Windows下一个API Hook 开源框架。<br><a href="http://research.microsoft.com/en-us/projects/detours/" target="_blank" rel="external">Detours官网</a><br><a href="http://research.microsoft.com/en-us/downloads/d36340fb-4d3c-4ddd-bf5b-1db25d03713d/default.aspx" target="_blank" rel="external">Detours 3.0下载地址</a></p>
-<p><a name="detours安装"></a></p>
-<h3 id="Detours安装"><a href="#Detours安装" class="headerlink" title="Detours安装"></a>Detours安装</h3><p>msi文件一路next。记下安装目录。</p>
-<p><a name="detours编译"></a></p>
-<h3 id="Detours编译"><a href="#Detours编译" class="headerlink" title="Detours编译"></a>Detours编译</h3><p>安装完成后，进入目录<code>C:\Program Files\Microsoft Research\Detours Express 3.0</code>会看到下面的目录结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">samples\</span><br><span class="line">	...</span><br><span class="line">	simple\</span><br><span class="line">	...</span><br><span class="line">	withdll\</span><br><span class="line">	...</span><br><span class="line">src\</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<p>其中src是需要编译的detours源码。simple和withdll是实现windows API Hook需要用到的2个示例。</p>
-<p>编译步骤如下:</p>
-<ul>
-<li>以管理员权限启动cmd</li>
-<li><p>设置环境变量，不然nmake会出错</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &quot;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\vcvars32.bat&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>进入detours的src文件夹并进行编译</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\src</span><br><span class="line"># nmake</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>编译在src和samples同一目录会生成lib.X86文件夹，里面的detours.lib就是我们需要的。</p>
-<p><a name="windows-api-hook例子"></a></p>
-<h2 id="Windows-API-Hook例子"><a href="#Windows-API-Hook例子" class="headerlink" title="Windows API Hook例子"></a>Windows API Hook例子</h2><p><a name="加入detours头文件和动态库文件"></a></p>
-<h3 id="加入detours头文件和动态库文件"><a href="#加入detours头文件和动态库文件" class="headerlink" title="加入detours头文件和动态库文件"></a>加入detours头文件和动态库文件</h3><p>在vs中新建windows控制台程序，设置解决方案的属性。</p>
-<ul>
-<li>打开<strong>项目</strong>–<strong>XXX 属性</strong></li>
-<li><p><strong>配置属性</strong>–<strong>C/C++</strong>–<strong>常规</strong> 在<strong>附加目录项</strong>中加入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\include</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>配置属性</strong>–<strong>链接器</strong>–<strong>常规</strong> 在<strong>附加库目录</strong>中加入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\lib.X86</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>配置属性</strong>–<strong>链接器</strong>–<strong>输入</strong> 在<strong>附加依赖项</strong>中加入<code>detours.lib</code></p>
-</li>
-<li><strong>配置属性</strong>–<strong>C/C++</strong>–<strong>代码生成</strong> 在<strong>运行库</strong>选择<code>/MT</code></li>
-<li><strong>配置属性</strong>–<strong>常规</strong> 在<strong>字符集</strong>选择<code>未设置</code></li>
-<li>在命令栏中选择<code>release</code>版本</li>
-</ul>
-<h4 id="withdll的编译"><a href="#withdll的编译" class="headerlink" title="withdll的编译"></a>withdll的编译</h4><p>在源文件中新建cpp文件，拷贝detours安装目录下的<code>samples\withdll\withdll.cpp</code>内容到cpp中。编译。</p>
-<h4 id="simple的编译"><a href="#simple的编译" class="headerlink" title="simple的编译"></a>simple的编译</h4><p>在vs新建项目时，选择windows控制台程序，并选择dll。设置解决方案属性。拷贝<code>samples\simple\simple.cpp</code>到新建的cpp文件中，编译。</p>
-<p><a name="利用withdll进行远程dll注入"></a></p>
-<h2 id="利用withdll进行远程dll注入"><a href="#利用withdll进行远程dll注入" class="headerlink" title="利用withdll进行远程dll注入"></a>利用withdll进行远程dll注入</h2><p><code>withdll /d:simple.dll a.exe</code>会将simple.dll注入到a.exe中。注意<code>/d:simple.dll</code>分号后不要有空格。exe和dll用绝对地址和相对地址都可以。</p>
-<p><a href="#top">回到顶部</a></p>
-
+        <h1 id="libvmi介绍"><a href="#libvmi介绍" class="headerlink" title="libvmi介绍"></a>libvmi介绍</h1><p>libvmi提供了大量的库函数用于开发基于VMI的安全软件。</p>
+<h2 id="libvmi的接口"><a href="#libvmi的接口" class="headerlink" title="libvmi的接口"></a>libvmi的接口</h2><ol>
+<li>VMI构造和析构</li>
+<li>VM基本信息获取</li>
+<li>VM地址转换、pid页表转换</li>
+<li>VM读写内存</li>
+<li>VMIcache操作函数</li>
+<li>事件注册通知</li>
+</ol>
+<h3 id="VMI构造和析构"><a href="#VMI构造和析构" class="headerlink" title="VMI构造和析构"></a>VMI构造和析构</h3><p>接口包括下面这些</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vmi_init</span><br><span class="line">vmi_init_custom</span><br><span class="line">vmi_init_complete</span><br><span class="line">vmi_init_complete_custom</span><br><span class="line">vmi_init_paging</span><br><span class="line">vmi_destroy</span><br></pre></td></tr></table></figure>
+<p>带有custom表示从内存结构中读取配置，否则从文件中读取配置。<br>complete用在vmi_init中以partial方式初始化后（这种状态下只提供物理地址读写），经过启发式方法确定了特别偏移量后，进行完全初始化，这样才能够用其他方式比如符号、虚拟地址读写。</p>
+<h3 id="VM基本信息获取"><a href="#VM基本信息获取" class="headerlink" title="VM基本信息获取"></a>VM基本信息获取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vmi_get_name -&gt;driver_get_name</span><br><span class="line">vmi_get_vmid -&gt;driver_get_id</span><br><span class="line">vmi_get_access_mode //xen kvm file</span><br><span class="line">vmi_get_page_mode</span><br><span class="line">vmi_get_address_width</span><br><span class="line">vmi_get_ostype</span><br><span class="line">vmi_get_winver</span><br><span class="line">vmi_get_winver_str</span><br><span class="line">vmi_get_winver_manual</span><br><span class="line">vmi_get_offset</span><br><span class="line">vmi_get_memsize</span><br></pre></td></tr></table></figure>
+<p>windows能够设置和得到的符号包括如下表</p>
+<table>
+<thead>
+<tr>
+<th>符号名字</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>win_ntoskrnl</td>
+<td></td>
+</tr>
+<tr>
+<td>win_tasks</td>
+<td></td>
+</tr>
+<tr>
+<td>win_pdbase</td>
+<td></td>
+</tr>
+<tr>
+<td>win_pid</td>
+<td></td>
+</tr>
+<tr>
+<td>win_pname</td>
+<td></td>
+</tr>
+<tr>
+<td>win_kdvb</td>
+<td></td>
+</tr>
+<tr>
+<td>win_sysproc</td>
+<td></td>
+</tr>
+<tr>
+<td>win_kpcr</td>
+<td></td>
+</tr>
+<tr>
+<td>win_kdbg</td>
+<td></td>
+</tr>
+<tr>
+<td>ostype<br>os_type</td>
+<td></td>
+</tr>
+<tr>
+<td>sysmap</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td></td>
+</tr>
+<tr>
+<td>domid</td>
+</tr>
+</tbody>
+</table>
+<h3 id="VM地址转换、pid页表转换"><a href="#VM地址转换、pid页表转换" class="headerlink" title="VM地址转换、pid页表转换"></a>VM地址转换、pid页表转换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vmi_translate_kv2p</span><br><span class="line">vmi_translate_uv2p</span><br><span class="line">vmi_translate_ksym2v</span><br><span class="line">vmi_translate_sym2v  //遍历PE导出表</span><br><span class="line">vmi_translate_v2sym</span><br><span class="line">vmi_pid_to_dtb</span><br><span class="line">vmi_dtb_to_pid</span><br><span class="line">vmi_pagetable_lookup //虚拟地址转化为物理地址</span><br><span class="line">vmi_pagetable_lookup_extended</span><br></pre></td></tr></table></figure>
+<h3 id="VM读写内存"><a href="#VM读写内存" class="headerlink" title="VM读写内存"></a>VM读写内存</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vmi_read(write)</span><br><span class="line">vmi_read(write)_a_b //a=[8,16,32,64,addr,str],b=[pa,va,ksym]</span><br><span class="line">vmi_read_unicode_str_va</span><br><span class="line">vmi_convert_str_encoding</span><br><span class="line">vmi_print_hex_a //a=[pa,va,ksym]</span><br></pre></td></tr></table></figure>
+<h3 id="VMIcache操作函数"><a href="#VMIcache操作函数" class="headerlink" title="VMIcache操作函数"></a>VMIcache操作函数</h3><p>v2pcache表示内部虚拟地址到物理地址转换</p>
+<p>symcache 符号到虚拟地址转换</p>
+<p>rvacache rva到符号的转换</p>
+<p>pidcache pid到dtb的转换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vmi_a_add //a=[v2pcache,symcache,rvacache,pidcache]</span><br><span class="line">vmi_a_flush //a=[v2pcache,symcache,rvacache,pidcache]</span><br></pre></td></tr></table></figure>
+<h3 id="事件注册通知"><a href="#事件注册通知" class="headerlink" title="事件注册通知"></a>事件注册通知</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">static inline status_t</span><br><span class="line">driver_xen_setup(vmi_instance_t vmi)</span><br><span class="line">&#123;</span><br><span class="line">    driver_interface_t driver = &#123; 0 &#125;;</span><br><span class="line">    driver.initialized = true;</span><br><span class="line">    driver.init_ptr = &amp;xen_init;</span><br><span class="line">    driver.init_vmi_ptr = &amp;xen_init_vmi;</span><br><span class="line">    driver.destroy_ptr = &amp;xen_destroy;</span><br><span class="line">    driver.get_id_from_name_ptr = &amp;xen_get_domainid_from_name;</span><br><span class="line">    driver.get_name_from_id_ptr = &amp;xen_get_name_from_domainid;</span><br><span class="line">    driver.get_id_ptr = &amp;xen_get_domainid;</span><br><span class="line">    driver.set_id_ptr = &amp;xen_set_domainid;</span><br><span class="line">    driver.check_id_ptr = &amp;xen_check_domainid;</span><br><span class="line">    driver.get_name_ptr = &amp;xen_get_domainname;</span><br><span class="line">    driver.set_name_ptr = &amp;xen_set_domainname;</span><br><span class="line">    driver.get_memsize_ptr = &amp;xen_get_memsize;</span><br><span class="line">    driver.get_vcpureg_ptr = &amp;xen_get_vcpureg;</span><br><span class="line">    driver.set_vcpureg_ptr = &amp;xen_set_vcpureg;</span><br><span class="line">    driver.get_address_width_ptr = &amp;xen_get_address_width;</span><br><span class="line">    driver.read_page_ptr = &amp;xen_read_page;</span><br><span class="line">    driver.write_ptr = &amp;xen_write;</span><br><span class="line">    driver.is_pv_ptr = &amp;xen_is_pv;</span><br><span class="line">    driver.pause_vm_ptr = &amp;xen_pause_vm;</span><br><span class="line">    driver.resume_vm_ptr = &amp;xen_resume_vm;</span><br><span class="line">#if ENABLE_SHM_SNAPSHOT == 1</span><br><span class="line">    driver.create_shm_snapshot_ptr = &amp;xen_create_shm_snapshot;</span><br><span class="line">    driver.destroy_shm_snapshot_ptr = &amp;xen_destroy_shm_snapshot;</span><br><span class="line">    driver.get_dgpma_ptr = &amp;xen_get_dgpma;</span><br><span class="line">#endif</span><br><span class="line">#if ENABLE_XEN_EVENTS == 1</span><br><span class="line">    driver.events_listen_ptr = &amp;xen_events_listen;</span><br><span class="line">    driver.are_events_pending_ptr = &amp;xen_are_events_pending;</span><br><span class="line">    driver.set_reg_access_ptr = &amp;xen_set_reg_access;</span><br><span class="line">    driver.set_intr_access_ptr = &amp;xen_set_intr_access;</span><br><span class="line">    driver.set_mem_access_ptr = &amp;xen_set_mem_access;</span><br><span class="line">    driver.start_single_step_ptr = &amp;xen_start_single_step;</span><br><span class="line">    driver.stop_single_step_ptr = &amp;xen_stop_single_step;</span><br><span class="line">    driver.shutdown_single_step_ptr = &amp;xen_shutdown_single_step;</span><br><span class="line">#endif</span><br><span class="line">    vmi-&gt;driver = driver;</span><br><span class="line">    return VMI_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer>
@@ -552,87 +729,6 @@
     <div class="entry">
       
         <h1 id="LoadLibrary-error-126"><a href="#LoadLibrary-error-126" class="headerlink" title="LoadLibrary error 126"></a>LoadLibrary error 126</h1><p>可能是UNICODE和ASCII字符的问题。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/fgetc 0x1A EOF/">2016-04-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/blog/2016/04/01/fgetc 0x1A EOF/"></a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="fgetc-0x1A-EOF"><a href="#fgetc-0x1A-EOF" class="headerlink" title="fgetc 0x1A EOF"></a>fgetc 0x1A EOF</h1><p>历史遗留问题，将fopen中的r改为rb即可</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/Django(2)视图和Urls/">2016-04-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/blog/2016/04/01/Django(2)视图和Urls/"></a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="Django-2-视图和Urls"><a href="#Django-2-视图和Urls" class="headerlink" title="Django(2)视图和Urls"></a>Django(2)视图和Urls</h1><h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>视图从某种一样上说是web页面，它有固定的模板，负责提供一定的服务。例如博客网站需要视图：</p>
-<ul>
-<li>博客主页–显示最近博客</li>
-<li>细节页面–显示一篇博客</li>
-<li>基于年的归档页面–显示给定年份的所有博客</li>
-<li>基于月的归档页面–显示给定月份的所有博客</li>
-<li>基于天的归档页面–显示给定日期的所有博客</li>
-<li>评论功能–处理对博客的评论</li>
-</ul>
-<p>在投票应用中，我们需要4个视图</p>
-<ul>
-<li>Questions索引页–显示最近的Questions</li>
-<li>Questions细节页–显示Questions的问题和投票表格（不包含结果）</li>
-<li>Questions结果页–显示Question的结果</li>
-<li>投票功能–处理对某个Question进行投票</li>
-</ul>
 
       
     </div>
@@ -730,14 +826,14 @@
 <nav id="pagination">
   
   
-    <a href="/blog/page/2/" class="alignright next">Nächste Seite</a>
+    <a href="/blog/page/2/" class="alignright next">Next</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="search" name="q" results="0" placeholder="Search">
     <input type="hidden" name="q" value="site:mrgao1008.github.io/blog">
   </form>
 </div>
