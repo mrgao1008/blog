@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Mrgao1008&#39;s blog</title>
+  <meta name="author" content="mrgao1008@gmail.com">
+  
+  <meta name="description" content="Some documents when reading books">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Mrgao1008&#39;s blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/blog/favicon.png" rel="icon">
+  <link rel="alternate" href="/blog/atom.xml" title="Mrgao1008&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/blog/">Mrgao1008&#39;s blog</a></h1>
+  <h2><a href="/blog/">technology documents</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/blog/">Home</a></li>
+    
+      <li><a href="/blog/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T07:43:47.727Z"><a href="/blog/2016/04/01/Django(1) 安装和使用/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Django-1-安装和使用"><a href="#Django-1-安装和使用" class="headerlink" title="Django(1) 安装和使用"></a>Django(1) 安装和使用</h1><h2 id="Django-安装"><a href="#Django-安装" class="headerlink" title="Django 安装"></a>Django 安装</h2><p><code>easy_install django</code>即可</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="打开web服务器"><a href="#打开web服务器" class="headerlink" title="打开web服务器"></a>打开web服务器</h3><p>1.在cmd中输入<code>c:\Python34\Scripts\django-admin.exe startproject mysite</code></p>
+<blockquote>
+<p>project mysite会包含以下文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysite/</span><br><span class="line">    manage.py</span><br><span class="line">    mysite/</span><br><span class="line">        __init__.py</span><br><span class="line">        settings.py</span><br><span class="line">        urls.py</span><br><span class="line">        wsgi.py</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li>manage.py:一个实用的命令行工具，可让你以各种方式与该 Django 项目进行交互。 你可以在 django-admin.py and manage.py 中查看关于 manage.py 所有的细节。</li>
+<li>mysite/__init__.py: 一个空文件，告诉 Python 该目录是一个 Python 包。</li>
+<li>mysite/settings.py: 该 Django 项目的设置/配置。</li>
+<li>mysite/urls.py: 该 Django 项目的 URL 声明; 一份由 Django 驱动的网站“目录”。</li>
+<li>mysite/wsgi.py: 一个 WSGI 兼容的 Web 服务器的入口，以便运行你的项目。</li>
+</ul>
+<p>2.开启服务器<br><code>python manage.py runserver</code> 可以在浏览器<code>http:\\127.0.0.1:8000</code>看到服务器已经打开<br>也可以通过<code>python manage.py runserver 8080</code>来指定端口</p>
+<h3 id="有意义的事情（投票系统"><a href="#有意义的事情（投票系统" class="headerlink" title="有意义的事情（投票系统)"></a>有意义的事情（投票系统)</h3><p>1.数据库安装和设置(<a href="1">manual</a>)<br>下载<a href="2">sqlite下载页面</a>中<code>sqlite-shell-win32-XXX</code>和<code>sqlite-dll-win32-XXX</code>，并解压得到三个文件。利用命令<code>sqlite3 testDB.db</code>创建数据库。<br>在Django中配置sqlite3.<br>编辑mysite\settings.py中DATABASES中’default’以下值：</p>
+<ul>
+<li>ENGINE：从 ‘django.db.backends.postgresql_psycopg2’, ‘django.db.backends.mysql’, ‘django.db.backends.sqlite3’, ‘django.db.backends.oracle’ 中选一个</li>
+<li>NAME：你的数据库名。如果你使用SQLite，该数据库将是你计算机上的一个文件；在这种情况下，:setting:NAME 将是一个完整的绝对路径，而且还包含该文件的名称。如果该文件不存在，它会在第一次同步数据库时自动创建（见下文）。</li>
+<li>USER：你的数据库用户名（sqlite不需要）</li>
+<li>PASSWORD: 你的数据库密码（sqlite不需要）</li>
+<li>HOST: 你的数据库主机地址（sqlite不需要）</li>
+</ul>
+<p>默认情况下，:setting:INSTALLED_APPS 包含以下应用，这些都是由 Django 提供的：</p>
+<ul>
+<li>django.contrib.auth – 身份验证系统。</li>
+<li>django.contrib.contenttypes – 内容类型框架。</li>
+<li>django.contrib.sessions – session 框架。</li>
+<li>django.contrib.sites – 网站管理框架。</li>
+<li>django.contrib.messages – 消息框架。</li>
+<li>django.contrib.staticfiles – 静态文件管理框架。<br>所有这些应用中每个应用至少使用一个数据库表，所以在使用它们之前我们需要创建数据库中的表。要做到这一点，请运行以下命令：<br><code>python manage.py migrate</code></li>
+</ul>
+<p>3.创建APP</p>
+<p>在manage.py的同一个文件夹创建APP polls<code>python manage.py startapp polls</code>.polls 文件夹变成这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">polls/</span><br><span class="line">    __init__.py</span><br><span class="line">    admin.py</span><br><span class="line">    apps.py</span><br><span class="line">    migrations/</span><br><span class="line">        __init__.py</span><br><span class="line">    models.py</span><br><span class="line">    tests.py</span><br><span class="line">    views.py</span><br></pre></td></tr></table></figure>
+<p>使得app能够被访问<br>在polls/urls.py中添加</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^$'</span>, views.index, name=<span class="string">'index'</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>在mysite/urls.py中添加</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> include, url</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^polls/'</span>, include(<span class="string">'polls.urls'</span>)),</span><br><span class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>mysite中urls.py按照顺序进行正则匹配。匹配不包含域名和POST、GET等参数。具体查看re<br>模块。<br>一旦匹配成功，Django调用具体的view函数，并给予一个HttpRequest参数。<br>name值全局唯一，方便用来更改匹配方式。</p>
+<p>4.建立模型</p>
+<p>在投票系统中创建2个模型：Question和Choice。Question包括问题和发布日期。Choice包括选择和投票计数器。每个Choice都关联到一个Question.</p>
+<p>实现这些功能需要在polls/models.py中添加下述代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Question</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    question_text = models.CharField(max_length=<span class="number">200</span>)</span><br><span class="line">    pub_date = models.DateTimeField(<span class="string">'date published'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Choice</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    question = models.ForeignKey(Question, on_delete=models.CASCADE)</span><br><span class="line">    choice_text = models.CharField(max_length=<span class="number">200</span>)</span><br><span class="line">    votes = models.IntegerField(default=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>其中每一个模型都是django.db.models.Model的子类。每个模型都有一些类变量。每个类变量是Field的子类，代表数据库中一个字段。CharField代码字符变量，DateTimeField代表日期。一些类变量需要参数，这些参数不是在数据库中用到，而是在验证中使用。最后用ForeignKey来告诉Django Choice关联到一个Question. Django支持多对多，多对1,1对1等多种关联关系。</p>
+<p>5.激活模型</p>
+<p>添加APP到安装列表(直接在列表最后加入polls好像也没有问题)<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'polls.apps.PollsConfig'</span>,</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>然后运行<code>python manage.py makemigrations polls</code>告诉Django你对模型做了一些更改（这时是创建模型），改变被存储到migrate中。更改只是以文件的方式存储。根据更改需要对数据库进行相应的操作比如创建表等。就需要用到<code>python manage.py sqlmigrate polls 0001</code>.你会看到一些SQL语句。（这只是查看对应的SQL语句）。更改需要用到<code>python manage.py migrate</code>.(另外可以通过python manage.py check查看数据库是否有错。)。</p>
+<p>migrations提供强大的功能：实时更改模型而不用担心数据库的数据不一致，也不需要重新删除在添加数据库。<br>修改模型的3步：</p>
+<ul>
+<li>在models.py中修改模型</li>
+<li><code>python manage.py makemigrations</code> 根据修改建立migrations</li>
+<li><code>python manage.py migrate</code> 应用修改到数据库</li>
+</ul>
+<h4 id="修改模块：添加显示功能"><a href="#修改模块：添加显示功能" class="headerlink" title="修改模块：添加显示功能"></a>修改模块：添加显示功能</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> django.utils.encoding <span class="keyword">import</span> python_2_unicode_compatible</span><br><span class="line"></span><br><span class="line"><span class="meta">@python_2_unicode_compatible  # only if you need to support Python 2</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Question</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.question_text</span><br><span class="line"></span><br><span class="line"><span class="meta">@python_2_unicode_compatible  # only if you need to support Python 2</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Choice</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.choice_text</span><br></pre></td></tr></table></figure>
+<h4 id="添加自定义方法"><a href="#添加自定义方法" class="headerlink" title="添加自定义方法"></a>添加自定义方法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> django.utils <span class="keyword">import</span> timezone</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Question</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">was_published_recently</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.pub_date &gt;= timezone.now() - datetime.timedelta(days=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>6.创建admin</p>
+<p>利用命令<code>python manage.py createsuperuser</code>创建admin用户。<code>python manage.py runserver</code>后，打开<a href="http://127.0.0.1:8000/admin/.进去后你可以看到可以修改的Groups和Users.这部分由django.contrib.auth认证框架提供。" target="_blank" rel="external">http://127.0.0.1:8000/admin/.进去后你可以看到可以修改的Groups和Users.这部分由django.contrib.auth认证框架提供。</a></p>
+<p>7.注册polls(让polls app可以在网页中修改。)</p>
+<p>在polls/admin.py中添加<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line">admin.site.register(Question)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://mrgao1008.github.io/blog/2016/04/01/Django(1) 安装和使用/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:mrgao1008.github.io/blog">
+  </form>
+</div>
+
+  
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 mrgao1008@gmail.com
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

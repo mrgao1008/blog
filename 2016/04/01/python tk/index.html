@@ -1,0 +1,198 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Mrgao1008&#39;s blog</title>
+  <meta name="author" content="mrgao1008@gmail.com">
+  
+  <meta name="description" content="Some documents when reading books">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Mrgao1008&#39;s blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/blog/favicon.png" rel="icon">
+  <link rel="alternate" href="/blog/atom.xml" title="Mrgao1008&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/blog/">Mrgao1008&#39;s blog</a></h1>
+  <h2><a href="/blog/">technology documents</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/blog/">Home</a></li>
+    
+      <li><a href="/blog/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/python tk/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="tk-编程"><a href="#tk-编程" class="headerlink" title="tk 编程"></a>tk 编程</h1><h2 id="标准属性"><a href="#标准属性" class="headerlink" title="标准属性"></a>标准属性</h2><h3 id="dimensions"><a href="#dimensions" class="headerlink" title="dimensions"></a>dimensions</h3><p>尺寸包含4种</p>
+<table>
+<thead>
+<tr>
+<th>字母</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c</td>
+<td>厘米</td>
+</tr>
+<tr>
+<td>i</td>
+<td>英寸</td>
+</tr>
+<tr>
+<td>m</td>
+<td>毫米</td>
+</tr>
+<tr>
+<td>p</td>
+<td>打印机的点？？</td>
+</tr>
+</tbody>
+</table>
+<h3 id="坐标"><a href="#坐标" class="headerlink" title="坐标"></a>坐标</h3><h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><p>||#rgb||four bits per color||<br>||#rrggbb||eight bits per color||<br>||#rrrgggbbb||twelve bits per color||</p>
+<p>还一可以指定关键词’white’,’black’,’red’,’green’,’blue’,’cyan’,’yellow’,’magenta’</p>
+<h3 id="fonts"><a href="#fonts" class="headerlink" title="fonts"></a>fonts</h3><p>1.元组表示,第一表示字体，第二个表示大小，正数为points，负数为像素点，后续为其他一些特别设置<br>(‘Helvetica’,’16’)<br>(‘Times’,’24’,’bold italic’)<br>(‘Times’,-20,’bold’)</p>
+<p>2.字体对象 tkFont</p>
+<p>3.X font names.</p>
+<h3 id="锚"><a href="#锚" class="headerlink" title="锚"></a>锚</h3><p>N S W E CENTER<br>NW NE SW SE</p>
+<h3 id="释放样式"><a href="#释放样式" class="headerlink" title="释放样式"></a>释放样式</h3><p>FLAT RAISED SUNKEN GROOVE RIDGE</p>
+<h3 id="Bitmaps"><a href="#Bitmaps" class="headerlink" title="Bitmaps"></a>Bitmaps</h3><p>button支持 error gray75 gray50 gray25 gray12 hourglass info questhead question warning</p>
+<p>也可以使用.xbm(X bit map)使用@path</p>
+<h3 id="cursors"><a href="#cursors" class="headerlink" title="cursors"></a>cursors</h3><h3 id="images"><a href="#images" class="headerlink" title="images"></a>images</h3><p>BitmapImage 支持 .xbm<br>PhotoImage 支持 .gif .pgm .ppm<br>ImageTk 支持更多格式</p>
+<h4 id="the-BitmapImage-class"><a href="#the-BitmapImage-class" class="headerlink" title="the BitmapImage class"></a>the BitmapImage class</h4><p>原型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tk.BitmapImage(file=f[, background=b][, foreground=c])</span><br></pre></td></tr></table></figure></p>
+<p>实例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logo = tk.BitmapImage(<span class="string">'logo.xbm'</span>, foreground=<span class="string">'red'</span>)</span><br><span class="line">Label(image=logo).grid()</span><br></pre></td></tr></table></figure></p>
+<h4 id="the-PhotoImage-class"><a href="#the-PhotoImage-class" class="headerlink" title="the PhotoImage class"></a>the PhotoImage class</h4><p>原型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tk.PhotoImage(file=f)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Geometry-strings"><a href="#Geometry-strings" class="headerlink" title="Geometry strings"></a>Geometry strings</h3><p>A geometry string is a standard way of describing the size and location of a top-level window on a desktop.<br>format: ‘wxh±x±y’<br>+x left side<br>-x right side<br>+y top<br>-y bottom</p>
+<h3 id="window-names"><a href="#window-names" class="headerlink" title="window names"></a>window names</h3><p>hierarchical window path name<br>root window ‘.’<br>child name ‘.n’<br>child windows of child ‘p.n’, p is the name of the parent window</p>
+<p>str(w): to get the path name of a widget w</p>
+<h3 id="cap-and-join-styles"><a href="#cap-and-join-styles" class="headerlink" title="cap and join styles"></a>cap and join styles</h3><p>cap style: tk.BUTT, tk.PROJECTING, tk.ROUND<br>join style: tk.ROUND, tk.BEVEL, tk.MITER</p>
+<h3 id="dash-patterns"><a href="#dash-patterns" class="headerlink" title="dash patterns"></a>dash patterns</h3><p>dash=(3,5)<br>dash=(7,1,1,1)<br>dash=(5,1,2,1),dashoff=3</p>
+<h2 id="tk-TclError"><a href="#tk-TclError" class="headerlink" title="tk.TclError"></a>tk.TclError</h2>
+      
+    </div>
+    <footer>
+      
+        
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://mrgao1008.github.io/blog/2016/04/01/python tk/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:mrgao1008.github.io/blog">
+  </form>
+</div>
+
+  
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 mrgao1008@gmail.com
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,644 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 2 | Mrgao1008&#39;s blog</title>
+  <meta name="author" content="mrgao1008@gmail.com">
+  
+  <meta name="description" content="Some documents when reading books">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Mrgao1008&#39;s blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/blog/favicon.png" rel="icon">
+  <link rel="alternate" href="/blog/atom.xml" title="Mrgao1008&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/blog/">Mrgao1008&#39;s blog</a></h1>
+  <h2><a href="/blog/">technology documents</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/blog/">Home</a></li>
+    
+      <li><a href="/blog/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/LoadLibrary 126/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/01/LoadLibrary 126/"></a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="LoadLibrary-error-126"><a href="#LoadLibrary-error-126" class="headerlink" title="LoadLibrary error 126"></a>LoadLibrary error 126</h1><p>可能是UNICODE和ASCII字符的问题。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/如何给Linux kernel提交代码/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/01/如何给Linux kernel提交代码/"></a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>#如何给Linux Kernel提交代码</p>
+<p><strong><a href="http://kernelnewbies.org/UpstreamMerge/SubmittingPatches" target="_blank" rel="external">英文</a></strong></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><span id="前言">前言</span></h2><p>个人或者公司如果不熟悉提交代码流程，代码很难被接受。利用本文给出一些建议将会大大的增加代码被接受的概率。</p>
+<p>在提交代码之前，你需要阅读一些注意事项<code>Documentation\SubmitChecklist</code>。如果是提交的驱动，同时也请阅读<code>Documentation\SubmittingDrivers</code>。</p>
+<h2 id="创造并提交改动"><a href="#创造并提交改动" class="headerlink" title="创造并提交改动"></a>创造并提交改动</h2><p>###diff -up</p>
+<p>利用<code>diff -up</code>或者<code>diff -uprN</code>创造patch文件。</p>
+<p>linux所有的更改都以patche方式存在。patch命令中<code>-u</code>代表<code>unified diff</code>,<code>-p</code>会显示哪个函数发生了改变。patche都是以linux源码的根目录为其实点。<br>比如你更改了一个文件。你需要进行下面的操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SRCTREE= linux-2.6</span><br><span class="line">MYFILE= drivers/net/mydriver.c</span><br><span class="line"></span><br><span class="line">cd $SRCTREE</span><br><span class="line">cp $MYFILE $MYFILE.orig</span><br><span class="line">vi $MYFILE       # make your change</span><br><span class="line">cd ..</span><br><span class="line">diff -up $SRCTREE/$MYFILE&#123;.orig,&#125; &gt; /tmp/patch</span><br></pre></td></tr></table></figure></p>
+<p>如果更改了多个文件，你需要解压一个<code>vanilla</code>或者原版linux kernel。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MYSRC= /devel/linux-2.6</span><br><span class="line"></span><br><span class="line">tar xvfz linux-2.6.12.tar.gz</span><br><span class="line">mv linux-2.6.12 linux-2.6.12-vanilla</span><br><span class="line">diff -uprN -X linux-2.6.12-vanilla/Documentation/dontdiff \</span><br><span class="line">    linux-2.6.12-vanilla $MYSRC &gt; /tmp/patch</span><br></pre></td></tr></table></figure></p>
+<p>其中<code>dontdiff</code>是diff需要忽略的文件列表。</p>
+<p>确保patche中不包含其他无关文件。</p>
+<p>如果你的更改比较巨大，可以按照逻辑分成几个部分。这方便其他内核开发者审查。</p>
+<p>patch管理工具<a href="http://savannah.nongnu.org/projects/quilt" target="_blank" rel="external">Quilt</a>.一些脚本工具<a href="http://userweb.kernel.org/~akpm/stuff/patch-scripts.tar.gz" target="_blank" rel="external">Scripts</a></p>
+<p>###描述更改</p>
+<p>描述更改过程中的技术细节，做到尽可能清晰。如果描述过长，可能你需要分成几个patch。</p>
+<p>###分割更改</p>
+<p>按照逻辑分割patch文件。<br>比如，你填补了一个驱动的bug同时还提高了它的性能，那么你需要将他分成多个patche。如果你更改了一个API,并提供一个新的驱动利用了该API，这需要分成2个patch。另一方面，如果你只是更改了很多不同文件的同一个地方，你需要将更改放在同一个patch中。如果你的patch比如依赖另外一个patch，你需要在描述patch时说明<code>this patch depends on patch X</code>。</p>
+<p>###检查代码风格</p>
+<p>按照<code>Documentation/Codingstyle</code>中的描述，检查更改的编码风格。没有进行这一步的代码可能在甚至没有被阅读情况下被拒绝。最基本的，你可以采用<code>scripts/checkpatch.pl</code>检查patch的编码风格，并且修改所有不恰当的地方。</p>
+<p>###选择发送者</p>
+<p>linux主线的每一部分都由一个维护者负责。更改属于哪一部分就发给对应的维护者。如果维护者没有列出，或者不回应邮件，你可以将patch发给<code>linux-kernel@vger.kernel.org</code>。</p>
+<p>Linus Torvalds是接受更改的仲裁者，但是一般不要给他发邮件。比较明显的bug修复或者不需要讨论的patch可以直接抄送给Linux Torvalds。如果Patch没有明显的优势或者需要讨论，你需要先发给linux-kernel.</p>
+<p>###选择抄送人</p>
+<p>如果没有特别原因需要抄送给<code>linux-kernel@vger.kernel.org</code>。这样可以让其他开发者可以检查代码和提出意见。</p>
+<p>如果你的更改影响了用户和内核接口，请抄送给MAN-PAGES维护者，方便他们做更改。<br>小的更改：比如字符拼写错误等你需要抄送给<code>trivial@kernel.org</code>。<br>比如在文档中的拼写错误等。关于小错误的定义可以查看<a href="http://www.kernel.org/pub/linux/kernel/people/juhl/trivial/" target="_blank" rel="external">trivial</a>。</p>
+<p>###只允许文字（没有多媒体，链接，压缩，附件）</p>
+<p>所以patch都写在邮件中。</p>
+<p>###email的大小</p>
+<p>email的大小如果超过40kb，你需要放到网络上，并提供链接。</p>
+<p>###指明kernel版本</p>
+<p>你需要指明patch的kernel版本，如果patch不适用于最新的kernel，linus不会接受。</p>
+<p>###别沮丧，重新提交</p>
+<p>提交更改后，需要耐心等待。如果更改没有出现在下一个版本中，那么可能是一下原因：</p>
+<ul>
+<li>更改不适用于最新内核版本</li>
+<li>更改没有经过足够讨论</li>
+<li>代码风格问题</li>
+<li>e-mail格式问题</li>
+<li>更改存在技术问题</li>
+<li>意外丢失</li>
+<li>你太烦了</li>
+</ul>
+<p>如果有疑问，可以在linux-kernel邮件列表上询问。</p>
+<p>###在邮件主题上加上[PATCH]</p>
+<p>###签名</p>
+<p>为了方便跟踪作者和管理复杂的更改，引入了签名机制。如果确认一下4点就可以在对patch的描述后加上一句：<br>Signed-off-by: Random J Developer <a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#111;&#58;&#114;&#x61;&#x6e;&#100;&#x6f;&#x6d;&#64;&#x64;&#101;&#118;&#101;&#x6c;&#111;&#x70;&#101;&#x72;&#46;&#x65;&#x78;&#x61;&#109;&#x70;&#x6c;&#101;&#46;&#x6f;&#x72;&#103;">&#114;&#x61;&#x6e;&#100;&#x6f;&#x6d;&#64;&#x64;&#101;&#118;&#101;&#x6c;&#111;&#x70;&#101;&#x72;&#46;&#x65;&#x78;&#x61;&#109;&#x70;&#x6c;&#101;&#46;&#x6f;&#x72;&#103;</a></p>
+<ul>
+<li>更改部分或者全部由我完成。我有权利开源</li>
+<li>更改基于一个开源项目，需提交到同一个开源license下。否则可以提交给别的开源license</li>
+<li>更改由别人转交给我，别人确认1,2,3条，我没有修改更改</li>
+<li>我知道这是一个开源项目，并且贡献有可能不被记录</li>
+</ul>
+<p>###Acked-by</p>
+<p>子系统的维护者需要这么做，表示patch你觉得还不错。</p>
+<p>###Tested-by和Reviewed-by</p>
+<p>Tested-by表示某人在某种环境下patch测试是有效的。<br>Reviewed-by表示这个patch被检查，说明你对patch的观点。</p>
+<p>###patch的规范格式</p>
+<p>主题：[PATCH 001/123] 子系统: 总结</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from:</span><br><span class="line">空行</span><br><span class="line">patch的描述</span><br><span class="line">Signed-off-by:</span><br><span class="line">标识符---</span><br><span class="line">其他一些评论</span><br><span class="line">diff output</span><br></pre></td></tr></table></figure>
+<p>主题的2个示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Subject: [patch 2/5] ext2: improve scalability of bitmap searching</span><br><span class="line">Subject: [PATCHv2 001/207] x86: fix eflags tracking</span><br></pre></td></tr></table></figure></p>
+<p>from行的示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">From: Original Author &lt;author@example.com&gt;</span><br></pre></td></tr></table></figure></p>
+<p>—表示改动日志的结束。<br>其他一些评论可以用来写上<code>diffstat -p 1 -w 70</code>。</p>
+<p>###发送git pull请求</p>
+<p>发送从哪能够获得更改，格式如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Please pull from</span><br><span class="line">        git://jdelvare.pck.nerim.net/jdelvare-2.6 i2c-for-linus</span><br><span class="line"> to get these changes:</span><br></pre></td></tr></table></figure></p>
+<p>同时用<code>git diff -M --stat --summary</code>生成diffstat.</p>
+<h2 id="忠告、建议、技巧"><a href="#忠告、建议、技巧" class="headerlink" title="忠告、建议、技巧"></a>忠告、建议、技巧</h2><ul>
+<li><p>阅读Documentation/CodingStyle</p>
+<p>  可以利用scripts/checkpatch.pl来检查代码风格。这个脚本会提供3种水平的忠告</p>
+<ul>
+<li>ERROR: 很可能有错</li>
+<li>WARNING: 需要认真检查</li>
+<li>CHECK：需要考虑</li>
+</ul>
+</li>
+<li><p>不要在函数内使用ifdef。<br>  例如：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dev = alloc_etherdev (sizeof(struct funky_private));</span><br><span class="line">if (!dev)</span><br><span class="line">        return -ENODEV;</span><br><span class="line">#ifdef CONFIG_NET_FUNKINESS</span><br><span class="line">init_funky_net(dev);</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+<p>  上面的可以更改为</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(in header)</span><br><span class="line">    #ifndef CONFIG_NET_FUNKINESS</span><br><span class="line">    static inline void init_funky_net (struct net_device *d) &#123;&#125;</span><br><span class="line">    #endif</span><br><span class="line">(in the code itself)</span><br><span class="line">    dev = alloc_etherdev (sizeof(struct funky_private));</span><br><span class="line">    if (!dev)</span><br><span class="line">            return -ENODEV;</span><br><span class="line">    init_funky_net(dev);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>static inline 比宏更好</p>
+</li>
+<li><p>不要过度设计</p>
+<p>  Make it as simple as you can, and no simpler.</p>
+</li>
+</ul>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>这篇文章翻译于<a href="http://kernelnewbies.org/UpstreamMerge/SubmittingPatches" target="_blank" rel="external">英文原稿</a>.</p>
+<p><a href="#前言">回到顶部</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/python tk/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/01/python tk/"></a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="tk-编程"><a href="#tk-编程" class="headerlink" title="tk 编程"></a>tk 编程</h1><h2 id="标准属性"><a href="#标准属性" class="headerlink" title="标准属性"></a>标准属性</h2><h3 id="dimensions"><a href="#dimensions" class="headerlink" title="dimensions"></a>dimensions</h3><p>尺寸包含4种</p>
+<table>
+<thead>
+<tr>
+<th>字母</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c</td>
+<td>厘米</td>
+</tr>
+<tr>
+<td>i</td>
+<td>英寸</td>
+</tr>
+<tr>
+<td>m</td>
+<td>毫米</td>
+</tr>
+<tr>
+<td>p</td>
+<td>打印机的点？？</td>
+</tr>
+</tbody>
+</table>
+<h3 id="坐标"><a href="#坐标" class="headerlink" title="坐标"></a>坐标</h3><h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><p>||#rgb||four bits per color||<br>||#rrggbb||eight bits per color||<br>||#rrrgggbbb||twelve bits per color||</p>
+<p>还一可以指定关键词’white’,’black’,’red’,’green’,’blue’,’cyan’,’yellow’,’magenta’</p>
+<h3 id="fonts"><a href="#fonts" class="headerlink" title="fonts"></a>fonts</h3><p>1.元组表示,第一表示字体，第二个表示大小，正数为points，负数为像素点，后续为其他一些特别设置<br>(‘Helvetica’,’16’)<br>(‘Times’,’24’,’bold italic’)<br>(‘Times’,-20,’bold’)</p>
+<p>2.字体对象 tkFont</p>
+<p>3.X font names.</p>
+<h3 id="锚"><a href="#锚" class="headerlink" title="锚"></a>锚</h3><p>N S W E CENTER<br>NW NE SW SE</p>
+<h3 id="释放样式"><a href="#释放样式" class="headerlink" title="释放样式"></a>释放样式</h3><p>FLAT RAISED SUNKEN GROOVE RIDGE</p>
+<h3 id="Bitmaps"><a href="#Bitmaps" class="headerlink" title="Bitmaps"></a>Bitmaps</h3><p>button支持 error gray75 gray50 gray25 gray12 hourglass info questhead question warning</p>
+<p>也可以使用.xbm(X bit map)使用@path</p>
+<h3 id="cursors"><a href="#cursors" class="headerlink" title="cursors"></a>cursors</h3><h3 id="images"><a href="#images" class="headerlink" title="images"></a>images</h3><p>BitmapImage 支持 .xbm<br>PhotoImage 支持 .gif .pgm .ppm<br>ImageTk 支持更多格式</p>
+<h4 id="the-BitmapImage-class"><a href="#the-BitmapImage-class" class="headerlink" title="the BitmapImage class"></a>the BitmapImage class</h4><p>原型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tk.BitmapImage(file=f[, background=b][, foreground=c])</span><br></pre></td></tr></table></figure></p>
+<p>实例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logo = tk.BitmapImage(<span class="string">'logo.xbm'</span>, foreground=<span class="string">'red'</span>)</span><br><span class="line">Label(image=logo).grid()</span><br></pre></td></tr></table></figure></p>
+<h4 id="the-PhotoImage-class"><a href="#the-PhotoImage-class" class="headerlink" title="the PhotoImage class"></a>the PhotoImage class</h4><p>原型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tk.PhotoImage(file=f)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Geometry-strings"><a href="#Geometry-strings" class="headerlink" title="Geometry strings"></a>Geometry strings</h3><p>A geometry string is a standard way of describing the size and location of a top-level window on a desktop.<br>format: ‘wxh±x±y’<br>+x left side<br>-x right side<br>+y top<br>-y bottom</p>
+<h3 id="window-names"><a href="#window-names" class="headerlink" title="window names"></a>window names</h3><p>hierarchical window path name<br>root window ‘.’<br>child name ‘.n’<br>child windows of child ‘p.n’, p is the name of the parent window</p>
+<p>str(w): to get the path name of a widget w</p>
+<h3 id="cap-and-join-styles"><a href="#cap-and-join-styles" class="headerlink" title="cap and join styles"></a>cap and join styles</h3><p>cap style: tk.BUTT, tk.PROJECTING, tk.ROUND<br>join style: tk.ROUND, tk.BEVEL, tk.MITER</p>
+<h3 id="dash-patterns"><a href="#dash-patterns" class="headerlink" title="dash patterns"></a>dash patterns</h3><p>dash=(3,5)<br>dash=(7,1,1,1)<br>dash=(5,1,2,1),dashoff=3</p>
+<h2 id="tk-TclError"><a href="#tk-TclError" class="headerlink" title="tk.TclError"></a>tk.TclError</h2>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/Windows API hook 开发环境配置/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/01/Windows API hook 开发环境配置/"></a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Windows-API-Hook-开发环境配置"><a href="#Windows-API-Hook-开发环境配置" class="headerlink" title="Windows API Hook 开发环境配置"></a>Windows API Hook 开发环境配置</h1><p><span id="top"></span><br><!-- MarkdownTOC --></p>
+<ul>
+<li><a href="#detours安装和配置">Detours安装和配置</a><ul>
+<li><a href="#detours介绍">Detours介绍</a></li>
+<li><a href="#detours安装">Detours安装</a></li>
+<li><a href="#detours编译">Detours编译</a></li>
+</ul>
+</li>
+<li><a href="#windows-api-hook例子">Windows API Hook例子</a><ul>
+<li><a href="#加入detours头文件和动态库文件">加入detours头文件和动态库文件</a></li>
+</ul>
+</li>
+<li><a href="#利用withdll进行远程dll注入">利用withdll进行远程dll注入</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+<p><a name="detours安装和配置"></a></p>
+<h2 id="Detours安装和配置"><a href="#Detours安装和配置" class="headerlink" title="Detours安装和配置"></a>Detours安装和配置</h2><p><a name="detours介绍"></a></p>
+<h3 id="Detours介绍"><a href="#Detours介绍" class="headerlink" title="Detours介绍"></a>Detours介绍</h3><p>Detours是Windows下一个API Hook 开源框架。<br><a href="http://research.microsoft.com/en-us/projects/detours/" target="_blank" rel="external">Detours官网</a><br><a href="http://research.microsoft.com/en-us/downloads/d36340fb-4d3c-4ddd-bf5b-1db25d03713d/default.aspx" target="_blank" rel="external">Detours 3.0下载地址</a></p>
+<p><a name="detours安装"></a></p>
+<h3 id="Detours安装"><a href="#Detours安装" class="headerlink" title="Detours安装"></a>Detours安装</h3><p>msi文件一路next。记下安装目录。</p>
+<p><a name="detours编译"></a></p>
+<h3 id="Detours编译"><a href="#Detours编译" class="headerlink" title="Detours编译"></a>Detours编译</h3><p>安装完成后，进入目录<code>C:\Program Files\Microsoft Research\Detours Express 3.0</code>会看到下面的目录结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">samples\</span><br><span class="line">	...</span><br><span class="line">	simple\</span><br><span class="line">	...</span><br><span class="line">	withdll\</span><br><span class="line">	...</span><br><span class="line">src\</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>其中src是需要编译的detours源码。simple和withdll是实现windows API Hook需要用到的2个示例。</p>
+<p>编译步骤如下:</p>
+<ul>
+<li>以管理员权限启动cmd</li>
+<li><p>设置环境变量，不然nmake会出错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &quot;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\vcvars32.bat&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入detours的src文件夹并进行编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\src</span><br><span class="line"># nmake</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>编译在src和samples同一目录会生成lib.X86文件夹，里面的detours.lib就是我们需要的。</p>
+<p><a name="windows-api-hook例子"></a></p>
+<h2 id="Windows-API-Hook例子"><a href="#Windows-API-Hook例子" class="headerlink" title="Windows API Hook例子"></a>Windows API Hook例子</h2><p><a name="加入detours头文件和动态库文件"></a></p>
+<h3 id="加入detours头文件和动态库文件"><a href="#加入detours头文件和动态库文件" class="headerlink" title="加入detours头文件和动态库文件"></a>加入detours头文件和动态库文件</h3><p>在vs中新建windows控制台程序，设置解决方案的属性。</p>
+<ul>
+<li>打开<strong>项目</strong>–<strong>XXX 属性</strong></li>
+<li><p><strong>配置属性</strong>–<strong>C/C++</strong>–<strong>常规</strong> 在<strong>附加目录项</strong>中加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\include</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>配置属性</strong>–<strong>链接器</strong>–<strong>常规</strong> 在<strong>附加库目录</strong>中加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\lib.X86</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>配置属性</strong>–<strong>链接器</strong>–<strong>输入</strong> 在<strong>附加依赖项</strong>中加入<code>detours.lib</code></p>
+</li>
+<li><strong>配置属性</strong>–<strong>C/C++</strong>–<strong>代码生成</strong> 在<strong>运行库</strong>选择<code>/MT</code></li>
+<li><strong>配置属性</strong>–<strong>常规</strong> 在<strong>字符集</strong>选择<code>未设置</code></li>
+<li>在命令栏中选择<code>release</code>版本</li>
+</ul>
+<h4 id="withdll的编译"><a href="#withdll的编译" class="headerlink" title="withdll的编译"></a>withdll的编译</h4><p>在源文件中新建cpp文件，拷贝detours安装目录下的<code>samples\withdll\withdll.cpp</code>内容到cpp中。编译。</p>
+<h4 id="simple的编译"><a href="#simple的编译" class="headerlink" title="simple的编译"></a>simple的编译</h4><p>在vs新建项目时，选择windows控制台程序，并选择dll。设置解决方案属性。拷贝<code>samples\simple\simple.cpp</code>到新建的cpp文件中，编译。</p>
+<p><a name="利用withdll进行远程dll注入"></a></p>
+<h2 id="利用withdll进行远程dll注入"><a href="#利用withdll进行远程dll注入" class="headerlink" title="利用withdll进行远程dll注入"></a>利用withdll进行远程dll注入</h2><p><code>withdll /d:simple.dll a.exe</code>会将simple.dll注入到a.exe中。注意<code>/d:simple.dll</code>分号后不要有空格。exe和dll用绝对地址和相对地址都可以。</p>
+<p><a href="#top">回到顶部</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/c++学习文档/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/01/c++学习文档/"></a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="c-学习文档"><a href="#c-学习文档" class="headerlink" title="c++ 学习文档"></a>c++ 学习文档</h1><p><em>C++Primer中文版（第四版）</em></p>
+<h2 id="第二章-变量和基本类型"><a href="#第二章-变量和基本类型" class="headerlink" title="第二章-变量和基本类型"></a>第二章-变量和基本类型</h2><h3 id="基本内置类型"><a href="#基本内置类型" class="headerlink" title="基本内置类型"></a>基本内置类型</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>含义</th>
+<th>最小存储空间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bool</td>
+<td>布尔型</td>
+<td>-</td>
+</tr>
+<tr>
+<td>char</td>
+<td>字符型</td>
+<td>8位</td>
+</tr>
+<tr>
+<td>wchar_t</td>
+<td>宽字符型</td>
+<td>16位</td>
+</tr>
+<tr>
+<td>short</td>
+<td>短整型</td>
+<td>16位</td>
+</tr>
+<tr>
+<td>int</td>
+<td>整型</td>
+<td>16位</td>
+</tr>
+<tr>
+<td>long</td>
+<td>长整型</td>
+<td>32位</td>
+</tr>
+<tr>
+<td>float</td>
+<td>单精度浮点型</td>
+<td>6位有效数字</td>
+</tr>
+<tr>
+<td>double</td>
+<td>双精度浮点型</td>
+<td>10位有效数字</td>
+</tr>
+<tr>
+<td>long double</td>
+<td>扩展精度浮点型</td>
+<td>10位有效数字</td>
+</tr>
+</tbody>
+</table>
+<h4 id="字面值常量表示方式"><a href="#字面值常量表示方式" class="headerlink" title="字面值常量表示方式"></a>字面值常量表示方式</h4><p>10,8,16进制表示方式.以0开头的常量表示8进制，以0x或0X开头的表示十六进制。字面值整数常量的类型默认为int或long。其精度类型决定于字面值。通过增加后缀，能够强制将字面值整数常量转换为long,unsigned,unsigned long类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">20 // decimal</span><br><span class="line">024 // octal</span><br><span class="line">0x14 // hexdecimal</span><br><span class="line"></span><br><span class="line">128u /* unsigned */  1024UL /* unsigned long */</span><br><span class="line">1L /* long*/ 8Lu /* unsigned long*/</span><br></pre></td></tr></table></figure>
+<p>通常可以用十进制或者科学计数法来表示浮点字面值常量。指数用E或e表示，默认为double。在数值后加上F或f表示单精度。加上L或l表示扩展精度（不提倡使用l,因为和1很像）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3.14159F .001f 12.345L 0.</span><br><span class="line">3.14159E0f 1E-3F 1.2345E1L 0e0</span><br></pre></td></tr></table></figure>
+<p>布尔用true和false。字符型用单引号。不可打印的可以用转义字符。也可以用通用转义字符\ooo(3个8进制数字).16进制表示为\xddd</p>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>变量提供了程序可以操作的有名字的存储区。C++程序员常把变量称为”变量”</p>
+<p>C++两种表达式：左值（可以出现在赋值语句左边和右边）和右值（只能出现在赋值语句右边）。</p>
+<p>对象就是内存中具有类型的区域。计算左值表达式就会产生对象。</p>
+<p>变量名，即变量的标识符，可以由字符、数字和下划线组成。变量名必须以字母或下划线开头，并且区分大小写字母。变量名不应该太长。</p>
+<p>变量命名习惯</p>
+<ul>
+<li>变量名一般用小写字母。</li>
+<li>标识符应该使用能够帮助记忆的名字</li>
+<li>2中风格。student_loan 或 studenLoan</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T07:43:47.727Z"><a href="/blog/2016/04/01/Django(1) 安装和使用/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/01/Django(1) 安装和使用/"></a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="Django-1-安装和使用"><a href="#Django-1-安装和使用" class="headerlink" title="Django(1) 安装和使用"></a>Django(1) 安装和使用</h1><h2 id="Django-安装"><a href="#Django-安装" class="headerlink" title="Django 安装"></a>Django 安装</h2><p><code>easy_install django</code>即可</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="打开web服务器"><a href="#打开web服务器" class="headerlink" title="打开web服务器"></a>打开web服务器</h3><p>1.在cmd中输入<code>c:\Python34\Scripts\django-admin.exe startproject mysite</code></p>
+<blockquote>
+<p>project mysite会包含以下文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysite/</span><br><span class="line">    manage.py</span><br><span class="line">    mysite/</span><br><span class="line">        __init__.py</span><br><span class="line">        settings.py</span><br><span class="line">        urls.py</span><br><span class="line">        wsgi.py</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<ul>
+<li>manage.py:一个实用的命令行工具，可让你以各种方式与该 Django 项目进行交互。 你可以在 django-admin.py and manage.py 中查看关于 manage.py 所有的细节。</li>
+<li>mysite/__init__.py: 一个空文件，告诉 Python 该目录是一个 Python 包。</li>
+<li>mysite/settings.py: 该 Django 项目的设置/配置。</li>
+<li>mysite/urls.py: 该 Django 项目的 URL 声明; 一份由 Django 驱动的网站“目录”。</li>
+<li>mysite/wsgi.py: 一个 WSGI 兼容的 Web 服务器的入口，以便运行你的项目。</li>
+</ul>
+<p>2.开启服务器<br><code>python manage.py runserver</code> 可以在浏览器<code>http:\\127.0.0.1:8000</code>看到服务器已经打开<br>也可以通过<code>python manage.py runserver 8080</code>来指定端口</p>
+<h3 id="有意义的事情（投票系统"><a href="#有意义的事情（投票系统" class="headerlink" title="有意义的事情（投票系统)"></a>有意义的事情（投票系统)</h3><p>1.数据库安装和设置(<a href="1">manual</a>)<br>下载<a href="2">sqlite下载页面</a>中<code>sqlite-shell-win32-XXX</code>和<code>sqlite-dll-win32-XXX</code>，并解压得到三个文件。利用命令<code>sqlite3 testDB.db</code>创建数据库。<br>在Django中配置sqlite3.<br>编辑mysite\settings.py中DATABASES中’default’以下值：</p>
+<ul>
+<li>ENGINE：从 ‘django.db.backends.postgresql_psycopg2’, ‘django.db.backends.mysql’, ‘django.db.backends.sqlite3’, ‘django.db.backends.oracle’ 中选一个</li>
+<li>NAME：你的数据库名。如果你使用SQLite，该数据库将是你计算机上的一个文件；在这种情况下，:setting:NAME 将是一个完整的绝对路径，而且还包含该文件的名称。如果该文件不存在，它会在第一次同步数据库时自动创建（见下文）。</li>
+<li>USER：你的数据库用户名（sqlite不需要）</li>
+<li>PASSWORD: 你的数据库密码（sqlite不需要）</li>
+<li>HOST: 你的数据库主机地址（sqlite不需要）</li>
+</ul>
+<p>默认情况下，:setting:INSTALLED_APPS 包含以下应用，这些都是由 Django 提供的：</p>
+<ul>
+<li>django.contrib.auth – 身份验证系统。</li>
+<li>django.contrib.contenttypes – 内容类型框架。</li>
+<li>django.contrib.sessions – session 框架。</li>
+<li>django.contrib.sites – 网站管理框架。</li>
+<li>django.contrib.messages – 消息框架。</li>
+<li>django.contrib.staticfiles – 静态文件管理框架。<br>所有这些应用中每个应用至少使用一个数据库表，所以在使用它们之前我们需要创建数据库中的表。要做到这一点，请运行以下命令：<br><code>python manage.py migrate</code></li>
+</ul>
+<p>3.创建APP</p>
+<p>在manage.py的同一个文件夹创建APP polls<code>python manage.py startapp polls</code>.polls 文件夹变成这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">polls/</span><br><span class="line">    __init__.py</span><br><span class="line">    admin.py</span><br><span class="line">    apps.py</span><br><span class="line">    migrations/</span><br><span class="line">        __init__.py</span><br><span class="line">    models.py</span><br><span class="line">    tests.py</span><br><span class="line">    views.py</span><br></pre></td></tr></table></figure>
+<p>使得app能够被访问<br>在polls/urls.py中添加</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^$'</span>, views.index, name=<span class="string">'index'</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>在mysite/urls.py中添加</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> include, url</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^polls/'</span>, include(<span class="string">'polls.urls'</span>)),</span><br><span class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>mysite中urls.py按照顺序进行正则匹配。匹配不包含域名和POST、GET等参数。具体查看re<br>模块。<br>一旦匹配成功，Django调用具体的view函数，并给予一个HttpRequest参数。<br>name值全局唯一，方便用来更改匹配方式。</p>
+<p>4.建立模型</p>
+<p>在投票系统中创建2个模型：Question和Choice。Question包括问题和发布日期。Choice包括选择和投票计数器。每个Choice都关联到一个Question.</p>
+<p>实现这些功能需要在polls/models.py中添加下述代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Question</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    question_text = models.CharField(max_length=<span class="number">200</span>)</span><br><span class="line">    pub_date = models.DateTimeField(<span class="string">'date published'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Choice</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    question = models.ForeignKey(Question, on_delete=models.CASCADE)</span><br><span class="line">    choice_text = models.CharField(max_length=<span class="number">200</span>)</span><br><span class="line">    votes = models.IntegerField(default=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>其中每一个模型都是django.db.models.Model的子类。每个模型都有一些类变量。每个类变量是Field的子类，代表数据库中一个字段。CharField代码字符变量，DateTimeField代表日期。一些类变量需要参数，这些参数不是在数据库中用到，而是在验证中使用。最后用ForeignKey来告诉Django Choice关联到一个Question. Django支持多对多，多对1,1对1等多种关联关系。</p>
+<p>5.激活模型</p>
+<p>添加APP到安装列表(直接在列表最后加入polls好像也没有问题)<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'polls.apps.PollsConfig'</span>,</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>然后运行<code>python manage.py makemigrations polls</code>告诉Django你对模型做了一些更改（这时是创建模型），改变被存储到migrate中。更改只是以文件的方式存储。根据更改需要对数据库进行相应的操作比如创建表等。就需要用到<code>python manage.py sqlmigrate polls 0001</code>.你会看到一些SQL语句。（这只是查看对应的SQL语句）。更改需要用到<code>python manage.py migrate</code>.(另外可以通过python manage.py check查看数据库是否有错。)。</p>
+<p>migrations提供强大的功能：实时更改模型而不用担心数据库的数据不一致，也不需要重新删除在添加数据库。<br>修改模型的3步：</p>
+<ul>
+<li>在models.py中修改模型</li>
+<li><code>python manage.py makemigrations</code> 根据修改建立migrations</li>
+<li><code>python manage.py migrate</code> 应用修改到数据库</li>
+</ul>
+<h4 id="修改模块：添加显示功能"><a href="#修改模块：添加显示功能" class="headerlink" title="修改模块：添加显示功能"></a>修改模块：添加显示功能</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> django.utils.encoding <span class="keyword">import</span> python_2_unicode_compatible</span><br><span class="line"></span><br><span class="line"><span class="meta">@python_2_unicode_compatible  # only if you need to support Python 2</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Question</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.question_text</span><br><span class="line"></span><br><span class="line"><span class="meta">@python_2_unicode_compatible  # only if you need to support Python 2</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Choice</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.choice_text</span><br></pre></td></tr></table></figure>
+<h4 id="添加自定义方法"><a href="#添加自定义方法" class="headerlink" title="添加自定义方法"></a>添加自定义方法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> django.utils <span class="keyword">import</span> timezone</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Question</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">was_published_recently</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.pub_date &gt;= timezone.now() - datetime.timedelta(days=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>6.创建admin</p>
+<p>利用命令<code>python manage.py createsuperuser</code>创建admin用户。<code>python manage.py runserver</code>后，打开<a href="http://127.0.0.1:8000/admin/.进去后你可以看到可以修改的Groups和Users.这部分由django.contrib.auth认证框架提供。" target="_blank" rel="external">http://127.0.0.1:8000/admin/.进去后你可以看到可以修改的Groups和Users.这部分由django.contrib.auth认证框架提供。</a></p>
+<p>7.注册polls(让polls app可以在网页中修改。)</p>
+<p>在polls/admin.py中添加<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line">admin.site.register(Question)</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T06:50:13.502Z"><a href="/blog/2016/04/01/hello-world/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/01/hello-world/">Hello World</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/blog/" class="alignleft prev">Prev</a>
+  
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:mrgao1008.github.io/blog">
+  </form>
+</div>
+
+  
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 mrgao1008@gmail.com
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

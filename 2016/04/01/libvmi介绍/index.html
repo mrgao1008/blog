@@ -1,0 +1,235 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Mrgao1008&#39;s blog</title>
+  <meta name="author" content="mrgao1008@gmail.com">
+  
+  <meta name="description" content="Some documents when reading books">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Mrgao1008&#39;s blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/blog/favicon.png" rel="icon">
+  <link rel="alternate" href="/blog/atom.xml" title="Mrgao1008&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/blog/">Mrgao1008&#39;s blog</a></h1>
+  <h2><a href="/blog/">technology documents</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/blog/">Home</a></li>
+    
+      <li><a href="/blog/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/libvmi介绍/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="libvmi介绍"><a href="#libvmi介绍" class="headerlink" title="libvmi介绍"></a>libvmi介绍</h1><p>libvmi提供了大量的库函数用于开发基于VMI的安全软件。</p>
+<h2 id="libvmi的接口"><a href="#libvmi的接口" class="headerlink" title="libvmi的接口"></a>libvmi的接口</h2><ol>
+<li>VMI构造和析构</li>
+<li>VM基本信息获取</li>
+<li>VM地址转换、pid页表转换</li>
+<li>VM读写内存</li>
+<li>VMIcache操作函数</li>
+<li>事件注册通知</li>
+</ol>
+<h3 id="VMI构造和析构"><a href="#VMI构造和析构" class="headerlink" title="VMI构造和析构"></a>VMI构造和析构</h3><p>接口包括下面这些</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vmi_init</span><br><span class="line">vmi_init_custom</span><br><span class="line">vmi_init_complete</span><br><span class="line">vmi_init_complete_custom</span><br><span class="line">vmi_init_paging</span><br><span class="line">vmi_destroy</span><br></pre></td></tr></table></figure>
+<p>带有custom表示从内存结构中读取配置，否则从文件中读取配置。<br>complete用在vmi_init中以partial方式初始化后（这种状态下只提供物理地址读写），经过启发式方法确定了特别偏移量后，进行完全初始化，这样才能够用其他方式比如符号、虚拟地址读写。</p>
+<h3 id="VM基本信息获取"><a href="#VM基本信息获取" class="headerlink" title="VM基本信息获取"></a>VM基本信息获取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vmi_get_name -&gt;driver_get_name</span><br><span class="line">vmi_get_vmid -&gt;driver_get_id</span><br><span class="line">vmi_get_access_mode //xen kvm file</span><br><span class="line">vmi_get_page_mode</span><br><span class="line">vmi_get_address_width</span><br><span class="line">vmi_get_ostype</span><br><span class="line">vmi_get_winver</span><br><span class="line">vmi_get_winver_str</span><br><span class="line">vmi_get_winver_manual</span><br><span class="line">vmi_get_offset</span><br><span class="line">vmi_get_memsize</span><br></pre></td></tr></table></figure>
+<p>windows能够设置和得到的符号包括如下表</p>
+<table>
+<thead>
+<tr>
+<th>符号名字</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>win_ntoskrnl</td>
+<td></td>
+</tr>
+<tr>
+<td>win_tasks</td>
+<td></td>
+</tr>
+<tr>
+<td>win_pdbase</td>
+<td></td>
+</tr>
+<tr>
+<td>win_pid</td>
+<td></td>
+</tr>
+<tr>
+<td>win_pname</td>
+<td></td>
+</tr>
+<tr>
+<td>win_kdvb</td>
+<td></td>
+</tr>
+<tr>
+<td>win_sysproc</td>
+<td></td>
+</tr>
+<tr>
+<td>win_kpcr</td>
+<td></td>
+</tr>
+<tr>
+<td>win_kdbg</td>
+<td></td>
+</tr>
+<tr>
+<td>ostype<br>os_type</td>
+<td></td>
+</tr>
+<tr>
+<td>sysmap</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td></td>
+</tr>
+<tr>
+<td>domid</td>
+</tr>
+</tbody>
+</table>
+<h3 id="VM地址转换、pid页表转换"><a href="#VM地址转换、pid页表转换" class="headerlink" title="VM地址转换、pid页表转换"></a>VM地址转换、pid页表转换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vmi_translate_kv2p</span><br><span class="line">vmi_translate_uv2p</span><br><span class="line">vmi_translate_ksym2v</span><br><span class="line">vmi_translate_sym2v  //遍历PE导出表</span><br><span class="line">vmi_translate_v2sym</span><br><span class="line">vmi_pid_to_dtb</span><br><span class="line">vmi_dtb_to_pid</span><br><span class="line">vmi_pagetable_lookup //虚拟地址转化为物理地址</span><br><span class="line">vmi_pagetable_lookup_extended</span><br></pre></td></tr></table></figure>
+<h3 id="VM读写内存"><a href="#VM读写内存" class="headerlink" title="VM读写内存"></a>VM读写内存</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vmi_read(write)</span><br><span class="line">vmi_read(write)_a_b //a=[8,16,32,64,addr,str],b=[pa,va,ksym]</span><br><span class="line">vmi_read_unicode_str_va</span><br><span class="line">vmi_convert_str_encoding</span><br><span class="line">vmi_print_hex_a //a=[pa,va,ksym]</span><br></pre></td></tr></table></figure>
+<h3 id="VMIcache操作函数"><a href="#VMIcache操作函数" class="headerlink" title="VMIcache操作函数"></a>VMIcache操作函数</h3><p>v2pcache表示内部虚拟地址到物理地址转换</p>
+<p>symcache 符号到虚拟地址转换</p>
+<p>rvacache rva到符号的转换</p>
+<p>pidcache pid到dtb的转换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vmi_a_add //a=[v2pcache,symcache,rvacache,pidcache]</span><br><span class="line">vmi_a_flush //a=[v2pcache,symcache,rvacache,pidcache]</span><br></pre></td></tr></table></figure>
+<h3 id="事件注册通知"><a href="#事件注册通知" class="headerlink" title="事件注册通知"></a>事件注册通知</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">static inline status_t</span><br><span class="line">driver_xen_setup(vmi_instance_t vmi)</span><br><span class="line">&#123;</span><br><span class="line">    driver_interface_t driver = &#123; 0 &#125;;</span><br><span class="line">    driver.initialized = true;</span><br><span class="line">    driver.init_ptr = &amp;xen_init;</span><br><span class="line">    driver.init_vmi_ptr = &amp;xen_init_vmi;</span><br><span class="line">    driver.destroy_ptr = &amp;xen_destroy;</span><br><span class="line">    driver.get_id_from_name_ptr = &amp;xen_get_domainid_from_name;</span><br><span class="line">    driver.get_name_from_id_ptr = &amp;xen_get_name_from_domainid;</span><br><span class="line">    driver.get_id_ptr = &amp;xen_get_domainid;</span><br><span class="line">    driver.set_id_ptr = &amp;xen_set_domainid;</span><br><span class="line">    driver.check_id_ptr = &amp;xen_check_domainid;</span><br><span class="line">    driver.get_name_ptr = &amp;xen_get_domainname;</span><br><span class="line">    driver.set_name_ptr = &amp;xen_set_domainname;</span><br><span class="line">    driver.get_memsize_ptr = &amp;xen_get_memsize;</span><br><span class="line">    driver.get_vcpureg_ptr = &amp;xen_get_vcpureg;</span><br><span class="line">    driver.set_vcpureg_ptr = &amp;xen_set_vcpureg;</span><br><span class="line">    driver.get_address_width_ptr = &amp;xen_get_address_width;</span><br><span class="line">    driver.read_page_ptr = &amp;xen_read_page;</span><br><span class="line">    driver.write_ptr = &amp;xen_write;</span><br><span class="line">    driver.is_pv_ptr = &amp;xen_is_pv;</span><br><span class="line">    driver.pause_vm_ptr = &amp;xen_pause_vm;</span><br><span class="line">    driver.resume_vm_ptr = &amp;xen_resume_vm;</span><br><span class="line">#if ENABLE_SHM_SNAPSHOT == 1</span><br><span class="line">    driver.create_shm_snapshot_ptr = &amp;xen_create_shm_snapshot;</span><br><span class="line">    driver.destroy_shm_snapshot_ptr = &amp;xen_destroy_shm_snapshot;</span><br><span class="line">    driver.get_dgpma_ptr = &amp;xen_get_dgpma;</span><br><span class="line">#endif</span><br><span class="line">#if ENABLE_XEN_EVENTS == 1</span><br><span class="line">    driver.events_listen_ptr = &amp;xen_events_listen;</span><br><span class="line">    driver.are_events_pending_ptr = &amp;xen_are_events_pending;</span><br><span class="line">    driver.set_reg_access_ptr = &amp;xen_set_reg_access;</span><br><span class="line">    driver.set_intr_access_ptr = &amp;xen_set_intr_access;</span><br><span class="line">    driver.set_mem_access_ptr = &amp;xen_set_mem_access;</span><br><span class="line">    driver.start_single_step_ptr = &amp;xen_start_single_step;</span><br><span class="line">    driver.stop_single_step_ptr = &amp;xen_stop_single_step;</span><br><span class="line">    driver.shutdown_single_step_ptr = &amp;xen_shutdown_single_step;</span><br><span class="line">#endif</span><br><span class="line">    vmi-&gt;driver = driver;</span><br><span class="line">    return VMI_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://mrgao1008.github.io/blog/2016/04/01/libvmi介绍/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:mrgao1008.github.io/blog">
+  </form>
+</div>
+
+  
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 mrgao1008@gmail.com
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Mrgao1008&#39;s blog</title>
+  <meta name="author" content="mrgao1008@gmail.com">
+  
+  <meta name="description" content="Some documents when reading books">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Mrgao1008&#39;s blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/blog/favicon.png" rel="icon">
+  <link rel="alternate" href="/blog/atom.xml" title="Mrgao1008&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/blog/">Mrgao1008&#39;s blog</a></h1>
+  <h2><a href="/blog/">technology documents</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/blog/">Home</a></li>
+    
+      <li><a href="/blog/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T07:43:47.758Z"><a href="/blog/2016/04/01/数据库系统原理与应用（第三版）1/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="数据库系统原理与应用（第三版）"><a href="#数据库系统原理与应用（第三版）" class="headerlink" title="数据库系统原理与应用（第三版）"></a>数据库系统原理与应用（第三版）</h1><p><em>第五章 关系模型</em></p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>关系模型是一种以二维表的形式表示实体数据和实体之间关系等信息的数据库模型。</p>
+<p>在关系模型中，基本元素包括属性、模式、元祖、域、键码、关系等价表示法以及关系实例等。</p>
+<p><strong>属性</strong> 在二维表中，关系的第一行成为属性（attribute），它描述了属性所在列各项的含义。</p>
+<p><strong>模式</strong> 关系名和关系的属性集成为关系的模式。一般地，模式的表示形式有两种。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">第一种：</span><br><span class="line">	模式名(属性1,属性2,...,属性n)</span><br><span class="line">	例如：</span><br><span class="line">	Book(isbn,titlle,page,bookType,year,price)</span><br><span class="line">第二种：</span><br><span class="line">	模式名=(属性1,属性2,...,属性n)</span><br><span class="line">	例如：</span><br><span class="line">	Book=(isbn,titlle,page,bookType,year,price)</span><br></pre></td></tr></table></figure>
+<p>关系的概念对应于程序设计语言中变量的概念，而关系模式的概念对应于程序设计语言中类型定义的概念。</p>
+<p>关系模式中的属性是一个<strong>集合</strong>，而不是<strong>列表</strong>，所以关系模式中属性的顺序不重要。但是便于讨论，一般为关系模式中的属性规定一个标准的排列顺序。</p>
+<p>当谈论数据库时，还必须区分关系模式和关系实例的概念。关系模式是一个逻辑设计包括了关系名和关系属性，相对比较稳定。而关系实例是定义的关系模式中数据的快照，相对来说经常发生变化。</p>
+<p>在关系模型中，数据库设计包含了一个或多个关系模式。关系数据库模式就是关系模式的集合，简称数据库模式。</p>
+<p><strong>元祖</strong> 在关系模式中，除了第一行是标题栏之外，关系中的其他行成为元组。元组实际上是关系中的数据。</p>
+<p><strong>域</strong> 一般地，把关系中的每个属性相关的特定类型称为域，那么关系中任何元组的每个分量都必须在相应列的域中取指。在关系模型中，要求组成元组的每个分量都是不可再分割的原子型，即这些分量必须属于某种基本类型，例如整数型、浮点型和字符型等。不允许将某个属性值属于记录结构、集合、列表、数组或可以合理地分割成更小分量的任何类型。</p>
+<p><strong>关系的等价表示方法</strong> 前面已经讲过，关系的模式和元组都是集合，不是列表。因此，关系的模式和元组的顺序不重要，无论模式中属性顺序或元组顺序如何变换，只要是模式中的属性和元组本身没有变化，那么得到的关系模式都是相同的。这种方式称为关系的等价表示方法。</p>
+<p><strong>关系实例</strong> 习惯上，把给定关系中元组的集合称为关系实例。</p>
+<p><strong>键码</strong> 如果关系中的所有元组在一个属性或多个属性的集合中都互不相同，即可以使用该属性或属性的集合来确定关系中的元组，那么该属性或属性的集合称为关系中的键码。</p>
+<ul>
+<li>第六章 关系模式的规范化设计*</li>
+</ul>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="异常问题"><a href="#异常问题" class="headerlink" title="异常问题"></a>异常问题</h3><p>在设计关系模式时，应该避免出现异常现象。这些异常现象包括数据冗余、修改异常、插入异常和删除冗余。</p>
+<p><strong>数据冗余</strong>的含义是表示相同信息的数据在关系的多个元组中重复出现。<br><strong>修改异常</strong>是指当修改了关系中某一个元组中的信息后，该关系中的另一个元组中相同的信息却没有修改。<br><strong>插入异常</strong>是指当向关系中插入一个元组数据时，仅知道该元组的一部分数据，结果这些已知的数据由于那些未知的数据而很难在关系中正确地插入。<br><strong>删除异常</strong>的含义是如果某些属性的值变为空，可能会丢失其他一些有用的信息。</p>
+<h3 id="泛关系模式和数据库模式"><a href="#泛关系模式和数据库模式" class="headerlink" title="泛关系模式和数据库模式"></a>泛关系模式和数据库模式</h3><p>在关系模式设计过程中，应当采取一些方法消除这些数据异常现象，把最初的关系模式分解成最终的合适的关系模式。这种最初设计的关系模式也成为泛关系模式（universal relation scheme）。关系模式的当前值称为关系实例，关系实例是特定元组的集合。可以把泛关系模式分解成一系列小的符合规范化要求的关系模式集合，这种比较小的最终的关系模式的集合称为数据库模式（database scheme）。对数据库模式的每个关系模式赋予一个当前值，这时称为数据库实例。</p>
+<h2 id="函数依赖"><a href="#函数依赖" class="headerlink" title="函数依赖"></a>函数依赖</h2><p>数据依赖是数据之间存在的各种联系现象。数据异常现象与数据依赖有着紧密的关联。在数据依赖中，函数依赖是最基本的一种依赖形式。</p>
+<h3 id="函数依赖的定义"><a href="#函数依赖的定义" class="headerlink" title="函数依赖的定义"></a>函数依赖的定义</h3><p>函数依赖（Function Dependency，FD）的定义可以叙述为：如果关系$R$的两个元组在属性$A_1,A_2,\cdots,A_n$上一致，那么它在另一属性$B$上也一致。这种函数依赖记作$A_1A_2 \cdots A_n \xrightarrow{} B$,读作属性$A_1,A_2,\cdots,A_n$函数决定属性$B$,或属性$B$函数依赖于属性$A_1,A_2,\cdots,A_n$。</p>
+<p>函数依赖的逻辑定义：设关系模式$R$的属性集是$U$,$X$和$Y$是$U$的子集，函数依赖是形如$X \xrightarrow{} Y$的命题，即$r$是$R$的当前实例值，对r中的任意两个元组$t$和$s$，如果$t[X]=s[X]$，则$t[Y]=s[Y]$,那么$X \xrightarrow{} Y$在关系模式$R$中成立。其中，$t[X]$表示元组$t$在属性集$X$上的值。</p>
+<p>函数依赖的定义表示了关系模式属性集$X$值和$Y$值之间的多对一联系。</p>
+<p>如果一组属性$A_1,A_2,\cdots,A_n$函数决定一组属性$B_1,B_2,\cdots,B_m$,那么可以把这组依赖关系简记为：$$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$$</p>
+<p>对于关系Book(isbn,title,page,bookType,price,pressName,authorName)，根据客观现实和经验，可以得到以下函数依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">isbn-&gt;title</span><br><span class="line">isbn-&gt;page</span><br><span class="line">isbn-&gt;bookType</span><br><span class="line">isbn-&gt;price</span><br><span class="line">isbn-&gt;pressName</span><br></pre></td></tr></table></figure>
+<p>简写为$$isbn \xrightarrow{} title\ page\ bookType\ price\ pressName$$.<br>不能得到$isbn \xrightarrow{} authorName$因为其中一个isbn对应了3个作者。</p>
+<h3 id="函数依赖和键码"><a href="#函数依赖和键码" class="headerlink" title="函数依赖和键码"></a>函数依赖和键码</h3><h4 id="超键码"><a href="#超键码" class="headerlink" title="超键码"></a>超键码</h4><p>在某个关系中，如果一个或多个属性的集合${A_1,A_2,\cdots,A_n}$函数决定该关系的其他属性，那么称该属性的集合为该关系的超键码。超键码的含义是关系中不可能存在两个不同的元组在属性$A_1,A_2,\cdots,A_n$的取值完全相同。根据上面的定义可以看到，在一个关系中，超键码的数量是没有限制的，例如如果属性集合${A_1,A_2,\cdots,A_n}$是超键码，那么包含该属性集合的所有属性集合都是超键码。</p>
+<h4 id="键码"><a href="#键码" class="headerlink" title="键码"></a>键码</h4><p>在某个关系中，如果一个或多个属性的集合${A_1,A_2,\cdots,A_n}$函数决定该关系的其他属性，并且集合${A_1,A_2,\cdots,A_n}$的任何真子集都不能函数决定该关系的所有其他属性，那么称该属性的集合为该属性的键码。</p>
+<p>在一个关系中，有时会有多个不同的键码。如果这样，可以把其中一个最为重要的键码指定为主键码，把其他键码成为候选键码。</p>
+<h3 id="逻辑蕴含"><a href="#逻辑蕴含" class="headerlink" title="逻辑蕴含"></a>逻辑蕴含</h3><p>在讨论函数依赖时，经常需要从一些已知的函数依赖去判断另外一些函数依赖是否成立。例如，如果$A \xrightarrow{} B$和$B \xrightarrow{} C$在某个关系中成立，那么$ A \xrightarrow{} C$在该关系中是否成立的问题成为逻辑蕴含问题。</p>
+<p>假定$F$是在某个关系上成立的函数依赖集，$T$是在该关系上成立的另外一个函数依赖集，如果对于该关系中满足$F$的每一个关系实例都满足$T$，那么称函数依赖集$F$蕴含于函数依赖集$T$，记作$F$蕴含于$T$。</p>
+<p>如果$F$蕴含于$T$，且$T$蕴含于$F$，那么函数依赖集$F$和$T$等价。</p>
+<p>函数关系$R(A,B,C)$具有函数依赖$A \xrightarrow{} B$和$B \xrightarrow{} C$，那么可以证明$A \xrightarrow{} C$在该关系中成立。证明思路：在关系$R$中任取两个元组，如果这两个元组在属性$A$上一致，那么证明这两个元组在属性$C$上一致。</p>
+<p>在这里可以把函数依赖$A \xrightarrow{} B$和$B \xrightarrow{} C$记作函数依赖集$F$，把$A \xrightarrow{} C$记作函数依赖集$T$，那么已经证明了满足$F$的每一个关系实例都满足$T$，因此可以说函数依赖集$F$蕴含于函数依赖集$T$。</p>
+<h3 id="函数依赖的推理规则"><a href="#函数依赖的推理规则" class="headerlink" title="函数依赖的推理规则"></a>函数依赖的推理规则</h3><p><strong>分解规则</strong>：可以把一个函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$用一组函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1,A_1A_2 \cdots A_n \xrightarrow{} B_2,\cdots,A_1A_2 \cdots A_n \xrightarrow{} B_m$来代替。<br><strong>合并规则</strong>：可以把一组函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1,A_1A_2 \cdots A_n \xrightarrow{} B_2,\cdots,A_1A_2 \cdots A_n \xrightarrow{} B_m$用一个函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$来代替。</p>
+<p>对于函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$，设$A={A_1A_2 \cdots A_n},B={B_1B_2 \cdots B_m}$，如果$B$是$A$的子集，那么称该依赖为平凡依赖；如果$B$中至少有一个属性不在$A$中，那么称该依赖是非平凡依赖；如果$B$中的任何一个属性都不在$A$中，那么称该依赖是完全非平凡依赖。</p>
+<p>Armstrong公理。<br><strong>自反律</strong>：如果${B_1B_2 \cdots B_m} \subset {A_1A_2 \cdots A_n}$，则$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$。这是平凡依赖。</p>
+<p><strong>增长率</strong>：如果$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$，则对于任何属性集$C_1,C_2,\cdots,C_k$，都存在$A_1A_2 \cdots A_nC_1C_2 \cdots C_k \xrightarrow{} B_1B_2 \cdots B_mC_1C_2 \cdots C_k$。</p>
+<p><strong>传递率</strong>：如果$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m,B_1B_2 \cdots B_m \xrightarrow{} C_1C_2 \cdots C_k$，则$A_1A_2 \cdots A_n \xrightarrow{} C_1C_2 \cdots C_k$。</p>
+<h3 id="属性集的闭包"><a href="#属性集的闭包" class="headerlink" title="属性集的闭包"></a>属性集的闭包</h3><p>假设${A_1A_2 \cdots A_n}$是属性集，$S$是函数依赖集。属性集${A_1A_2 \cdots A_n}$在函数依赖集$S$下的闭包是这样的属性集$B$，它使得满足依赖集$S$中所有依赖的每一个关系都满足$A_1A_2 \cdots A_n \xrightarrow{} B$。即$A_1A_2 \cdots A_n \xrightarrow{} B$蕴含于$S$中的函数依赖。使用${A_1A_2 \cdots A_n}^+$表示属性集${A_1A_2 \cdots A_n}$的闭包。</p>
+<p>计算属性集${A_1A_2 \cdots A_n}$闭包的步骤如下：</p>
+<p>第一步，设最终将成为闭包的属性集是$X$,把$X$初始化为${A_1A_2 \cdots A_n}$。</p>
+<p>第二步，重复搜索和判断函数依赖$B_1B_2 \cdots B_m \xrightarrow{} C$。如果左边所有的属性$B_1,B_2,\cdots,B_m$都在属性集$X$中，但是属性$C$不在$X$中，则将$C$添加到属性集$X$中。</p>
+<p>第三步，重复第二步，知道没有属性可以添加到属性集$X$中为止。</p>
+<p>第四步，最后得到的不能再添加的属性集$X$就是${A_1A_2 \cdots A_n}^+$。</p>
+<p>如果用户知道了如何计算任意属性的闭包，就能检验给定的任意函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B$是否蕴含于函数依赖集$S$。检验步骤如下：</p>
+<p>第一步，计算闭包。根据函数依赖集$S$计算${A_1A_2 \cdots A_n}^+$。</p>
+<p>第二步，判断。如果$B$在${A_1A_2 \cdots A_n}^+$中，则$A_1A_2 \cdots A_n \xrightarrow{} B$蕴含于函数依赖集$S$；如果$B$不在${A_1A_2 \cdots A_n}^+$中，则该函数不蕴含于函数依赖集$S$。</p>
+<h3 id="正则覆盖"><a href="#正则覆盖" class="headerlink" title="正则覆盖"></a>正则覆盖</h3><p>如果可以去掉一个函数依赖集中的属性而不改变函数依赖集的闭包，那么称该属性是无关的。无关属性可以形式化的定义如下，考虑函数依赖集$S$和$S$中的某个函数依赖$X \xrightarrow{} Y$。</p>
+<p>如果$A \in X$，且$S$逻辑蕴含$(S-\{X \xrightarrow{} Y\}) \cup \{(X-A) \xrightarrow{} Y\}$，那么属性$A$在$X$中是无关的。</p>
+<p>如果$A \in Y$，且$S$逻辑蕴含$(S-\{X \xrightarrow{} Y\}) \cup \{X \xrightarrow{} (Y-A)\}$，那么属性$A$在$Y$中是无关的。</p>
+<p>$S$的正则覆盖是一个函数依赖集$S_C$，含义是$S$逻辑蕴含$S_C$中的所有依赖，并且$S_C$逻辑蕴含$S$中的所有依赖。此外，$S_C$具有如下三个性质：</p>
+<ul>
+<li>$S_C$的闭包与$S$的闭包相同，即${S}^+ ={S_C}^+$。</li>
+<li>$S_C$的任何函数依赖都不包含无关属性。</li>
+<li>$S_C$中的函数依赖的左半部都是唯一的，即$S_C$中不存在两个函数依赖$X_1 \xrightarrow{} Y_1$和$X_2 \xrightarrow{} Y_2$，且$X_1 = X_2$。</li>
+</ul>
+<h2 id="关系模式的分解"><a href="#关系模式的分解" class="headerlink" title="关系模式的分解"></a>关系模式的分解</h2><p>消除关系模式中数据异常的常用办法是分解关系模式。关系模式$R$的分解就是把关系$R$中的属性分开，以构成两个新的关系模式。</p>
+<p>在分解关系模式时，一定要注意两个问题：第一，保证分解前后关系模式的信息不能丢失和增加，保持原有的信息不变，这称为无损连接；第二，保持分解前后猿猴的函数依赖依然成立。</p>
+<p>给定一个关系模式$R$，其属性集合为$\{A_1,A_2,\cdots,A_n\}$，现在把其分解成两个关系模式$X$和$Y$，其属性集合分别是$\{B_1,B_2,\cdots,B_m\}$和$\{C_1,C_2,\cdots,C_k\}$，这种分解应该满足如下条件：</p>
+<p>第一个条件：$\{A_1,A_2,\cdots,A_n\}=\{B_1,B_2,\cdots,B_m\} \cup \{C_1,C_2,\cdots,C_k\}$。</p>
+<p>第二个条件：关系$X$中的元组是关系$R$的所有元组在$\{B_1,B_2,\cdots,B_m\}$上的投影，包含相同元组。</p>
+<p>第三个条件：关系$Y$中的元组是关系$R$的所有元组在$\{C_1,C_2,\cdots,C_k\}$上的投影，不包含相同元组。</p>
+<p>例如：略。</p>
+<h2 id="关系模型的范式"><a href="#关系模型的范式" class="headerlink" title="关系模型的范式"></a>关系模型的范式</h2><h3 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h3><p>如果关系模式$R$中的所有属性值都是不可在分解的原子值，那么就称关系$R$是第一范式（first normal form，1NF）的关系模式。不是1NF的关系称为非规范化的关系，满足1NF的关系简称关系。在关系型数据库管理系统中，涉及到的研究对象都是满足1NF的规范化关系。</p>
+<h3 id="BCNF范式"><a href="#BCNF范式" class="headerlink" title="BCNF范式"></a>BCNF范式</h3><p>BCNF范式（Boyce-Codd normal form）的定义是，如果某个关系R有非平凡依赖$A_1,A_2,\cdots,A_n \xrightarrow{} B$，那么$\{A_1,A_2,\cdots,A_n\}$必然是关系R的超键码。满足这样条件的关系就属于BCNF。即BCNF条件的含义是每一个非平凡依赖的左边必须包含超键码。</p>
+<h3 id="分解成BCNF模式的算法"><a href="#分解成BCNF模式的算法" class="headerlink" title="分解成BCNF模式的算法"></a>分解成BCNF模式的算法</h3><p>第一步，找到一个违背BCNF的非平凡依赖，并在该依赖的右边加上尽量多的属性。</p>
+<p>第二步，把原始关系模型分解成两个属性重迭的关系模式，一个模式包含了违背BCNF的所有属性，另外一个模式包含了该依赖左边以及未包含在该依赖中的所有属性。</p>
+<p>第三步，判断新的关系模式是否满足BCNF。如果不满足，继续进行分解；如果满足，则停止。</p>
+<p><strong>任何包含了两个属性的关系模式都自然满足BCNF条件。</strong></p>
+<h3 id="函数依赖的投影"><a href="#函数依赖的投影" class="headerlink" title="函数依赖的投影"></a>函数依赖的投影</h3><p>在分解关系模式时，需要确定新关系模式是否满足BCNF条件。这种判断的前提是知道新关系模式中成立的函数依赖，这些函数依赖是原关系模式的函数依赖在新关系模式上的投影。下面介绍一种找到新关系模式中函数依赖的方法。</p>
+<p>假设把关系$R$分解成关系$S$和$T$，$F$是$R$中已知的函数依赖集。现在计算$S$中成立的函数依赖。考虑包含于$S$的属性集的每个属性集$X$，计算$X^+$。于是，满足下列条件的每个属性$B$，函数$X \xrightarrow{} B$在关系$S$中成立：</p>
+<ul>
+<li>$B$是$S$的一个属性；</li>
+<li>$B$属于$X^+$;</li>
+<li>$B$不属于$X$。</li>
+</ul>
+<h3 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h3><p>在某些情况下，按照BCNF进行分解，但是当对得到的关系模式进行连接时，却不能保证原先所有的函数依赖都能得到保持。这是，关系模式就不应该继续进行分解，该关系模式满足的范式称为第三范式。</p>
+<p>如果对于任何非平凡依赖$A_1,A_2,\cdots,\A_n \xrightarrow{} B$，那么或$\{A_1,A_2,\cdots,A_n\}$是关系$R$的超键码，或$B$是某个键码的组成部分。满足这样条件的关系就属于第三范式（third normal form, 3NF）。</p>
+<h3 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h3><p>在一个关系中，如果$\{A_1,A_2,\cdots,A_n\}$是关系$R$的键码，$B$是关系中的任意非键码，那么非平凡依赖$A_1,A_2,\cdots,A_n \xrightarrow{} B$都成立，则该关系模式属于第二范式（second normal form, 2NF）。</p>
+<h3 id="多值依赖"><a href="#多值依赖" class="headerlink" title="多值依赖"></a>多值依赖</h3><p>多值依赖的含义是如果确定了关系$R$的一个属性集的取值，则其他某些特征属性的取值与该关系的所有其他属性的取值无关。确切的说，如果限定关系$R$的元组在属于$A$的每个属性上取特定的值，结果属性$B$的属性取值的集合与既不属于$A$也不属于$B$但属于$R$的属性取值的集合无关，则称如下所示的多值依赖在关系$R$中成立：$$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$$</p>
+<p>多值依赖满足规则</p>
+<p>平凡依赖规则：在某个关系中，如果多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$成立，则多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$也成立，其中$C$是$B$加上$A$中的一个或多个属性。反之，也可以从$B$中删除一些属于$A$的属性，并推导出多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} D_1D_2 \cdots D_r$，其中，$D$是在$B$中而不属于$A$的属性。</p>
+<p>传递规则：在某个关系中，如果多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$和$B_1B_2 \cdots B_m \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$，则多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$成立。</p>
+<p>复制规则：在关系中，每个函数依赖都是多值依赖。</p>
+<p>互补规则：如果$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$是关系$R$的多值依赖，则$R$也满足$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$,其中，$C$是不属于$A$和$B$的$R$的所有其他属性。</p>
+<p>第四范式：如果$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$是非平凡的多值依赖，且$\{A_1,A_2,\cdots,A_n\}$是关系的超键码，那么该关系就属于第四范式（Fourth Normal Form, 4NF）。</p>
+<p>分解方法：</p>
+<p>第一步：找到一个4NF违例，例如$A \xrightarrow{}\xrightarrow{} B$.</p>
+<p>第二步：分解该关系模式，第一个关系模式包含$A$和$B$中的属性，第二个关系模式包含$A$中的属性以及不属于$A$也不属于$B$的$R$的所有其他属性。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://mrgao1008.github.io/blog/2016/04/01/数据库系统原理与应用（第三版）1/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:mrgao1008.github.io/blog">
+  </form>
+</div>
+
+  
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 mrgao1008@gmail.com
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

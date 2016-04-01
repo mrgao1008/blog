@@ -1,0 +1,262 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Mrgao1008&#39;s blog</title>
+  <meta name="author" content="mrgao1008@gmail.com">
+  
+  <meta name="description" content="Some documents when reading books">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Mrgao1008&#39;s blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/blog/favicon.png" rel="icon">
+  <link rel="alternate" href="/blog/atom.xml" title="Mrgao1008&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/blog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/blog/">Mrgao1008&#39;s blog</a></h1>
+  <h2><a href="/blog/">technology documents</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/blog/">Home</a></li>
+    
+      <li><a href="/blog/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T07:43:47.758Z"><a href="/blog/2016/04/01/锁与进程间通信/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="锁与进程间通信"><a href="#锁与进程间通信" class="headerlink" title="锁与进程间通信"></a>锁与进程间通信</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p><strong>竞态条件(race condition)</strong>是几个进程在访问资源时彼此干扰的情况。</p>
+<p>难点在于：无法通过测试完全找到竞态条件，只有彻底研究源代码并通过敏锐的直觉，才能找到并消除竞态条件。</p>
+<p><strong>临界区(Critical section)</strong><br>是在并行编程中，一段不能被多个处理器同时执行的代码。</p>
+<p>解决方法：</p>
+<p>信号量(semaphore):受保护的特殊变量。初始值为1。有2个标准操作up和down。在一个进程试图进入临界区时，调用down函数。这会将信号量减1，即将其设置为0，然后执行临界区代码。在执行操作完成后，调用up函数将信号量加1，即重置为初始值。信号量有下面2中特性：</p>
+<p>（1）又一个进程试图进入临界区，首先必须对信号量执行down操作。因为信号量当前值为0，会导致进程在该信号量上“睡眠”，直到前一个进程退出。</p>
+<p>（2）进程退出临界区，执行up操作。不仅将信号量加1，而且还会选择一个在该信号量上睡眠的进程。</p>
+<p><strong>查询和修改信号量的操作比如为原子的，反正竞态条件。</strong></p>
+<p>各种锁：</p>
+<ul>
+<li>原子操作:保证简单的计数器加1可以原子执行</li>
+<li>自旋锁:用于短期保护某段代码，以防止其他处理器访问</li>
+<li>信号量：在等待信号量释放时，进入睡眠，直至被唤醒，内核重新尝试获取信号量</li>
+<li>读写锁：区分对数据结构的两种不同类型的操作。任何数目的处理器都可以对数据结构进行并发<strong>读</strong>,但是只有一个处理器能进行<strong>写</strong>操作。</li>
+</ul>
+<h2 id="原子操作"><a href="#原子操作" class="headerlink" title="原子操作"></a>原子操作</h2><p>原子类型为<code>atomic_t</code>，定义在<code>&lt;asm-arch/atomic.h&gt;</code>中。原子类型只能借助<code>ATOMIC_INIT</code>宏初始化。原子类型是基于c语言通用类型实现，不能用++等操作。</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>atomic_read(atomic_t *v)</td>
+<td>读取原子变量的值</td>
+</tr>
+<tr>
+<td>atomic_set(atomic_t *v, int i)</td>
+<td>将v设置为i</td>
+</tr>
+<tr>
+<td>atomic_add(int i, atomic_t *v)</td>
+<td>将i加到v</td>
+</tr>
+<tr>
+<td>atomic_add_return(int i, atomic_t *v)</td>
+<td>将i加到v，并返回结果</td>
+</tr>
+<tr>
+<td>atomic_sub(int i, atomic_t *v)</td>
+<td>从v减去i</td>
+</tr>
+<tr>
+<td>atomic_sub_return(int i, atomic_t *v)</td>
+<td>从v减去i，并返回结果</td>
+</tr>
+<tr>
+<td>atomic_inc(atomic_t *v)</td>
+<td>将v加1</td>
+</tr>
+<tr>
+<td>atomic_inc_and_test(atomic_t *v)</td>
+<td>将v加1。结果如果为0则返回true，否则返回false</td>
+</tr>
+<tr>
+<td>atomic_dec(atomic_t *v)</td>
+<td>从v减1</td>
+</tr>
+<tr>
+<td>atomic_dec_and_test(atomic_t *v)</td>
+<td>从v减1。结果如果为0则返回true，否则返回false</td>
+</tr>
+<tr>
+<td>atomic_add_negative(int i, atomic_i *v)</td>
+<td>将i加到v.如果结果小于0则返回true,否则返回false</td>
+</tr>
+</tbody>
+</table>
+<p>local_t类型，允许在单个CPU上原子操作。</p>
+<h2 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h2><p>自旋锁用于保护段的代码段，其中只包含少量c语言，因此会很快执行完毕。</p>
+<p>自旋锁通过spinlock_t数据结构实现，基本可以使用spin_lock和spin_unlock操作。还有其他一些自旋锁操作：spin_lock_irqsave不仅获得自旋锁，还停用本地cpu的中断，而sin_lock_bh则停用softIRQ。这两个操作获得的自旋锁必须用对应的接口释放，分别是spin_unlock_irqsave和spin_unlock_bh。</p>
+<h2 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;asm-arch/semaphore.h&gt;</span><br><span class="line">struct semaphor &#123;</span><br><span class="line">	atomic_t count;</span><br><span class="line">	int sleepers;</span><br><span class="line">	wait_queue_head_t wait;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>与自旋锁相比，信号量适合于保护更长的临界区，以防止并行访问。但它们不应该用于保护较短的代码范围，因为竞争信号量时需要使进程睡眠和再次唤醒，代价很高。</p>
+<h2 id="RCU机制"><a href="#RCU机制" class="headerlink" title="RCU机制"></a>RCU机制</h2><p>RCU(read-copy-update)是一个相当新的同步机制。RCU对使用者提出一些约束</p>
+<ul>
+<li>对共享资源的访问在大部分时间应该是只读的，写访问应该相对很少。</li>
+<li>在RCU保护的代码范围内，内核不能进入睡眠状态。</li>
+<li>受保护资源必须通过指针访问。</li>
+</ul>
+<p>RCU原理很简单:该机制记录了指向共享数据结构的指针的所有使用者。在该结构将要改变时，则首先创建一个副本（或一个新的实例，填充适当的内容，这没什么差别），在副本中修改。在所有进行读访问的使用者结束对旧副本的读取之后，指针可以替换为指向新的、修改后副本的指针。请注意，这种机制允许读写并发执行。</p>
+<h3 id="核心API"><a href="#核心API" class="headerlink" title="核心API"></a>核心API</h3><p>假定指针ptr指向一个被RCU保护的数据结构。直接反引用指针是禁止的，首先必须调用rcu_dereference(ptr)，然后反引用返回的结果。此外，凡引用指针并使用其结果的代码，需要用rcu_read_lock和rcu_read_unlock调用保护起来：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">rcu_read_lock();</span><br><span class="line"></span><br><span class="line">p = rcu_derefence(ptr);</span><br><span class="line">if (p != NULL) &#123;</span><br><span class="line">	awesome_function(p);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">rcu_read_unlock();</span><br></pre></td></tr></table></figure>
+<p><strong>被反映用的指针不能在rcu_read_lock和rcu_read_unlock保护代码范围之外使用，也不能用于写访问</strong></p>
+<p>如果必须修改ptr指向的对象，则需要使用rcu_assign_pointer:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">struct super_duper *new_ptr = kmalloc(...);</span><br><span class="line"></span><br><span class="line">new_ptr-&gt;meaing = xyz;</span><br><span class="line">new_ptr-&gt;of = 42;</span><br><span class="line">new_ptr-&gt;life = 23;</span><br><span class="line"></span><br><span class="line">rcu_assign_pointer(ptr, new_ptr);</span><br></pre></td></tr></table></figure>
+<p>按RCU的术语，该操作公布了这个指针，后续的读取操作将看到新的结构，而不是原来的。<br><strong>如果更新可能来自内核中许多地方，那么必须使用普通的同步源于防止并发的写操作，如自旋锁。尽管RCU能保护读访问不受写访问的干扰，但它不对写访问之间的相互干扰提供防护！</strong></p>
+<p>synchronize_rcu()等待所有现存的读访问完成。在函数返回之后，释放与原指针关联的内存是安全的。</p>
+<p>call_rcu可用于注册一个函数，在所有针对共享资源的读访问完成以后调用。这要求将一个rcu_read实例嵌入（不能通过指针）到RCU保护的数据结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">struct super_duper &#123;</span><br><span class="line">	struct rcu_head head;</span><br><span class="line">	int meaning, of, life;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>该回调函数可通过参数访问对象的rcu_head成员，进而使用container_of机制访问对象本身。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kernel/rcuupdate.c</span><br><span class="line">void fastcall call_rcu(struct rcu_head * head, void(*func)(struct rcu_head *rcu))</span><br></pre></td></tr></table></figure></p>
+<h3 id="链表操作"><a href="#链表操作" class="headerlink" title="链表操作"></a>链表操作</h3><p>RCU能保护的，不仅仅是一般的指针。内核也提供了标准函数，使得能通过RCU机制保护双链表，这是RCU机制在内核内部最重要的应用。此外，由struct hlist_head和struct hlist_node组成的散列表也可以通过RCU保护。</p>
+<p>有关通过RCU保护的链表，好消息是仍然可以使用标准的链表元素。只有在遍历链表、修改和删除链表元素时，必须调用标准函数的RCU变体。函数名称是在标准函数之后附加_rcu后缀。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;list.h&gt;</span><br><span class="line">static inline void list_add_rcu(struct list_head *new,struct list_head *head)</span><br><span class="line">static inline void list_add_tail_rcu(struct list_head *new,struct list_head *head)</span><br><span class="line">static inline void list_del_rcu(struct list_head *entry)</span><br><span class="line">static inline void list_replace_rcu(struct list_head *old,struct list_head *new)</span><br></pre></td></tr></table></figure></p>
+<p>还有list_for_each_rcu允许遍历链表的所有元素。而list_for_each_rcu_safe甚至对删除链表元素也是安全的。这两个操作都必须通过一对rcu_read_lock()和rcu_read_unlock()包围。</p>
+<h2 id="内存和优化屏障"><a href="#内存和优化屏障" class="headerlink" title="内存和优化屏障"></a>内存和优化屏障</h2><h2 id="读-写锁"><a href="#读-写锁" class="headerlink" title="读/写锁"></a>读/写锁</h2><p>读写信号量和读写自旋锁。</p>
+<p>读写自旋锁定义为rwlock_t。必须根据读写访问，以不同的方法获取锁。</p>
+<p>进程对临界区进行读访问时，在进入和离开是需要分别执行read_lock和read_unlock。内核允许任意数目的读进程并发访问临界区。</p>
+<p>write_lock和write_unlock用于写访问。内核保证只有一个写进程（此时没有读进程）能够处于临界区。</p>
+<p>_irq_irqsave变体也同样可用，运作方式如果普通的自旋锁。以_bh结果的变体也是可用的，用于停用软件中断，但硬件中断中断仍然是开启的。</p>
+<h2 id="大内核锁"><a href="#大内核锁" class="headerlink" title="大内核锁"></a>大内核锁</h2><h2 id="互斥量"><a href="#互斥量" class="headerlink" title="互斥量"></a>互斥量</h2><p>尽管信号量可用于实现互斥量的功能，信号量的通用性导致的开销通常是不必要的。因此，内核包含了一个专用互斥量的独立实现，他们不依赖于信号量。<strong>互斥量是信号量的特例，count为1时</strong></p>
+<ul>
+<li><p>经典的互斥量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;mutex.h&gt;</span><br><span class="line">struct mutex &#123;</span><br><span class="line">	/* 1: 未锁定， 0： 锁定， 负值： 锁定，可能有等待者*/</span><br><span class="line">	atomic_t count;</span><br><span class="line">	spinlock_t wait_lock;</span><br><span class="line">	struct list_head wait_list;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实时互斥量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;rtmutex.h&gt;</span><br><span class="line">struct rt_mutex &#123;</span><br><span class="line">	spinlock_t wait_lock;</span><br><span class="line">	struct plist_head wait_list;</span><br><span class="line">	struct task_struct *owner;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="近似的per-CPU计数器"><a href="#近似的per-CPU计数器" class="headerlink" title="近似的per-CPU计数器"></a>近似的per-CPU计数器</h2><p>对于某些计数器没必要时时了解其准确值。</p>
+<h2 id="锁竞争与细粒度锁"><a href="#锁竞争与细粒度锁" class="headerlink" title="锁竞争与细粒度锁"></a>锁竞争与细粒度锁</h2>
+      
+    </div>
+    <footer>
+      
+        
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://mrgao1008.github.io/blog/2016/04/01/锁与进程间通信/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:mrgao1008.github.io/blog">
+  </form>
+</div>
+
+  
+
+  
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 mrgao1008@gmail.com
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
