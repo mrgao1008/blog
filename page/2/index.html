@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Seite 2 | Mrgao1008&#39;s blog</title>
+  <title>第 2 页 | Mrgao1008&#39;s blog</title>
   <meta name="author" content="mrgao1008@gmail.com">
   
   <meta name="description" content="Some documents when reading books">
@@ -46,6 +46,39 @@
 </header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/LoadLibrary 126/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/01/LoadLibrary 126/"></a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="LoadLibrary-error-126"><a href="#LoadLibrary-error-126" class="headerlink" title="LoadLibrary error 126"></a>LoadLibrary error 126</h1><p>可能是UNICODE和ASCII字符的问题。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -245,94 +278,6 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/Windows API hook 开发环境配置/">2016-04-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/blog/2016/04/01/Windows API hook 开发环境配置/"></a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="Windows-API-Hook-开发环境配置"><a href="#Windows-API-Hook-开发环境配置" class="headerlink" title="Windows API Hook 开发环境配置"></a>Windows API Hook 开发环境配置</h1><p><span id="top"></span><br><!-- MarkdownTOC --></p>
-<ul>
-<li><a href="#detours安装和配置">Detours安装和配置</a><ul>
-<li><a href="#detours介绍">Detours介绍</a></li>
-<li><a href="#detours安装">Detours安装</a></li>
-<li><a href="#detours编译">Detours编译</a></li>
-</ul>
-</li>
-<li><a href="#windows-api-hook例子">Windows API Hook例子</a><ul>
-<li><a href="#加入detours头文件和动态库文件">加入detours头文件和动态库文件</a></li>
-</ul>
-</li>
-<li><a href="#利用withdll进行远程dll注入">利用withdll进行远程dll注入</a></li>
-</ul>
-<!-- /MarkdownTOC -->
-<p><a name="detours安装和配置"></a></p>
-<h2 id="Detours安装和配置"><a href="#Detours安装和配置" class="headerlink" title="Detours安装和配置"></a>Detours安装和配置</h2><p><a name="detours介绍"></a></p>
-<h3 id="Detours介绍"><a href="#Detours介绍" class="headerlink" title="Detours介绍"></a>Detours介绍</h3><p>Detours是Windows下一个API Hook 开源框架。<br><a href="http://research.microsoft.com/en-us/projects/detours/" target="_blank" rel="external">Detours官网</a><br><a href="http://research.microsoft.com/en-us/downloads/d36340fb-4d3c-4ddd-bf5b-1db25d03713d/default.aspx" target="_blank" rel="external">Detours 3.0下载地址</a></p>
-<p><a name="detours安装"></a></p>
-<h3 id="Detours安装"><a href="#Detours安装" class="headerlink" title="Detours安装"></a>Detours安装</h3><p>msi文件一路next。记下安装目录。</p>
-<p><a name="detours编译"></a></p>
-<h3 id="Detours编译"><a href="#Detours编译" class="headerlink" title="Detours编译"></a>Detours编译</h3><p>安装完成后，进入目录<code>C:\Program Files\Microsoft Research\Detours Express 3.0</code>会看到下面的目录结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">samples\</span><br><span class="line">	...</span><br><span class="line">	simple\</span><br><span class="line">	...</span><br><span class="line">	withdll\</span><br><span class="line">	...</span><br><span class="line">src\</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<p>其中src是需要编译的detours源码。simple和withdll是实现windows API Hook需要用到的2个示例。</p>
-<p>编译步骤如下:</p>
-<ul>
-<li>以管理员权限启动cmd</li>
-<li><p>设置环境变量，不然nmake会出错</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &quot;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\vcvars32.bat&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>进入detours的src文件夹并进行编译</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\src</span><br><span class="line"># nmake</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>编译在src和samples同一目录会生成lib.X86文件夹，里面的detours.lib就是我们需要的。</p>
-<p><a name="windows-api-hook例子"></a></p>
-<h2 id="Windows-API-Hook例子"><a href="#Windows-API-Hook例子" class="headerlink" title="Windows API Hook例子"></a>Windows API Hook例子</h2><p><a name="加入detours头文件和动态库文件"></a></p>
-<h3 id="加入detours头文件和动态库文件"><a href="#加入detours头文件和动态库文件" class="headerlink" title="加入detours头文件和动态库文件"></a>加入detours头文件和动态库文件</h3><p>在vs中新建windows控制台程序，设置解决方案的属性。</p>
-<ul>
-<li>打开<strong>项目</strong>–<strong>XXX 属性</strong></li>
-<li><p><strong>配置属性</strong>–<strong>C/C++</strong>–<strong>常规</strong> 在<strong>附加目录项</strong>中加入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\include</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>配置属性</strong>–<strong>链接器</strong>–<strong>常规</strong> 在<strong>附加库目录</strong>中加入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\lib.X86</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>配置属性</strong>–<strong>链接器</strong>–<strong>输入</strong> 在<strong>附加依赖项</strong>中加入<code>detours.lib</code></p>
-</li>
-<li><strong>配置属性</strong>–<strong>C/C++</strong>–<strong>代码生成</strong> 在<strong>运行库</strong>选择<code>/MT</code></li>
-<li><strong>配置属性</strong>–<strong>常规</strong> 在<strong>字符集</strong>选择<code>未设置</code></li>
-<li>在命令栏中选择<code>release</code>版本</li>
-</ul>
-<h4 id="withdll的编译"><a href="#withdll的编译" class="headerlink" title="withdll的编译"></a>withdll的编译</h4><p>在源文件中新建cpp文件，拷贝detours安装目录下的<code>samples\withdll\withdll.cpp</code>内容到cpp中。编译。</p>
-<h4 id="simple的编译"><a href="#simple的编译" class="headerlink" title="simple的编译"></a>simple的编译</h4><p>在vs新建项目时，选择windows控制台程序，并选择dll。设置解决方案属性。拷贝<code>samples\simple\simple.cpp</code>到新建的cpp文件中，编译。</p>
-<p><a name="利用withdll进行远程dll注入"></a></p>
-<h2 id="利用withdll进行远程dll注入"><a href="#利用withdll进行远程dll注入" class="headerlink" title="利用withdll进行远程dll注入"></a>利用withdll进行远程dll注入</h2><p><code>withdll /d:simple.dll a.exe</code>会将simple.dll注入到a.exe中。注意<code>/d:simple.dll</code>分号后不要有空格。exe和dll用绝对地址和相对地址都可以。</p>
-<p><a href="#top">回到顶部</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
         <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/python tk/">2016-04-01</a></time>
       
       
@@ -490,6 +435,38 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-03-31T16:00:00.000Z"><a href="/blog/2016/04/01/网站访问记录/">2016-04-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/01/网站访问记录/">网站访问记录</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h1 id="网站访问记录"><a href="#网站访问记录" class="headerlink" title="网站访问记录"></a>网站访问记录</h1><h2 id="1-记录访问的时间，ip，次数。"><a href="#1-记录访问的时间，ip，次数。" class="headerlink" title="1.记录访问的时间，ip，次数。"></a>1.记录访问的时间，ip，次数。</h2><h2 id="2-画图"><a href="#2-画图" class="headerlink" title="2.画图"></a>2.画图</h2><h2 id="3-可视化"><a href="#3-可视化" class="headerlink" title="3.可视化"></a>3.可视化</h2>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-03-31T16:00:00.000Z"><a href="/blog/2016/04/01/c++学习文档/">2016-04-01</a></time>
       
       
@@ -588,42 +565,10 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-03-31T16:00:00.000Z"><a href="/blog/2016/04/01/网站访问记录/">2016-04-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/blog/2016/04/01/网站访问记录/">网站访问记录</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="网站访问记录"><a href="#网站访问记录" class="headerlink" title="网站访问记录"></a>网站访问记录</h1><h2 id="1-记录访问的时间，ip，次数。"><a href="#1-记录访问的时间，ip，次数。" class="headerlink" title="1.记录访问的时间，ip，次数。"></a>1.记录访问的时间，ip，次数。</h2><h2 id="2-画图"><a href="#2-画图" class="headerlink" title="2.画图"></a>2.画图</h2><h2 id="3-可视化"><a href="#3-可视化" class="headerlink" title="3.可视化"></a>3.可视化</h2>
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
-    <a href="/blog/" class="alignleft prev">Vorherige Seite</a>
+    <a href="/blog/" class="alignleft prev">上一页</a>
   
   
   <div class="clearfix"></div>
@@ -631,7 +576,7 @@
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="search" name="q" results="0" placeholder="搜索">
     <input type="hidden" name="q" value="site:mrgao1008.github.io/blog">
   </form>
 </div>
@@ -640,7 +585,7 @@
 
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">标签</h3>
   <ul class="entry">
   
     <li><a href="/blog/tags/Django/">Django</a><small>2</small></li>
