@@ -7,6 +7,11 @@
     </sitemap>
 
     <sitemap>
+        <loc>http://mrgao1008.github.io/blog/page-sitemap.xml</loc>
+        <lastmod>2016-04-02T03:51:41.579Z</lastmod>
+    </sitemap>
+
+    <sitemap>
         <loc>http://mrgao1008.github.io/blog/tag-sitemap.xml</loc>
         <lastmod>2016-04-01T07:58:38.899Z</lastmod>
     </sitemap>
