@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  
+  <title>性能测试 | Mrgao1008&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Centos 7 下安装unixbenchunixbench是linux下基本性能测试工具，测试项目包括：123456789101112　　1 x Dhrystone 2 using register variables 1 2 3 4 5 6 7 8 9 10　　1 x Double-Precision Whetstone 1 2 3 4 5 6 7 8 9 10　　1 x Execl Thro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="性能测试">
+<meta property="og:url" content="http://mrgao1008.github.io/blog/2016/04/02/性能测试/index.html">
+<meta property="og:site_name" content="Mrgao1008's blog">
+<meta property="og:description" content="Centos 7 下安装unixbenchunixbench是linux下基本性能测试工具，测试项目包括：123456789101112　　1 x Dhrystone 2 using register variables 1 2 3 4 5 6 7 8 9 10　　1 x Double-Precision Whetstone 1 2 3 4 5 6 7 8 9 10　　1 x Execl Thro">
+<meta property="og:updated_time" content="2016-04-02T11:03:58.349Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="性能测试">
+<meta name="twitter:description" content="Centos 7 下安装unixbenchunixbench是linux下基本性能测试工具，测试项目包括：123456789101112　　1 x Dhrystone 2 using register variables 1 2 3 4 5 6 7 8 9 10　　1 x Double-Precision Whetstone 1 2 3 4 5 6 7 8 9 10　　1 x Execl Thro">
+  
+    <link rel="alternative" href="/atom.xml" title="Mrgao1008&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  
+  
+      <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+      <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/blog/css/style.css">
+  
+  <link rel="stylesheet" href="/blog/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+    <link rel="stylesheet" href="/blog/fancybox/jquery.fancybox.css">
+  
+  <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false,
+      }
+  </script>
+
+  
+      <script>
+          yiliaConfig.rootUrl = "/";
+      </script>
+  
+
+  
+      <script>
+          var _hmt = _hmt || [];
+          (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?859c5e5f16f684a5497e88f9ac3d2586";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+          })();
+      </script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/blog/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/blog/">mrgao1008</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">technology documents</p>
+        
+                
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/blog/">主页</a></li>
+                        
+                            <li><a href="/blog/archives/">所有文章</a></li>
+                        
+                            <li><a href="/blog/tags/">标签云</a></li>
+                        
+                            <li><a href="/blog/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/blog/tags/Django/" style="font-size: 20px;">Django</a> <a href="/blog/tags/GUI/" style="font-size: 10px;">GUI</a> <a href="/blog/tags/None/" style="font-size: 10px;">None</a> <a href="/blog/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/blog/tags/benchmark/" style="font-size: 10px;">benchmark</a> <a href="/blog/tags/c/" style="font-size: 10px;">c++</a> <a href="/blog/tags/database/" style="font-size: 20px;">database</a> <a href="/blog/tags/hook/" style="font-size: 10px;">hook</a> <a href="/blog/tags/kernel/" style="font-size: 10px;">kernel</a> <a href="/blog/tags/linux/" style="font-size: 10px;">linux</a> <a href="/blog/tags/problem-solution/" style="font-size: 20px;">problem solution</a> <a href="/blog/tags/site/" style="font-size: 10px;">site</a> <a href="/blog/tags/virtualization/" style="font-size: 10px;">virtualization</a> <a href="/blog/tags/分布式计算/" style="font-size: 10px;">分布式计算</a> <a href="/blog/tags/安装/" style="font-size: 20px;">安装</a> <a href="/blog/tags/并行计算/" style="font-size: 10px;">并行计算</a> <a href="/blog/tags/锁/" style="font-size: 10px;">锁</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">Nothing!</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">mrgao1008</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/blog/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/blog/" title="回到主页">mrgao1008</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">technology documents</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/blog/">主页</a></li>
+                
+                    <li><a href="/blog/archives/">所有文章</a></li>
+                
+                    <li><a href="/blog/tags/">标签云</a></li>
+                
+                    <li><a href="/blog/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-性能测试" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/blog/2016/04/02/性能测试/" class="article-date">
+      <time datetime="2016-04-02T09:42:00.000Z" itemprop="datePublished">2016-04-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      性能测试
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/benchmark/">benchmark</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="Centos-7-下安装unixbench"><a href="#Centos-7-下安装unixbench" class="headerlink" title="Centos 7 下安装unixbench"></a>Centos 7 下安装unixbench</h2><p>unixbench是linux下基本性能测试工具，测试项目包括：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">　　1 x Dhrystone 2 using register variables 1 2 3 4 5 6 7 8 9 10</span><br><span class="line">　　1 x Double-Precision Whetstone 1 2 3 4 5 6 7 8 9 10</span><br><span class="line">　　1 x Execl Throughput 1 2 3</span><br><span class="line">　　1 x File Copy 1024 bufsize 2000 maxblocks 1 2 3</span><br><span class="line">　　1 x File Copy 256 bufsize 500 maxblocks 1 2 3</span><br><span class="line">　　1 x File Copy 4096 bufsize 8000 maxblocks 1 2 3</span><br><span class="line">　　1 x Pipe Throughput 1 2 3 4 5 6 7 8 9 10</span><br><span class="line">　　1 x Pipe-based Context Switching 1 2 3 4 5 6 7 8 9 10</span><br><span class="line">　　1 x Process Creation 1 2 3</span><br><span class="line">　　1 x System Call Overhead 1 2 3 4 5 6 7 8 9 10</span><br><span class="line">　　1 x Shell Scripts (1 concurrent) 1 2 3</span><br><span class="line">　　1 x Shell Scripts (8 concurrent) 1 2 3</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>下载地址<a href="http://soft.vpser.net/test/unixbench/" target="_blank" rel="external">unixbench下载地址</a></p>
+<p>由于版本的古老等原因和依赖库不全的原因，需要更改<strong>Makefile</strong>文件和安装额外的依赖库。</p>
+<ul>
+<li>更改Makefile文件，具体是将：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GL_LIBS = -lGL -lXext -lX11</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>更改为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GL_LIBS = -lGL -lXext -lX11 -lm</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>安装libX11，libgl等依赖库，具体是：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install mesa-libGL-devel perl-Time-HiRes libX11-devel</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./Run</span><br></pre></td></tr></table></figure></p>
+<p>缺点：测试时间长。</p>
+<p>结果示意：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br></pre></td><td class="code"><pre><span class="line">   #    #  #    #  #  #    #          #####   ######  #    #   ####   #    #</span><br><span class="line">   #    #  ##   #  #   #  #           #    #  #       ##   #  #    #  #    #</span><br><span class="line">   #    #  # #  #  #    ##            #####   #####   # #  #  #       ######</span><br><span class="line">   #    #  #  # #  #    ##            #    #  #       #  # #  #       #    #</span><br><span class="line">   #    #  #   ##  #   #  #           #    #  #       #   ##  #    #  #    #</span><br><span class="line">    ####   #    #  #  #    #          #####   ######  #    #   ####   #    #</span><br><span class="line"></span><br><span class="line">   Version 5.1.2                      Based on the Byte Magazine Unix Benchmark</span><br><span class="line"></span><br><span class="line">   Multi-CPU version                  Version 5 revisions by Ian Smith,</span><br><span class="line">                                      Sunnyvale, CA, USA</span><br><span class="line">   December 22, 2007                  johantheghost at yahoo period com</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">1 x Dhrystone 2 using register variables  1 2 3 4 5 6 7 8 9 10</span><br><span class="line"></span><br><span class="line">1 x Double-Precision Whetstone  1 2 3 4 5 6 7 8 9 10</span><br><span class="line"></span><br><span class="line">1 x Execl Throughput  1 2 3</span><br><span class="line"></span><br><span class="line">1 x File Copy 1024 bufsize 2000 maxblocks  1 2 3</span><br><span class="line"></span><br><span class="line">1 x File Copy 256 bufsize 500 maxblocks  1 2 3</span><br><span class="line"></span><br><span class="line">1 x File Copy 4096 bufsize 8000 maxblocks  1 2 3</span><br><span class="line"></span><br><span class="line">1 x Pipe Throughput  1 2 3 4 5 6 7 8 9 10</span><br><span class="line"></span><br><span class="line">1 x Pipe-based Context Switching  1 2 3 4 5 6 7 8 9 10</span><br><span class="line"></span><br><span class="line">1 x Process Creation  1 2 3</span><br><span class="line"></span><br><span class="line">1 x System Call Overhead  1 2 3 4 5 6 7 8 9 10</span><br><span class="line"></span><br><span class="line">1 x Shell Scripts (1 concurrent)  1 2 3</span><br><span class="line"></span><br><span class="line">1 x Shell Scripts (8 concurrent)  1 2 3</span><br><span class="line"></span><br><span class="line">4 x Dhrystone 2 using register variables  1 2 3 4 5 6 7 8 9 10</span><br><span class="line"></span><br><span class="line">4 x Double-Precision Whetstone  1 2 3 4 5 6 7 8 9 10</span><br><span class="line"></span><br><span class="line">4 x Execl Throughput  1 2 3</span><br><span class="line"></span><br><span class="line">4 x File Copy 1024 bufsize 2000 maxblocks  1 2 3</span><br><span class="line"></span><br><span class="line">4 x File Copy 256 bufsize 500 maxblocks  1 2 3</span><br><span class="line"></span><br><span class="line">4 x File Copy 4096 bufsize 8000 maxblocks  1 2 3</span><br><span class="line"></span><br><span class="line">4 x Pipe Throughput  1 2 3 4 5 6 7 8 9 10</span><br><span class="line"></span><br><span class="line">4 x Pipe-based Context Switching  1 2 3 4 5 6 7 8 9 10</span><br><span class="line"></span><br><span class="line">4 x Process Creation  1 2 3</span><br><span class="line"></span><br><span class="line">4 x System Call Overhead  1 2 3 4 5 6 7 8 9 10</span><br><span class="line"></span><br><span class="line">4 x Shell Scripts (1 concurrent)  1 2 3</span><br><span class="line"></span><br><span class="line">4 x Shell Scripts (8 concurrent)  1 2 3</span><br><span class="line"></span><br><span class="line">========================================================================</span><br><span class="line">   BYTE UNIX Benchmarks (Version 5.1.2)</span><br><span class="line"></span><br><span class="line">   System: localhost.localdomain: GNU/Linux</span><br><span class="line">   OS: GNU/Linux -- 3.10.0-123.el7.x86_64 -- #1 SMP Mon Jun 30 12:09:22 UTC 2014</span><br><span class="line">   Machine: x86_64 (x86_64)</span><br><span class="line">   Language: en_US.utf8 (charmap=&quot;UTF-8&quot;, collate=&quot;UTF-8&quot;)</span><br><span class="line">   CPU 0: Intel(R) Core(TM) i7-3630QM CPU @ 2.40GHz (4789.1 bogomips)</span><br><span class="line">          Hyper-Threading, x86-64, MMX, Physical Address Ext, SYSENTER/SYSEXIT, SYSCALL/SYSRET, Intel virtualization</span><br><span class="line">   CPU 1: Intel(R) Core(TM) i7-3630QM CPU @ 2.40GHz (4789.1 bogomips)</span><br><span class="line">          Hyper-Threading, x86-64, MMX, Physical Address Ext, SYSENTER/SYSEXIT, SYSCALL/SYSRET, Intel virtualization</span><br><span class="line">   CPU 2: Intel(R) Core(TM) i7-3630QM CPU @ 2.40GHz (4789.1 bogomips)</span><br><span class="line">          Hyper-Threading, x86-64, MMX, Physical Address Ext, SYSENTER/SYSEXIT, SYSCALL/SYSRET, Intel virtualization</span><br><span class="line">   CPU 3: Intel(R) Core(TM) i7-3630QM CPU @ 2.40GHz (4789.1 bogomips)</span><br><span class="line">          Hyper-Threading, x86-64, MMX, Physical Address Ext, SYSENTER/SYSEXIT, SYSCALL/SYSRET, Intel virtualization</span><br><span class="line">   02:40:25 up 26 min,  2 users,  load average: 0.34, 0.34, 0.24; runlevel 5</span><br><span class="line"></span><br><span class="line">------------------------------------------------------------------------</span><br><span class="line">Benchmark Run: Sat Apr 02 2016 02:40:25 - 03:08:30</span><br><span class="line">4 CPUs in system; running 1 parallel copy of tests</span><br><span class="line"></span><br><span class="line">Dhrystone 2 using register variables       32755960.0 lps   (10.0 s, 7 samples)</span><br><span class="line">Double-Precision Whetstone                     4221.1 MWIPS (9.9 s, 7 samples)</span><br><span class="line">Execl Throughput                               1516.7 lps   (30.0 s, 2 samples)</span><br><span class="line">File Copy 1024 bufsize 2000 maxblocks        931684.4 KBps  (30.0 s, 2 samples)</span><br><span class="line">File Copy 256 bufsize 500 maxblocks          272670.4 KBps  (30.0 s, 2 samples)</span><br><span class="line">File Copy 4096 bufsize 8000 maxblocks       2149823.6 KBps  (30.0 s, 2 samples)</span><br><span class="line">Pipe Throughput                             1558582.4 lps   (10.0 s, 7 samples)</span><br><span class="line">Pipe-based Context Switching                  26554.6 lps   (10.0 s, 7 samples)</span><br><span class="line">Process Creation                               5785.2 lps   (30.0 s, 2 samples)</span><br><span class="line">Shell Scripts (1 concurrent)                   4420.8 lpm   (60.0 s, 2 samples)</span><br><span class="line">Shell Scripts (8 concurrent)                   1537.3 lpm   (60.0 s, 2 samples)</span><br><span class="line">System Call Overhead                        2273810.9 lps   (10.0 s, 7 samples)</span><br><span class="line"></span><br><span class="line">System Benchmarks Index Values               BASELINE       RESULT    INDEX</span><br><span class="line">Dhrystone 2 using register variables         116700.0   32755960.0   2806.9</span><br><span class="line">Double-Precision Whetstone                       55.0       4221.1    767.5</span><br><span class="line">Execl Throughput                                 43.0       1516.7    352.7</span><br><span class="line">File Copy 1024 bufsize 2000 maxblocks          3960.0     931684.4   2352.7</span><br><span class="line">File Copy 256 bufsize 500 maxblocks            1655.0     272670.4   1647.6</span><br><span class="line">File Copy 4096 bufsize 8000 maxblocks          5800.0    2149823.6   3706.6</span><br><span class="line">Pipe Throughput                               12440.0    1558582.4   1252.9</span><br><span class="line">Pipe-based Context Switching                   4000.0      26554.6     66.4</span><br><span class="line">Process Creation                                126.0       5785.2    459.1</span><br><span class="line">Shell Scripts (1 concurrent)                     42.4       4420.8   1042.7</span><br><span class="line">Shell Scripts (8 concurrent)                      6.0       1537.3   2562.1</span><br><span class="line">System Call Overhead                          15000.0    2273810.9   1515.9</span><br><span class="line">                                                                   ========</span><br><span class="line">System Benchmarks Index Score                                        1044.6</span><br><span class="line"></span><br><span class="line">------------------------------------------------------------------------</span><br><span class="line">Benchmark Run: Sat Apr 02 2016 03:08:30 - 03:36:42</span><br><span class="line">4 CPUs in system; running 4 parallel copies of tests</span><br><span class="line"></span><br><span class="line">Dhrystone 2 using register variables      106568741.3 lps   (10.0 s, 7 samples)</span><br><span class="line">Double-Precision Whetstone                    15860.4 MWIPS (9.9 s, 7 samples)</span><br><span class="line">Execl Throughput                               4795.3 lps   (29.9 s, 2 samples)</span><br><span class="line">File Copy 1024 bufsize 2000 maxblocks       1085479.4 KBps  (30.0 s, 2 samples)</span><br><span class="line">File Copy 256 bufsize 500 maxblocks          286384.8 KBps  (30.0 s, 2 samples)</span><br><span class="line">File Copy 4096 bufsize 8000 maxblocks       2281198.1 KBps  (30.0 s, 2 samples)</span><br><span class="line">Pipe Throughput                             3886563.8 lps   (10.0 s, 7 samples)</span><br><span class="line">Pipe-based Context Switching                 649827.1 lps   (10.0 s, 7 samples)</span><br><span class="line">Process Creation                              26489.7 lps   (30.0 s, 2 samples)</span><br><span class="line">Shell Scripts (1 concurrent)                   6151.6 lpm   (60.0 s, 2 samples)</span><br><span class="line">Shell Scripts (8 concurrent)                    932.7 lpm   (60.1 s, 2 samples)</span><br><span class="line">System Call Overhead                        6009839.5 lps   (10.0 s, 7 samples)</span><br><span class="line"></span><br><span class="line">System Benchmarks Index Values               BASELINE       RESULT    INDEX</span><br><span class="line">Dhrystone 2 using register variables         116700.0  106568741.3   9131.9</span><br><span class="line">Double-Precision Whetstone                       55.0      15860.4   2883.7</span><br><span class="line">Execl Throughput                                 43.0       4795.3   1115.2</span><br><span class="line">File Copy 1024 bufsize 2000 maxblocks          3960.0    1085479.4   2741.1</span><br><span class="line">File Copy 256 bufsize 500 maxblocks            1655.0     286384.8   1730.4</span><br><span class="line">File Copy 4096 bufsize 8000 maxblocks          5800.0    2281198.1   3933.1</span><br><span class="line">Pipe Throughput                               12440.0    3886563.8   3124.2</span><br><span class="line">Pipe-based Context Switching                   4000.0     649827.1   1624.6</span><br><span class="line">Process Creation                                126.0      26489.7   2102.4</span><br><span class="line">Shell Scripts (1 concurrent)                     42.4       6151.6   1450.8</span><br><span class="line">Shell Scripts (8 concurrent)                      6.0        932.7   1554.5</span><br><span class="line">System Call Overhead                          15000.0    6009839.5   4006.6</span><br><span class="line">                                                                   ========</span><br><span class="line">System Benchmarks Index Score                                        2475.0</span><br></pre></td></tr></table></figure></p>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/blog/2016/04/02/性能测试/">性能测试</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">mrgao1008</a></p>
+        <p><span>发布时间:</span>2016-04-02, 17:42:00</p>
+        <p><span>最后更新:</span>2016-04-02, 19:03:58</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/blog/2016/04/02/性能测试/" title="性能测试">http://mrgao1008.github.io/blog/blog/2016/04/02/性能测试/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://mrgao1008.github.io/blog/blog/2016/04/02/性能测试/　　作者: mrgao1008" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/blog/2016/04/02/Windows API hook 开发环境配置/">
+                    Windows API Hook 开发环境配置
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Centos-7-下安装unixbench"><span class="toc-number">1.</span> <span class="toc-text">Centos 7 下安装unixbench</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+    <div class="share">
+    <div class="bdsharebuttonbox">
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+    <a href="#" class="bds_copy" data-cmd="copy" title="复制网址"></a>
+    <a href="#" class="bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+    </div>
+    <script>
+        window._bd_share_config={
+            "common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+</div>
+
+
+
+    
+        <section class="youyan" id="comments">
+  <div id="uyan_frame"></div>
+  <script src="http://v2.uyan.cc/code/uyan.js?uid=2092649"></script>
+</section>
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/blog/2016/04/02/Windows API hook 开发环境配置/" title="下一篇: Windows API Hook 开发环境配置">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/02/性能测试/">性能测试</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/02/Windows API hook 开发环境配置/">Windows API Hook 开发环境配置</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/02/数据库系统原理与应用（第三版）1/">第五章 关系模型</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/02/数据库系统原理与应用（第三版）2/">分布式数据库技术</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/02/python tk/">tk 编程</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/02/并行计算与分布式计算原理/">并行计算与分布式计算原理</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/02/LoadLibrary 126/">LoadLibrary error 126</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/02/如何给Linux kernel提交代码/">如何给Linux Kernel提交代码</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/02/锁与进程间通信/">锁与进程间通信</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/01/libvmi介绍/">libvmi介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/01/fgetc 0x1A EOF/">fgetc 0x1A EOF</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/01/Django(1) 安装和使用/">Django(1) 安装和使用</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/01/Django(2)视图和Urls/">Django(2)视图和Urls</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/01/怎么在sublime中写markdown/">怎么在sublime中写markdown</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/01/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/01/网站访问记录/">网站访问记录</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/01/exe文件分解/">exe文件分解</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/01/c++学习文档/">c++ 学习文档</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 mrgao1008
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/blog/js/main.js" src="//cdn.bootcss.com/require.js/2.1.22/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
