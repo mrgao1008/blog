@@ -1,0 +1,1193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Mrgao1008&#39;s blog</title>
+  <subtitle>technology documents</subtitle>
+  <link href="/blog/atom.xml" rel="self"/>
+  
+  <link href="http://mrgao1008.github.io/blog/"/>
+  <updated>2016-04-02T01:40:20.474Z</updated>
+  <id>http://mrgao1008.github.io/blog/</id>
+  
+  <author>
+    <name>mrgao1008@gmail.com</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>tk 编程</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/python%20tk/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/python tk/</id>
+    <published>2016-04-01T16:00:00.000Z</published>
+    <updated>2016-04-02T01:40:20.474Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;标准属性&quot;&gt;&lt;a href=&quot;#标准属性&quot; class=&quot;headerlink&quot; title=&quot;标准属性&quot;&gt;&lt;/a&gt;标准属性&lt;/h2&gt;&lt;h3 id=&quot;dimensions&quot;&gt;&lt;a href=&quot;#dimensions&quot; class=&quot;headerlink&quot; title=&quot;dimensions&quot;&gt;&lt;/a&gt;dimensions&lt;/h3&gt;&lt;p&gt;尺寸包含4种&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字母&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;c&lt;/td&gt;
+&lt;td&gt;厘米&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;i&lt;/td&gt;
+&lt;td&gt;英寸&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;m&lt;/td&gt;
+&lt;td&gt;毫米&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p&lt;/td&gt;
+&lt;td&gt;打印机的点？？&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;坐标&quot;&gt;&lt;a href=&quot;#坐标&quot; class=&quot;headerlink&quot; title=&quot;坐标&quot;&gt;&lt;/a&gt;坐标&lt;/h3&gt;&lt;h3 id=&quot;颜色&quot;&gt;&lt;a href=&quot;#颜色&quot; class=&quot;headerlink&quot; title=&quot;颜色&quot;&gt;&lt;/a&gt;颜色&lt;/h3&gt;&lt;p&gt;||#rgb||four bits per color||&lt;br&gt;||#rrggbb||eight bits per color||&lt;br&gt;||#rrrgggbbb||twelve bits per color||&lt;/p&gt;
+&lt;p&gt;还一可以指定关键词’white’,’black’,’red’,’green’,’blue’,’cyan’,’yellow’,’magenta’&lt;/p&gt;
+&lt;h3 id=&quot;fonts&quot;&gt;&lt;a href=&quot;#fonts&quot; class=&quot;headerlink&quot; title=&quot;fonts&quot;&gt;&lt;/a&gt;fonts&lt;/h3&gt;&lt;p&gt;1.元组表示,第一表示字体，第二个表示大小，正数为points，负数为像素点，后续为其他一些特别设置&lt;br&gt;(‘Helvetica’,’16’)&lt;br&gt;(‘Times’,’24’,’bold italic’)&lt;br&gt;(‘Times’,-20,’bold’)&lt;/p&gt;
+&lt;p&gt;2.字体对象 tkFont&lt;/p&gt;
+&lt;p&gt;3.X font names.&lt;/p&gt;
+&lt;h3 id=&quot;锚&quot;&gt;&lt;a href=&quot;#锚&quot; class=&quot;headerlink&quot; title=&quot;锚&quot;&gt;&lt;/a&gt;锚&lt;/h3&gt;&lt;p&gt;N S W E CENTER&lt;br&gt;NW NE SW SE&lt;/p&gt;
+&lt;h3 id=&quot;释放样式&quot;&gt;&lt;a href=&quot;#释放样式&quot; class=&quot;headerlink&quot; title=&quot;释放样式&quot;&gt;&lt;/a&gt;释放样式&lt;/h3&gt;&lt;p&gt;FLAT RAISED SUNKEN GROOVE RIDGE&lt;/p&gt;
+&lt;h3 id=&quot;Bitmaps&quot;&gt;&lt;a href=&quot;#Bitmaps&quot; class=&quot;headerlink&quot; title=&quot;Bitmaps&quot;&gt;&lt;/a&gt;Bitmaps&lt;/h3&gt;&lt;p&gt;button支持 error gray75 gray50 gray25 gray12 hourglass info questhead question warning&lt;/p&gt;
+&lt;p&gt;也可以使用.xbm(X bit map)使用@path&lt;/p&gt;
+&lt;h3 id=&quot;cursors&quot;&gt;&lt;a href=&quot;#cursors&quot; class=&quot;headerlink&quot; title=&quot;cursors&quot;&gt;&lt;/a&gt;cursors&lt;/h3&gt;&lt;h3 id=&quot;images&quot;&gt;&lt;a href=&quot;#images&quot; class=&quot;headerlink&quot; title=&quot;images&quot;&gt;&lt;/a&gt;images&lt;/h3&gt;&lt;p&gt;BitmapImage 支持 .xbm&lt;br&gt;PhotoImage 支持 .gif .pgm .ppm&lt;br&gt;ImageTk 支持更多格式&lt;/p&gt;
+&lt;h4 id=&quot;the-BitmapImage-class&quot;&gt;&lt;a href=&quot;#the-BitmapImage-class&quot; class=&quot;headerlink&quot; title=&quot;the BitmapImage class&quot;&gt;&lt;/a&gt;the BitmapImage class&lt;/h4&gt;&lt;p&gt;原型&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tk.BitmapImage(file=f[, background=b][, foreground=c])&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;实例&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;logo = tk.BitmapImage(&lt;span class=&quot;string&quot;&gt;&#39;logo.xbm&#39;&lt;/span&gt;, foreground=&lt;span class=&quot;string&quot;&gt;&#39;red&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Label(image=logo).grid()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h4 id=&quot;the-PhotoImage-class&quot;&gt;&lt;a href=&quot;#the-PhotoImage-class&quot; class=&quot;headerlink&quot; title=&quot;the PhotoImage class&quot;&gt;&lt;/a&gt;the PhotoImage class&lt;/h4&gt;&lt;p&gt;原型&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tk.PhotoImage(file=f)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Geometry-strings&quot;&gt;&lt;a href=&quot;#Geometry-strings&quot; class=&quot;headerlink&quot; title=&quot;Geometry strings&quot;&gt;&lt;/a&gt;Geometry strings&lt;/h3&gt;&lt;p&gt;A geometry string is a standard way of describing the size and location of a top-level window on a desktop.&lt;br&gt;format: ‘wxh±x±y’&lt;br&gt;+x left side&lt;br&gt;-x right side&lt;br&gt;+y top&lt;br&gt;-y bottom&lt;/p&gt;
+&lt;h3 id=&quot;window-names&quot;&gt;&lt;a href=&quot;#window-names&quot; class=&quot;headerlink&quot; title=&quot;window names&quot;&gt;&lt;/a&gt;window names&lt;/h3&gt;&lt;p&gt;hierarchical window path name&lt;br&gt;root window ‘.’&lt;br&gt;child name ‘.n’&lt;br&gt;child windows of child ‘p.n’, p is the name of the parent window&lt;/p&gt;
+&lt;p&gt;str(w): to get the path name of a widget w&lt;/p&gt;
+&lt;h3 id=&quot;cap-and-join-styles&quot;&gt;&lt;a href=&quot;#cap-and-join-styles&quot; class=&quot;headerlink&quot; title=&quot;cap and join styles&quot;&gt;&lt;/a&gt;cap and join styles&lt;/h3&gt;&lt;p&gt;cap style: tk.BUTT, tk.PROJECTING, tk.ROUND&lt;br&gt;join style: tk.ROUND, tk.BEVEL, tk.MITER&lt;/p&gt;
+&lt;h3 id=&quot;dash-patterns&quot;&gt;&lt;a href=&quot;#dash-patterns&quot; class=&quot;headerlink&quot; title=&quot;dash patterns&quot;&gt;&lt;/a&gt;dash patterns&lt;/h3&gt;&lt;p&gt;dash=(3,5)&lt;br&gt;dash=(7,1,1,1)&lt;br&gt;dash=(5,1,2,1),dashoff=3&lt;/p&gt;
+&lt;h2 id=&quot;tk-TclError&quot;&gt;&lt;a href=&quot;#tk-TclError&quot; class=&quot;headerlink&quot; title=&quot;tk.TclError&quot;&gt;&lt;/a&gt;tk.TclError&lt;/h2&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;标准属性&quot;&gt;&lt;a href=&quot;#标准属性&quot; class=&quot;headerlink&quot; title=&quot;标准属性&quot;&gt;&lt;/a&gt;标准属性&lt;/h2&gt;&lt;h3 id=&quot;dimensions&quot;&gt;&lt;a href=&quot;#dimensions&quot; class=&quot;headerlink&quot; titl
+    
+    </summary>
+    
+    
+      <category term="GUI" scheme="http://mrgao1008.github.io/blog/tags/GUI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>分布式数据库技术</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E7%AC%AC%E4%B8%89%E7%89%88%EF%BC%892/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/数据库系统原理与应用（第三版）2/</id>
+    <published>2016-04-01T16:00:00.000Z</published>
+    <updated>2016-04-02T01:37:29.338Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;通过使用分散在不同地理位置的计算机来满足本地用户需要的计算方式称为分布式计算，使用到的数据库是分布式数据库，涉及的数据库技术是分布式数据库技术。&lt;/p&gt;
+&lt;p&gt;分布式数据库是与集中式数据库相对的概念，其主要差别在于处理的数据处于不同的地理位置。集中式数据库强调的是所有的数据存储在一个唯一的地方，而分布式数据库强调的是所有的数据作为一个整体存储在多个不同的地理位置。&lt;/p&gt;
+&lt;h2 id=&quot;分布式数据库的概念和特定&quot;&gt;&lt;a href=&quot;#分布式数据库的概念和特定&quot; class=&quot;headerlink&quot; title=&quot;分布式数据库的概念和特定&quot;&gt;&lt;/a&gt;分布式数据库的概念和特定&lt;/h2&gt;&lt;p&gt;在分布式计算方式中，数据库管理系统安装在多个所处地理位置不同的服务器上，用户的数据也是分布在不同的服务器中。但从逻辑上来讲，这些用户的数据是一个整体，构成一个逻辑数据库。本地服务器的用户不仅可以访问本地服务器上数据库中的数据，也可以访问异地服务器上数据库中的数据。&lt;/p&gt;
+&lt;h3 id=&quot;特点&quot;&gt;&lt;a href=&quot;#特点&quot; class=&quot;headerlink&quot; title=&quot;特点&quot;&gt;&lt;/a&gt;特点&lt;/h3&gt;&lt;p&gt;分布式数据库具有物理分布性、逻辑整体性、场地自治性、数据共享性和系统可用性五个特点。自治表示自己管理自己，场地自治性表示每个场地的集中式数据库系统都是自己来管理自己的数据。数据共享性强调的是系统具有统一的模式，所有的用户都可以使用分布式数据库中的数据。系统可用性则是如果某个场地的数据发生了故障，用户还可以通过其他场地访问这些数据。&lt;/p&gt;
+&lt;h3 id=&quot;缺点&quot;&gt;&lt;a href=&quot;#缺点&quot; class=&quot;headerlink&quot; title=&quot;缺点&quot;&gt;&lt;/a&gt;缺点&lt;/h3&gt;&lt;p&gt;第一，系统实现技术更加复杂、难度更大。&lt;br&gt;第二，系统的安全性更难处理。&lt;/p&gt;
+&lt;h2 id=&quot;分布式数据存储技术&quot;&gt;&lt;a href=&quot;#分布式数据存储技术&quot; class=&quot;headerlink&quot; title=&quot;分布式数据存储技术&quot;&gt;&lt;/a&gt;分布式数据存储技术&lt;/h2&gt;&lt;p&gt;在分布式数据库中，数据的存储可以通过三种方式实现，即复制存储方式、分片存储方式和混合存储方式。&lt;/p&gt;
+&lt;h3 id=&quot;数据复制&quot;&gt;&lt;a href=&quot;#数据复制&quot; class=&quot;headerlink&quot; title=&quot;数据复制&quot;&gt;&lt;/a&gt;数据复制&lt;/h3&gt;&lt;p&gt;通过把数据库中的一个关系存储多次而实现分布式存储。数据复制的有点事提高可用性、增加数据库系统的并行度、增强并发能力。数据复制也存在明显的缺点，即数据更新成本大大增加。&lt;/p&gt;
+&lt;h3 id=&quot;数据分片&quot;&gt;&lt;a href=&quot;#数据分片&quot; class=&quot;headerlink&quot; title=&quot;数据分片&quot;&gt;&lt;/a&gt;数据分片&lt;/h3&gt;&lt;p&gt;通过把数据库中的一个关系分成多个片断，每个片断都存储在不同场地上，且所有的片断包含的信息足够重构原始关系，该数据存储方式成为数据分片。&lt;/p&gt;
+&lt;p&gt;数据分片分为水平分片、垂直分片和混合分片。&lt;/p&gt;
+&lt;h3 id=&quot;数据混合存储&quot;&gt;&lt;a href=&quot;#数据混合存储&quot; class=&quot;headerlink&quot; title=&quot;数据混合存储&quot;&gt;&lt;/a&gt;数据混合存储&lt;/h3&gt;&lt;p&gt;在数据存储过程中，既包含了水平分片存储方式，又包含了垂直分片存储方式，则将这种方式称为数据混合存储方式。&lt;/p&gt;
+&lt;h2 id=&quot;分布式数据查询技术&quot;&gt;&lt;a href=&quot;#分布式数据查询技术&quot; class=&quot;headerlink&quot; title=&quot;分布式数据查询技术&quot;&gt;&lt;/a&gt;分布式数据查询技术&lt;/h2&gt;&lt;p&gt;在集中式数据库的数据查询中，查询代价主要是本地处理代价，具体内容包括CPU代价和I/O代价。但是，分布式数据库的数据查询中，查询代价除了本地处理代价之外，还包括网络传输代价。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;基于半连接的优化策略&lt;/strong&gt;，在执行分布式查询时，只传输参与连接运算的数据，不传输不参与连接运算的数据。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;基于连接的优化策略&lt;/strong&gt;，在对于网络传输代价要求比较严格时，可以使用半连接优化策略。但对于网络传输代价要求比较低，对本地处理代价要求比较高时，可以考虑使用基于连接的优化策略。基于连接的优化策略的事项是把某个场地的整个关系的元组传输到另外的场地执行连接操作。&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;通过使用分散在不同地理位置的计算机来满足本地用户需要的计算方式称为分布式计算，使用到的数据库是分布式数据库，涉及的数据库技术是分布式数据库技
+    
+    </summary>
+    
+    
+      <category term="database" scheme="http://mrgao1008.github.io/blog/tags/database/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LoadLibrary error 126</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/LoadLibrary%20126/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/LoadLibrary 126/</id>
+    <published>2016-04-01T16:00:00.000Z</published>
+    <updated>2016-04-02T01:40:55.211Z</updated>
+    
+    <content type="html">&lt;p&gt;可能是UNICODE和ASCII字符的问题。&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;可能是UNICODE和ASCII字符的问题。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="problem solution" scheme="http://mrgao1008.github.io/blog/tags/problem-solution/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>锁与进程间通信</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/%E9%94%81%E4%B8%8E%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/锁与进程间通信/</id>
+    <published>2016-04-01T16:00:00.000Z</published>
+    <updated>2016-04-02T01:36:59.129Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;竞态条件(race condition)&lt;/strong&gt;是几个进程在访问资源时彼此干扰的情况。&lt;/p&gt;
+&lt;p&gt;难点在于：无法通过测试完全找到竞态条件，只有彻底研究源代码并通过敏锐的直觉，才能找到并消除竞态条件。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;临界区(Critical section)&lt;/strong&gt;&lt;br&gt;是在并行编程中，一段不能被多个处理器同时执行的代码。&lt;/p&gt;
+&lt;p&gt;解决方法：&lt;/p&gt;
+&lt;p&gt;信号量(semaphore):受保护的特殊变量。初始值为1。有2个标准操作up和down。在一个进程试图进入临界区时，调用down函数。这会将信号量减1，即将其设置为0，然后执行临界区代码。在执行操作完成后，调用up函数将信号量加1，即重置为初始值。信号量有下面2中特性：&lt;/p&gt;
+&lt;p&gt;（1）又一个进程试图进入临界区，首先必须对信号量执行down操作。因为信号量当前值为0，会导致进程在该信号量上“睡眠”，直到前一个进程退出。&lt;/p&gt;
+&lt;p&gt;（2）进程退出临界区，执行up操作。不仅将信号量加1，而且还会选择一个在该信号量上睡眠的进程。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;查询和修改信号量的操作比如为原子的，反正竞态条件。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;各种锁：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;原子操作:保证简单的计数器加1可以原子执行&lt;/li&gt;
+&lt;li&gt;自旋锁:用于短期保护某段代码，以防止其他处理器访问&lt;/li&gt;
+&lt;li&gt;信号量：在等待信号量释放时，进入睡眠，直至被唤醒，内核重新尝试获取信号量&lt;/li&gt;
+&lt;li&gt;读写锁：区分对数据结构的两种不同类型的操作。任何数目的处理器都可以对数据结构进行并发&lt;strong&gt;读&lt;/strong&gt;,但是只有一个处理器能进行&lt;strong&gt;写&lt;/strong&gt;操作。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;原子操作&quot;&gt;&lt;a href=&quot;#原子操作&quot; class=&quot;headerlink&quot; title=&quot;原子操作&quot;&gt;&lt;/a&gt;原子操作&lt;/h2&gt;&lt;p&gt;原子类型为&lt;code&gt;atomic_t&lt;/code&gt;，定义在&lt;code&gt;&amp;lt;asm-arch/atomic.h&amp;gt;&lt;/code&gt;中。原子类型只能借助&lt;code&gt;ATOMIC_INIT&lt;/code&gt;宏初始化。原子类型是基于c语言通用类型实现，不能用++等操作。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;操作&lt;/th&gt;
+&lt;th&gt;效果&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_read(atomic_t *v)&lt;/td&gt;
+&lt;td&gt;读取原子变量的值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_set(atomic_t *v, int i)&lt;/td&gt;
+&lt;td&gt;将v设置为i&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_add(int i, atomic_t *v)&lt;/td&gt;
+&lt;td&gt;将i加到v&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_add_return(int i, atomic_t *v)&lt;/td&gt;
+&lt;td&gt;将i加到v，并返回结果&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_sub(int i, atomic_t *v)&lt;/td&gt;
+&lt;td&gt;从v减去i&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_sub_return(int i, atomic_t *v)&lt;/td&gt;
+&lt;td&gt;从v减去i，并返回结果&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_inc(atomic_t *v)&lt;/td&gt;
+&lt;td&gt;将v加1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_inc_and_test(atomic_t *v)&lt;/td&gt;
+&lt;td&gt;将v加1。结果如果为0则返回true，否则返回false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_dec(atomic_t *v)&lt;/td&gt;
+&lt;td&gt;从v减1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_dec_and_test(atomic_t *v)&lt;/td&gt;
+&lt;td&gt;从v减1。结果如果为0则返回true，否则返回false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_add_negative(int i, atomic_i *v)&lt;/td&gt;
+&lt;td&gt;将i加到v.如果结果小于0则返回true,否则返回false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;local_t类型，允许在单个CPU上原子操作。&lt;/p&gt;
+&lt;h2 id=&quot;自旋锁&quot;&gt;&lt;a href=&quot;#自旋锁&quot; class=&quot;headerlink&quot; title=&quot;自旋锁&quot;&gt;&lt;/a&gt;自旋锁&lt;/h2&gt;&lt;p&gt;自旋锁用于保护段的代码段，其中只包含少量c语言，因此会很快执行完毕。&lt;/p&gt;
+&lt;p&gt;自旋锁通过spinlock_t数据结构实现，基本可以使用spin_lock和spin_unlock操作。还有其他一些自旋锁操作：spin_lock_irqsave不仅获得自旋锁，还停用本地cpu的中断，而sin_lock_bh则停用softIRQ。这两个操作获得的自旋锁必须用对应的接口释放，分别是spin_unlock_irqsave和spin_unlock_bh。&lt;/p&gt;
+&lt;h2 id=&quot;信号量&quot;&gt;&lt;a href=&quot;#信号量&quot; class=&quot;headerlink&quot; title=&quot;信号量&quot;&gt;&lt;/a&gt;信号量&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;asm-arch/semaphore.h&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;struct semaphor &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	atomic_t count;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	int sleepers;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	wait_queue_head_t wait;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;与自旋锁相比，信号量适合于保护更长的临界区，以防止并行访问。但它们不应该用于保护较短的代码范围，因为竞争信号量时需要使进程睡眠和再次唤醒，代价很高。&lt;/p&gt;
+&lt;h2 id=&quot;RCU机制&quot;&gt;&lt;a href=&quot;#RCU机制&quot; class=&quot;headerlink&quot; title=&quot;RCU机制&quot;&gt;&lt;/a&gt;RCU机制&lt;/h2&gt;&lt;p&gt;RCU(read-copy-update)是一个相当新的同步机制。RCU对使用者提出一些约束&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对共享资源的访问在大部分时间应该是只读的，写访问应该相对很少。&lt;/li&gt;
+&lt;li&gt;在RCU保护的代码范围内，内核不能进入睡眠状态。&lt;/li&gt;
+&lt;li&gt;受保护资源必须通过指针访问。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;RCU原理很简单:该机制记录了指向共享数据结构的指针的所有使用者。在该结构将要改变时，则首先创建一个副本（或一个新的实例，填充适当的内容，这没什么差别），在副本中修改。在所有进行读访问的使用者结束对旧副本的读取之后，指针可以替换为指向新的、修改后副本的指针。请注意，这种机制允许读写并发执行。&lt;/p&gt;
+&lt;h3 id=&quot;核心API&quot;&gt;&lt;a href=&quot;#核心API&quot; class=&quot;headerlink&quot; title=&quot;核心API&quot;&gt;&lt;/a&gt;核心API&lt;/h3&gt;&lt;p&gt;假定指针ptr指向一个被RCU保护的数据结构。直接反引用指针是禁止的，首先必须调用rcu_dereference(ptr)，然后反引用返回的结果。此外，凡引用指针并使用其结果的代码，需要用rcu_read_lock和rcu_read_unlock调用保护起来：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;rcu_read_lock();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;p = rcu_derefence(ptr);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if (p != NULL) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	awesome_function(p);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;rcu_read_unlock();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;被反映用的指针不能在rcu_read_lock和rcu_read_unlock保护代码范围之外使用，也不能用于写访问&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果必须修改ptr指向的对象，则需要使用rcu_assign_pointer:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;struct super_duper *new_ptr = kmalloc(...);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;new_ptr-&amp;gt;meaing = xyz;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;new_ptr-&amp;gt;of = 42;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;new_ptr-&amp;gt;life = 23;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;rcu_assign_pointer(ptr, new_ptr);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;按RCU的术语，该操作公布了这个指针，后续的读取操作将看到新的结构，而不是原来的。&lt;br&gt;&lt;strong&gt;如果更新可能来自内核中许多地方，那么必须使用普通的同步源于防止并发的写操作，如自旋锁。尽管RCU能保护读访问不受写访问的干扰，但它不对写访问之间的相互干扰提供防护！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;synchronize_rcu()等待所有现存的读访问完成。在函数返回之后，释放与原指针关联的内存是安全的。&lt;/p&gt;
+&lt;p&gt;call_rcu可用于注册一个函数，在所有针对共享资源的读访问完成以后调用。这要求将一个rcu_read实例嵌入（不能通过指针）到RCU保护的数据结构：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;struct super_duper &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct rcu_head head;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	int meaning, of, life;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;该回调函数可通过参数访问对象的rcu_head成员，进而使用container_of机制访问对象本身。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;kernel/rcuupdate.c&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;void fastcall call_rcu(struct rcu_head * head, void(*func)(struct rcu_head *rcu))&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;链表操作&quot;&gt;&lt;a href=&quot;#链表操作&quot; class=&quot;headerlink&quot; title=&quot;链表操作&quot;&gt;&lt;/a&gt;链表操作&lt;/h3&gt;&lt;p&gt;RCU能保护的，不仅仅是一般的指针。内核也提供了标准函数，使得能通过RCU机制保护双链表，这是RCU机制在内核内部最重要的应用。此外，由struct hlist_head和struct hlist_node组成的散列表也可以通过RCU保护。&lt;/p&gt;
+&lt;p&gt;有关通过RCU保护的链表，好消息是仍然可以使用标准的链表元素。只有在遍历链表、修改和删除链表元素时，必须调用标准函数的RCU变体。函数名称是在标准函数之后附加_rcu后缀。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;list.h&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static inline void list_add_rcu(struct list_head *new,struct list_head *head)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static inline void list_add_tail_rcu(struct list_head *new,struct list_head *head)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static inline void list_del_rcu(struct list_head *entry)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static inline void list_replace_rcu(struct list_head *old,struct list_head *new)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;还有list_for_each_rcu允许遍历链表的所有元素。而list_for_each_rcu_safe甚至对删除链表元素也是安全的。这两个操作都必须通过一对rcu_read_lock()和rcu_read_unlock()包围。&lt;/p&gt;
+&lt;h2 id=&quot;内存和优化屏障&quot;&gt;&lt;a href=&quot;#内存和优化屏障&quot; class=&quot;headerlink&quot; title=&quot;内存和优化屏障&quot;&gt;&lt;/a&gt;内存和优化屏障&lt;/h2&gt;&lt;h2 id=&quot;读-写锁&quot;&gt;&lt;a href=&quot;#读-写锁&quot; class=&quot;headerlink&quot; title=&quot;读/写锁&quot;&gt;&lt;/a&gt;读/写锁&lt;/h2&gt;&lt;p&gt;读写信号量和读写自旋锁。&lt;/p&gt;
+&lt;p&gt;读写自旋锁定义为rwlock_t。必须根据读写访问，以不同的方法获取锁。&lt;/p&gt;
+&lt;p&gt;进程对临界区进行读访问时，在进入和离开是需要分别执行read_lock和read_unlock。内核允许任意数目的读进程并发访问临界区。&lt;/p&gt;
+&lt;p&gt;write_lock和write_unlock用于写访问。内核保证只有一个写进程（此时没有读进程）能够处于临界区。&lt;/p&gt;
+&lt;p&gt;_irq_irqsave变体也同样可用，运作方式如果普通的自旋锁。以_bh结果的变体也是可用的，用于停用软件中断，但硬件中断中断仍然是开启的。&lt;/p&gt;
+&lt;h2 id=&quot;大内核锁&quot;&gt;&lt;a href=&quot;#大内核锁&quot; class=&quot;headerlink&quot; title=&quot;大内核锁&quot;&gt;&lt;/a&gt;大内核锁&lt;/h2&gt;&lt;h2 id=&quot;互斥量&quot;&gt;&lt;a href=&quot;#互斥量&quot; class=&quot;headerlink&quot; title=&quot;互斥量&quot;&gt;&lt;/a&gt;互斥量&lt;/h2&gt;&lt;p&gt;尽管信号量可用于实现互斥量的功能，信号量的通用性导致的开销通常是不必要的。因此，内核包含了一个专用互斥量的独立实现，他们不依赖于信号量。&lt;strong&gt;互斥量是信号量的特例，count为1时&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;经典的互斥量&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;mutex.h&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;struct mutex &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	/* 1: 未锁定， 0： 锁定， 负值： 锁定，可能有等待者*/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	atomic_t count;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	spinlock_t wait_lock;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct list_head wait_list;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;实时互斥量&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;rtmutex.h&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;struct rt_mutex &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	spinlock_t wait_lock;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct plist_head wait_list;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct task_struct *owner;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;近似的per-CPU计数器&quot;&gt;&lt;a href=&quot;#近似的per-CPU计数器&quot; class=&quot;headerlink&quot; title=&quot;近似的per-CPU计数器&quot;&gt;&lt;/a&gt;近似的per-CPU计数器&lt;/h2&gt;&lt;p&gt;对于某些计数器没必要时时了解其准确值。&lt;/p&gt;
+&lt;h2 id=&quot;锁竞争与细粒度锁&quot;&gt;&lt;a href=&quot;#锁竞争与细粒度锁&quot; class=&quot;headerlink&quot; title=&quot;锁竞争与细粒度锁&quot;&gt;&lt;/a&gt;锁竞争与细粒度锁&lt;/h2&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;竞态条件(race condition)&lt;/strong&gt;是几个进程在访问资源时彼此干扰的情况。&lt;/p&gt;
+&lt;p&gt;难点在于：无
+    
+    </summary>
+    
+    
+      <category term="锁" scheme="http://mrgao1008.github.io/blog/tags/%E9%94%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何给Linux Kernel提交代码</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/%E5%A6%82%E4%BD%95%E7%BB%99Linux%20kernel%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/如何给Linux kernel提交代码/</id>
+    <published>2016-04-01T16:00:00.000Z</published>
+    <updated>2016-04-02T01:38:35.595Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://kernelnewbies.org/UpstreamMerge/SubmittingPatches&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;英文&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;个人或者公司如果不熟悉提交代码流程，代码很难被接受。利用本文给出一些建议将会大大的增加代码被接受的概率。&lt;/p&gt;
+&lt;p&gt;在提交代码之前，你需要阅读一些注意事项&lt;code&gt;Documentation\SubmitChecklist&lt;/code&gt;。如果是提交的驱动，同时也请阅读&lt;code&gt;Documentation\SubmittingDrivers&lt;/code&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;创造并提交改动&quot;&gt;&lt;a href=&quot;#创造并提交改动&quot; class=&quot;headerlink&quot; title=&quot;创造并提交改动&quot;&gt;&lt;/a&gt;创造并提交改动&lt;/h2&gt;&lt;p&gt;###diff -up&lt;/p&gt;
+&lt;p&gt;利用&lt;code&gt;diff -up&lt;/code&gt;或者&lt;code&gt;diff -uprN&lt;/code&gt;创造patch文件。&lt;/p&gt;
+&lt;p&gt;linux所有的更改都以patche方式存在。patch命令中&lt;code&gt;-u&lt;/code&gt;代表&lt;code&gt;unified diff&lt;/code&gt;,&lt;code&gt;-p&lt;/code&gt;会显示哪个函数发生了改变。patche都是以linux源码的根目录为其实点。&lt;br&gt;比如你更改了一个文件。你需要进行下面的操作。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;SRCTREE= linux-2.6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;MYFILE= drivers/net/mydriver.c&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cd $SRCTREE&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cp $MYFILE $MYFILE.orig&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vi $MYFILE       # make your change&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cd ..&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;diff -up $SRCTREE/$MYFILE&amp;#123;.orig,&amp;#125; &amp;gt; /tmp/patch&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;如果更改了多个文件，你需要解压一个&lt;code&gt;vanilla&lt;/code&gt;或者原版linux kernel。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;MYSRC= /devel/linux-2.6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;tar xvfz linux-2.6.12.tar.gz&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;mv linux-2.6.12 linux-2.6.12-vanilla&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;diff -uprN -X linux-2.6.12-vanilla/Documentation/dontdiff \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    linux-2.6.12-vanilla $MYSRC &amp;gt; /tmp/patch&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;其中&lt;code&gt;dontdiff&lt;/code&gt;是diff需要忽略的文件列表。&lt;/p&gt;
+&lt;p&gt;确保patche中不包含其他无关文件。&lt;/p&gt;
+&lt;p&gt;如果你的更改比较巨大，可以按照逻辑分成几个部分。这方便其他内核开发者审查。&lt;/p&gt;
+&lt;p&gt;patch管理工具&lt;a href=&quot;http://savannah.nongnu.org/projects/quilt&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Quilt&lt;/a&gt;.一些脚本工具&lt;a href=&quot;http://userweb.kernel.org/~akpm/stuff/patch-scripts.tar.gz&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Scripts&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;###描述更改&lt;/p&gt;
+&lt;p&gt;描述更改过程中的技术细节，做到尽可能清晰。如果描述过长，可能你需要分成几个patch。&lt;/p&gt;
+&lt;p&gt;###分割更改&lt;/p&gt;
+&lt;p&gt;按照逻辑分割patch文件。&lt;br&gt;比如，你填补了一个驱动的bug同时还提高了它的性能，那么你需要将他分成多个patche。如果你更改了一个API,并提供一个新的驱动利用了该API，这需要分成2个patch。另一方面，如果你只是更改了很多不同文件的同一个地方，你需要将更改放在同一个patch中。如果你的patch比如依赖另外一个patch，你需要在描述patch时说明&lt;code&gt;this patch depends on patch X&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;###检查代码风格&lt;/p&gt;
+&lt;p&gt;按照&lt;code&gt;Documentation/Codingstyle&lt;/code&gt;中的描述，检查更改的编码风格。没有进行这一步的代码可能在甚至没有被阅读情况下被拒绝。最基本的，你可以采用&lt;code&gt;scripts/checkpatch.pl&lt;/code&gt;检查patch的编码风格，并且修改所有不恰当的地方。&lt;/p&gt;
+&lt;p&gt;###选择发送者&lt;/p&gt;
+&lt;p&gt;linux主线的每一部分都由一个维护者负责。更改属于哪一部分就发给对应的维护者。如果维护者没有列出，或者不回应邮件，你可以将patch发给&lt;code&gt;linux-kernel@vger.kernel.org&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;Linus Torvalds是接受更改的仲裁者，但是一般不要给他发邮件。比较明显的bug修复或者不需要讨论的patch可以直接抄送给Linux Torvalds。如果Patch没有明显的优势或者需要讨论，你需要先发给linux-kernel.&lt;/p&gt;
+&lt;p&gt;###选择抄送人&lt;/p&gt;
+&lt;p&gt;如果没有特别原因需要抄送给&lt;code&gt;linux-kernel@vger.kernel.org&lt;/code&gt;。这样可以让其他开发者可以检查代码和提出意见。&lt;/p&gt;
+&lt;p&gt;如果你的更改影响了用户和内核接口，请抄送给MAN-PAGES维护者，方便他们做更改。&lt;br&gt;小的更改：比如字符拼写错误等你需要抄送给&lt;code&gt;trivial@kernel.org&lt;/code&gt;。&lt;br&gt;比如在文档中的拼写错误等。关于小错误的定义可以查看&lt;a href=&quot;http://www.kernel.org/pub/linux/kernel/people/juhl/trivial/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;trivial&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;###只允许文字（没有多媒体，链接，压缩，附件）&lt;/p&gt;
+&lt;p&gt;所以patch都写在邮件中。&lt;/p&gt;
+&lt;p&gt;###email的大小&lt;/p&gt;
+&lt;p&gt;email的大小如果超过40kb，你需要放到网络上，并提供链接。&lt;/p&gt;
+&lt;p&gt;###指明kernel版本&lt;/p&gt;
+&lt;p&gt;你需要指明patch的kernel版本，如果patch不适用于最新的kernel，linus不会接受。&lt;/p&gt;
+&lt;p&gt;###别沮丧，重新提交&lt;/p&gt;
+&lt;p&gt;提交更改后，需要耐心等待。如果更改没有出现在下一个版本中，那么可能是一下原因：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;更改不适用于最新内核版本&lt;/li&gt;
+&lt;li&gt;更改没有经过足够讨论&lt;/li&gt;
+&lt;li&gt;代码风格问题&lt;/li&gt;
+&lt;li&gt;e-mail格式问题&lt;/li&gt;
+&lt;li&gt;更改存在技术问题&lt;/li&gt;
+&lt;li&gt;意外丢失&lt;/li&gt;
+&lt;li&gt;你太烦了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果有疑问，可以在linux-kernel邮件列表上询问。&lt;/p&gt;
+&lt;p&gt;###在邮件主题上加上[PATCH]&lt;/p&gt;
+&lt;p&gt;###签名&lt;/p&gt;
+&lt;p&gt;为了方便跟踪作者和管理复杂的更改，引入了签名机制。如果确认一下4点就可以在对patch的描述后加上一句：&lt;br&gt;Signed-off-by: Random J Developer &lt;a href=&quot;&amp;#109;&amp;#x61;&amp;#x69;&amp;#108;&amp;#116;&amp;#111;&amp;#58;&amp;#114;&amp;#x61;&amp;#110;&amp;#100;&amp;#x6f;&amp;#109;&amp;#64;&amp;#x64;&amp;#101;&amp;#x76;&amp;#x65;&amp;#108;&amp;#x6f;&amp;#112;&amp;#101;&amp;#x72;&amp;#46;&amp;#101;&amp;#x78;&amp;#x61;&amp;#x6d;&amp;#112;&amp;#x6c;&amp;#101;&amp;#46;&amp;#111;&amp;#114;&amp;#x67;&quot;&gt;&amp;#114;&amp;#x61;&amp;#110;&amp;#100;&amp;#x6f;&amp;#109;&amp;#64;&amp;#x64;&amp;#101;&amp;#x76;&amp;#x65;&amp;#108;&amp;#x6f;&amp;#112;&amp;#101;&amp;#x72;&amp;#46;&amp;#101;&amp;#x78;&amp;#x61;&amp;#x6d;&amp;#112;&amp;#x6c;&amp;#101;&amp;#46;&amp;#111;&amp;#114;&amp;#x67;&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;更改部分或者全部由我完成。我有权利开源&lt;/li&gt;
+&lt;li&gt;更改基于一个开源项目，需提交到同一个开源license下。否则可以提交给别的开源license&lt;/li&gt;
+&lt;li&gt;更改由别人转交给我，别人确认1,2,3条，我没有修改更改&lt;/li&gt;
+&lt;li&gt;我知道这是一个开源项目，并且贡献有可能不被记录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;###Acked-by&lt;/p&gt;
+&lt;p&gt;子系统的维护者需要这么做，表示patch你觉得还不错。&lt;/p&gt;
+&lt;p&gt;###Tested-by和Reviewed-by&lt;/p&gt;
+&lt;p&gt;Tested-by表示某人在某种环境下patch测试是有效的。&lt;br&gt;Reviewed-by表示这个patch被检查，说明你对patch的观点。&lt;/p&gt;
+&lt;p&gt;###patch的规范格式&lt;/p&gt;
+&lt;p&gt;主题：[PATCH 001/123] 子系统: 总结&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;from:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;空行&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;patch的描述&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Signed-off-by:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;标识符---&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;其他一些评论&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;diff output&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;主题的2个示例：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Subject: [patch 2/5] ext2: improve scalability of bitmap searching&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Subject: [PATCHv2 001/207] x86: fix eflags tracking&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;from行的示例：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;From: Original Author &amp;lt;author@example.com&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;—表示改动日志的结束。&lt;br&gt;其他一些评论可以用来写上&lt;code&gt;diffstat -p 1 -w 70&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;###发送git pull请求&lt;/p&gt;
+&lt;p&gt;发送从哪能够获得更改，格式如下&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Please pull from&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        git://jdelvare.pck.nerim.net/jdelvare-2.6 i2c-for-linus&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; to get these changes:&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;同时用&lt;code&gt;git diff -M --stat --summary&lt;/code&gt;生成diffstat.&lt;/p&gt;
+&lt;h2 id=&quot;忠告、建议、技巧&quot;&gt;&lt;a href=&quot;#忠告、建议、技巧&quot; class=&quot;headerlink&quot; title=&quot;忠告、建议、技巧&quot;&gt;&lt;/a&gt;忠告、建议、技巧&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;阅读Documentation/CodingStyle&lt;/p&gt;
+&lt;p&gt;  可以利用scripts/checkpatch.pl来检查代码风格。这个脚本会提供3种水平的忠告&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ERROR: 很可能有错&lt;/li&gt;
+&lt;li&gt;WARNING: 需要认真检查&lt;/li&gt;
+&lt;li&gt;CHECK：需要考虑&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;不要在函数内使用ifdef。&lt;br&gt;  例如：&lt;/p&gt;
+  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dev = alloc_etherdev (sizeof(struct funky_private));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if (!dev)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return -ENODEV;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#ifdef CONFIG_NET_FUNKINESS&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;init_funky_net(dev);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#endif&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  上面的可以更改为&lt;/p&gt;
+  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;(in header)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    #ifndef CONFIG_NET_FUNKINESS&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    static inline void init_funky_net (struct net_device *d) &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    #endif&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(in the code itself)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    dev = alloc_etherdev (sizeof(struct funky_private));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (!dev)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return -ENODEV;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    init_funky_net(dev);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;static inline 比宏更好&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;不要过度设计&lt;/p&gt;
+&lt;p&gt;  Make it as simple as you can, and no simpler.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;引用&quot;&gt;&lt;a href=&quot;#引用&quot; class=&quot;headerlink&quot; title=&quot;引用&quot;&gt;&lt;/a&gt;引用&lt;/h2&gt;&lt;p&gt;这篇文章翻译于&lt;a href=&quot;http://kernelnewbies.org/UpstreamMerge/SubmittingPatches&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;英文原稿&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#前言&quot;&gt;回到顶部&lt;/a&gt;&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://kernelnewbies.org/UpstreamMerge/SubmittingPatches&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;英文&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;前言&quot;
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://mrgao1008.github.io/blog/tags/linux/"/>
+    
+      <category term="kernel" scheme="http://mrgao1008.github.io/blog/tags/kernel/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows API Hook 开发环境配置</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/Windows%20API%20hook%20%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/Windows API hook 开发环境配置/</id>
+    <published>2016-04-01T16:00:00.000Z</published>
+    <updated>2016-04-02T01:39:47.238Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;span id=&quot;top&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;!-- MarkdownTOC --&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#detours安装和配置&quot;&gt;Detours安装和配置&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#detours介绍&quot;&gt;Detours介绍&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#detours安装&quot;&gt;Detours安装&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#detours编译&quot;&gt;Detours编译&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#windows-api-hook例子&quot;&gt;Windows API Hook例子&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#加入detours头文件和动态库文件&quot;&gt;加入detours头文件和动态库文件&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#利用withdll进行远程dll注入&quot;&gt;利用withdll进行远程dll注入&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+&lt;p&gt;&lt;a name=&quot;detours安装和配置&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Detours安装和配置&quot;&gt;&lt;a href=&quot;#Detours安装和配置&quot; class=&quot;headerlink&quot; title=&quot;Detours安装和配置&quot;&gt;&lt;/a&gt;Detours安装和配置&lt;/h2&gt;&lt;p&gt;&lt;a name=&quot;detours介绍&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Detours介绍&quot;&gt;&lt;a href=&quot;#Detours介绍&quot; class=&quot;headerlink&quot; title=&quot;Detours介绍&quot;&gt;&lt;/a&gt;Detours介绍&lt;/h3&gt;&lt;p&gt;Detours是Windows下一个API Hook 开源框架。&lt;br&gt;&lt;a href=&quot;http://research.microsoft.com/en-us/projects/detours/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Detours官网&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://research.microsoft.com/en-us/downloads/d36340fb-4d3c-4ddd-bf5b-1db25d03713d/default.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Detours 3.0下载地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;detours安装&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Detours安装&quot;&gt;&lt;a href=&quot;#Detours安装&quot; class=&quot;headerlink&quot; title=&quot;Detours安装&quot;&gt;&lt;/a&gt;Detours安装&lt;/h3&gt;&lt;p&gt;msi文件一路next。记下安装目录。&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;detours编译&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Detours编译&quot;&gt;&lt;a href=&quot;#Detours编译&quot; class=&quot;headerlink&quot; title=&quot;Detours编译&quot;&gt;&lt;/a&gt;Detours编译&lt;/h3&gt;&lt;p&gt;安装完成后，进入目录&lt;code&gt;C:\Program Files\Microsoft Research\Detours Express 3.0&lt;/code&gt;会看到下面的目录结构&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;samples\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	simple\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	withdll\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;src\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;其中src是需要编译的detours源码。simple和withdll是实现windows API Hook需要用到的2个示例。&lt;/p&gt;
+&lt;p&gt;编译步骤如下:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;以管理员权限启动cmd&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;设置环境变量，不然nmake会出错&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# &amp;quot;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\vcvars32.bat&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;进入detours的src文件夹并进行编译&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# cd C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\src&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# nmake&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;编译在src和samples同一目录会生成lib.X86文件夹，里面的detours.lib就是我们需要的。&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;windows-api-hook例子&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Windows-API-Hook例子&quot;&gt;&lt;a href=&quot;#Windows-API-Hook例子&quot; class=&quot;headerlink&quot; title=&quot;Windows API Hook例子&quot;&gt;&lt;/a&gt;Windows API Hook例子&lt;/h2&gt;&lt;p&gt;&lt;a name=&quot;加入detours头文件和动态库文件&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;加入detours头文件和动态库文件&quot;&gt;&lt;a href=&quot;#加入detours头文件和动态库文件&quot; class=&quot;headerlink&quot; title=&quot;加入detours头文件和动态库文件&quot;&gt;&lt;/a&gt;加入detours头文件和动态库文件&lt;/h3&gt;&lt;p&gt;在vs中新建windows控制台程序，设置解决方案的属性。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;打开&lt;strong&gt;项目&lt;/strong&gt;–&lt;strong&gt;XXX 属性&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;C/C++&lt;/strong&gt;–&lt;strong&gt;常规&lt;/strong&gt; 在&lt;strong&gt;附加目录项&lt;/strong&gt;中加入&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\include&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;链接器&lt;/strong&gt;–&lt;strong&gt;常规&lt;/strong&gt; 在&lt;strong&gt;附加库目录&lt;/strong&gt;中加入&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\lib.X86&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;链接器&lt;/strong&gt;–&lt;strong&gt;输入&lt;/strong&gt; 在&lt;strong&gt;附加依赖项&lt;/strong&gt;中加入&lt;code&gt;detours.lib&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;C/C++&lt;/strong&gt;–&lt;strong&gt;代码生成&lt;/strong&gt; 在&lt;strong&gt;运行库&lt;/strong&gt;选择&lt;code&gt;/MT&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;常规&lt;/strong&gt; 在&lt;strong&gt;字符集&lt;/strong&gt;选择&lt;code&gt;未设置&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;在命令栏中选择&lt;code&gt;release&lt;/code&gt;版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;withdll的编译&quot;&gt;&lt;a href=&quot;#withdll的编译&quot; class=&quot;headerlink&quot; title=&quot;withdll的编译&quot;&gt;&lt;/a&gt;withdll的编译&lt;/h4&gt;&lt;p&gt;在源文件中新建cpp文件，拷贝detours安装目录下的&lt;code&gt;samples\withdll\withdll.cpp&lt;/code&gt;内容到cpp中。编译。&lt;/p&gt;
+&lt;h4 id=&quot;simple的编译&quot;&gt;&lt;a href=&quot;#simple的编译&quot; class=&quot;headerlink&quot; title=&quot;simple的编译&quot;&gt;&lt;/a&gt;simple的编译&lt;/h4&gt;&lt;p&gt;在vs新建项目时，选择windows控制台程序，并选择dll。设置解决方案属性。拷贝&lt;code&gt;samples\simple\simple.cpp&lt;/code&gt;到新建的cpp文件中，编译。&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;利用withdll进行远程dll注入&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;利用withdll进行远程dll注入&quot;&gt;&lt;a href=&quot;#利用withdll进行远程dll注入&quot; class=&quot;headerlink&quot; title=&quot;利用withdll进行远程dll注入&quot;&gt;&lt;/a&gt;利用withdll进行远程dll注入&lt;/h2&gt;&lt;p&gt;&lt;code&gt;withdll /d:simple.dll a.exe&lt;/code&gt;会将simple.dll注入到a.exe中。注意&lt;code&gt;/d:simple.dll&lt;/code&gt;分号后不要有空格。exe和dll用绝对地址和相对地址都可以。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#top&quot;&gt;回到顶部&lt;/a&gt;&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;span id=&quot;top&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;!-- MarkdownTOC --&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#detours安装和配置&quot;&gt;Detours安装和配置&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#detours介绍&quot;&gt;Detours
+    
+    </summary>
+    
+    
+      <category term="Windows" scheme="http://mrgao1008.github.io/blog/tags/Windows/"/>
+    
+      <category term="hook" scheme="http://mrgao1008.github.io/blog/tags/hook/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>第五章 关系模型</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E7%AC%AC%E4%B8%89%E7%89%88%EF%BC%891/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/数据库系统原理与应用（第三版）1/</id>
+    <published>2016-04-01T16:00:00.000Z</published>
+    <updated>2016-04-02T01:37:55.664Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h2&gt;&lt;p&gt;关系模型是一种以二维表的形式表示实体数据和实体之间关系等信息的数据库模型。&lt;/p&gt;
+&lt;p&gt;在关系模型中，基本元素包括属性、模式、元祖、域、键码、关系等价表示法以及关系实例等。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;属性&lt;/strong&gt; 在二维表中，关系的第一行成为属性（attribute），它描述了属性所在列各项的含义。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;模式&lt;/strong&gt; 关系名和关系的属性集成为关系的模式。一般地，模式的表示形式有两种。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;第一种：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	模式名(属性1,属性2,...,属性n)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	例如：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	Book(isbn,titlle,page,bookType,year,price)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;第二种：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	模式名=(属性1,属性2,...,属性n)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	例如：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	Book=(isbn,titlle,page,bookType,year,price)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;关系的概念对应于程序设计语言中变量的概念，而关系模式的概念对应于程序设计语言中类型定义的概念。&lt;/p&gt;
+&lt;p&gt;关系模式中的属性是一个&lt;strong&gt;集合&lt;/strong&gt;，而不是&lt;strong&gt;列表&lt;/strong&gt;，所以关系模式中属性的顺序不重要。但是便于讨论，一般为关系模式中的属性规定一个标准的排列顺序。&lt;/p&gt;
+&lt;p&gt;当谈论数据库时，还必须区分关系模式和关系实例的概念。关系模式是一个逻辑设计包括了关系名和关系属性，相对比较稳定。而关系实例是定义的关系模式中数据的快照，相对来说经常发生变化。&lt;/p&gt;
+&lt;p&gt;在关系模型中，数据库设计包含了一个或多个关系模式。关系数据库模式就是关系模式的集合，简称数据库模式。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;元祖&lt;/strong&gt; 在关系模式中，除了第一行是标题栏之外，关系中的其他行成为元组。元组实际上是关系中的数据。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;域&lt;/strong&gt; 一般地，把关系中的每个属性相关的特定类型称为域，那么关系中任何元组的每个分量都必须在相应列的域中取指。在关系模型中，要求组成元组的每个分量都是不可再分割的原子型，即这些分量必须属于某种基本类型，例如整数型、浮点型和字符型等。不允许将某个属性值属于记录结构、集合、列表、数组或可以合理地分割成更小分量的任何类型。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;关系的等价表示方法&lt;/strong&gt; 前面已经讲过，关系的模式和元组都是集合，不是列表。因此，关系的模式和元组的顺序不重要，无论模式中属性顺序或元组顺序如何变换，只要是模式中的属性和元组本身没有变化，那么得到的关系模式都是相同的。这种方式称为关系的等价表示方法。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;关系实例&lt;/strong&gt; 习惯上，把给定关系中元组的集合称为关系实例。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;键码&lt;/strong&gt; 如果关系中的所有元组在一个属性或多个属性的集合中都互不相同，即可以使用该属性或属性的集合来确定关系中的元组，那么该属性或属性的集合称为关系中的键码。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第六章 关系模式的规范化设计*&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h2&gt;&lt;h3 id=&quot;异常问题&quot;&gt;&lt;a href=&quot;#异常问题&quot; class=&quot;headerlink&quot; title=&quot;异常问题&quot;&gt;&lt;/a&gt;异常问题&lt;/h3&gt;&lt;p&gt;在设计关系模式时，应该避免出现异常现象。这些异常现象包括数据冗余、修改异常、插入异常和删除冗余。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;数据冗余&lt;/strong&gt;的含义是表示相同信息的数据在关系的多个元组中重复出现。&lt;br&gt;&lt;strong&gt;修改异常&lt;/strong&gt;是指当修改了关系中某一个元组中的信息后，该关系中的另一个元组中相同的信息却没有修改。&lt;br&gt;&lt;strong&gt;插入异常&lt;/strong&gt;是指当向关系中插入一个元组数据时，仅知道该元组的一部分数据，结果这些已知的数据由于那些未知的数据而很难在关系中正确地插入。&lt;br&gt;&lt;strong&gt;删除异常&lt;/strong&gt;的含义是如果某些属性的值变为空，可能会丢失其他一些有用的信息。&lt;/p&gt;
+&lt;h3 id=&quot;泛关系模式和数据库模式&quot;&gt;&lt;a href=&quot;#泛关系模式和数据库模式&quot; class=&quot;headerlink&quot; title=&quot;泛关系模式和数据库模式&quot;&gt;&lt;/a&gt;泛关系模式和数据库模式&lt;/h3&gt;&lt;p&gt;在关系模式设计过程中，应当采取一些方法消除这些数据异常现象，把最初的关系模式分解成最终的合适的关系模式。这种最初设计的关系模式也成为泛关系模式（universal relation scheme）。关系模式的当前值称为关系实例，关系实例是特定元组的集合。可以把泛关系模式分解成一系列小的符合规范化要求的关系模式集合，这种比较小的最终的关系模式的集合称为数据库模式（database scheme）。对数据库模式的每个关系模式赋予一个当前值，这时称为数据库实例。&lt;/p&gt;
+&lt;h2 id=&quot;函数依赖&quot;&gt;&lt;a href=&quot;#函数依赖&quot; class=&quot;headerlink&quot; title=&quot;函数依赖&quot;&gt;&lt;/a&gt;函数依赖&lt;/h2&gt;&lt;p&gt;数据依赖是数据之间存在的各种联系现象。数据异常现象与数据依赖有着紧密的关联。在数据依赖中，函数依赖是最基本的一种依赖形式。&lt;/p&gt;
+&lt;h3 id=&quot;函数依赖的定义&quot;&gt;&lt;a href=&quot;#函数依赖的定义&quot; class=&quot;headerlink&quot; title=&quot;函数依赖的定义&quot;&gt;&lt;/a&gt;函数依赖的定义&lt;/h3&gt;&lt;p&gt;函数依赖（Function Dependency，FD）的定义可以叙述为：如果关系$R$的两个元组在属性$A_1,A_2,\cdots,A_n$上一致，那么它在另一属性$B$上也一致。这种函数依赖记作$A_1A_2 \cdots A_n \xrightarrow{} B$,读作属性$A_1,A_2,\cdots,A_n$函数决定属性$B$,或属性$B$函数依赖于属性$A_1,A_2,\cdots,A_n$。&lt;/p&gt;
+&lt;p&gt;函数依赖的逻辑定义：设关系模式$R$的属性集是$U$,$X$和$Y$是$U$的子集，函数依赖是形如$X \xrightarrow{} Y$的命题，即$r$是$R$的当前实例值，对r中的任意两个元组$t$和$s$，如果$t[X]=s[X]$，则$t[Y]=s[Y]$,那么$X \xrightarrow{} Y$在关系模式$R$中成立。其中，$t[X]$表示元组$t$在属性集$X$上的值。&lt;/p&gt;
+&lt;p&gt;函数依赖的定义表示了关系模式属性集$X$值和$Y$值之间的多对一联系。&lt;/p&gt;
+&lt;p&gt;如果一组属性$A_1,A_2,\cdots,A_n$函数决定一组属性$B_1,B_2,\cdots,B_m$,那么可以把这组依赖关系简记为：$$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$$&lt;/p&gt;
+&lt;p&gt;对于关系Book(isbn,title,page,bookType,price,pressName,authorName)，根据客观现实和经验，可以得到以下函数依赖&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;isbn-&amp;gt;title&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;isbn-&amp;gt;page&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;isbn-&amp;gt;bookType&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;isbn-&amp;gt;price&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;isbn-&amp;gt;pressName&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;简写为$$isbn \xrightarrow{} title\ page\ bookType\ price\ pressName$$.&lt;br&gt;不能得到$isbn \xrightarrow{} authorName$因为其中一个isbn对应了3个作者。&lt;/p&gt;
+&lt;h3 id=&quot;函数依赖和键码&quot;&gt;&lt;a href=&quot;#函数依赖和键码&quot; class=&quot;headerlink&quot; title=&quot;函数依赖和键码&quot;&gt;&lt;/a&gt;函数依赖和键码&lt;/h3&gt;&lt;h4 id=&quot;超键码&quot;&gt;&lt;a href=&quot;#超键码&quot; class=&quot;headerlink&quot; title=&quot;超键码&quot;&gt;&lt;/a&gt;超键码&lt;/h4&gt;&lt;p&gt;在某个关系中，如果一个或多个属性的集合${A_1,A_2,\cdots,A_n}$函数决定该关系的其他属性，那么称该属性的集合为该关系的超键码。超键码的含义是关系中不可能存在两个不同的元组在属性$A_1,A_2,\cdots,A_n$的取值完全相同。根据上面的定义可以看到，在一个关系中，超键码的数量是没有限制的，例如如果属性集合${A_1,A_2,\cdots,A_n}$是超键码，那么包含该属性集合的所有属性集合都是超键码。&lt;/p&gt;
+&lt;h4 id=&quot;键码&quot;&gt;&lt;a href=&quot;#键码&quot; class=&quot;headerlink&quot; title=&quot;键码&quot;&gt;&lt;/a&gt;键码&lt;/h4&gt;&lt;p&gt;在某个关系中，如果一个或多个属性的集合${A_1,A_2,\cdots,A_n}$函数决定该关系的其他属性，并且集合${A_1,A_2,\cdots,A_n}$的任何真子集都不能函数决定该关系的所有其他属性，那么称该属性的集合为该属性的键码。&lt;/p&gt;
+&lt;p&gt;在一个关系中，有时会有多个不同的键码。如果这样，可以把其中一个最为重要的键码指定为主键码，把其他键码成为候选键码。&lt;/p&gt;
+&lt;h3 id=&quot;逻辑蕴含&quot;&gt;&lt;a href=&quot;#逻辑蕴含&quot; class=&quot;headerlink&quot; title=&quot;逻辑蕴含&quot;&gt;&lt;/a&gt;逻辑蕴含&lt;/h3&gt;&lt;p&gt;在讨论函数依赖时，经常需要从一些已知的函数依赖去判断另外一些函数依赖是否成立。例如，如果$A \xrightarrow{} B$和$B \xrightarrow{} C$在某个关系中成立，那么$ A \xrightarrow{} C$在该关系中是否成立的问题成为逻辑蕴含问题。&lt;/p&gt;
+&lt;p&gt;假定$F$是在某个关系上成立的函数依赖集，$T$是在该关系上成立的另外一个函数依赖集，如果对于该关系中满足$F$的每一个关系实例都满足$T$，那么称函数依赖集$F$蕴含于函数依赖集$T$，记作$F$蕴含于$T$。&lt;/p&gt;
+&lt;p&gt;如果$F$蕴含于$T$，且$T$蕴含于$F$，那么函数依赖集$F$和$T$等价。&lt;/p&gt;
+&lt;p&gt;函数关系$R(A,B,C)$具有函数依赖$A \xrightarrow{} B$和$B \xrightarrow{} C$，那么可以证明$A \xrightarrow{} C$在该关系中成立。证明思路：在关系$R$中任取两个元组，如果这两个元组在属性$A$上一致，那么证明这两个元组在属性$C$上一致。&lt;/p&gt;
+&lt;p&gt;在这里可以把函数依赖$A \xrightarrow{} B$和$B \xrightarrow{} C$记作函数依赖集$F$，把$A \xrightarrow{} C$记作函数依赖集$T$，那么已经证明了满足$F$的每一个关系实例都满足$T$，因此可以说函数依赖集$F$蕴含于函数依赖集$T$。&lt;/p&gt;
+&lt;h3 id=&quot;函数依赖的推理规则&quot;&gt;&lt;a href=&quot;#函数依赖的推理规则&quot; class=&quot;headerlink&quot; title=&quot;函数依赖的推理规则&quot;&gt;&lt;/a&gt;函数依赖的推理规则&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;分解规则&lt;/strong&gt;：可以把一个函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$用一组函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1,A_1A_2 \cdots A_n \xrightarrow{} B_2,\cdots,A_1A_2 \cdots A_n \xrightarrow{} B_m$来代替。&lt;br&gt;&lt;strong&gt;合并规则&lt;/strong&gt;：可以把一组函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1,A_1A_2 \cdots A_n \xrightarrow{} B_2,\cdots,A_1A_2 \cdots A_n \xrightarrow{} B_m$用一个函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$来代替。&lt;/p&gt;
+&lt;p&gt;对于函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$，设$A={A_1A_2 \cdots A_n},B={B_1B_2 \cdots B_m}$，如果$B$是$A$的子集，那么称该依赖为平凡依赖；如果$B$中至少有一个属性不在$A$中，那么称该依赖是非平凡依赖；如果$B$中的任何一个属性都不在$A$中，那么称该依赖是完全非平凡依赖。&lt;/p&gt;
+&lt;p&gt;Armstrong公理。&lt;br&gt;&lt;strong&gt;自反律&lt;/strong&gt;：如果${B_1B_2 \cdots B_m} \subset {A_1A_2 \cdots A_n}$，则$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$。这是平凡依赖。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;增长率&lt;/strong&gt;：如果$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$，则对于任何属性集$C_1,C_2,\cdots,C_k$，都存在$A_1A_2 \cdots A_nC_1C_2 \cdots C_k \xrightarrow{} B_1B_2 \cdots B_mC_1C_2 \cdots C_k$。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;传递率&lt;/strong&gt;：如果$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m,B_1B_2 \cdots B_m \xrightarrow{} C_1C_2 \cdots C_k$，则$A_1A_2 \cdots A_n \xrightarrow{} C_1C_2 \cdots C_k$。&lt;/p&gt;
+&lt;h3 id=&quot;属性集的闭包&quot;&gt;&lt;a href=&quot;#属性集的闭包&quot; class=&quot;headerlink&quot; title=&quot;属性集的闭包&quot;&gt;&lt;/a&gt;属性集的闭包&lt;/h3&gt;&lt;p&gt;假设${A_1A_2 \cdots A_n}$是属性集，$S$是函数依赖集。属性集${A_1A_2 \cdots A_n}$在函数依赖集$S$下的闭包是这样的属性集$B$，它使得满足依赖集$S$中所有依赖的每一个关系都满足$A_1A_2 \cdots A_n \xrightarrow{} B$。即$A_1A_2 \cdots A_n \xrightarrow{} B$蕴含于$S$中的函数依赖。使用${A_1A_2 \cdots A_n}^+$表示属性集${A_1A_2 \cdots A_n}$的闭包。&lt;/p&gt;
+&lt;p&gt;计算属性集${A_1A_2 \cdots A_n}$闭包的步骤如下：&lt;/p&gt;
+&lt;p&gt;第一步，设最终将成为闭包的属性集是$X$,把$X$初始化为${A_1A_2 \cdots A_n}$。&lt;/p&gt;
+&lt;p&gt;第二步，重复搜索和判断函数依赖$B_1B_2 \cdots B_m \xrightarrow{} C$。如果左边所有的属性$B_1,B_2,\cdots,B_m$都在属性集$X$中，但是属性$C$不在$X$中，则将$C$添加到属性集$X$中。&lt;/p&gt;
+&lt;p&gt;第三步，重复第二步，知道没有属性可以添加到属性集$X$中为止。&lt;/p&gt;
+&lt;p&gt;第四步，最后得到的不能再添加的属性集$X$就是${A_1A_2 \cdots A_n}^+$。&lt;/p&gt;
+&lt;p&gt;如果用户知道了如何计算任意属性的闭包，就能检验给定的任意函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B$是否蕴含于函数依赖集$S$。检验步骤如下：&lt;/p&gt;
+&lt;p&gt;第一步，计算闭包。根据函数依赖集$S$计算${A_1A_2 \cdots A_n}^+$。&lt;/p&gt;
+&lt;p&gt;第二步，判断。如果$B$在${A_1A_2 \cdots A_n}^+$中，则$A_1A_2 \cdots A_n \xrightarrow{} B$蕴含于函数依赖集$S$；如果$B$不在${A_1A_2 \cdots A_n}^+$中，则该函数不蕴含于函数依赖集$S$。&lt;/p&gt;
+&lt;h3 id=&quot;正则覆盖&quot;&gt;&lt;a href=&quot;#正则覆盖&quot; class=&quot;headerlink&quot; title=&quot;正则覆盖&quot;&gt;&lt;/a&gt;正则覆盖&lt;/h3&gt;&lt;p&gt;如果可以去掉一个函数依赖集中的属性而不改变函数依赖集的闭包，那么称该属性是无关的。无关属性可以形式化的定义如下，考虑函数依赖集$S$和$S$中的某个函数依赖$X \xrightarrow{} Y$。&lt;/p&gt;
+&lt;p&gt;如果$A \in X$，且$S$逻辑蕴含$(S-\{X \xrightarrow{} Y\}) \cup \{(X-A) \xrightarrow{} Y\}$，那么属性$A$在$X$中是无关的。&lt;/p&gt;
+&lt;p&gt;如果$A \in Y$，且$S$逻辑蕴含$(S-\{X \xrightarrow{} Y\}) \cup \{X \xrightarrow{} (Y-A)\}$，那么属性$A$在$Y$中是无关的。&lt;/p&gt;
+&lt;p&gt;$S$的正则覆盖是一个函数依赖集$S_C$，含义是$S$逻辑蕴含$S_C$中的所有依赖，并且$S_C$逻辑蕴含$S$中的所有依赖。此外，$S_C$具有如下三个性质：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$S_C$的闭包与$S$的闭包相同，即${S}^+ ={S_C}^+$。&lt;/li&gt;
+&lt;li&gt;$S_C$的任何函数依赖都不包含无关属性。&lt;/li&gt;
+&lt;li&gt;$S_C$中的函数依赖的左半部都是唯一的，即$S_C$中不存在两个函数依赖$X_1 \xrightarrow{} Y_1$和$X_2 \xrightarrow{} Y_2$，且$X_1 = X_2$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;关系模式的分解&quot;&gt;&lt;a href=&quot;#关系模式的分解&quot; class=&quot;headerlink&quot; title=&quot;关系模式的分解&quot;&gt;&lt;/a&gt;关系模式的分解&lt;/h2&gt;&lt;p&gt;消除关系模式中数据异常的常用办法是分解关系模式。关系模式$R$的分解就是把关系$R$中的属性分开，以构成两个新的关系模式。&lt;/p&gt;
+&lt;p&gt;在分解关系模式时，一定要注意两个问题：第一，保证分解前后关系模式的信息不能丢失和增加，保持原有的信息不变，这称为无损连接；第二，保持分解前后猿猴的函数依赖依然成立。&lt;/p&gt;
+&lt;p&gt;给定一个关系模式$R$，其属性集合为$\{A_1,A_2,\cdots,A_n\}$，现在把其分解成两个关系模式$X$和$Y$，其属性集合分别是$\{B_1,B_2,\cdots,B_m\}$和$\{C_1,C_2,\cdots,C_k\}$，这种分解应该满足如下条件：&lt;/p&gt;
+&lt;p&gt;第一个条件：$\{A_1,A_2,\cdots,A_n\}=\{B_1,B_2,\cdots,B_m\} \cup \{C_1,C_2,\cdots,C_k\}$。&lt;/p&gt;
+&lt;p&gt;第二个条件：关系$X$中的元组是关系$R$的所有元组在$\{B_1,B_2,\cdots,B_m\}$上的投影，包含相同元组。&lt;/p&gt;
+&lt;p&gt;第三个条件：关系$Y$中的元组是关系$R$的所有元组在$\{C_1,C_2,\cdots,C_k\}$上的投影，不包含相同元组。&lt;/p&gt;
+&lt;p&gt;例如：略。&lt;/p&gt;
+&lt;h2 id=&quot;关系模型的范式&quot;&gt;&lt;a href=&quot;#关系模型的范式&quot; class=&quot;headerlink&quot; title=&quot;关系模型的范式&quot;&gt;&lt;/a&gt;关系模型的范式&lt;/h2&gt;&lt;h3 id=&quot;第一范式&quot;&gt;&lt;a href=&quot;#第一范式&quot; class=&quot;headerlink&quot; title=&quot;第一范式&quot;&gt;&lt;/a&gt;第一范式&lt;/h3&gt;&lt;p&gt;如果关系模式$R$中的所有属性值都是不可在分解的原子值，那么就称关系$R$是第一范式（first normal form，1NF）的关系模式。不是1NF的关系称为非规范化的关系，满足1NF的关系简称关系。在关系型数据库管理系统中，涉及到的研究对象都是满足1NF的规范化关系。&lt;/p&gt;
+&lt;h3 id=&quot;BCNF范式&quot;&gt;&lt;a href=&quot;#BCNF范式&quot; class=&quot;headerlink&quot; title=&quot;BCNF范式&quot;&gt;&lt;/a&gt;BCNF范式&lt;/h3&gt;&lt;p&gt;BCNF范式（Boyce-Codd normal form）的定义是，如果某个关系R有非平凡依赖$A_1,A_2,\cdots,A_n \xrightarrow{} B$，那么$\{A_1,A_2,\cdots,A_n\}$必然是关系R的超键码。满足这样条件的关系就属于BCNF。即BCNF条件的含义是每一个非平凡依赖的左边必须包含超键码。&lt;/p&gt;
+&lt;h3 id=&quot;分解成BCNF模式的算法&quot;&gt;&lt;a href=&quot;#分解成BCNF模式的算法&quot; class=&quot;headerlink&quot; title=&quot;分解成BCNF模式的算法&quot;&gt;&lt;/a&gt;分解成BCNF模式的算法&lt;/h3&gt;&lt;p&gt;第一步，找到一个违背BCNF的非平凡依赖，并在该依赖的右边加上尽量多的属性。&lt;/p&gt;
+&lt;p&gt;第二步，把原始关系模型分解成两个属性重迭的关系模式，一个模式包含了违背BCNF的所有属性，另外一个模式包含了该依赖左边以及未包含在该依赖中的所有属性。&lt;/p&gt;
+&lt;p&gt;第三步，判断新的关系模式是否满足BCNF。如果不满足，继续进行分解；如果满足，则停止。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;任何包含了两个属性的关系模式都自然满足BCNF条件。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;函数依赖的投影&quot;&gt;&lt;a href=&quot;#函数依赖的投影&quot; class=&quot;headerlink&quot; title=&quot;函数依赖的投影&quot;&gt;&lt;/a&gt;函数依赖的投影&lt;/h3&gt;&lt;p&gt;在分解关系模式时，需要确定新关系模式是否满足BCNF条件。这种判断的前提是知道新关系模式中成立的函数依赖，这些函数依赖是原关系模式的函数依赖在新关系模式上的投影。下面介绍一种找到新关系模式中函数依赖的方法。&lt;/p&gt;
+&lt;p&gt;假设把关系$R$分解成关系$S$和$T$，$F$是$R$中已知的函数依赖集。现在计算$S$中成立的函数依赖。考虑包含于$S$的属性集的每个属性集$X$，计算$X^+$。于是，满足下列条件的每个属性$B$，函数$X \xrightarrow{} B$在关系$S$中成立：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$B$是$S$的一个属性；&lt;/li&gt;
+&lt;li&gt;$B$属于$X^+$;&lt;/li&gt;
+&lt;li&gt;$B$不属于$X$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;第三范式&quot;&gt;&lt;a href=&quot;#第三范式&quot; class=&quot;headerlink&quot; title=&quot;第三范式&quot;&gt;&lt;/a&gt;第三范式&lt;/h3&gt;&lt;p&gt;在某些情况下，按照BCNF进行分解，但是当对得到的关系模式进行连接时，却不能保证原先所有的函数依赖都能得到保持。这是，关系模式就不应该继续进行分解，该关系模式满足的范式称为第三范式。&lt;/p&gt;
+&lt;p&gt;如果对于任何非平凡依赖$A_1,A_2,\cdots,\A_n \xrightarrow{} B$，那么或$\{A_1,A_2,\cdots,A_n\}$是关系$R$的超键码，或$B$是某个键码的组成部分。满足这样条件的关系就属于第三范式（third normal form, 3NF）。&lt;/p&gt;
+&lt;h3 id=&quot;第二范式&quot;&gt;&lt;a href=&quot;#第二范式&quot; class=&quot;headerlink&quot; title=&quot;第二范式&quot;&gt;&lt;/a&gt;第二范式&lt;/h3&gt;&lt;p&gt;在一个关系中，如果$\{A_1,A_2,\cdots,A_n\}$是关系$R$的键码，$B$是关系中的任意非键码，那么非平凡依赖$A_1,A_2,\cdots,A_n \xrightarrow{} B$都成立，则该关系模式属于第二范式（second normal form, 2NF）。&lt;/p&gt;
+&lt;h3 id=&quot;多值依赖&quot;&gt;&lt;a href=&quot;#多值依赖&quot; class=&quot;headerlink&quot; title=&quot;多值依赖&quot;&gt;&lt;/a&gt;多值依赖&lt;/h3&gt;&lt;p&gt;多值依赖的含义是如果确定了关系$R$的一个属性集的取值，则其他某些特征属性的取值与该关系的所有其他属性的取值无关。确切的说，如果限定关系$R$的元组在属于$A$的每个属性上取特定的值，结果属性$B$的属性取值的集合与既不属于$A$也不属于$B$但属于$R$的属性取值的集合无关，则称如下所示的多值依赖在关系$R$中成立：$$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$$&lt;/p&gt;
+&lt;p&gt;多值依赖满足规则&lt;/p&gt;
+&lt;p&gt;平凡依赖规则：在某个关系中，如果多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$成立，则多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$也成立，其中$C$是$B$加上$A$中的一个或多个属性。反之，也可以从$B$中删除一些属于$A$的属性，并推导出多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} D_1D_2 \cdots D_r$，其中，$D$是在$B$中而不属于$A$的属性。&lt;/p&gt;
+&lt;p&gt;传递规则：在某个关系中，如果多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$和$B_1B_2 \cdots B_m \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$，则多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$成立。&lt;/p&gt;
+&lt;p&gt;复制规则：在关系中，每个函数依赖都是多值依赖。&lt;/p&gt;
+&lt;p&gt;互补规则：如果$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$是关系$R$的多值依赖，则$R$也满足$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$,其中，$C$是不属于$A$和$B$的$R$的所有其他属性。&lt;/p&gt;
+&lt;p&gt;第四范式：如果$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$是非平凡的多值依赖，且$\{A_1,A_2,\cdots,A_n\}$是关系的超键码，那么该关系就属于第四范式（Fourth Normal Form, 4NF）。&lt;/p&gt;
+&lt;p&gt;分解方法：&lt;/p&gt;
+&lt;p&gt;第一步：找到一个4NF违例，例如$A \xrightarrow{}\xrightarrow{} B$.&lt;/p&gt;
+&lt;p&gt;第二步：分解该关系模式，第一个关系模式包含$A$和$B$中的属性，第二个关系模式包含$A$中的属性以及不属于$A$也不属于$B$的$R$的所有其他属性。&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h2&gt;&lt;p&gt;关系模型是一种以二维表的形式表示实体数据和实体之间关系等信息的数据库模型。&lt;/p&gt;
+&lt;p&gt;在关系模型中，基本元素包括属性、模
+    
+    </summary>
+    
+    
+      <category term="database" scheme="http://mrgao1008.github.io/blog/tags/database/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>并行计算与分布式计算原理</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E5%8E%9F%E7%90%86/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/并行计算与分布式计算原理/</id>
+    <published>2016-04-01T16:00:00.000Z</published>
+    <updated>2016-04-02T01:39:16.524Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;em&gt;深入理解云计算——基本原理和应用程序编程技术，第二章&lt;/em&gt;&lt;/p&gt;
+&lt;!-- MarkdownTOC --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#并行计算和分布式计算&quot;&gt;并行计算和分布式计算&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#并行计算基本要素&quot;&gt;并行计算基本要素&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#什么是并行处理&quot;&gt;什么是并行处理&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#并行处理硬件架构&quot;&gt;并行处理硬件架构&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#并行编程方法&quot;&gt;并行编程方法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#并行性的级别&quot;&gt;并行性的级别&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#注意事项&quot;&gt;注意事项&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#分布式计算基本要素&quot;&gt;分布式计算基本要素&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#通用概念和定义&quot;&gt;通用概念和定义&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#分布式系统组件&quot;&gt;分布式系统组件&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#分布式计算架构模式&quot;&gt;分布式计算架构模式&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#进程间通信模型&quot;&gt;进程间通信模型&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#分布式计算技术&quot;&gt;分布式计算技术&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+&lt;p&gt;&lt;a name=&quot;并行计算和分布式计算&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;并行计算和分布式计算&quot;&gt;&lt;a href=&quot;#并行计算和分布式计算&quot; class=&quot;headerlink&quot; title=&quot;并行计算和分布式计算&quot;&gt;&lt;/a&gt;并行计算和分布式计算&lt;/h2&gt;&lt;p&gt;并行计算和分布式计算存在细微差别。并行代表一类紧耦合系统，分布式代表更更广泛的一类系统，包括紧耦合系统。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;并行计算&lt;/strong&gt;指将计算任务分配给几个共享相同内存的处理器的计算模式。并行计算系统的架构通常表现为组件的同构性：每个处理器都是相同类型的，且拥有相同的处理性能。共享内存有一个独立的地址空间，可供所有处理器访问。并行程序被分成若干执行单元并分配给不同的处理器，它们之间依靠共享内存相互通信。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;分布式计算&lt;/strong&gt;指哪些将计算任务进行划分，并在不同计算单元中同时执行的架构或系统，不论计算单元是不同节点上的处理器，或是同一计算机上的处理器，再或是同一处理器中的内核。相比并行计算，分布式计算包含的系统和应用程序的范围更广，是更为通用的概念。分布式这一术语通常以为着计算单元的位置不同，且这些单元在硬件和软件功能上也可能各不相同。典型的分布式系统实例是计算网格或互谅网计算系统，分布式系统再全球范围内集成各种架构、系统和应用。&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;并行计算基本要素&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;并行计算基本要素&quot;&gt;&lt;a href=&quot;#并行计算基本要素&quot; class=&quot;headerlink&quot; title=&quot;并行计算基本要素&quot;&gt;&lt;/a&gt;并行计算基本要素&lt;/h2&gt;&lt;p&gt;&lt;a name=&quot;什么是并行处理&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;什么是并行处理&quot;&gt;&lt;a href=&quot;#什么是并行处理&quot; class=&quot;headerlink&quot; title=&quot;什么是并行处理&quot;&gt;&lt;/a&gt;什么是并行处理&lt;/h3&gt;&lt;p&gt;同时在多个处理器上处理多个任务成为&lt;strong&gt;并行处理&lt;/strong&gt;。并行程序由多个活跃进程（任务）组成，同时解决给定的问题。运用分治法将一个给定的任务分为多个子任务，每个子任务在不同的中央处理器（CPU）中进行处理。运用分治法在多处理器系统上编程称作&lt;strong&gt;并行编程&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;历史背景和推动技术&lt;br&gt;…&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;并行处理硬件架构&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;并行处理硬件架构&quot;&gt;&lt;a href=&quot;#并行处理硬件架构&quot; class=&quot;headerlink&quot; title=&quot;并行处理硬件架构&quot;&gt;&lt;/a&gt;并行处理硬件架构&lt;/h3&gt;&lt;p&gt;并行处理的核心元素是CPU。根据可以同时处理的指令流和数据流的数量，计算机系统可以分为以下四类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单指令流单数据流（SISD）系统&lt;/li&gt;
+&lt;li&gt;单指令流多数据流（SIMD）系统&lt;/li&gt;
+&lt;li&gt;多指令流单数据流（MISD）系统&lt;/li&gt;
+&lt;li&gt;多指令流多数据流（MIMD）系统&lt;ul&gt;
+&lt;li&gt;共享内存MIMD计算机&lt;/li&gt;
+&lt;li&gt;分布式内存MIMD计算机&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a name=&quot;并行编程方法&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;并行编程方法&quot;&gt;&lt;a href=&quot;#并行编程方法&quot; class=&quot;headerlink&quot; title=&quot;并行编程方法&quot;&gt;&lt;/a&gt;并行编程方法&lt;/h3&gt;&lt;p&gt;顺序程序运行在单个处理器上且有单一控制线程。为了让几个处理器共同处理同一程序，就必须将该程序分成更小的、独立的块，这样每个处理器只需处理单独的一小块程序。以这种方式分解的程序就是并行程序。&lt;/p&gt;
+&lt;p&gt;并行程序设计有多种方法，最著名的几种是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据并行&lt;/li&gt;
+&lt;li&gt;处理并行&lt;/li&gt;
+&lt;li&gt;“农场主和工作者”模式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a name=&quot;并行性的级别&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;并行性的级别&quot;&gt;&lt;a href=&quot;#并行性的级别&quot; class=&quot;headerlink&quot; title=&quot;并行性的级别&quot;&gt;&lt;/a&gt;并行性的级别&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;em&gt;颗粒大小&lt;/em&gt;&lt;/th&gt;
+&lt;th&gt;&lt;em&gt;代码&lt;/em&gt;&lt;/th&gt;
+&lt;th&gt;&lt;em&gt;并行化执行者&lt;/em&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;大&lt;/td&gt;
+&lt;td&gt;独立的或重量级进程&lt;/td&gt;
+&lt;td&gt;程序设计员&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;中&lt;/td&gt;
+&lt;td&gt;函数或过程&lt;/td&gt;
+&lt;td&gt;程序设计员&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;小&lt;/td&gt;
+&lt;td&gt;循环或指令块&lt;/td&gt;
+&lt;td&gt;并行编译器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;极小&lt;/td&gt;
+&lt;td&gt;指令&lt;/td&gt;
+&lt;td&gt;处理器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;a name=&quot;注意事项&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;注意事项&quot;&gt;&lt;a href=&quot;#注意事项&quot; class=&quot;headerlink&quot; title=&quot;注意事项&quot;&gt;&lt;/a&gt;注意事项&lt;/h3&gt;&lt;p&gt;例如，对于给定的n个处理器，用户希望速度也增加n倍，但这只是理想情况，由于通信开销而不太可能实现。&lt;/p&gt;
+&lt;p&gt;两个重要原则&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;计算速度和系统成本的平方根成反比&lt;/li&gt;
+&lt;li&gt;并行计算速度和处理器数量成对数冠以（y=klog(N)）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a name=&quot;分布式计算基本要素&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;分布式计算基本要素&quot;&gt;&lt;a href=&quot;#分布式计算基本要素&quot; class=&quot;headerlink&quot; title=&quot;分布式计算基本要素&quot;&gt;&lt;/a&gt;分布式计算基本要素&lt;/h2&gt;&lt;p&gt;&lt;a name=&quot;通用概念和定义&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;通用概念和定义&quot;&gt;&lt;a href=&quot;#通用概念和定义&quot; class=&quot;headerlink&quot; title=&quot;通用概念和定义&quot;&gt;&lt;/a&gt;通用概念和定义&lt;/h3&gt;&lt;p&gt;分布式计算主要研究用于构建和管理分布式系统的模型、架构和算法。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;分布式系统是独立计算机的集合，对于用户来说是一个整体系统。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;该定义大致包括了多种类型的分布式计算系统，这些系统统一使用和集成分布式资源。本章重点讲解将多个独立计算机转化为整体系统的架构模型。通信是分布式计算的基础之一。由于分布式系统由协同工作的多个计算机组成，所以有必要利用网络实现多计算机之间的数据和信息交换：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;分布式系统组件位于仅能通过传递消息来通信和协调活动的网络计算机中。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;a name=&quot;分布式系统组件&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;分布式系统组件&quot;&gt;&lt;a href=&quot;#分布式系统组件&quot; class=&quot;headerlink&quot; title=&quot;分布式系统组件&quot;&gt;&lt;/a&gt;分布式系统组件&lt;/h3&gt;&lt;p&gt;分布式系统是从硬件到软件的整个计算层次模型中多个组件交互的结果。许多组件协同工作，为用户呈现出一个单一的整体系统。&lt;/p&gt;
+&lt;p&gt;在底层，计算机和网络硬件构成了物理基础设置，这些组件由操作系统直接管理。操作系统负责提供基础服务，用于进程间通信、进程调度和管理、文件系统和本地设备的资源管理。将网络和计算机这两层合并为一个平台，在这个平台上配置特定软件，便可将联网计算机组成一个分布式系统。&lt;/p&gt;
+&lt;p&gt;将公认的标准应用到操作系统层甚至硬件网络层中，利用异构组件可以很容易地构造一个统一的集成系统。例如，不同设备之间的网络连接由协议进行控制，实现设备无缝执行交互。在操作系统层，进程间通信服务在标准化通信协议下执行，例如TCP/IP协议、UDP协议等。&lt;/p&gt;
+&lt;p&gt;中间件层利用这些服务构建了一个开发和部署分布式应用程序的统一环境。这一层支持分布式系统的编程范式，我们将在本书第5~7章进行描述。依靠操作系统提供的服务，中间件层可开发协议、数据格式以及用于开发分布式应用程序的编程语言和框架。这些为分布式应用程序开发人员提供了同一接口，完全独立于底层操作系统且屏蔽了底层的异构性。&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;分布式计算架构模式&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;分布式计算架构模式&quot;&gt;&lt;a href=&quot;#分布式计算架构模式&quot; class=&quot;headerlink&quot; title=&quot;分布式计算架构模式&quot;&gt;&lt;/a&gt;分布式计算架构模式&lt;/h3&gt;&lt;p&gt;尽管分布式系统包含若干层之间的交互，但只有中间件层才能够进行分布式计算，因为中间件层为应用提供了同一的整体运行环境。可采用多种不同的方式来组织组件，整合并购成分布式计算系统。这些组件之间的交互以及组件的职责决定了中间件的结构和类型，话句话说，也就是定义了中间件架构。了解架构模式有助于从整体上理解和划分软件系统结构，尤其是分布式计算结构。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;架构模式组要用于决定组件和连接器，组件、连接器以及结合条件一起作为架构模式的实例。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;架构模式分为两大类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;软件架构模式&lt;/li&gt;
+&lt;li&gt;系统架构模式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;第一类与软件的逻辑结构有关，第二类包括从组件方面描述分布式软件系统物理结构的所有方式。&lt;/p&gt;
+&lt;h4 id=&quot;组件和连接器&quot;&gt;&lt;a href=&quot;#组件和连接器&quot; class=&quot;headerlink&quot; title=&quot;组件和连接器&quot;&gt;&lt;/a&gt;组件和连接器&lt;/h4&gt;&lt;p&gt;&lt;em&gt;组件&lt;/em&gt;代表一个封装了系统的功能或特性的软件单元。组件实例可以是程序、对象、进程、管道或过滤器。连接器是一种允许组件之间进行合作和协调的通信机制。与组件不同的是，连接器不封装在单一实体中，而是以分布式方式由多个系统组件实现。&lt;/p&gt;
+&lt;h4 id=&quot;软件架构模式&quot;&gt;&lt;a href=&quot;#软件架构模式&quot; class=&quot;headerlink&quot; title=&quot;软件架构模式&quot;&gt;&lt;/a&gt;软件架构模式&lt;/h4&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;em&gt;种类&lt;/em&gt;&lt;/th&gt;
+&lt;th&gt;&lt;em&gt;最常用的架构模式&lt;/em&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;数据中心&lt;/td&gt;
+&lt;td&gt;仓库&lt;br&gt;黑板&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;数据流&lt;/td&gt;
+&lt;td&gt;管道和过滤器&lt;br&gt;顺序批处理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;虚拟机&lt;/td&gt;
+&lt;td&gt;基于规则的系统&lt;br&gt;解释器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;调用和返回&lt;/td&gt;
+&lt;td&gt;主程序和子程序调用/自上而下的系统&lt;br&gt;面向对象系统&lt;br&gt;分层系统&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;独立组件&lt;/td&gt;
+&lt;td&gt;通信系统&lt;br&gt;事件系统&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;系统架构模式&quot;&gt;&lt;a href=&quot;#系统架构模式&quot; class=&quot;headerlink&quot; title=&quot;系统架构模式&quot;&gt;&lt;/a&gt;系统架构模式&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;客户端/服务器&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;对等&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a name=&quot;进程间通信模型&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;进程间通信模型&quot;&gt;&lt;a href=&quot;#进程间通信模型&quot; class=&quot;headerlink&quot; title=&quot;进程间通信模型&quot;&gt;&lt;/a&gt;进程间通信模型&lt;/h3&gt;&lt;p&gt;分布式系统由一组通过网络连接的、交互的并发进程组成。因此，进程间通信（IPC）是分布式系统设计和实现的基础。IPC既用于交换数据和信息，也用于协调进程活动。IPC将分布式系统的不同组件连接起来，使其成为一个系统。&lt;/p&gt;
+&lt;h4 id=&quot;基于消息的通信&quot;&gt;&lt;a href=&quot;#基于消息的通信&quot; class=&quot;headerlink&quot; title=&quot;基于消息的通信&quot;&gt;&lt;/a&gt;基于消息的通信&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;消息传递&lt;br&gt;  MPI，OpenMP&lt;/li&gt;
+&lt;li&gt;远程过程调用&lt;br&gt;  RPC&lt;/li&gt;
+&lt;li&gt;分布式对象&lt;br&gt;  RPC模型基于面向对象范式的实现，将方法的远程调用看做对象。CORBA,COM，DCOM,COM+,RMI,.net&lt;/li&gt;
+&lt;li&gt;分布式代理和活动对象&lt;/li&gt;
+&lt;li&gt;web服务&lt;br&gt;  SOAP,REST&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;基于消息的通信模型&quot;&gt;&lt;a href=&quot;#基于消息的通信模型&quot; class=&quot;headerlink&quot; title=&quot;基于消息的通信模型&quot;&gt;&lt;/a&gt;基于消息的通信模型&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;点对点消息模型&lt;/li&gt;
+&lt;li&gt;发布和订阅消息模型&lt;/li&gt;
+&lt;li&gt;请求-应答消息模型&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a name=&quot;分布式计算技术&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;分布式计算技术&quot;&gt;&lt;a href=&quot;#分布式计算技术&quot; class=&quot;headerlink&quot; title=&quot;分布式计算技术&quot;&gt;&lt;/a&gt;分布式计算技术&lt;/h2&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;em&gt;深入理解云计算——基本原理和应用程序编程技术，第二章&lt;/em&gt;&lt;/p&gt;
+&lt;!-- MarkdownTOC --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#并行计算和分布式计算&quot;&gt;并行计算和分布式计算&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#并行计算基本要素&quot;&gt;并
+    
+    </summary>
+    
+    
+      <category term="并行计算" scheme="http://mrgao1008.github.io/blog/tags/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97/"/>
+    
+      <category term="分布式计算" scheme="http://mrgao1008.github.io/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>libvmi介绍</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/01/libvmi%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/01/libvmi介绍/</id>
+    <published>2016-04-01T08:19:00.000Z</published>
+    <updated>2016-04-01T08:20:12.759Z</updated>
+    
+    <content type="html">&lt;p&gt;libvmi提供了大量的库函数用于开发基于VMI的安全软件。&lt;/p&gt;
+&lt;h2 id=&quot;libvmi的接口&quot;&gt;&lt;a href=&quot;#libvmi的接口&quot; class=&quot;headerlink&quot; title=&quot;libvmi的接口&quot;&gt;&lt;/a&gt;libvmi的接口&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;VMI构造和析构&lt;/li&gt;
+&lt;li&gt;VM基本信息获取&lt;/li&gt;
+&lt;li&gt;VM地址转换、pid页表转换&lt;/li&gt;
+&lt;li&gt;VM读写内存&lt;/li&gt;
+&lt;li&gt;VMIcache操作函数&lt;/li&gt;
+&lt;li&gt;事件注册通知&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;VMI构造和析构&quot;&gt;&lt;a href=&quot;#VMI构造和析构&quot; class=&quot;headerlink&quot; title=&quot;VMI构造和析构&quot;&gt;&lt;/a&gt;VMI构造和析构&lt;/h3&gt;&lt;p&gt;接口包括下面这些&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vmi_init&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_init_custom&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_init_complete&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_init_complete_custom&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_init_paging&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_destroy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;带有custom表示从内存结构中读取配置，否则从文件中读取配置。&lt;br&gt;complete用在vmi_init中以partial方式初始化后（这种状态下只提供物理地址读写），经过启发式方法确定了特别偏移量后，进行完全初始化，这样才能够用其他方式比如符号、虚拟地址读写。&lt;/p&gt;
+&lt;h3 id=&quot;VM基本信息获取&quot;&gt;&lt;a href=&quot;#VM基本信息获取&quot; class=&quot;headerlink&quot; title=&quot;VM基本信息获取&quot;&gt;&lt;/a&gt;VM基本信息获取&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vmi_get_name -&amp;gt;driver_get_name&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_get_vmid -&amp;gt;driver_get_id&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_get_access_mode //xen kvm file&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_get_page_mode&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_get_address_width&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_get_ostype&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_get_winver&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_get_winver_str&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_get_winver_manual&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_get_offset&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_get_memsize&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;windows能够设置和得到的符号包括如下表&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;符号名字&lt;/th&gt;
+&lt;th&gt;意义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;win_ntoskrnl&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;win_tasks&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;win_pdbase&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;win_pid&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;win_pname&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;win_kdvb&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;win_sysproc&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;win_kpcr&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;win_kdbg&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ostype&lt;br&gt;os_type&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;sysmap&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;domid&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;VM地址转换、pid页表转换&quot;&gt;&lt;a href=&quot;#VM地址转换、pid页表转换&quot; class=&quot;headerlink&quot; title=&quot;VM地址转换、pid页表转换&quot;&gt;&lt;/a&gt;VM地址转换、pid页表转换&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vmi_translate_kv2p&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_translate_uv2p&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_translate_ksym2v&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_translate_sym2v  //遍历PE导出表&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_translate_v2sym&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_pid_to_dtb&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_dtb_to_pid&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_pagetable_lookup //虚拟地址转化为物理地址&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_pagetable_lookup_extended&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;VM读写内存&quot;&gt;&lt;a href=&quot;#VM读写内存&quot; class=&quot;headerlink&quot; title=&quot;VM读写内存&quot;&gt;&lt;/a&gt;VM读写内存&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vmi_read(write)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_read(write)_a_b //a=[8,16,32,64,addr,str],b=[pa,va,ksym]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_read_unicode_str_va&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_convert_str_encoding&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_print_hex_a //a=[pa,va,ksym]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;VMIcache操作函数&quot;&gt;&lt;a href=&quot;#VMIcache操作函数&quot; class=&quot;headerlink&quot; title=&quot;VMIcache操作函数&quot;&gt;&lt;/a&gt;VMIcache操作函数&lt;/h3&gt;&lt;p&gt;v2pcache表示内部虚拟地址到物理地址转换&lt;/p&gt;
+&lt;p&gt;symcache 符号到虚拟地址转换&lt;/p&gt;
+&lt;p&gt;rvacache rva到符号的转换&lt;/p&gt;
+&lt;p&gt;pidcache pid到dtb的转换&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vmi_a_add //a=[v2pcache,symcache,rvacache,pidcache]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vmi_a_flush //a=[v2pcache,symcache,rvacache,pidcache]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;事件注册通知&quot;&gt;&lt;a href=&quot;#事件注册通知&quot; class=&quot;headerlink&quot; title=&quot;事件注册通知&quot;&gt;&lt;/a&gt;事件注册通知&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;static inline status_t&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;driver_xen_setup(vmi_instance_t vmi)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver_interface_t driver = &amp;#123; 0 &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.initialized = true;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.init_ptr = &amp;amp;xen_init;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.init_vmi_ptr = &amp;amp;xen_init_vmi;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.destroy_ptr = &amp;amp;xen_destroy;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.get_id_from_name_ptr = &amp;amp;xen_get_domainid_from_name;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.get_name_from_id_ptr = &amp;amp;xen_get_name_from_domainid;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.get_id_ptr = &amp;amp;xen_get_domainid;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.set_id_ptr = &amp;amp;xen_set_domainid;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.check_id_ptr = &amp;amp;xen_check_domainid;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.get_name_ptr = &amp;amp;xen_get_domainname;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.set_name_ptr = &amp;amp;xen_set_domainname;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.get_memsize_ptr = &amp;amp;xen_get_memsize;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.get_vcpureg_ptr = &amp;amp;xen_get_vcpureg;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.set_vcpureg_ptr = &amp;amp;xen_set_vcpureg;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.get_address_width_ptr = &amp;amp;xen_get_address_width;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.read_page_ptr = &amp;amp;xen_read_page;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.write_ptr = &amp;amp;xen_write;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.is_pv_ptr = &amp;amp;xen_is_pv;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.pause_vm_ptr = &amp;amp;xen_pause_vm;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.resume_vm_ptr = &amp;amp;xen_resume_vm;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#if ENABLE_SHM_SNAPSHOT == 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.create_shm_snapshot_ptr = &amp;amp;xen_create_shm_snapshot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.destroy_shm_snapshot_ptr = &amp;amp;xen_destroy_shm_snapshot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.get_dgpma_ptr = &amp;amp;xen_get_dgpma;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#endif&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#if ENABLE_XEN_EVENTS == 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.events_listen_ptr = &amp;amp;xen_events_listen;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.are_events_pending_ptr = &amp;amp;xen_are_events_pending;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.set_reg_access_ptr = &amp;amp;xen_set_reg_access;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.set_intr_access_ptr = &amp;amp;xen_set_intr_access;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.set_mem_access_ptr = &amp;amp;xen_set_mem_access;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.start_single_step_ptr = &amp;amp;xen_start_single_step;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.stop_single_step_ptr = &amp;amp;xen_stop_single_step;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    driver.shutdown_single_step_ptr = &amp;amp;xen_shutdown_single_step;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#endif&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    vmi-&amp;gt;driver = driver;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    return VMI_SUCCESS;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;libvmi提供了大量的库函数用于开发基于VMI的安全软件。&lt;/p&gt;
+&lt;h2 id=&quot;libvmi的接口&quot;&gt;&lt;a href=&quot;#libvmi的接口&quot; class=&quot;headerlink&quot; title=&quot;libvmi的接口&quot;&gt;&lt;/a&gt;libvmi的接口&lt;/h2&gt;&lt;ol&gt;
+&lt;l
+    
+    </summary>
+    
+    
+      <category term="virtualization" scheme="http://mrgao1008.github.io/blog/tags/virtualization/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>fgetc 0x1A EOF</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/01/fgetc%200x1A%20EOF/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/01/fgetc 0x1A EOF/</id>
+    <published>2016-04-01T08:19:00.000Z</published>
+    <updated>2016-04-01T08:19:37.696Z</updated>
+    
+    <content type="html">&lt;p&gt;历史遗留问题，将fopen中的r改为rb即可&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;历史遗留问题，将fopen中的r改为rb即可&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="problem solution" scheme="http://mrgao1008.github.io/blog/tags/problem-solution/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Django(2)视图和Urls</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/01/Django(2)%E8%A7%86%E5%9B%BE%E5%92%8CUrls/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/01/Django(2)视图和Urls/</id>
+    <published>2016-04-01T08:15:00.000Z</published>
+    <updated>2016-04-01T08:17:33.673Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;视图&quot;&gt;&lt;a href=&quot;#视图&quot; class=&quot;headerlink&quot; title=&quot;视图&quot;&gt;&lt;/a&gt;视图&lt;/h2&gt;&lt;p&gt;视图从某种一样上说是web页面，它有固定的模板，负责提供一定的服务。例如博客网站需要视图：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;博客主页–显示最近博客&lt;/li&gt;
+&lt;li&gt;细节页面–显示一篇博客&lt;/li&gt;
+&lt;li&gt;基于年的归档页面–显示给定年份的所有博客&lt;/li&gt;
+&lt;li&gt;基于月的归档页面–显示给定月份的所有博客&lt;/li&gt;
+&lt;li&gt;基于天的归档页面–显示给定日期的所有博客&lt;/li&gt;
+&lt;li&gt;评论功能–处理对博客的评论&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在投票应用中，我们需要4个视图&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Questions索引页–显示最近的Questions&lt;/li&gt;
+&lt;li&gt;Questions细节页–显示Questions的问题和投票表格（不包含结果）&lt;/li&gt;
+&lt;li&gt;Questions结果页–显示Question的结果&lt;/li&gt;
+&lt;li&gt;投票功能–处理对某个Question进行投票&lt;/li&gt;
+&lt;/ul&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;视图&quot;&gt;&lt;a href=&quot;#视图&quot; class=&quot;headerlink&quot; title=&quot;视图&quot;&gt;&lt;/a&gt;视图&lt;/h2&gt;&lt;p&gt;视图从某种一样上说是web页面，它有固定的模板，负责提供一定的服务。例如博客网站需要视图：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;博客主页–显示最近博客
+    
+    </summary>
+    
+    
+      <category term="Django" scheme="http://mrgao1008.github.io/blog/tags/Django/"/>
+    
+      <category term="安装" scheme="http://mrgao1008.github.io/blog/tags/%E5%AE%89%E8%A3%85/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Django(1) 安装和使用</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/01/Django(1)%20%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/01/Django(1) 安装和使用/</id>
+    <published>2016-04-01T08:15:00.000Z</published>
+    <updated>2016-04-01T08:16:58.985Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;Django-安装&quot;&gt;&lt;a href=&quot;#Django-安装&quot; class=&quot;headerlink&quot; title=&quot;Django 安装&quot;&gt;&lt;/a&gt;Django 安装&lt;/h2&gt;&lt;p&gt;&lt;code&gt;easy_install django&lt;/code&gt;即可&lt;/p&gt;
+&lt;h2 id=&quot;使用&quot;&gt;&lt;a href=&quot;#使用&quot; class=&quot;headerlink&quot; title=&quot;使用&quot;&gt;&lt;/a&gt;使用&lt;/h2&gt;&lt;h3 id=&quot;打开web服务器&quot;&gt;&lt;a href=&quot;#打开web服务器&quot; class=&quot;headerlink&quot; title=&quot;打开web服务器&quot;&gt;&lt;/a&gt;打开web服务器&lt;/h3&gt;&lt;p&gt;1.在cmd中输入&lt;code&gt;c:\Python34\Scripts\django-admin.exe startproject mysite&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;project mysite会包含以下文件&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;mysite/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    manage.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    mysite/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        __init__.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        settings.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        urls.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        wsgi.py&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;manage.py:一个实用的命令行工具，可让你以各种方式与该 Django 项目进行交互。 你可以在 django-admin.py and manage.py 中查看关于 manage.py 所有的细节。&lt;/li&gt;
+&lt;li&gt;mysite/__init__.py: 一个空文件，告诉 Python 该目录是一个 Python 包。&lt;/li&gt;
+&lt;li&gt;mysite/settings.py: 该 Django 项目的设置/配置。&lt;/li&gt;
+&lt;li&gt;mysite/urls.py: 该 Django 项目的 URL 声明; 一份由 Django 驱动的网站“目录”。&lt;/li&gt;
+&lt;li&gt;mysite/wsgi.py: 一个 WSGI 兼容的 Web 服务器的入口，以便运行你的项目。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2.开启服务器&lt;br&gt;&lt;code&gt;python manage.py runserver&lt;/code&gt; 可以在浏览器&lt;code&gt;http:\\127.0.0.1:8000&lt;/code&gt;看到服务器已经打开&lt;br&gt;也可以通过&lt;code&gt;python manage.py runserver 8080&lt;/code&gt;来指定端口&lt;/p&gt;
+&lt;h3 id=&quot;有意义的事情（投票系统&quot;&gt;&lt;a href=&quot;#有意义的事情（投票系统&quot; class=&quot;headerlink&quot; title=&quot;有意义的事情（投票系统)&quot;&gt;&lt;/a&gt;有意义的事情（投票系统)&lt;/h3&gt;&lt;p&gt;1.数据库安装和设置(&lt;a href=&quot;1&quot;&gt;manual&lt;/a&gt;)&lt;br&gt;下载&lt;a href=&quot;2&quot;&gt;sqlite下载页面&lt;/a&gt;中&lt;code&gt;sqlite-shell-win32-XXX&lt;/code&gt;和&lt;code&gt;sqlite-dll-win32-XXX&lt;/code&gt;，并解压得到三个文件。利用命令&lt;code&gt;sqlite3 testDB.db&lt;/code&gt;创建数据库。&lt;br&gt;在Django中配置sqlite3.&lt;br&gt;编辑mysite\settings.py中DATABASES中’default’以下值：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ENGINE：从 ‘django.db.backends.postgresql_psycopg2’, ‘django.db.backends.mysql’, ‘django.db.backends.sqlite3’, ‘django.db.backends.oracle’ 中选一个&lt;/li&gt;
+&lt;li&gt;NAME：你的数据库名。如果你使用SQLite，该数据库将是你计算机上的一个文件；在这种情况下，:setting:NAME 将是一个完整的绝对路径，而且还包含该文件的名称。如果该文件不存在，它会在第一次同步数据库时自动创建（见下文）。&lt;/li&gt;
+&lt;li&gt;USER：你的数据库用户名（sqlite不需要）&lt;/li&gt;
+&lt;li&gt;PASSWORD: 你的数据库密码（sqlite不需要）&lt;/li&gt;
+&lt;li&gt;HOST: 你的数据库主机地址（sqlite不需要）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;默认情况下，:setting:INSTALLED_APPS 包含以下应用，这些都是由 Django 提供的：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;django.contrib.auth – 身份验证系统。&lt;/li&gt;
+&lt;li&gt;django.contrib.contenttypes – 内容类型框架。&lt;/li&gt;
+&lt;li&gt;django.contrib.sessions – session 框架。&lt;/li&gt;
+&lt;li&gt;django.contrib.sites – 网站管理框架。&lt;/li&gt;
+&lt;li&gt;django.contrib.messages – 消息框架。&lt;/li&gt;
+&lt;li&gt;django.contrib.staticfiles – 静态文件管理框架。&lt;br&gt;所有这些应用中每个应用至少使用一个数据库表，所以在使用它们之前我们需要创建数据库中的表。要做到这一点，请运行以下命令：&lt;br&gt;&lt;code&gt;python manage.py migrate&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;3.创建APP&lt;/p&gt;
+&lt;p&gt;在manage.py的同一个文件夹创建APP polls&lt;code&gt;python manage.py startapp polls&lt;/code&gt;.polls 文件夹变成这样&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;polls/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    __init__.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    admin.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    apps.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    migrations/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        __init__.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    models.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    tests.py&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    views.py&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;使得app能够被访问&lt;br&gt;在polls/urls.py中添加&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; django.conf.urls &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; url&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; . &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; views&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;urlpatterns = [&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    url(&lt;span class=&quot;string&quot;&gt;r&#39;^$&#39;&lt;/span&gt;, views.index, name=&lt;span class=&quot;string&quot;&gt;&#39;index&#39;&lt;/span&gt;),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;在mysite/urls.py中添加&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; django.conf.urls &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; include, url&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; django.contrib &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; admin&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;urlpatterns = [&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    url(&lt;span class=&quot;string&quot;&gt;r&#39;^polls/&#39;&lt;/span&gt;, include(&lt;span class=&quot;string&quot;&gt;&#39;polls.urls&#39;&lt;/span&gt;)),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    url(&lt;span class=&quot;string&quot;&gt;r&#39;^admin/&#39;&lt;/span&gt;, admin.site.urls),&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;mysite中urls.py按照顺序进行正则匹配。匹配不包含域名和POST、GET等参数。具体查看re&lt;br&gt;模块。&lt;br&gt;一旦匹配成功，Django调用具体的view函数，并给予一个HttpRequest参数。&lt;br&gt;name值全局唯一，方便用来更改匹配方式。&lt;/p&gt;
+&lt;p&gt;4.建立模型&lt;/p&gt;
+&lt;p&gt;在投票系统中创建2个模型：Question和Choice。Question包括问题和发布日期。Choice包括选择和投票计数器。每个Choice都关联到一个Question.&lt;/p&gt;
+&lt;p&gt;实现这些功能需要在polls/models.py中添加下述代码&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; django.db &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; models&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Question&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(models.Model)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    question_text = models.CharField(max_length=&lt;span class=&quot;number&quot;&gt;200&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    pub_date = models.DateTimeField(&lt;span class=&quot;string&quot;&gt;&#39;date published&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Choice&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(models.Model)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    question = models.ForeignKey(Question, on_delete=models.CASCADE)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    choice_text = models.CharField(max_length=&lt;span class=&quot;number&quot;&gt;200&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    votes = models.IntegerField(default=&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其中每一个模型都是django.db.models.Model的子类。每个模型都有一些类变量。每个类变量是Field的子类，代表数据库中一个字段。CharField代码字符变量，DateTimeField代表日期。一些类变量需要参数，这些参数不是在数据库中用到，而是在验证中使用。最后用ForeignKey来告诉Django Choice关联到一个Question. Django支持多对多，多对1,1对1等多种关联关系。&lt;/p&gt;
+&lt;p&gt;5.激活模型&lt;/p&gt;
+&lt;p&gt;添加APP到安装列表(直接在列表最后加入polls好像也没有问题)&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;INSTALLED_APPS = [&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&#39;polls.apps.PollsConfig&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&#39;django.contrib.admin&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&#39;django.contrib.auth&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&#39;django.contrib.contenttypes&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&#39;django.contrib.sessions&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&#39;django.contrib.messages&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;string&quot;&gt;&#39;django.contrib.staticfiles&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;然后运行&lt;code&gt;python manage.py makemigrations polls&lt;/code&gt;告诉Django你对模型做了一些更改（这时是创建模型），改变被存储到migrate中。更改只是以文件的方式存储。根据更改需要对数据库进行相应的操作比如创建表等。就需要用到&lt;code&gt;python manage.py sqlmigrate polls 0001&lt;/code&gt;.你会看到一些SQL语句。（这只是查看对应的SQL语句）。更改需要用到&lt;code&gt;python manage.py migrate&lt;/code&gt;.(另外可以通过python manage.py check查看数据库是否有错。)。&lt;/p&gt;
+&lt;p&gt;migrations提供强大的功能：实时更改模型而不用担心数据库的数据不一致，也不需要重新删除在添加数据库。&lt;br&gt;修改模型的3步：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在models.py中修改模型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;python manage.py makemigrations&lt;/code&gt; 根据修改建立migrations&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;python manage.py migrate&lt;/code&gt; 应用修改到数据库&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;修改模块：添加显示功能&quot;&gt;&lt;a href=&quot;#修改模块：添加显示功能&quot; class=&quot;headerlink&quot; title=&quot;修改模块：添加显示功能&quot;&gt;&lt;/a&gt;修改模块：添加显示功能&lt;/h4&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; django.db &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; models&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; django.utils.encoding &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; python_2_unicode_compatible&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@python_2_unicode_compatible  # only if you need to support Python 2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Question&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(models.Model)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# ...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;__str__&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; self.question_text&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;@python_2_unicode_compatible  # only if you need to support Python 2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Choice&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(models.Model)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# ...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;__str__&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; self.choice_text&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&quot;添加自定义方法&quot;&gt;&lt;a href=&quot;#添加自定义方法&quot; class=&quot;headerlink&quot; title=&quot;添加自定义方法&quot;&gt;&lt;/a&gt;添加自定义方法&lt;/h4&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; datetime&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; django.db &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; models&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; django.utils &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; timezone&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Question&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(models.Model)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;# ...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;was_published_recently&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(self)&lt;/span&gt;:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; self.pub_date &amp;gt;= timezone.now() - datetime.timedelta(days=&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;6.创建admin&lt;/p&gt;
+&lt;p&gt;利用命令&lt;code&gt;python manage.py createsuperuser&lt;/code&gt;创建admin用户。&lt;code&gt;python manage.py runserver&lt;/code&gt;后，打开&lt;a href=&quot;http://127.0.0.1:8000/admin/.进去后你可以看到可以修改的Groups和Users.这部分由django.contrib.auth认证框架提供。&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://127.0.0.1:8000/admin/.进去后你可以看到可以修改的Groups和Users.这部分由django.contrib.auth认证框架提供。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;7.注册polls(让polls app可以在网页中修改。)&lt;/p&gt;
+&lt;p&gt;在polls/admin.py中添加&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; django.contrib &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; admin&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; .models &lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; Question&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;admin.site.register(Question)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Django-安装&quot;&gt;&lt;a href=&quot;#Django-安装&quot; class=&quot;headerlink&quot; title=&quot;Django 安装&quot;&gt;&lt;/a&gt;Django 安装&lt;/h2&gt;&lt;p&gt;&lt;code&gt;easy_install django&lt;/code&gt;即可&lt;/p&gt;
+&lt;h2
+    
+    </summary>
+    
+    
+      <category term="Django" scheme="http://mrgao1008.github.io/blog/tags/Django/"/>
+    
+      <category term="安装" scheme="http://mrgao1008.github.io/blog/tags/%E5%AE%89%E8%A3%85/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/01/%E6%80%8E%E4%B9%88%E5%9C%A8sublime%E4%B8%AD%E5%86%99markdown/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/01/怎么在sublime中写markdown/</id>
+    <published>2016-04-01T07:43:47.758Z</published>
+    <updated>2016-04-01T07:43:47.758Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;怎么在Sublime中写Markdown&quot;&gt;&lt;a href=&quot;#怎么在Sublime中写Markdown&quot; class=&quot;headerlink&quot; title=&quot;怎么在Sublime中写Markdown&quot;&gt;&lt;/a&gt;怎么在Sublime中写Markdown&lt;/h1&gt;&lt;p&gt;Tags:sublime markdown&lt;/p&gt;
+&lt;h2 id=&quot;Sublime安装&quot;&gt;&lt;a href=&quot;#Sublime安装&quot; class=&quot;headerlink&quot; title=&quot;Sublime安装&quot;&gt;&lt;/a&gt;Sublime安装&lt;/h2&gt;&lt;p&gt;Sublime2官网:&lt;a href=&quot;http://www.sublimetext.com/2&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.sublimetext.com/2&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Sublime3官网:&lt;a href=&quot;http://www.sublimetext.com/3&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.sublimetext.com/3&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;安装Markdown-Preview&quot;&gt;&lt;a href=&quot;#安装Markdown-Preview&quot; class=&quot;headerlink&quot; title=&quot;安装Markdown Preview&quot;&gt;&lt;/a&gt;安装Markdown Preview&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;sublime2（&lt;code&gt;未验证&lt;/code&gt;）&lt;/strong&gt;&lt;br&gt;打开Ctrl+~,输入如下代码：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;import urllib2,os; pf=&amp;apos;Package Control.sublime-package&amp;apos;; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), &amp;apos;wb&amp;apos; ).write( urllib2.urlopen( &amp;apos;http://sublime.wbond.net/&amp;apos; +pf.replace( &amp;apos; &amp;apos;,&amp;apos;%20&amp;apos; )).read()); print( &amp;apos;Please restart Sublime Text to finish installation&amp;apos;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;sublime3（&lt;code&gt;未验证&lt;/code&gt;)&lt;/strong&gt;&lt;br&gt;打开Ctrl+~,输入如下代码&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;import urllib.request,os; pf = &amp;apos;Package Control.sublime-package&amp;apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &amp;apos;wb&amp;apos;).write(urllib.request.urlopen( &amp;apos;http://sublime.wbond.net/&amp;apos; + pf.replace(&amp;apos; &amp;apos;,&amp;apos;%20&amp;apos;)).read())&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Ctrl+Shift+p 打开Package Control 输入install,选择 install package&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mrgao1008/picture/master/sublime_install_package.png&quot; alt=&quot;install_package&quot;&gt;&lt;/p&gt;
+&lt;p&gt;-. 输入markdown 选择preview安装&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mrgao1008/picture/master/markdown_preview.png&quot; alt=&quot;markdown_preview&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Markdown基本语法&quot;&gt;&lt;a href=&quot;#Markdown基本语法&quot; class=&quot;headerlink&quot; title=&quot;Markdown基本语法&quot;&gt;&lt;/a&gt;Markdown基本语法&lt;/h2&gt;&lt;h3 id=&quot;标题&quot;&gt;&lt;a href=&quot;#标题&quot; class=&quot;headerlink&quot; title=&quot;标题&quot;&gt;&lt;/a&gt;标题&lt;/h3&gt;&lt;p&gt;通过在句首加入#，表示标题&lt;/p&gt;
+&lt;h1 id=&quot;标题1&quot;&gt;&lt;a href=&quot;#标题1&quot; class=&quot;headerlink&quot; title=&quot;标题1&quot;&gt;&lt;/a&gt;标题1&lt;/h1&gt;&lt;h2 id=&quot;标题2&quot;&gt;&lt;a href=&quot;#标题2&quot; class=&quot;headerlink&quot; title=&quot;标题2&quot;&gt;&lt;/a&gt;标题2&lt;/h2&gt;&lt;p&gt;…&lt;/p&gt;
+&lt;h6 id=&quot;标题6&quot;&gt;&lt;a href=&quot;#标题6&quot; class=&quot;headerlink&quot; title=&quot;标题6&quot;&gt;&lt;/a&gt;标题6&lt;/h6&gt;&lt;h3 id=&quot;代码&quot;&gt;&lt;a href=&quot;#代码&quot; class=&quot;headerlink&quot; title=&quot;代码&quot;&gt;&lt;/a&gt;代码&lt;/h3&gt;&lt;p&gt;用&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;```&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;int main()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	printf(&amp;quot;hello world\n&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;图片&quot;&gt;&lt;a href=&quot;#图片&quot; class=&quot;headerlink&quot; title=&quot;图片&quot;&gt;&lt;/a&gt;图片&lt;/h3&gt;&lt;p&gt;为了使的图片在互联网上能够访问，需要将图片上传到网盘上，比如github.&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;![name](url)来表示图片&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;链接&quot;&gt;&lt;a href=&quot;#链接&quot; class=&quot;headerlink&quot; title=&quot;链接&quot;&gt;&lt;/a&gt;链接&lt;/h3&gt;&lt;p&gt;链接和图片类似&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[name](url)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;加粗和斜体&quot;&gt;&lt;a href=&quot;#加粗和斜体&quot; class=&quot;headerlink&quot; title=&quot;加粗和斜体&quot;&gt;&lt;/a&gt;加粗和斜体&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;加粗&lt;/strong&gt;&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;**加粗**&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;斜体&lt;/em&gt;&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;*斜体*&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;怎么在Sublime中写Markdown&quot;&gt;&lt;a href=&quot;#怎么在Sublime中写Markdown&quot; class=&quot;headerlink&quot; title=&quot;怎么在Sublime中写Markdown&quot;&gt;&lt;/a&gt;怎么在Sublime中写Markdown&lt;/h1&gt;&lt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/01/hello-world/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/01/hello-world/</id>
+    <published>2016-04-01T06:50:13.502Z</published>
+    <updated>2016-04-01T06:50:13.502Z</updated>
+    
+    <content type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/generating.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Generating&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Deploy-to-remote-sites&quot;&gt;&lt;a href=&quot;#Deploy-to-remote-sites&quot; class=&quot;headerlink&quot; title=&quot;Deploy to remote sites&quot;&gt;&lt;/a&gt;Deploy to remote sites&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/deployment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Deployment&lt;/a&gt;&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>c++ 学习文档</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/01/c++%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/01/c++学习文档/</id>
+    <published>2016-03-31T16:00:00.000Z</published>
+    <updated>2016-04-01T07:58:38.899Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;c-学习文档&quot;&gt;&lt;a href=&quot;#c-学习文档&quot; class=&quot;headerlink&quot; title=&quot;c++ 学习文档&quot;&gt;&lt;/a&gt;c++ 学习文档&lt;/h1&gt;&lt;p&gt;&lt;em&gt;C++Primer中文版（第四版）&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&quot;第二章-变量和基本类型&quot;&gt;&lt;a href=&quot;#第二章-变量和基本类型&quot; class=&quot;headerlink&quot; title=&quot;第二章-变量和基本类型&quot;&gt;&lt;/a&gt;第二章-变量和基本类型&lt;/h2&gt;&lt;h3 id=&quot;基本内置类型&quot;&gt;&lt;a href=&quot;#基本内置类型&quot; class=&quot;headerlink&quot; title=&quot;基本内置类型&quot;&gt;&lt;/a&gt;基本内置类型&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;类型&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;th&gt;最小存储空间&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;bool&lt;/td&gt;
+&lt;td&gt;布尔型&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;char&lt;/td&gt;
+&lt;td&gt;字符型&lt;/td&gt;
+&lt;td&gt;8位&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;wchar_t&lt;/td&gt;
+&lt;td&gt;宽字符型&lt;/td&gt;
+&lt;td&gt;16位&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;short&lt;/td&gt;
+&lt;td&gt;短整型&lt;/td&gt;
+&lt;td&gt;16位&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int&lt;/td&gt;
+&lt;td&gt;整型&lt;/td&gt;
+&lt;td&gt;16位&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;long&lt;/td&gt;
+&lt;td&gt;长整型&lt;/td&gt;
+&lt;td&gt;32位&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;float&lt;/td&gt;
+&lt;td&gt;单精度浮点型&lt;/td&gt;
+&lt;td&gt;6位有效数字&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;double&lt;/td&gt;
+&lt;td&gt;双精度浮点型&lt;/td&gt;
+&lt;td&gt;10位有效数字&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;long double&lt;/td&gt;
+&lt;td&gt;扩展精度浮点型&lt;/td&gt;
+&lt;td&gt;10位有效数字&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&quot;字面值常量表示方式&quot;&gt;&lt;a href=&quot;#字面值常量表示方式&quot; class=&quot;headerlink&quot; title=&quot;字面值常量表示方式&quot;&gt;&lt;/a&gt;字面值常量表示方式&lt;/h4&gt;&lt;p&gt;10,8,16进制表示方式.以0开头的常量表示8进制，以0x或0X开头的表示十六进制。字面值整数常量的类型默认为int或long。其精度类型决定于字面值。通过增加后缀，能够强制将字面值整数常量转换为long,unsigned,unsigned long类型。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;20 // decimal&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;024 // octal&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;0x14 // hexdecimal&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;128u /* unsigned */  1024UL /* unsigned long */&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1L /* long*/ 8Lu /* unsigned long*/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;通常可以用十进制或者科学计数法来表示浮点字面值常量。指数用E或e表示，默认为double。在数值后加上F或f表示单精度。加上L或l表示扩展精度（不提倡使用l,因为和1很像）。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;3.14159F .001f 12.345L 0.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3.14159E0f 1E-3F 1.2345E1L 0e0&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;布尔用true和false。字符型用单引号。不可打印的可以用转义字符。也可以用通用转义字符\ooo(3个8进制数字).16进制表示为\xddd&lt;/p&gt;
+&lt;h4 id=&quot;变量&quot;&gt;&lt;a href=&quot;#变量&quot; class=&quot;headerlink&quot; title=&quot;变量&quot;&gt;&lt;/a&gt;变量&lt;/h4&gt;&lt;p&gt;变量提供了程序可以操作的有名字的存储区。C++程序员常把变量称为”变量”&lt;/p&gt;
+&lt;p&gt;C++两种表达式：左值（可以出现在赋值语句左边和右边）和右值（只能出现在赋值语句右边）。&lt;/p&gt;
+&lt;p&gt;对象就是内存中具有类型的区域。计算左值表达式就会产生对象。&lt;/p&gt;
+&lt;p&gt;变量名，即变量的标识符，可以由字符、数字和下划线组成。变量名必须以字母或下划线开头，并且区分大小写字母。变量名不应该太长。&lt;/p&gt;
+&lt;p&gt;变量命名习惯&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;变量名一般用小写字母。&lt;/li&gt;
+&lt;li&gt;标识符应该使用能够帮助记忆的名字&lt;/li&gt;
+&lt;li&gt;2中风格。student_loan 或 studenLoan&lt;/li&gt;
+&lt;/ul&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;c-学习文档&quot;&gt;&lt;a href=&quot;#c-学习文档&quot; class=&quot;headerlink&quot; title=&quot;c++ 学习文档&quot;&gt;&lt;/a&gt;c++ 学习文档&lt;/h1&gt;&lt;p&gt;&lt;em&gt;C++Primer中文版（第四版）&lt;/em&gt;&lt;/p&gt;
+&lt;h2 id=&quot;第二章-变量和基本类型
+    
+    </summary>
+    
+    
+      <category term="c++" scheme="http://mrgao1008.github.io/blog/tags/c/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>exe文件分解</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/01/exe%E6%96%87%E4%BB%B6%E5%88%86%E8%A7%A3/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/01/exe文件分解/</id>
+    <published>2016-03-31T16:00:00.000Z</published>
+    <updated>2016-04-01T08:18:43.396Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;分解算法&quot;&gt;&lt;a href=&quot;#分解算法&quot; class=&quot;headerlink&quot; title=&quot;分解算法&quot;&gt;&lt;/a&gt;分解算法&lt;/h2&gt;&lt;h2 id=&quot;PE文件载入步骤&quot;&gt;&lt;a href=&quot;#PE文件载入步骤&quot; class=&quot;headerlink&quot; title=&quot;PE文件载入步骤&quot;&gt;&lt;/a&gt;PE文件载入步骤&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;文件Load进入内存        （ReadFile）&lt;/li&gt;
+&lt;li&gt;申请内存存放不同的节    （placeSection）&lt;/li&gt;
+&lt;li&gt;载入dll和设置IAT        （loadDll and setIAT）&lt;/li&gt;
+&lt;li&gt;重定位                （funcReloc）&lt;/li&gt;
+&lt;li&gt;运行EXE或者DLL        （doEntryPoint）&lt;/li&gt;
+&lt;/ul&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;分解算法&quot;&gt;&lt;a href=&quot;#分解算法&quot; class=&quot;headerlink&quot; title=&quot;分解算法&quot;&gt;&lt;/a&gt;分解算法&lt;/h2&gt;&lt;h2 id=&quot;PE文件载入步骤&quot;&gt;&lt;a href=&quot;#PE文件载入步骤&quot; class=&quot;headerlink&quot; title=&quot;P
+    
+    </summary>
+    
+    
+      <category term="None" scheme="http://mrgao1008.github.io/blog/tags/None/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>网站访问记录</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/01/%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E8%AE%B0%E5%BD%95/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/01/网站访问记录/</id>
+    <published>2016-03-31T16:00:00.000Z</published>
+    <updated>2016-04-01T08:02:20.426Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;网站访问记录&quot;&gt;&lt;a href=&quot;#网站访问记录&quot; class=&quot;headerlink&quot; title=&quot;网站访问记录&quot;&gt;&lt;/a&gt;网站访问记录&lt;/h1&gt;&lt;h2 id=&quot;1-记录访问的时间，ip，次数。&quot;&gt;&lt;a href=&quot;#1-记录访问的时间，ip，次数。&quot; class=&quot;headerlink&quot; title=&quot;1.记录访问的时间，ip，次数。&quot;&gt;&lt;/a&gt;1.记录访问的时间，ip，次数。&lt;/h2&gt;&lt;h2 id=&quot;2-画图&quot;&gt;&lt;a href=&quot;#2-画图&quot; class=&quot;headerlink&quot; title=&quot;2.画图&quot;&gt;&lt;/a&gt;2.画图&lt;/h2&gt;&lt;h2 id=&quot;3-可视化&quot;&gt;&lt;a href=&quot;#3-可视化&quot; class=&quot;headerlink&quot; title=&quot;3.可视化&quot;&gt;&lt;/a&gt;3.可视化&lt;/h2&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;网站访问记录&quot;&gt;&lt;a href=&quot;#网站访问记录&quot; class=&quot;headerlink&quot; title=&quot;网站访问记录&quot;&gt;&lt;/a&gt;网站访问记录&lt;/h1&gt;&lt;h2 id=&quot;1-记录访问的时间，ip，次数。&quot;&gt;&lt;a href=&quot;#1-记录访问的时间，ip，次数。&quot; cla
+    
+    </summary>
+    
+    
+      <category term="site" scheme="http://mrgao1008.github.io/blog/tags/site/"/>
+    
+  </entry>
+  
+</feed>
