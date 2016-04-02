@@ -52,6 +52,824 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-04-01T16:00:00.000Z"><a href="/blog/2016/04/02/Windows API hook 开发环境配置/">2016-04-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/02/Windows API hook 开发环境配置/">Windows API Hook 开发环境配置</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><span id="top"></span><br><!-- MarkdownTOC --></p>
+<ul>
+<li><a href="#detours安装和配置">Detours安装和配置</a><ul>
+<li><a href="#detours介绍">Detours介绍</a></li>
+<li><a href="#detours安装">Detours安装</a></li>
+<li><a href="#detours编译">Detours编译</a></li>
+</ul>
+</li>
+<li><a href="#windows-api-hook例子">Windows API Hook例子</a><ul>
+<li><a href="#加入detours头文件和动态库文件">加入detours头文件和动态库文件</a></li>
+</ul>
+</li>
+<li><a href="#利用withdll进行远程dll注入">利用withdll进行远程dll注入</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+<p><a name="detours安装和配置"></a></p>
+<h2 id="Detours安装和配置"><a href="#Detours安装和配置" class="headerlink" title="Detours安装和配置"></a>Detours安装和配置</h2><p><a name="detours介绍"></a></p>
+<h3 id="Detours介绍"><a href="#Detours介绍" class="headerlink" title="Detours介绍"></a>Detours介绍</h3><p>Detours是Windows下一个API Hook 开源框架。<br><a href="http://research.microsoft.com/en-us/projects/detours/" target="_blank" rel="external">Detours官网</a><br><a href="http://research.microsoft.com/en-us/downloads/d36340fb-4d3c-4ddd-bf5b-1db25d03713d/default.aspx" target="_blank" rel="external">Detours 3.0下载地址</a></p>
+<p><a name="detours安装"></a></p>
+<h3 id="Detours安装"><a href="#Detours安装" class="headerlink" title="Detours安装"></a>Detours安装</h3><p>msi文件一路next。记下安装目录。</p>
+<p><a name="detours编译"></a></p>
+<h3 id="Detours编译"><a href="#Detours编译" class="headerlink" title="Detours编译"></a>Detours编译</h3><p>安装完成后，进入目录<code>C:\Program Files\Microsoft Research\Detours Express 3.0</code>会看到下面的目录结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">samples\</span><br><span class="line">	...</span><br><span class="line">	simple\</span><br><span class="line">	...</span><br><span class="line">	withdll\</span><br><span class="line">	...</span><br><span class="line">src\</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>其中src是需要编译的detours源码。simple和withdll是实现windows API Hook需要用到的2个示例。</p>
+<p>编译步骤如下:</p>
+<ul>
+<li>以管理员权限启动cmd</li>
+<li><p>设置环境变量，不然nmake会出错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &quot;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\vcvars32.bat&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入detours的src文件夹并进行编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\src</span><br><span class="line"># nmake</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>编译在src和samples同一目录会生成lib.X86文件夹，里面的detours.lib就是我们需要的。</p>
+<p><a name="windows-api-hook例子"></a></p>
+<h2 id="Windows-API-Hook例子"><a href="#Windows-API-Hook例子" class="headerlink" title="Windows API Hook例子"></a>Windows API Hook例子</h2><p><a name="加入detours头文件和动态库文件"></a></p>
+<h3 id="加入detours头文件和动态库文件"><a href="#加入detours头文件和动态库文件" class="headerlink" title="加入detours头文件和动态库文件"></a>加入detours头文件和动态库文件</h3><p>在vs中新建windows控制台程序，设置解决方案的属性。</p>
+<ul>
+<li>打开<strong>项目</strong>–<strong>XXX 属性</strong></li>
+<li><p><strong>配置属性</strong>–<strong>C/C++</strong>–<strong>常规</strong> 在<strong>附加目录项</strong>中加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\include</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>配置属性</strong>–<strong>链接器</strong>–<strong>常规</strong> 在<strong>附加库目录</strong>中加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\lib.X86</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>配置属性</strong>–<strong>链接器</strong>–<strong>输入</strong> 在<strong>附加依赖项</strong>中加入<code>detours.lib</code></p>
+</li>
+<li><strong>配置属性</strong>–<strong>C/C++</strong>–<strong>代码生成</strong> 在<strong>运行库</strong>选择<code>/MT</code></li>
+<li><strong>配置属性</strong>–<strong>常规</strong> 在<strong>字符集</strong>选择<code>未设置</code></li>
+<li>在命令栏中选择<code>release</code>版本</li>
+</ul>
+<h4 id="withdll的编译"><a href="#withdll的编译" class="headerlink" title="withdll的编译"></a>withdll的编译</h4><p>在源文件中新建cpp文件，拷贝detours安装目录下的<code>samples\withdll\withdll.cpp</code>内容到cpp中。编译。</p>
+<h4 id="simple的编译"><a href="#simple的编译" class="headerlink" title="simple的编译"></a>simple的编译</h4><p>在vs新建项目时，选择windows控制台程序，并选择dll。设置解决方案属性。拷贝<code>samples\simple\simple.cpp</code>到新建的cpp文件中，编译。</p>
+<p><a name="利用withdll进行远程dll注入"></a></p>
+<h2 id="利用withdll进行远程dll注入"><a href="#利用withdll进行远程dll注入" class="headerlink" title="利用withdll进行远程dll注入"></a>利用withdll进行远程dll注入</h2><p><code>withdll /d:simple.dll a.exe</code>会将simple.dll注入到a.exe中。注意<code>/d:simple.dll</code>分号后不要有空格。exe和dll用绝对地址和相对地址都可以。</p>
+<p><a href="#top">回到顶部</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T16:00:00.000Z"><a href="/blog/2016/04/02/锁与进程间通信/">2016-04-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/02/锁与进程间通信/">锁与进程间通信</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p><strong>竞态条件(race condition)</strong>是几个进程在访问资源时彼此干扰的情况。</p>
+<p>难点在于：无法通过测试完全找到竞态条件，只有彻底研究源代码并通过敏锐的直觉，才能找到并消除竞态条件。</p>
+<p><strong>临界区(Critical section)</strong><br>是在并行编程中，一段不能被多个处理器同时执行的代码。</p>
+<p>解决方法：</p>
+<p>信号量(semaphore):受保护的特殊变量。初始值为1。有2个标准操作up和down。在一个进程试图进入临界区时，调用down函数。这会将信号量减1，即将其设置为0，然后执行临界区代码。在执行操作完成后，调用up函数将信号量加1，即重置为初始值。信号量有下面2中特性：</p>
+<p>（1）又一个进程试图进入临界区，首先必须对信号量执行down操作。因为信号量当前值为0，会导致进程在该信号量上“睡眠”，直到前一个进程退出。</p>
+<p>（2）进程退出临界区，执行up操作。不仅将信号量加1，而且还会选择一个在该信号量上睡眠的进程。</p>
+<p><strong>查询和修改信号量的操作比如为原子的，反正竞态条件。</strong></p>
+<p>各种锁：</p>
+<ul>
+<li>原子操作:保证简单的计数器加1可以原子执行</li>
+<li>自旋锁:用于短期保护某段代码，以防止其他处理器访问</li>
+<li>信号量：在等待信号量释放时，进入睡眠，直至被唤醒，内核重新尝试获取信号量</li>
+<li>读写锁：区分对数据结构的两种不同类型的操作。任何数目的处理器都可以对数据结构进行并发<strong>读</strong>,但是只有一个处理器能进行<strong>写</strong>操作。</li>
+</ul>
+<h2 id="原子操作"><a href="#原子操作" class="headerlink" title="原子操作"></a>原子操作</h2><p>原子类型为<code>atomic_t</code>，定义在<code>&lt;asm-arch/atomic.h&gt;</code>中。原子类型只能借助<code>ATOMIC_INIT</code>宏初始化。原子类型是基于c语言通用类型实现，不能用++等操作。</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>atomic_read(atomic_t *v)</td>
+<td>读取原子变量的值</td>
+</tr>
+<tr>
+<td>atomic_set(atomic_t *v, int i)</td>
+<td>将v设置为i</td>
+</tr>
+<tr>
+<td>atomic_add(int i, atomic_t *v)</td>
+<td>将i加到v</td>
+</tr>
+<tr>
+<td>atomic_add_return(int i, atomic_t *v)</td>
+<td>将i加到v，并返回结果</td>
+</tr>
+<tr>
+<td>atomic_sub(int i, atomic_t *v)</td>
+<td>从v减去i</td>
+</tr>
+<tr>
+<td>atomic_sub_return(int i, atomic_t *v)</td>
+<td>从v减去i，并返回结果</td>
+</tr>
+<tr>
+<td>atomic_inc(atomic_t *v)</td>
+<td>将v加1</td>
+</tr>
+<tr>
+<td>atomic_inc_and_test(atomic_t *v)</td>
+<td>将v加1。结果如果为0则返回true，否则返回false</td>
+</tr>
+<tr>
+<td>atomic_dec(atomic_t *v)</td>
+<td>从v减1</td>
+</tr>
+<tr>
+<td>atomic_dec_and_test(atomic_t *v)</td>
+<td>从v减1。结果如果为0则返回true，否则返回false</td>
+</tr>
+<tr>
+<td>atomic_add_negative(int i, atomic_i *v)</td>
+<td>将i加到v.如果结果小于0则返回true,否则返回false</td>
+</tr>
+</tbody>
+</table>
+<p>local_t类型，允许在单个CPU上原子操作。</p>
+<h2 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h2><p>自旋锁用于保护段的代码段，其中只包含少量c语言，因此会很快执行完毕。</p>
+<p>自旋锁通过spinlock_t数据结构实现，基本可以使用spin_lock和spin_unlock操作。还有其他一些自旋锁操作：spin_lock_irqsave不仅获得自旋锁，还停用本地cpu的中断，而sin_lock_bh则停用softIRQ。这两个操作获得的自旋锁必须用对应的接口释放，分别是spin_unlock_irqsave和spin_unlock_bh。</p>
+<h2 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;asm-arch/semaphore.h&gt;</span><br><span class="line">struct semaphor &#123;</span><br><span class="line">	atomic_t count;</span><br><span class="line">	int sleepers;</span><br><span class="line">	wait_queue_head_t wait;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>与自旋锁相比，信号量适合于保护更长的临界区，以防止并行访问。但它们不应该用于保护较短的代码范围，因为竞争信号量时需要使进程睡眠和再次唤醒，代价很高。</p>
+<h2 id="RCU机制"><a href="#RCU机制" class="headerlink" title="RCU机制"></a>RCU机制</h2><p>RCU(read-copy-update)是一个相当新的同步机制。RCU对使用者提出一些约束</p>
+<ul>
+<li>对共享资源的访问在大部分时间应该是只读的，写访问应该相对很少。</li>
+<li>在RCU保护的代码范围内，内核不能进入睡眠状态。</li>
+<li>受保护资源必须通过指针访问。</li>
+</ul>
+<p>RCU原理很简单:该机制记录了指向共享数据结构的指针的所有使用者。在该结构将要改变时，则首先创建一个副本（或一个新的实例，填充适当的内容，这没什么差别），在副本中修改。在所有进行读访问的使用者结束对旧副本的读取之后，指针可以替换为指向新的、修改后副本的指针。请注意，这种机制允许读写并发执行。</p>
+<h3 id="核心API"><a href="#核心API" class="headerlink" title="核心API"></a>核心API</h3><p>假定指针ptr指向一个被RCU保护的数据结构。直接反引用指针是禁止的，首先必须调用rcu_dereference(ptr)，然后反引用返回的结果。此外，凡引用指针并使用其结果的代码，需要用rcu_read_lock和rcu_read_unlock调用保护起来：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">rcu_read_lock();</span><br><span class="line"></span><br><span class="line">p = rcu_derefence(ptr);</span><br><span class="line">if (p != NULL) &#123;</span><br><span class="line">	awesome_function(p);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">rcu_read_unlock();</span><br></pre></td></tr></table></figure>
+<p><strong>被反映用的指针不能在rcu_read_lock和rcu_read_unlock保护代码范围之外使用，也不能用于写访问</strong></p>
+<p>如果必须修改ptr指向的对象，则需要使用rcu_assign_pointer:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">struct super_duper *new_ptr = kmalloc(...);</span><br><span class="line"></span><br><span class="line">new_ptr-&gt;meaing = xyz;</span><br><span class="line">new_ptr-&gt;of = 42;</span><br><span class="line">new_ptr-&gt;life = 23;</span><br><span class="line"></span><br><span class="line">rcu_assign_pointer(ptr, new_ptr);</span><br></pre></td></tr></table></figure>
+<p>按RCU的术语，该操作公布了这个指针，后续的读取操作将看到新的结构，而不是原来的。<br><strong>如果更新可能来自内核中许多地方，那么必须使用普通的同步源于防止并发的写操作，如自旋锁。尽管RCU能保护读访问不受写访问的干扰，但它不对写访问之间的相互干扰提供防护！</strong></p>
+<p>synchronize_rcu()等待所有现存的读访问完成。在函数返回之后，释放与原指针关联的内存是安全的。</p>
+<p>call_rcu可用于注册一个函数，在所有针对共享资源的读访问完成以后调用。这要求将一个rcu_read实例嵌入（不能通过指针）到RCU保护的数据结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">struct super_duper &#123;</span><br><span class="line">	struct rcu_head head;</span><br><span class="line">	int meaning, of, life;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>该回调函数可通过参数访问对象的rcu_head成员，进而使用container_of机制访问对象本身。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kernel/rcuupdate.c</span><br><span class="line">void fastcall call_rcu(struct rcu_head * head, void(*func)(struct rcu_head *rcu))</span><br></pre></td></tr></table></figure></p>
+<h3 id="链表操作"><a href="#链表操作" class="headerlink" title="链表操作"></a>链表操作</h3><p>RCU能保护的，不仅仅是一般的指针。内核也提供了标准函数，使得能通过RCU机制保护双链表，这是RCU机制在内核内部最重要的应用。此外，由struct hlist_head和struct hlist_node组成的散列表也可以通过RCU保护。</p>
+<p>有关通过RCU保护的链表，好消息是仍然可以使用标准的链表元素。只有在遍历链表、修改和删除链表元素时，必须调用标准函数的RCU变体。函数名称是在标准函数之后附加_rcu后缀。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;list.h&gt;</span><br><span class="line">static inline void list_add_rcu(struct list_head *new,struct list_head *head)</span><br><span class="line">static inline void list_add_tail_rcu(struct list_head *new,struct list_head *head)</span><br><span class="line">static inline void list_del_rcu(struct list_head *entry)</span><br><span class="line">static inline void list_replace_rcu(struct list_head *old,struct list_head *new)</span><br></pre></td></tr></table></figure></p>
+<p>还有list_for_each_rcu允许遍历链表的所有元素。而list_for_each_rcu_safe甚至对删除链表元素也是安全的。这两个操作都必须通过一对rcu_read_lock()和rcu_read_unlock()包围。</p>
+<h2 id="内存和优化屏障"><a href="#内存和优化屏障" class="headerlink" title="内存和优化屏障"></a>内存和优化屏障</h2><h2 id="读-写锁"><a href="#读-写锁" class="headerlink" title="读/写锁"></a>读/写锁</h2><p>读写信号量和读写自旋锁。</p>
+<p>读写自旋锁定义为rwlock_t。必须根据读写访问，以不同的方法获取锁。</p>
+<p>进程对临界区进行读访问时，在进入和离开是需要分别执行read_lock和read_unlock。内核允许任意数目的读进程并发访问临界区。</p>
+<p>write_lock和write_unlock用于写访问。内核保证只有一个写进程（此时没有读进程）能够处于临界区。</p>
+<p>_irq_irqsave变体也同样可用，运作方式如果普通的自旋锁。以_bh结果的变体也是可用的，用于停用软件中断，但硬件中断中断仍然是开启的。</p>
+<h2 id="大内核锁"><a href="#大内核锁" class="headerlink" title="大内核锁"></a>大内核锁</h2><h2 id="互斥量"><a href="#互斥量" class="headerlink" title="互斥量"></a>互斥量</h2><p>尽管信号量可用于实现互斥量的功能，信号量的通用性导致的开销通常是不必要的。因此，内核包含了一个专用互斥量的独立实现，他们不依赖于信号量。<strong>互斥量是信号量的特例，count为1时</strong></p>
+<ul>
+<li><p>经典的互斥量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;mutex.h&gt;</span><br><span class="line">struct mutex &#123;</span><br><span class="line">	/* 1: 未锁定， 0： 锁定， 负值： 锁定，可能有等待者*/</span><br><span class="line">	atomic_t count;</span><br><span class="line">	spinlock_t wait_lock;</span><br><span class="line">	struct list_head wait_list;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实时互斥量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;rtmutex.h&gt;</span><br><span class="line">struct rt_mutex &#123;</span><br><span class="line">	spinlock_t wait_lock;</span><br><span class="line">	struct plist_head wait_list;</span><br><span class="line">	struct task_struct *owner;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="近似的per-CPU计数器"><a href="#近似的per-CPU计数器" class="headerlink" title="近似的per-CPU计数器"></a>近似的per-CPU计数器</h2><p>对于某些计数器没必要时时了解其准确值。</p>
+<h2 id="锁竞争与细粒度锁"><a href="#锁竞争与细粒度锁" class="headerlink" title="锁竞争与细粒度锁"></a>锁竞争与细粒度锁</h2>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T16:00:00.000Z"><a href="/blog/2016/04/02/数据库系统原理与应用（第三版）1/">2016-04-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/02/数据库系统原理与应用（第三版）1/">第五章 关系模型</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>关系模型是一种以二维表的形式表示实体数据和实体之间关系等信息的数据库模型。</p>
+<p>在关系模型中，基本元素包括属性、模式、元祖、域、键码、关系等价表示法以及关系实例等。</p>
+<p><strong>属性</strong> 在二维表中，关系的第一行成为属性（attribute），它描述了属性所在列各项的含义。</p>
+<p><strong>模式</strong> 关系名和关系的属性集成为关系的模式。一般地，模式的表示形式有两种。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">第一种：</span><br><span class="line">	模式名(属性1,属性2,...,属性n)</span><br><span class="line">	例如：</span><br><span class="line">	Book(isbn,titlle,page,bookType,year,price)</span><br><span class="line">第二种：</span><br><span class="line">	模式名=(属性1,属性2,...,属性n)</span><br><span class="line">	例如：</span><br><span class="line">	Book=(isbn,titlle,page,bookType,year,price)</span><br></pre></td></tr></table></figure>
+<p>关系的概念对应于程序设计语言中变量的概念，而关系模式的概念对应于程序设计语言中类型定义的概念。</p>
+<p>关系模式中的属性是一个<strong>集合</strong>，而不是<strong>列表</strong>，所以关系模式中属性的顺序不重要。但是便于讨论，一般为关系模式中的属性规定一个标准的排列顺序。</p>
+<p>当谈论数据库时，还必须区分关系模式和关系实例的概念。关系模式是一个逻辑设计包括了关系名和关系属性，相对比较稳定。而关系实例是定义的关系模式中数据的快照，相对来说经常发生变化。</p>
+<p>在关系模型中，数据库设计包含了一个或多个关系模式。关系数据库模式就是关系模式的集合，简称数据库模式。</p>
+<p><strong>元祖</strong> 在关系模式中，除了第一行是标题栏之外，关系中的其他行成为元组。元组实际上是关系中的数据。</p>
+<p><strong>域</strong> 一般地，把关系中的每个属性相关的特定类型称为域，那么关系中任何元组的每个分量都必须在相应列的域中取指。在关系模型中，要求组成元组的每个分量都是不可再分割的原子型，即这些分量必须属于某种基本类型，例如整数型、浮点型和字符型等。不允许将某个属性值属于记录结构、集合、列表、数组或可以合理地分割成更小分量的任何类型。</p>
+<p><strong>关系的等价表示方法</strong> 前面已经讲过，关系的模式和元组都是集合，不是列表。因此，关系的模式和元组的顺序不重要，无论模式中属性顺序或元组顺序如何变换，只要是模式中的属性和元组本身没有变化，那么得到的关系模式都是相同的。这种方式称为关系的等价表示方法。</p>
+<p><strong>关系实例</strong> 习惯上，把给定关系中元组的集合称为关系实例。</p>
+<p><strong>键码</strong> 如果关系中的所有元组在一个属性或多个属性的集合中都互不相同，即可以使用该属性或属性的集合来确定关系中的元组，那么该属性或属性的集合称为关系中的键码。</p>
+<ul>
+<li>第六章 关系模式的规范化设计*</li>
+</ul>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="异常问题"><a href="#异常问题" class="headerlink" title="异常问题"></a>异常问题</h3><p>在设计关系模式时，应该避免出现异常现象。这些异常现象包括数据冗余、修改异常、插入异常和删除冗余。</p>
+<p><strong>数据冗余</strong>的含义是表示相同信息的数据在关系的多个元组中重复出现。<br><strong>修改异常</strong>是指当修改了关系中某一个元组中的信息后，该关系中的另一个元组中相同的信息却没有修改。<br><strong>插入异常</strong>是指当向关系中插入一个元组数据时，仅知道该元组的一部分数据，结果这些已知的数据由于那些未知的数据而很难在关系中正确地插入。<br><strong>删除异常</strong>的含义是如果某些属性的值变为空，可能会丢失其他一些有用的信息。</p>
+<h3 id="泛关系模式和数据库模式"><a href="#泛关系模式和数据库模式" class="headerlink" title="泛关系模式和数据库模式"></a>泛关系模式和数据库模式</h3><p>在关系模式设计过程中，应当采取一些方法消除这些数据异常现象，把最初的关系模式分解成最终的合适的关系模式。这种最初设计的关系模式也成为泛关系模式（universal relation scheme）。关系模式的当前值称为关系实例，关系实例是特定元组的集合。可以把泛关系模式分解成一系列小的符合规范化要求的关系模式集合，这种比较小的最终的关系模式的集合称为数据库模式（database scheme）。对数据库模式的每个关系模式赋予一个当前值，这时称为数据库实例。</p>
+<h2 id="函数依赖"><a href="#函数依赖" class="headerlink" title="函数依赖"></a>函数依赖</h2><p>数据依赖是数据之间存在的各种联系现象。数据异常现象与数据依赖有着紧密的关联。在数据依赖中，函数依赖是最基本的一种依赖形式。</p>
+<h3 id="函数依赖的定义"><a href="#函数依赖的定义" class="headerlink" title="函数依赖的定义"></a>函数依赖的定义</h3><p>函数依赖（Function Dependency，FD）的定义可以叙述为：如果关系$R$的两个元组在属性$A_1,A_2,\cdots,A_n$上一致，那么它在另一属性$B$上也一致。这种函数依赖记作$A_1A_2 \cdots A_n \xrightarrow{} B$,读作属性$A_1,A_2,\cdots,A_n$函数决定属性$B$,或属性$B$函数依赖于属性$A_1,A_2,\cdots,A_n$。</p>
+<p>函数依赖的逻辑定义：设关系模式$R$的属性集是$U$,$X$和$Y$是$U$的子集，函数依赖是形如$X \xrightarrow{} Y$的命题，即$r$是$R$的当前实例值，对r中的任意两个元组$t$和$s$，如果$t[X]=s[X]$，则$t[Y]=s[Y]$,那么$X \xrightarrow{} Y$在关系模式$R$中成立。其中，$t[X]$表示元组$t$在属性集$X$上的值。</p>
+<p>函数依赖的定义表示了关系模式属性集$X$值和$Y$值之间的多对一联系。</p>
+<p>如果一组属性$A_1,A_2,\cdots,A_n$函数决定一组属性$B_1,B_2,\cdots,B_m$,那么可以把这组依赖关系简记为：$$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$$</p>
+<p>对于关系Book(isbn,title,page,bookType,price,pressName,authorName)，根据客观现实和经验，可以得到以下函数依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">isbn-&gt;title</span><br><span class="line">isbn-&gt;page</span><br><span class="line">isbn-&gt;bookType</span><br><span class="line">isbn-&gt;price</span><br><span class="line">isbn-&gt;pressName</span><br></pre></td></tr></table></figure>
+<p>简写为$$isbn \xrightarrow{} title\ page\ bookType\ price\ pressName$$.<br>不能得到$isbn \xrightarrow{} authorName$因为其中一个isbn对应了3个作者。</p>
+<h3 id="函数依赖和键码"><a href="#函数依赖和键码" class="headerlink" title="函数依赖和键码"></a>函数依赖和键码</h3><h4 id="超键码"><a href="#超键码" class="headerlink" title="超键码"></a>超键码</h4><p>在某个关系中，如果一个或多个属性的集合${A_1,A_2,\cdots,A_n}$函数决定该关系的其他属性，那么称该属性的集合为该关系的超键码。超键码的含义是关系中不可能存在两个不同的元组在属性$A_1,A_2,\cdots,A_n$的取值完全相同。根据上面的定义可以看到，在一个关系中，超键码的数量是没有限制的，例如如果属性集合${A_1,A_2,\cdots,A_n}$是超键码，那么包含该属性集合的所有属性集合都是超键码。</p>
+<h4 id="键码"><a href="#键码" class="headerlink" title="键码"></a>键码</h4><p>在某个关系中，如果一个或多个属性的集合${A_1,A_2,\cdots,A_n}$函数决定该关系的其他属性，并且集合${A_1,A_2,\cdots,A_n}$的任何真子集都不能函数决定该关系的所有其他属性，那么称该属性的集合为该属性的键码。</p>
+<p>在一个关系中，有时会有多个不同的键码。如果这样，可以把其中一个最为重要的键码指定为主键码，把其他键码成为候选键码。</p>
+<h3 id="逻辑蕴含"><a href="#逻辑蕴含" class="headerlink" title="逻辑蕴含"></a>逻辑蕴含</h3><p>在讨论函数依赖时，经常需要从一些已知的函数依赖去判断另外一些函数依赖是否成立。例如，如果$A \xrightarrow{} B$和$B \xrightarrow{} C$在某个关系中成立，那么$ A \xrightarrow{} C$在该关系中是否成立的问题成为逻辑蕴含问题。</p>
+<p>假定$F$是在某个关系上成立的函数依赖集，$T$是在该关系上成立的另外一个函数依赖集，如果对于该关系中满足$F$的每一个关系实例都满足$T$，那么称函数依赖集$F$蕴含于函数依赖集$T$，记作$F$蕴含于$T$。</p>
+<p>如果$F$蕴含于$T$，且$T$蕴含于$F$，那么函数依赖集$F$和$T$等价。</p>
+<p>函数关系$R(A,B,C)$具有函数依赖$A \xrightarrow{} B$和$B \xrightarrow{} C$，那么可以证明$A \xrightarrow{} C$在该关系中成立。证明思路：在关系$R$中任取两个元组，如果这两个元组在属性$A$上一致，那么证明这两个元组在属性$C$上一致。</p>
+<p>在这里可以把函数依赖$A \xrightarrow{} B$和$B \xrightarrow{} C$记作函数依赖集$F$，把$A \xrightarrow{} C$记作函数依赖集$T$，那么已经证明了满足$F$的每一个关系实例都满足$T$，因此可以说函数依赖集$F$蕴含于函数依赖集$T$。</p>
+<h3 id="函数依赖的推理规则"><a href="#函数依赖的推理规则" class="headerlink" title="函数依赖的推理规则"></a>函数依赖的推理规则</h3><p><strong>分解规则</strong>：可以把一个函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$用一组函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1,A_1A_2 \cdots A_n \xrightarrow{} B_2,\cdots,A_1A_2 \cdots A_n \xrightarrow{} B_m$来代替。<br><strong>合并规则</strong>：可以把一组函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1,A_1A_2 \cdots A_n \xrightarrow{} B_2,\cdots,A_1A_2 \cdots A_n \xrightarrow{} B_m$用一个函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$来代替。</p>
+<p>对于函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$，设$A={A_1A_2 \cdots A_n},B={B_1B_2 \cdots B_m}$，如果$B$是$A$的子集，那么称该依赖为平凡依赖；如果$B$中至少有一个属性不在$A$中，那么称该依赖是非平凡依赖；如果$B$中的任何一个属性都不在$A$中，那么称该依赖是完全非平凡依赖。</p>
+<p>Armstrong公理。<br><strong>自反律</strong>：如果${B_1B_2 \cdots B_m} \subset {A_1A_2 \cdots A_n}$，则$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$。这是平凡依赖。</p>
+<p><strong>增长率</strong>：如果$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$，则对于任何属性集$C_1,C_2,\cdots,C_k$，都存在$A_1A_2 \cdots A_nC_1C_2 \cdots C_k \xrightarrow{} B_1B_2 \cdots B_mC_1C_2 \cdots C_k$。</p>
+<p><strong>传递率</strong>：如果$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m,B_1B_2 \cdots B_m \xrightarrow{} C_1C_2 \cdots C_k$，则$A_1A_2 \cdots A_n \xrightarrow{} C_1C_2 \cdots C_k$。</p>
+<h3 id="属性集的闭包"><a href="#属性集的闭包" class="headerlink" title="属性集的闭包"></a>属性集的闭包</h3><p>假设${A_1A_2 \cdots A_n}$是属性集，$S$是函数依赖集。属性集${A_1A_2 \cdots A_n}$在函数依赖集$S$下的闭包是这样的属性集$B$，它使得满足依赖集$S$中所有依赖的每一个关系都满足$A_1A_2 \cdots A_n \xrightarrow{} B$。即$A_1A_2 \cdots A_n \xrightarrow{} B$蕴含于$S$中的函数依赖。使用${A_1A_2 \cdots A_n}^+$表示属性集${A_1A_2 \cdots A_n}$的闭包。</p>
+<p>计算属性集${A_1A_2 \cdots A_n}$闭包的步骤如下：</p>
+<p>第一步，设最终将成为闭包的属性集是$X$,把$X$初始化为${A_1A_2 \cdots A_n}$。</p>
+<p>第二步，重复搜索和判断函数依赖$B_1B_2 \cdots B_m \xrightarrow{} C$。如果左边所有的属性$B_1,B_2,\cdots,B_m$都在属性集$X$中，但是属性$C$不在$X$中，则将$C$添加到属性集$X$中。</p>
+<p>第三步，重复第二步，知道没有属性可以添加到属性集$X$中为止。</p>
+<p>第四步，最后得到的不能再添加的属性集$X$就是${A_1A_2 \cdots A_n}^+$。</p>
+<p>如果用户知道了如何计算任意属性的闭包，就能检验给定的任意函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B$是否蕴含于函数依赖集$S$。检验步骤如下：</p>
+<p>第一步，计算闭包。根据函数依赖集$S$计算${A_1A_2 \cdots A_n}^+$。</p>
+<p>第二步，判断。如果$B$在${A_1A_2 \cdots A_n}^+$中，则$A_1A_2 \cdots A_n \xrightarrow{} B$蕴含于函数依赖集$S$；如果$B$不在${A_1A_2 \cdots A_n}^+$中，则该函数不蕴含于函数依赖集$S$。</p>
+<h3 id="正则覆盖"><a href="#正则覆盖" class="headerlink" title="正则覆盖"></a>正则覆盖</h3><p>如果可以去掉一个函数依赖集中的属性而不改变函数依赖集的闭包，那么称该属性是无关的。无关属性可以形式化的定义如下，考虑函数依赖集$S$和$S$中的某个函数依赖$X \xrightarrow{} Y$。</p>
+<p>如果$A \in X$，且$S$逻辑蕴含$(S-\{X \xrightarrow{} Y\}) \cup \{(X-A) \xrightarrow{} Y\}$，那么属性$A$在$X$中是无关的。</p>
+<p>如果$A \in Y$，且$S$逻辑蕴含$(S-\{X \xrightarrow{} Y\}) \cup \{X \xrightarrow{} (Y-A)\}$，那么属性$A$在$Y$中是无关的。</p>
+<p>$S$的正则覆盖是一个函数依赖集$S_C$，含义是$S$逻辑蕴含$S_C$中的所有依赖，并且$S_C$逻辑蕴含$S$中的所有依赖。此外，$S_C$具有如下三个性质：</p>
+<ul>
+<li>$S_C$的闭包与$S$的闭包相同，即${S}^+ ={S_C}^+$。</li>
+<li>$S_C$的任何函数依赖都不包含无关属性。</li>
+<li>$S_C$中的函数依赖的左半部都是唯一的，即$S_C$中不存在两个函数依赖$X_1 \xrightarrow{} Y_1$和$X_2 \xrightarrow{} Y_2$，且$X_1 = X_2$。</li>
+</ul>
+<h2 id="关系模式的分解"><a href="#关系模式的分解" class="headerlink" title="关系模式的分解"></a>关系模式的分解</h2><p>消除关系模式中数据异常的常用办法是分解关系模式。关系模式$R$的分解就是把关系$R$中的属性分开，以构成两个新的关系模式。</p>
+<p>在分解关系模式时，一定要注意两个问题：第一，保证分解前后关系模式的信息不能丢失和增加，保持原有的信息不变，这称为无损连接；第二，保持分解前后猿猴的函数依赖依然成立。</p>
+<p>给定一个关系模式$R$，其属性集合为$\{A_1,A_2,\cdots,A_n\}$，现在把其分解成两个关系模式$X$和$Y$，其属性集合分别是$\{B_1,B_2,\cdots,B_m\}$和$\{C_1,C_2,\cdots,C_k\}$，这种分解应该满足如下条件：</p>
+<p>第一个条件：$\{A_1,A_2,\cdots,A_n\}=\{B_1,B_2,\cdots,B_m\} \cup \{C_1,C_2,\cdots,C_k\}$。</p>
+<p>第二个条件：关系$X$中的元组是关系$R$的所有元组在$\{B_1,B_2,\cdots,B_m\}$上的投影，包含相同元组。</p>
+<p>第三个条件：关系$Y$中的元组是关系$R$的所有元组在$\{C_1,C_2,\cdots,C_k\}$上的投影，不包含相同元组。</p>
+<p>例如：略。</p>
+<h2 id="关系模型的范式"><a href="#关系模型的范式" class="headerlink" title="关系模型的范式"></a>关系模型的范式</h2><h3 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h3><p>如果关系模式$R$中的所有属性值都是不可在分解的原子值，那么就称关系$R$是第一范式（first normal form，1NF）的关系模式。不是1NF的关系称为非规范化的关系，满足1NF的关系简称关系。在关系型数据库管理系统中，涉及到的研究对象都是满足1NF的规范化关系。</p>
+<h3 id="BCNF范式"><a href="#BCNF范式" class="headerlink" title="BCNF范式"></a>BCNF范式</h3><p>BCNF范式（Boyce-Codd normal form）的定义是，如果某个关系R有非平凡依赖$A_1,A_2,\cdots,A_n \xrightarrow{} B$，那么$\{A_1,A_2,\cdots,A_n\}$必然是关系R的超键码。满足这样条件的关系就属于BCNF。即BCNF条件的含义是每一个非平凡依赖的左边必须包含超键码。</p>
+<h3 id="分解成BCNF模式的算法"><a href="#分解成BCNF模式的算法" class="headerlink" title="分解成BCNF模式的算法"></a>分解成BCNF模式的算法</h3><p>第一步，找到一个违背BCNF的非平凡依赖，并在该依赖的右边加上尽量多的属性。</p>
+<p>第二步，把原始关系模型分解成两个属性重迭的关系模式，一个模式包含了违背BCNF的所有属性，另外一个模式包含了该依赖左边以及未包含在该依赖中的所有属性。</p>
+<p>第三步，判断新的关系模式是否满足BCNF。如果不满足，继续进行分解；如果满足，则停止。</p>
+<p><strong>任何包含了两个属性的关系模式都自然满足BCNF条件。</strong></p>
+<h3 id="函数依赖的投影"><a href="#函数依赖的投影" class="headerlink" title="函数依赖的投影"></a>函数依赖的投影</h3><p>在分解关系模式时，需要确定新关系模式是否满足BCNF条件。这种判断的前提是知道新关系模式中成立的函数依赖，这些函数依赖是原关系模式的函数依赖在新关系模式上的投影。下面介绍一种找到新关系模式中函数依赖的方法。</p>
+<p>假设把关系$R$分解成关系$S$和$T$，$F$是$R$中已知的函数依赖集。现在计算$S$中成立的函数依赖。考虑包含于$S$的属性集的每个属性集$X$，计算$X^+$。于是，满足下列条件的每个属性$B$，函数$X \xrightarrow{} B$在关系$S$中成立：</p>
+<ul>
+<li>$B$是$S$的一个属性；</li>
+<li>$B$属于$X^+$;</li>
+<li>$B$不属于$X$。</li>
+</ul>
+<h3 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h3><p>在某些情况下，按照BCNF进行分解，但是当对得到的关系模式进行连接时，却不能保证原先所有的函数依赖都能得到保持。这是，关系模式就不应该继续进行分解，该关系模式满足的范式称为第三范式。</p>
+<p>如果对于任何非平凡依赖$A_1,A_2,\cdots,\A_n \xrightarrow{} B$，那么或$\{A_1,A_2,\cdots,A_n\}$是关系$R$的超键码，或$B$是某个键码的组成部分。满足这样条件的关系就属于第三范式（third normal form, 3NF）。</p>
+<h3 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h3><p>在一个关系中，如果$\{A_1,A_2,\cdots,A_n\}$是关系$R$的键码，$B$是关系中的任意非键码，那么非平凡依赖$A_1,A_2,\cdots,A_n \xrightarrow{} B$都成立，则该关系模式属于第二范式（second normal form, 2NF）。</p>
+<h3 id="多值依赖"><a href="#多值依赖" class="headerlink" title="多值依赖"></a>多值依赖</h3><p>多值依赖的含义是如果确定了关系$R$的一个属性集的取值，则其他某些特征属性的取值与该关系的所有其他属性的取值无关。确切的说，如果限定关系$R$的元组在属于$A$的每个属性上取特定的值，结果属性$B$的属性取值的集合与既不属于$A$也不属于$B$但属于$R$的属性取值的集合无关，则称如下所示的多值依赖在关系$R$中成立：$$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$$</p>
+<p>多值依赖满足规则</p>
+<p>平凡依赖规则：在某个关系中，如果多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$成立，则多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$也成立，其中$C$是$B$加上$A$中的一个或多个属性。反之，也可以从$B$中删除一些属于$A$的属性，并推导出多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} D_1D_2 \cdots D_r$，其中，$D$是在$B$中而不属于$A$的属性。</p>
+<p>传递规则：在某个关系中，如果多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$和$B_1B_2 \cdots B_m \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$，则多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$成立。</p>
+<p>复制规则：在关系中，每个函数依赖都是多值依赖。</p>
+<p>互补规则：如果$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$是关系$R$的多值依赖，则$R$也满足$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$,其中，$C$是不属于$A$和$B$的$R$的所有其他属性。</p>
+<p>第四范式：如果$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$是非平凡的多值依赖，且$\{A_1,A_2,\cdots,A_n\}$是关系的超键码，那么该关系就属于第四范式（Fourth Normal Form, 4NF）。</p>
+<p>分解方法：</p>
+<p>第一步：找到一个4NF违例，例如$A \xrightarrow{}\xrightarrow{} B$.</p>
+<p>第二步：分解该关系模式，第一个关系模式包含$A$和$B$中的属性，第二个关系模式包含$A$中的属性以及不属于$A$也不属于$B$的$R$的所有其他属性。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T16:00:00.000Z"><a href="/blog/2016/04/02/python tk/">2016-04-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/02/python tk/">tk 编程</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="标准属性"><a href="#标准属性" class="headerlink" title="标准属性"></a>标准属性</h2><h3 id="dimensions"><a href="#dimensions" class="headerlink" title="dimensions"></a>dimensions</h3><p>尺寸包含4种</p>
+<table>
+<thead>
+<tr>
+<th>字母</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c</td>
+<td>厘米</td>
+</tr>
+<tr>
+<td>i</td>
+<td>英寸</td>
+</tr>
+<tr>
+<td>m</td>
+<td>毫米</td>
+</tr>
+<tr>
+<td>p</td>
+<td>打印机的点？？</td>
+</tr>
+</tbody>
+</table>
+<h3 id="坐标"><a href="#坐标" class="headerlink" title="坐标"></a>坐标</h3><h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><p>||#rgb||four bits per color||<br>||#rrggbb||eight bits per color||<br>||#rrrgggbbb||twelve bits per color||</p>
+<p>还一可以指定关键词’white’,’black’,’red’,’green’,’blue’,’cyan’,’yellow’,’magenta’</p>
+<h3 id="fonts"><a href="#fonts" class="headerlink" title="fonts"></a>fonts</h3><p>1.元组表示,第一表示字体，第二个表示大小，正数为points，负数为像素点，后续为其他一些特别设置<br>(‘Helvetica’,’16’)<br>(‘Times’,’24’,’bold italic’)<br>(‘Times’,-20,’bold’)</p>
+<p>2.字体对象 tkFont</p>
+<p>3.X font names.</p>
+<h3 id="锚"><a href="#锚" class="headerlink" title="锚"></a>锚</h3><p>N S W E CENTER<br>NW NE SW SE</p>
+<h3 id="释放样式"><a href="#释放样式" class="headerlink" title="释放样式"></a>释放样式</h3><p>FLAT RAISED SUNKEN GROOVE RIDGE</p>
+<h3 id="Bitmaps"><a href="#Bitmaps" class="headerlink" title="Bitmaps"></a>Bitmaps</h3><p>button支持 error gray75 gray50 gray25 gray12 hourglass info questhead question warning</p>
+<p>也可以使用.xbm(X bit map)使用@path</p>
+<h3 id="cursors"><a href="#cursors" class="headerlink" title="cursors"></a>cursors</h3><h3 id="images"><a href="#images" class="headerlink" title="images"></a>images</h3><p>BitmapImage 支持 .xbm<br>PhotoImage 支持 .gif .pgm .ppm<br>ImageTk 支持更多格式</p>
+<h4 id="the-BitmapImage-class"><a href="#the-BitmapImage-class" class="headerlink" title="the BitmapImage class"></a>the BitmapImage class</h4><p>原型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tk.BitmapImage(file=f[, background=b][, foreground=c])</span><br></pre></td></tr></table></figure></p>
+<p>实例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logo = tk.BitmapImage(<span class="string">'logo.xbm'</span>, foreground=<span class="string">'red'</span>)</span><br><span class="line">Label(image=logo).grid()</span><br></pre></td></tr></table></figure></p>
+<h4 id="the-PhotoImage-class"><a href="#the-PhotoImage-class" class="headerlink" title="the PhotoImage class"></a>the PhotoImage class</h4><p>原型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tk.PhotoImage(file=f)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Geometry-strings"><a href="#Geometry-strings" class="headerlink" title="Geometry strings"></a>Geometry strings</h3><p>A geometry string is a standard way of describing the size and location of a top-level window on a desktop.<br>format: ‘wxh±x±y’<br>+x left side<br>-x right side<br>+y top<br>-y bottom</p>
+<h3 id="window-names"><a href="#window-names" class="headerlink" title="window names"></a>window names</h3><p>hierarchical window path name<br>root window ‘.’<br>child name ‘.n’<br>child windows of child ‘p.n’, p is the name of the parent window</p>
+<p>str(w): to get the path name of a widget w</p>
+<h3 id="cap-and-join-styles"><a href="#cap-and-join-styles" class="headerlink" title="cap and join styles"></a>cap and join styles</h3><p>cap style: tk.BUTT, tk.PROJECTING, tk.ROUND<br>join style: tk.ROUND, tk.BEVEL, tk.MITER</p>
+<h3 id="dash-patterns"><a href="#dash-patterns" class="headerlink" title="dash patterns"></a>dash patterns</h3><p>dash=(3,5)<br>dash=(7,1,1,1)<br>dash=(5,1,2,1),dashoff=3</p>
+<h2 id="tk-TclError"><a href="#tk-TclError" class="headerlink" title="tk.TclError"></a>tk.TclError</h2>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T16:00:00.000Z"><a href="/blog/2016/04/02/数据库系统原理与应用（第三版）2/">2016-04-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/02/数据库系统原理与应用（第三版）2/">分布式数据库技术</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>通过使用分散在不同地理位置的计算机来满足本地用户需要的计算方式称为分布式计算，使用到的数据库是分布式数据库，涉及的数据库技术是分布式数据库技术。</p>
+<p>分布式数据库是与集中式数据库相对的概念，其主要差别在于处理的数据处于不同的地理位置。集中式数据库强调的是所有的数据存储在一个唯一的地方，而分布式数据库强调的是所有的数据作为一个整体存储在多个不同的地理位置。</p>
+<h2 id="分布式数据库的概念和特定"><a href="#分布式数据库的概念和特定" class="headerlink" title="分布式数据库的概念和特定"></a>分布式数据库的概念和特定</h2><p>在分布式计算方式中，数据库管理系统安装在多个所处地理位置不同的服务器上，用户的数据也是分布在不同的服务器中。但从逻辑上来讲，这些用户的数据是一个整体，构成一个逻辑数据库。本地服务器的用户不仅可以访问本地服务器上数据库中的数据，也可以访问异地服务器上数据库中的数据。</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>分布式数据库具有物理分布性、逻辑整体性、场地自治性、数据共享性和系统可用性五个特点。自治表示自己管理自己，场地自治性表示每个场地的集中式数据库系统都是自己来管理自己的数据。数据共享性强调的是系统具有统一的模式，所有的用户都可以使用分布式数据库中的数据。系统可用性则是如果某个场地的数据发生了故障，用户还可以通过其他场地访问这些数据。</p>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>第一，系统实现技术更加复杂、难度更大。<br>第二，系统的安全性更难处理。</p>
+<h2 id="分布式数据存储技术"><a href="#分布式数据存储技术" class="headerlink" title="分布式数据存储技术"></a>分布式数据存储技术</h2><p>在分布式数据库中，数据的存储可以通过三种方式实现，即复制存储方式、分片存储方式和混合存储方式。</p>
+<h3 id="数据复制"><a href="#数据复制" class="headerlink" title="数据复制"></a>数据复制</h3><p>通过把数据库中的一个关系存储多次而实现分布式存储。数据复制的有点事提高可用性、增加数据库系统的并行度、增强并发能力。数据复制也存在明显的缺点，即数据更新成本大大增加。</p>
+<h3 id="数据分片"><a href="#数据分片" class="headerlink" title="数据分片"></a>数据分片</h3><p>通过把数据库中的一个关系分成多个片断，每个片断都存储在不同场地上，且所有的片断包含的信息足够重构原始关系，该数据存储方式成为数据分片。</p>
+<p>数据分片分为水平分片、垂直分片和混合分片。</p>
+<h3 id="数据混合存储"><a href="#数据混合存储" class="headerlink" title="数据混合存储"></a>数据混合存储</h3><p>在数据存储过程中，既包含了水平分片存储方式，又包含了垂直分片存储方式，则将这种方式称为数据混合存储方式。</p>
+<h2 id="分布式数据查询技术"><a href="#分布式数据查询技术" class="headerlink" title="分布式数据查询技术"></a>分布式数据查询技术</h2><p>在集中式数据库的数据查询中，查询代价主要是本地处理代价，具体内容包括CPU代价和I/O代价。但是，分布式数据库的数据查询中，查询代价除了本地处理代价之外，还包括网络传输代价。</p>
+<p><strong>基于半连接的优化策略</strong>，在执行分布式查询时，只传输参与连接运算的数据，不传输不参与连接运算的数据。</p>
+<p><strong>基于连接的优化策略</strong>，在对于网络传输代价要求比较严格时，可以使用半连接优化策略。但对于网络传输代价要求比较低，对本地处理代价要求比较高时，可以考虑使用基于连接的优化策略。基于连接的优化策略的事项是把某个场地的整个关系的元组传输到另外的场地执行连接操作。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T16:00:00.000Z"><a href="/blog/2016/04/02/LoadLibrary 126/">2016-04-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/02/LoadLibrary 126/">LoadLibrary error 126</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>可能是UNICODE和ASCII字符的问题。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T16:00:00.000Z"><a href="/blog/2016/04/02/并行计算与分布式计算原理/">2016-04-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/02/并行计算与分布式计算原理/">并行计算与分布式计算原理</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><em>深入理解云计算——基本原理和应用程序编程技术，第二章</em></p>
+<!-- MarkdownTOC -->
+<ul>
+<li><a href="#并行计算和分布式计算">并行计算和分布式计算</a></li>
+<li><a href="#并行计算基本要素">并行计算基本要素</a><ul>
+<li><a href="#什么是并行处理">什么是并行处理</a></li>
+<li><a href="#并行处理硬件架构">并行处理硬件架构</a></li>
+<li><a href="#并行编程方法">并行编程方法</a></li>
+<li><a href="#并行性的级别">并行性的级别</a></li>
+<li><a href="#注意事项">注意事项</a></li>
+</ul>
+</li>
+<li><a href="#分布式计算基本要素">分布式计算基本要素</a><ul>
+<li><a href="#通用概念和定义">通用概念和定义</a></li>
+<li><a href="#分布式系统组件">分布式系统组件</a></li>
+<li><a href="#分布式计算架构模式">分布式计算架构模式</a></li>
+<li><a href="#进程间通信模型">进程间通信模型</a></li>
+</ul>
+</li>
+<li><a href="#分布式计算技术">分布式计算技术</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+<p><a name="并行计算和分布式计算"></a></p>
+<h2 id="并行计算和分布式计算"><a href="#并行计算和分布式计算" class="headerlink" title="并行计算和分布式计算"></a>并行计算和分布式计算</h2><p>并行计算和分布式计算存在细微差别。并行代表一类紧耦合系统，分布式代表更更广泛的一类系统，包括紧耦合系统。</p>
+<p><strong>并行计算</strong>指将计算任务分配给几个共享相同内存的处理器的计算模式。并行计算系统的架构通常表现为组件的同构性：每个处理器都是相同类型的，且拥有相同的处理性能。共享内存有一个独立的地址空间，可供所有处理器访问。并行程序被分成若干执行单元并分配给不同的处理器，它们之间依靠共享内存相互通信。</p>
+<p><strong>分布式计算</strong>指哪些将计算任务进行划分，并在不同计算单元中同时执行的架构或系统，不论计算单元是不同节点上的处理器，或是同一计算机上的处理器，再或是同一处理器中的内核。相比并行计算，分布式计算包含的系统和应用程序的范围更广，是更为通用的概念。分布式这一术语通常以为着计算单元的位置不同，且这些单元在硬件和软件功能上也可能各不相同。典型的分布式系统实例是计算网格或互谅网计算系统，分布式系统再全球范围内集成各种架构、系统和应用。</p>
+<p><a name="并行计算基本要素"></a></p>
+<h2 id="并行计算基本要素"><a href="#并行计算基本要素" class="headerlink" title="并行计算基本要素"></a>并行计算基本要素</h2><p><a name="什么是并行处理"></a></p>
+<h3 id="什么是并行处理"><a href="#什么是并行处理" class="headerlink" title="什么是并行处理"></a>什么是并行处理</h3><p>同时在多个处理器上处理多个任务成为<strong>并行处理</strong>。并行程序由多个活跃进程（任务）组成，同时解决给定的问题。运用分治法将一个给定的任务分为多个子任务，每个子任务在不同的中央处理器（CPU）中进行处理。运用分治法在多处理器系统上编程称作<strong>并行编程</strong>。</p>
+<p>历史背景和推动技术<br>…</p>
+<p><a name="并行处理硬件架构"></a></p>
+<h3 id="并行处理硬件架构"><a href="#并行处理硬件架构" class="headerlink" title="并行处理硬件架构"></a>并行处理硬件架构</h3><p>并行处理的核心元素是CPU。根据可以同时处理的指令流和数据流的数量，计算机系统可以分为以下四类：</p>
+<ul>
+<li>单指令流单数据流（SISD）系统</li>
+<li>单指令流多数据流（SIMD）系统</li>
+<li>多指令流单数据流（MISD）系统</li>
+<li>多指令流多数据流（MIMD）系统<ul>
+<li>共享内存MIMD计算机</li>
+<li>分布式内存MIMD计算机</li>
+</ul>
+</li>
+</ul>
+<p><a name="并行编程方法"></a></p>
+<h3 id="并行编程方法"><a href="#并行编程方法" class="headerlink" title="并行编程方法"></a>并行编程方法</h3><p>顺序程序运行在单个处理器上且有单一控制线程。为了让几个处理器共同处理同一程序，就必须将该程序分成更小的、独立的块，这样每个处理器只需处理单独的一小块程序。以这种方式分解的程序就是并行程序。</p>
+<p>并行程序设计有多种方法，最著名的几种是：</p>
+<ul>
+<li>数据并行</li>
+<li>处理并行</li>
+<li>“农场主和工作者”模式</li>
+</ul>
+<p><a name="并行性的级别"></a></p>
+<h3 id="并行性的级别"><a href="#并行性的级别" class="headerlink" title="并行性的级别"></a>并行性的级别</h3><table>
+<thead>
+<tr>
+<th><em>颗粒大小</em></th>
+<th><em>代码</em></th>
+<th><em>并行化执行者</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>大</td>
+<td>独立的或重量级进程</td>
+<td>程序设计员</td>
+</tr>
+<tr>
+<td>中</td>
+<td>函数或过程</td>
+<td>程序设计员</td>
+</tr>
+<tr>
+<td>小</td>
+<td>循环或指令块</td>
+<td>并行编译器</td>
+</tr>
+<tr>
+<td>极小</td>
+<td>指令</td>
+<td>处理器</td>
+</tr>
+</tbody>
+</table>
+<p><a name="注意事项"></a></p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>例如，对于给定的n个处理器，用户希望速度也增加n倍，但这只是理想情况，由于通信开销而不太可能实现。</p>
+<p>两个重要原则</p>
+<ul>
+<li>计算速度和系统成本的平方根成反比</li>
+<li>并行计算速度和处理器数量成对数冠以（y=klog(N)）</li>
+</ul>
+<p><a name="分布式计算基本要素"></a></p>
+<h2 id="分布式计算基本要素"><a href="#分布式计算基本要素" class="headerlink" title="分布式计算基本要素"></a>分布式计算基本要素</h2><p><a name="通用概念和定义"></a></p>
+<h3 id="通用概念和定义"><a href="#通用概念和定义" class="headerlink" title="通用概念和定义"></a>通用概念和定义</h3><p>分布式计算主要研究用于构建和管理分布式系统的模型、架构和算法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">分布式系统是独立计算机的集合，对于用户来说是一个整体系统。</span><br></pre></td></tr></table></figure>
+<p>该定义大致包括了多种类型的分布式计算系统，这些系统统一使用和集成分布式资源。本章重点讲解将多个独立计算机转化为整体系统的架构模型。通信是分布式计算的基础之一。由于分布式系统由协同工作的多个计算机组成，所以有必要利用网络实现多计算机之间的数据和信息交换：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">分布式系统组件位于仅能通过传递消息来通信和协调活动的网络计算机中。</span><br></pre></td></tr></table></figure>
+<p><a name="分布式系统组件"></a></p>
+<h3 id="分布式系统组件"><a href="#分布式系统组件" class="headerlink" title="分布式系统组件"></a>分布式系统组件</h3><p>分布式系统是从硬件到软件的整个计算层次模型中多个组件交互的结果。许多组件协同工作，为用户呈现出一个单一的整体系统。</p>
+<p>在底层，计算机和网络硬件构成了物理基础设置，这些组件由操作系统直接管理。操作系统负责提供基础服务，用于进程间通信、进程调度和管理、文件系统和本地设备的资源管理。将网络和计算机这两层合并为一个平台，在这个平台上配置特定软件，便可将联网计算机组成一个分布式系统。</p>
+<p>将公认的标准应用到操作系统层甚至硬件网络层中，利用异构组件可以很容易地构造一个统一的集成系统。例如，不同设备之间的网络连接由协议进行控制，实现设备无缝执行交互。在操作系统层，进程间通信服务在标准化通信协议下执行，例如TCP/IP协议、UDP协议等。</p>
+<p>中间件层利用这些服务构建了一个开发和部署分布式应用程序的统一环境。这一层支持分布式系统的编程范式，我们将在本书第5~7章进行描述。依靠操作系统提供的服务，中间件层可开发协议、数据格式以及用于开发分布式应用程序的编程语言和框架。这些为分布式应用程序开发人员提供了同一接口，完全独立于底层操作系统且屏蔽了底层的异构性。</p>
+<p><a name="分布式计算架构模式"></a></p>
+<h3 id="分布式计算架构模式"><a href="#分布式计算架构模式" class="headerlink" title="分布式计算架构模式"></a>分布式计算架构模式</h3><p>尽管分布式系统包含若干层之间的交互，但只有中间件层才能够进行分布式计算，因为中间件层为应用提供了同一的整体运行环境。可采用多种不同的方式来组织组件，整合并购成分布式计算系统。这些组件之间的交互以及组件的职责决定了中间件的结构和类型，话句话说，也就是定义了中间件架构。了解架构模式有助于从整体上理解和划分软件系统结构，尤其是分布式计算结构。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">架构模式组要用于决定组件和连接器，组件、连接器以及结合条件一起作为架构模式的实例。</span><br></pre></td></tr></table></figure>
+<p>架构模式分为两大类：</p>
+<ul>
+<li>软件架构模式</li>
+<li>系统架构模式</li>
+</ul>
+<p>第一类与软件的逻辑结构有关，第二类包括从组件方面描述分布式软件系统物理结构的所有方式。</p>
+<h4 id="组件和连接器"><a href="#组件和连接器" class="headerlink" title="组件和连接器"></a>组件和连接器</h4><p><em>组件</em>代表一个封装了系统的功能或特性的软件单元。组件实例可以是程序、对象、进程、管道或过滤器。连接器是一种允许组件之间进行合作和协调的通信机制。与组件不同的是，连接器不封装在单一实体中，而是以分布式方式由多个系统组件实现。</p>
+<h4 id="软件架构模式"><a href="#软件架构模式" class="headerlink" title="软件架构模式"></a>软件架构模式</h4><table>
+<thead>
+<tr>
+<th><em>种类</em></th>
+<th><em>最常用的架构模式</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据中心</td>
+<td>仓库<br>黑板</td>
+</tr>
+<tr>
+<td>数据流</td>
+<td>管道和过滤器<br>顺序批处理</td>
+</tr>
+<tr>
+<td>虚拟机</td>
+<td>基于规则的系统<br>解释器</td>
+</tr>
+<tr>
+<td>调用和返回</td>
+<td>主程序和子程序调用/自上而下的系统<br>面向对象系统<br>分层系统</td>
+</tr>
+<tr>
+<td>独立组件</td>
+<td>通信系统<br>事件系统</td>
+</tr>
+</tbody>
+</table>
+<h4 id="系统架构模式"><a href="#系统架构模式" class="headerlink" title="系统架构模式"></a>系统架构模式</h4><ul>
+<li><p>客户端/服务器</p>
+</li>
+<li><p>对等</p>
+</li>
+</ul>
+<p><a name="进程间通信模型"></a></p>
+<h3 id="进程间通信模型"><a href="#进程间通信模型" class="headerlink" title="进程间通信模型"></a>进程间通信模型</h3><p>分布式系统由一组通过网络连接的、交互的并发进程组成。因此，进程间通信（IPC）是分布式系统设计和实现的基础。IPC既用于交换数据和信息，也用于协调进程活动。IPC将分布式系统的不同组件连接起来，使其成为一个系统。</p>
+<h4 id="基于消息的通信"><a href="#基于消息的通信" class="headerlink" title="基于消息的通信"></a>基于消息的通信</h4><ul>
+<li>消息传递<br>  MPI，OpenMP</li>
+<li>远程过程调用<br>  RPC</li>
+<li>分布式对象<br>  RPC模型基于面向对象范式的实现，将方法的远程调用看做对象。CORBA,COM，DCOM,COM+,RMI,.net</li>
+<li>分布式代理和活动对象</li>
+<li>web服务<br>  SOAP,REST</li>
+</ul>
+<h4 id="基于消息的通信模型"><a href="#基于消息的通信模型" class="headerlink" title="基于消息的通信模型"></a>基于消息的通信模型</h4><ul>
+<li>点对点消息模型</li>
+<li>发布和订阅消息模型</li>
+<li>请求-应答消息模型</li>
+</ul>
+<p><a name="分布式计算技术"></a></p>
+<h2 id="分布式计算技术"><a href="#分布式计算技术" class="headerlink" title="分布式计算技术"></a>分布式计算技术</h2>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-04-01T16:00:00.000Z"><a href="/blog/2016/04/02/如何给Linux kernel提交代码/">2016-04-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/blog/2016/04/02/如何给Linux kernel提交代码/">如何给Linux Kernel提交代码</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong><a href="http://kernelnewbies.org/UpstreamMerge/SubmittingPatches" target="_blank" rel="external">英文</a></strong></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><span id="前言">前言</span></h2><p>个人或者公司如果不熟悉提交代码流程，代码很难被接受。利用本文给出一些建议将会大大的增加代码被接受的概率。</p>
+<p>在提交代码之前，你需要阅读一些注意事项<code>Documentation\SubmitChecklist</code>。如果是提交的驱动，同时也请阅读<code>Documentation\SubmittingDrivers</code>。</p>
+<h2 id="创造并提交改动"><a href="#创造并提交改动" class="headerlink" title="创造并提交改动"></a>创造并提交改动</h2><p>###diff -up</p>
+<p>利用<code>diff -up</code>或者<code>diff -uprN</code>创造patch文件。</p>
+<p>linux所有的更改都以patche方式存在。patch命令中<code>-u</code>代表<code>unified diff</code>,<code>-p</code>会显示哪个函数发生了改变。patche都是以linux源码的根目录为其实点。<br>比如你更改了一个文件。你需要进行下面的操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SRCTREE= linux-2.6</span><br><span class="line">MYFILE= drivers/net/mydriver.c</span><br><span class="line"></span><br><span class="line">cd $SRCTREE</span><br><span class="line">cp $MYFILE $MYFILE.orig</span><br><span class="line">vi $MYFILE       # make your change</span><br><span class="line">cd ..</span><br><span class="line">diff -up $SRCTREE/$MYFILE&#123;.orig,&#125; &gt; /tmp/patch</span><br></pre></td></tr></table></figure></p>
+<p>如果更改了多个文件，你需要解压一个<code>vanilla</code>或者原版linux kernel。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MYSRC= /devel/linux-2.6</span><br><span class="line"></span><br><span class="line">tar xvfz linux-2.6.12.tar.gz</span><br><span class="line">mv linux-2.6.12 linux-2.6.12-vanilla</span><br><span class="line">diff -uprN -X linux-2.6.12-vanilla/Documentation/dontdiff \</span><br><span class="line">    linux-2.6.12-vanilla $MYSRC &gt; /tmp/patch</span><br></pre></td></tr></table></figure></p>
+<p>其中<code>dontdiff</code>是diff需要忽略的文件列表。</p>
+<p>确保patche中不包含其他无关文件。</p>
+<p>如果你的更改比较巨大，可以按照逻辑分成几个部分。这方便其他内核开发者审查。</p>
+<p>patch管理工具<a href="http://savannah.nongnu.org/projects/quilt" target="_blank" rel="external">Quilt</a>.一些脚本工具<a href="http://userweb.kernel.org/~akpm/stuff/patch-scripts.tar.gz" target="_blank" rel="external">Scripts</a></p>
+<p>###描述更改</p>
+<p>描述更改过程中的技术细节，做到尽可能清晰。如果描述过长，可能你需要分成几个patch。</p>
+<p>###分割更改</p>
+<p>按照逻辑分割patch文件。<br>比如，你填补了一个驱动的bug同时还提高了它的性能，那么你需要将他分成多个patche。如果你更改了一个API,并提供一个新的驱动利用了该API，这需要分成2个patch。另一方面，如果你只是更改了很多不同文件的同一个地方，你需要将更改放在同一个patch中。如果你的patch比如依赖另外一个patch，你需要在描述patch时说明<code>this patch depends on patch X</code>。</p>
+<p>###检查代码风格</p>
+<p>按照<code>Documentation/Codingstyle</code>中的描述，检查更改的编码风格。没有进行这一步的代码可能在甚至没有被阅读情况下被拒绝。最基本的，你可以采用<code>scripts/checkpatch.pl</code>检查patch的编码风格，并且修改所有不恰当的地方。</p>
+<p>###选择发送者</p>
+<p>linux主线的每一部分都由一个维护者负责。更改属于哪一部分就发给对应的维护者。如果维护者没有列出，或者不回应邮件，你可以将patch发给<code>linux-kernel@vger.kernel.org</code>。</p>
+<p>Linus Torvalds是接受更改的仲裁者，但是一般不要给他发邮件。比较明显的bug修复或者不需要讨论的patch可以直接抄送给Linux Torvalds。如果Patch没有明显的优势或者需要讨论，你需要先发给linux-kernel.</p>
+<p>###选择抄送人</p>
+<p>如果没有特别原因需要抄送给<code>linux-kernel@vger.kernel.org</code>。这样可以让其他开发者可以检查代码和提出意见。</p>
+<p>如果你的更改影响了用户和内核接口，请抄送给MAN-PAGES维护者，方便他们做更改。<br>小的更改：比如字符拼写错误等你需要抄送给<code>trivial@kernel.org</code>。<br>比如在文档中的拼写错误等。关于小错误的定义可以查看<a href="http://www.kernel.org/pub/linux/kernel/people/juhl/trivial/" target="_blank" rel="external">trivial</a>。</p>
+<p>###只允许文字（没有多媒体，链接，压缩，附件）</p>
+<p>所以patch都写在邮件中。</p>
+<p>###email的大小</p>
+<p>email的大小如果超过40kb，你需要放到网络上，并提供链接。</p>
+<p>###指明kernel版本</p>
+<p>你需要指明patch的kernel版本，如果patch不适用于最新的kernel，linus不会接受。</p>
+<p>###别沮丧，重新提交</p>
+<p>提交更改后，需要耐心等待。如果更改没有出现在下一个版本中，那么可能是一下原因：</p>
+<ul>
+<li>更改不适用于最新内核版本</li>
+<li>更改没有经过足够讨论</li>
+<li>代码风格问题</li>
+<li>e-mail格式问题</li>
+<li>更改存在技术问题</li>
+<li>意外丢失</li>
+<li>你太烦了</li>
+</ul>
+<p>如果有疑问，可以在linux-kernel邮件列表上询问。</p>
+<p>###在邮件主题上加上[PATCH]</p>
+<p>###签名</p>
+<p>为了方便跟踪作者和管理复杂的更改，引入了签名机制。如果确认一下4点就可以在对patch的描述后加上一句：<br>Signed-off-by: Random J Developer <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x72;&#x61;&#110;&#100;&#x6f;&#x6d;&#64;&#x64;&#x65;&#118;&#101;&#x6c;&#x6f;&#x70;&#x65;&#114;&#x2e;&#101;&#x78;&#x61;&#109;&#112;&#x6c;&#x65;&#x2e;&#111;&#x72;&#103;">&#x72;&#x61;&#110;&#100;&#x6f;&#x6d;&#64;&#x64;&#x65;&#118;&#101;&#x6c;&#x6f;&#x70;&#x65;&#114;&#x2e;&#101;&#x78;&#x61;&#109;&#112;&#x6c;&#x65;&#x2e;&#111;&#x72;&#103;</a></p>
+<ul>
+<li>更改部分或者全部由我完成。我有权利开源</li>
+<li>更改基于一个开源项目，需提交到同一个开源license下。否则可以提交给别的开源license</li>
+<li>更改由别人转交给我，别人确认1,2,3条，我没有修改更改</li>
+<li>我知道这是一个开源项目，并且贡献有可能不被记录</li>
+</ul>
+<p>###Acked-by</p>
+<p>子系统的维护者需要这么做，表示patch你觉得还不错。</p>
+<p>###Tested-by和Reviewed-by</p>
+<p>Tested-by表示某人在某种环境下patch测试是有效的。<br>Reviewed-by表示这个patch被检查，说明你对patch的观点。</p>
+<p>###patch的规范格式</p>
+<p>主题：[PATCH 001/123] 子系统: 总结</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from:</span><br><span class="line">空行</span><br><span class="line">patch的描述</span><br><span class="line">Signed-off-by:</span><br><span class="line">标识符---</span><br><span class="line">其他一些评论</span><br><span class="line">diff output</span><br></pre></td></tr></table></figure>
+<p>主题的2个示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Subject: [patch 2/5] ext2: improve scalability of bitmap searching</span><br><span class="line">Subject: [PATCHv2 001/207] x86: fix eflags tracking</span><br></pre></td></tr></table></figure></p>
+<p>from行的示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">From: Original Author &lt;author@example.com&gt;</span><br></pre></td></tr></table></figure></p>
+<p>—表示改动日志的结束。<br>其他一些评论可以用来写上<code>diffstat -p 1 -w 70</code>。</p>
+<p>###发送git pull请求</p>
+<p>发送从哪能够获得更改，格式如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Please pull from</span><br><span class="line">        git://jdelvare.pck.nerim.net/jdelvare-2.6 i2c-for-linus</span><br><span class="line"> to get these changes:</span><br></pre></td></tr></table></figure></p>
+<p>同时用<code>git diff -M --stat --summary</code>生成diffstat.</p>
+<h2 id="忠告、建议、技巧"><a href="#忠告、建议、技巧" class="headerlink" title="忠告、建议、技巧"></a>忠告、建议、技巧</h2><ul>
+<li><p>阅读Documentation/CodingStyle</p>
+<p>  可以利用scripts/checkpatch.pl来检查代码风格。这个脚本会提供3种水平的忠告</p>
+<ul>
+<li>ERROR: 很可能有错</li>
+<li>WARNING: 需要认真检查</li>
+<li>CHECK：需要考虑</li>
+</ul>
+</li>
+<li><p>不要在函数内使用ifdef。<br>  例如：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dev = alloc_etherdev (sizeof(struct funky_private));</span><br><span class="line">if (!dev)</span><br><span class="line">        return -ENODEV;</span><br><span class="line">#ifdef CONFIG_NET_FUNKINESS</span><br><span class="line">init_funky_net(dev);</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+<p>  上面的可以更改为</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(in header)</span><br><span class="line">    #ifndef CONFIG_NET_FUNKINESS</span><br><span class="line">    static inline void init_funky_net (struct net_device *d) &#123;&#125;</span><br><span class="line">    #endif</span><br><span class="line">(in the code itself)</span><br><span class="line">    dev = alloc_etherdev (sizeof(struct funky_private));</span><br><span class="line">    if (!dev)</span><br><span class="line">            return -ENODEV;</span><br><span class="line">    init_funky_net(dev);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>static inline 比宏更好</p>
+</li>
+<li><p>不要过度设计</p>
+<p>  Make it as simple as you can, and no simpler.</p>
+</li>
+</ul>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>这篇文章翻译于<a href="http://kernelnewbies.org/UpstreamMerge/SubmittingPatches" target="_blank" rel="external">英文原稿</a>.</p>
+<p><a href="#前言">回到顶部</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-04-01T08:19:00.000Z"><a href="/blog/2016/04/01/libvmi介绍/">2016-04-01</a></time>
       
       
@@ -193,711 +1011,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-01T08:15:00.000Z"><a href="/blog/2016/04/01/Django(2)视图和Urls/">2016-04-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/blog/2016/04/01/Django(2)视图和Urls/">Django(2)视图和Urls</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>视图从某种一样上说是web页面，它有固定的模板，负责提供一定的服务。例如博客网站需要视图：</p>
-<ul>
-<li>博客主页–显示最近博客</li>
-<li>细节页面–显示一篇博客</li>
-<li>基于年的归档页面–显示给定年份的所有博客</li>
-<li>基于月的归档页面–显示给定月份的所有博客</li>
-<li>基于天的归档页面–显示给定日期的所有博客</li>
-<li>评论功能–处理对博客的评论</li>
-</ul>
-<p>在投票应用中，我们需要4个视图</p>
-<ul>
-<li>Questions索引页–显示最近的Questions</li>
-<li>Questions细节页–显示Questions的问题和投票表格（不包含结果）</li>
-<li>Questions结果页–显示Question的结果</li>
-<li>投票功能–处理对某个Question进行投票</li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-01T08:15:00.000Z"><a href="/blog/2016/04/01/Django(1) 安装和使用/">2016-04-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/blog/2016/04/01/Django(1) 安装和使用/">Django(1) 安装和使用</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h2 id="Django-安装"><a href="#Django-安装" class="headerlink" title="Django 安装"></a>Django 安装</h2><p><code>easy_install django</code>即可</p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="打开web服务器"><a href="#打开web服务器" class="headerlink" title="打开web服务器"></a>打开web服务器</h3><p>1.在cmd中输入<code>c:\Python34\Scripts\django-admin.exe startproject mysite</code></p>
-<blockquote>
-<p>project mysite会包含以下文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysite/</span><br><span class="line">    manage.py</span><br><span class="line">    mysite/</span><br><span class="line">        __init__.py</span><br><span class="line">        settings.py</span><br><span class="line">        urls.py</span><br><span class="line">        wsgi.py</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<ul>
-<li>manage.py:一个实用的命令行工具，可让你以各种方式与该 Django 项目进行交互。 你可以在 django-admin.py and manage.py 中查看关于 manage.py 所有的细节。</li>
-<li>mysite/__init__.py: 一个空文件，告诉 Python 该目录是一个 Python 包。</li>
-<li>mysite/settings.py: 该 Django 项目的设置/配置。</li>
-<li>mysite/urls.py: 该 Django 项目的 URL 声明; 一份由 Django 驱动的网站“目录”。</li>
-<li>mysite/wsgi.py: 一个 WSGI 兼容的 Web 服务器的入口，以便运行你的项目。</li>
-</ul>
-<p>2.开启服务器<br><code>python manage.py runserver</code> 可以在浏览器<code>http:\\127.0.0.1:8000</code>看到服务器已经打开<br>也可以通过<code>python manage.py runserver 8080</code>来指定端口</p>
-<h3 id="有意义的事情（投票系统"><a href="#有意义的事情（投票系统" class="headerlink" title="有意义的事情（投票系统)"></a>有意义的事情（投票系统)</h3><p>1.数据库安装和设置(<a href="1">manual</a>)<br>下载<a href="2">sqlite下载页面</a>中<code>sqlite-shell-win32-XXX</code>和<code>sqlite-dll-win32-XXX</code>，并解压得到三个文件。利用命令<code>sqlite3 testDB.db</code>创建数据库。<br>在Django中配置sqlite3.<br>编辑mysite\settings.py中DATABASES中’default’以下值：</p>
-<ul>
-<li>ENGINE：从 ‘django.db.backends.postgresql_psycopg2’, ‘django.db.backends.mysql’, ‘django.db.backends.sqlite3’, ‘django.db.backends.oracle’ 中选一个</li>
-<li>NAME：你的数据库名。如果你使用SQLite，该数据库将是你计算机上的一个文件；在这种情况下，:setting:NAME 将是一个完整的绝对路径，而且还包含该文件的名称。如果该文件不存在，它会在第一次同步数据库时自动创建（见下文）。</li>
-<li>USER：你的数据库用户名（sqlite不需要）</li>
-<li>PASSWORD: 你的数据库密码（sqlite不需要）</li>
-<li>HOST: 你的数据库主机地址（sqlite不需要）</li>
-</ul>
-<p>默认情况下，:setting:INSTALLED_APPS 包含以下应用，这些都是由 Django 提供的：</p>
-<ul>
-<li>django.contrib.auth – 身份验证系统。</li>
-<li>django.contrib.contenttypes – 内容类型框架。</li>
-<li>django.contrib.sessions – session 框架。</li>
-<li>django.contrib.sites – 网站管理框架。</li>
-<li>django.contrib.messages – 消息框架。</li>
-<li>django.contrib.staticfiles – 静态文件管理框架。<br>所有这些应用中每个应用至少使用一个数据库表，所以在使用它们之前我们需要创建数据库中的表。要做到这一点，请运行以下命令：<br><code>python manage.py migrate</code></li>
-</ul>
-<p>3.创建APP</p>
-<p>在manage.py的同一个文件夹创建APP polls<code>python manage.py startapp polls</code>.polls 文件夹变成这样</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">polls/</span><br><span class="line">    __init__.py</span><br><span class="line">    admin.py</span><br><span class="line">    apps.py</span><br><span class="line">    migrations/</span><br><span class="line">        __init__.py</span><br><span class="line">    models.py</span><br><span class="line">    tests.py</span><br><span class="line">    views.py</span><br></pre></td></tr></table></figure>
-<p>使得app能够被访问<br>在polls/urls.py中添加</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^$'</span>, views.index, name=<span class="string">'index'</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>在mysite/urls.py中添加</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> include, url</span><br><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'^polls/'</span>, include(<span class="string">'polls.urls'</span>)),</span><br><span class="line">    url(<span class="string">r'^admin/'</span>, admin.site.urls),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<p>mysite中urls.py按照顺序进行正则匹配。匹配不包含域名和POST、GET等参数。具体查看re<br>模块。<br>一旦匹配成功，Django调用具体的view函数，并给予一个HttpRequest参数。<br>name值全局唯一，方便用来更改匹配方式。</p>
-<p>4.建立模型</p>
-<p>在投票系统中创建2个模型：Question和Choice。Question包括问题和发布日期。Choice包括选择和投票计数器。每个Choice都关联到一个Question.</p>
-<p>实现这些功能需要在polls/models.py中添加下述代码</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Question</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    question_text = models.CharField(max_length=<span class="number">200</span>)</span><br><span class="line">    pub_date = models.DateTimeField(<span class="string">'date published'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Choice</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    question = models.ForeignKey(Question, on_delete=models.CASCADE)</span><br><span class="line">    choice_text = models.CharField(max_length=<span class="number">200</span>)</span><br><span class="line">    votes = models.IntegerField(default=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<p>其中每一个模型都是django.db.models.Model的子类。每个模型都有一些类变量。每个类变量是Field的子类，代表数据库中一个字段。CharField代码字符变量，DateTimeField代表日期。一些类变量需要参数，这些参数不是在数据库中用到，而是在验证中使用。最后用ForeignKey来告诉Django Choice关联到一个Question. Django支持多对多，多对1,1对1等多种关联关系。</p>
-<p>5.激活模型</p>
-<p>添加APP到安装列表(直接在列表最后加入polls好像也没有问题)<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'polls.apps.PollsConfig'</span>,</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
-<p>然后运行<code>python manage.py makemigrations polls</code>告诉Django你对模型做了一些更改（这时是创建模型），改变被存储到migrate中。更改只是以文件的方式存储。根据更改需要对数据库进行相应的操作比如创建表等。就需要用到<code>python manage.py sqlmigrate polls 0001</code>.你会看到一些SQL语句。（这只是查看对应的SQL语句）。更改需要用到<code>python manage.py migrate</code>.(另外可以通过python manage.py check查看数据库是否有错。)。</p>
-<p>migrations提供强大的功能：实时更改模型而不用担心数据库的数据不一致，也不需要重新删除在添加数据库。<br>修改模型的3步：</p>
-<ul>
-<li>在models.py中修改模型</li>
-<li><code>python manage.py makemigrations</code> 根据修改建立migrations</li>
-<li><code>python manage.py migrate</code> 应用修改到数据库</li>
-</ul>
-<h4 id="修改模块：添加显示功能"><a href="#修改模块：添加显示功能" class="headerlink" title="修改模块：添加显示功能"></a>修改模块：添加显示功能</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> django.utils.encoding <span class="keyword">import</span> python_2_unicode_compatible</span><br><span class="line"></span><br><span class="line"><span class="meta">@python_2_unicode_compatible  # only if you need to support Python 2</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Question</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.question_text</span><br><span class="line"></span><br><span class="line"><span class="meta">@python_2_unicode_compatible  # only if you need to support Python 2</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Choice</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.choice_text</span><br></pre></td></tr></table></figure>
-<h4 id="添加自定义方法"><a href="#添加自定义方法" class="headerlink" title="添加自定义方法"></a>添加自定义方法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> django.utils <span class="keyword">import</span> timezone</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Question</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">was_published_recently</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.pub_date &gt;= timezone.now() - datetime.timedelta(days=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<p>6.创建admin</p>
-<p>利用命令<code>python manage.py createsuperuser</code>创建admin用户。<code>python manage.py runserver</code>后，打开<a href="http://127.0.0.1:8000/admin/.进去后你可以看到可以修改的Groups和Users.这部分由django.contrib.auth认证框架提供。" target="_blank" rel="external">http://127.0.0.1:8000/admin/.进去后你可以看到可以修改的Groups和Users.这部分由django.contrib.auth认证框架提供。</a></p>
-<p>7.注册polls(让polls app可以在网页中修改。)</p>
-<p>在polls/admin.py中添加<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line">admin.site.register(Question)</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-01T07:43:47.758Z"><a href="/blog/2016/04/01/锁与进程间通信/">2016-04-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/blog/2016/04/01/锁与进程间通信/"></a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="锁与进程间通信"><a href="#锁与进程间通信" class="headerlink" title="锁与进程间通信"></a>锁与进程间通信</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p><strong>竞态条件(race condition)</strong>是几个进程在访问资源时彼此干扰的情况。</p>
-<p>难点在于：无法通过测试完全找到竞态条件，只有彻底研究源代码并通过敏锐的直觉，才能找到并消除竞态条件。</p>
-<p><strong>临界区(Critical section)</strong><br>是在并行编程中，一段不能被多个处理器同时执行的代码。</p>
-<p>解决方法：</p>
-<p>信号量(semaphore):受保护的特殊变量。初始值为1。有2个标准操作up和down。在一个进程试图进入临界区时，调用down函数。这会将信号量减1，即将其设置为0，然后执行临界区代码。在执行操作完成后，调用up函数将信号量加1，即重置为初始值。信号量有下面2中特性：</p>
-<p>（1）又一个进程试图进入临界区，首先必须对信号量执行down操作。因为信号量当前值为0，会导致进程在该信号量上“睡眠”，直到前一个进程退出。</p>
-<p>（2）进程退出临界区，执行up操作。不仅将信号量加1，而且还会选择一个在该信号量上睡眠的进程。</p>
-<p><strong>查询和修改信号量的操作比如为原子的，反正竞态条件。</strong></p>
-<p>各种锁：</p>
-<ul>
-<li>原子操作:保证简单的计数器加1可以原子执行</li>
-<li>自旋锁:用于短期保护某段代码，以防止其他处理器访问</li>
-<li>信号量：在等待信号量释放时，进入睡眠，直至被唤醒，内核重新尝试获取信号量</li>
-<li>读写锁：区分对数据结构的两种不同类型的操作。任何数目的处理器都可以对数据结构进行并发<strong>读</strong>,但是只有一个处理器能进行<strong>写</strong>操作。</li>
-</ul>
-<h2 id="原子操作"><a href="#原子操作" class="headerlink" title="原子操作"></a>原子操作</h2><p>原子类型为<code>atomic_t</code>，定义在<code>&lt;asm-arch/atomic.h&gt;</code>中。原子类型只能借助<code>ATOMIC_INIT</code>宏初始化。原子类型是基于c语言通用类型实现，不能用++等操作。</p>
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>效果</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>atomic_read(atomic_t *v)</td>
-<td>读取原子变量的值</td>
-</tr>
-<tr>
-<td>atomic_set(atomic_t *v, int i)</td>
-<td>将v设置为i</td>
-</tr>
-<tr>
-<td>atomic_add(int i, atomic_t *v)</td>
-<td>将i加到v</td>
-</tr>
-<tr>
-<td>atomic_add_return(int i, atomic_t *v)</td>
-<td>将i加到v，并返回结果</td>
-</tr>
-<tr>
-<td>atomic_sub(int i, atomic_t *v)</td>
-<td>从v减去i</td>
-</tr>
-<tr>
-<td>atomic_sub_return(int i, atomic_t *v)</td>
-<td>从v减去i，并返回结果</td>
-</tr>
-<tr>
-<td>atomic_inc(atomic_t *v)</td>
-<td>将v加1</td>
-</tr>
-<tr>
-<td>atomic_inc_and_test(atomic_t *v)</td>
-<td>将v加1。结果如果为0则返回true，否则返回false</td>
-</tr>
-<tr>
-<td>atomic_dec(atomic_t *v)</td>
-<td>从v减1</td>
-</tr>
-<tr>
-<td>atomic_dec_and_test(atomic_t *v)</td>
-<td>从v减1。结果如果为0则返回true，否则返回false</td>
-</tr>
-<tr>
-<td>atomic_add_negative(int i, atomic_i *v)</td>
-<td>将i加到v.如果结果小于0则返回true,否则返回false</td>
-</tr>
-</tbody>
-</table>
-<p>local_t类型，允许在单个CPU上原子操作。</p>
-<h2 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h2><p>自旋锁用于保护段的代码段，其中只包含少量c语言，因此会很快执行完毕。</p>
-<p>自旋锁通过spinlock_t数据结构实现，基本可以使用spin_lock和spin_unlock操作。还有其他一些自旋锁操作：spin_lock_irqsave不仅获得自旋锁，还停用本地cpu的中断，而sin_lock_bh则停用softIRQ。这两个操作获得的自旋锁必须用对应的接口释放，分别是spin_unlock_irqsave和spin_unlock_bh。</p>
-<h2 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;asm-arch/semaphore.h&gt;</span><br><span class="line">struct semaphor &#123;</span><br><span class="line">	atomic_t count;</span><br><span class="line">	int sleepers;</span><br><span class="line">	wait_queue_head_t wait;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>与自旋锁相比，信号量适合于保护更长的临界区，以防止并行访问。但它们不应该用于保护较短的代码范围，因为竞争信号量时需要使进程睡眠和再次唤醒，代价很高。</p>
-<h2 id="RCU机制"><a href="#RCU机制" class="headerlink" title="RCU机制"></a>RCU机制</h2><p>RCU(read-copy-update)是一个相当新的同步机制。RCU对使用者提出一些约束</p>
-<ul>
-<li>对共享资源的访问在大部分时间应该是只读的，写访问应该相对很少。</li>
-<li>在RCU保护的代码范围内，内核不能进入睡眠状态。</li>
-<li>受保护资源必须通过指针访问。</li>
-</ul>
-<p>RCU原理很简单:该机制记录了指向共享数据结构的指针的所有使用者。在该结构将要改变时，则首先创建一个副本（或一个新的实例，填充适当的内容，这没什么差别），在副本中修改。在所有进行读访问的使用者结束对旧副本的读取之后，指针可以替换为指向新的、修改后副本的指针。请注意，这种机制允许读写并发执行。</p>
-<h3 id="核心API"><a href="#核心API" class="headerlink" title="核心API"></a>核心API</h3><p>假定指针ptr指向一个被RCU保护的数据结构。直接反引用指针是禁止的，首先必须调用rcu_dereference(ptr)，然后反引用返回的结果。此外，凡引用指针并使用其结果的代码，需要用rcu_read_lock和rcu_read_unlock调用保护起来：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">rcu_read_lock();</span><br><span class="line"></span><br><span class="line">p = rcu_derefence(ptr);</span><br><span class="line">if (p != NULL) &#123;</span><br><span class="line">	awesome_function(p);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">rcu_read_unlock();</span><br></pre></td></tr></table></figure>
-<p><strong>被反映用的指针不能在rcu_read_lock和rcu_read_unlock保护代码范围之外使用，也不能用于写访问</strong></p>
-<p>如果必须修改ptr指向的对象，则需要使用rcu_assign_pointer:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">struct super_duper *new_ptr = kmalloc(...);</span><br><span class="line"></span><br><span class="line">new_ptr-&gt;meaing = xyz;</span><br><span class="line">new_ptr-&gt;of = 42;</span><br><span class="line">new_ptr-&gt;life = 23;</span><br><span class="line"></span><br><span class="line">rcu_assign_pointer(ptr, new_ptr);</span><br></pre></td></tr></table></figure>
-<p>按RCU的术语，该操作公布了这个指针，后续的读取操作将看到新的结构，而不是原来的。<br><strong>如果更新可能来自内核中许多地方，那么必须使用普通的同步源于防止并发的写操作，如自旋锁。尽管RCU能保护读访问不受写访问的干扰，但它不对写访问之间的相互干扰提供防护！</strong></p>
-<p>synchronize_rcu()等待所有现存的读访问完成。在函数返回之后，释放与原指针关联的内存是安全的。</p>
-<p>call_rcu可用于注册一个函数，在所有针对共享资源的读访问完成以后调用。这要求将一个rcu_read实例嵌入（不能通过指针）到RCU保护的数据结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">struct super_duper &#123;</span><br><span class="line">	struct rcu_head head;</span><br><span class="line">	int meaning, of, life;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>该回调函数可通过参数访问对象的rcu_head成员，进而使用container_of机制访问对象本身。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kernel/rcuupdate.c</span><br><span class="line">void fastcall call_rcu(struct rcu_head * head, void(*func)(struct rcu_head *rcu))</span><br></pre></td></tr></table></figure></p>
-<h3 id="链表操作"><a href="#链表操作" class="headerlink" title="链表操作"></a>链表操作</h3><p>RCU能保护的，不仅仅是一般的指针。内核也提供了标准函数，使得能通过RCU机制保护双链表，这是RCU机制在内核内部最重要的应用。此外，由struct hlist_head和struct hlist_node组成的散列表也可以通过RCU保护。</p>
-<p>有关通过RCU保护的链表，好消息是仍然可以使用标准的链表元素。只有在遍历链表、修改和删除链表元素时，必须调用标准函数的RCU变体。函数名称是在标准函数之后附加_rcu后缀。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;list.h&gt;</span><br><span class="line">static inline void list_add_rcu(struct list_head *new,struct list_head *head)</span><br><span class="line">static inline void list_add_tail_rcu(struct list_head *new,struct list_head *head)</span><br><span class="line">static inline void list_del_rcu(struct list_head *entry)</span><br><span class="line">static inline void list_replace_rcu(struct list_head *old,struct list_head *new)</span><br></pre></td></tr></table></figure></p>
-<p>还有list_for_each_rcu允许遍历链表的所有元素。而list_for_each_rcu_safe甚至对删除链表元素也是安全的。这两个操作都必须通过一对rcu_read_lock()和rcu_read_unlock()包围。</p>
-<h2 id="内存和优化屏障"><a href="#内存和优化屏障" class="headerlink" title="内存和优化屏障"></a>内存和优化屏障</h2><h2 id="读-写锁"><a href="#读-写锁" class="headerlink" title="读/写锁"></a>读/写锁</h2><p>读写信号量和读写自旋锁。</p>
-<p>读写自旋锁定义为rwlock_t。必须根据读写访问，以不同的方法获取锁。</p>
-<p>进程对临界区进行读访问时，在进入和离开是需要分别执行read_lock和read_unlock。内核允许任意数目的读进程并发访问临界区。</p>
-<p>write_lock和write_unlock用于写访问。内核保证只有一个写进程（此时没有读进程）能够处于临界区。</p>
-<p>_irq_irqsave变体也同样可用，运作方式如果普通的自旋锁。以_bh结果的变体也是可用的，用于停用软件中断，但硬件中断中断仍然是开启的。</p>
-<h2 id="大内核锁"><a href="#大内核锁" class="headerlink" title="大内核锁"></a>大内核锁</h2><h2 id="互斥量"><a href="#互斥量" class="headerlink" title="互斥量"></a>互斥量</h2><p>尽管信号量可用于实现互斥量的功能，信号量的通用性导致的开销通常是不必要的。因此，内核包含了一个专用互斥量的独立实现，他们不依赖于信号量。<strong>互斥量是信号量的特例，count为1时</strong></p>
-<ul>
-<li><p>经典的互斥量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;mutex.h&gt;</span><br><span class="line">struct mutex &#123;</span><br><span class="line">	/* 1: 未锁定， 0： 锁定， 负值： 锁定，可能有等待者*/</span><br><span class="line">	atomic_t count;</span><br><span class="line">	spinlock_t wait_lock;</span><br><span class="line">	struct list_head wait_list;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>实时互斥量</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;rtmutex.h&gt;</span><br><span class="line">struct rt_mutex &#123;</span><br><span class="line">	spinlock_t wait_lock;</span><br><span class="line">	struct plist_head wait_list;</span><br><span class="line">	struct task_struct *owner;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="近似的per-CPU计数器"><a href="#近似的per-CPU计数器" class="headerlink" title="近似的per-CPU计数器"></a>近似的per-CPU计数器</h2><p>对于某些计数器没必要时时了解其准确值。</p>
-<h2 id="锁竞争与细粒度锁"><a href="#锁竞争与细粒度锁" class="headerlink" title="锁竞争与细粒度锁"></a>锁竞争与细粒度锁</h2>
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-01T07:43:47.758Z"><a href="/blog/2016/04/01/数据库系统原理与应用（第三版）2/">2016-04-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/blog/2016/04/01/数据库系统原理与应用（第三版）2/"></a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="分布式数据库技术"><a href="#分布式数据库技术" class="headerlink" title="分布式数据库技术"></a>分布式数据库技术</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>通过使用分散在不同地理位置的计算机来满足本地用户需要的计算方式称为分布式计算，使用到的数据库是分布式数据库，涉及的数据库技术是分布式数据库技术。</p>
-<p>分布式数据库是与集中式数据库相对的概念，其主要差别在于处理的数据处于不同的地理位置。集中式数据库强调的是所有的数据存储在一个唯一的地方，而分布式数据库强调的是所有的数据作为一个整体存储在多个不同的地理位置。</p>
-<h2 id="分布式数据库的概念和特定"><a href="#分布式数据库的概念和特定" class="headerlink" title="分布式数据库的概念和特定"></a>分布式数据库的概念和特定</h2><p>在分布式计算方式中，数据库管理系统安装在多个所处地理位置不同的服务器上，用户的数据也是分布在不同的服务器中。但从逻辑上来讲，这些用户的数据是一个整体，构成一个逻辑数据库。本地服务器的用户不仅可以访问本地服务器上数据库中的数据，也可以访问异地服务器上数据库中的数据。</p>
-<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>分布式数据库具有物理分布性、逻辑整体性、场地自治性、数据共享性和系统可用性五个特点。自治表示自己管理自己，场地自治性表示每个场地的集中式数据库系统都是自己来管理自己的数据。数据共享性强调的是系统具有统一的模式，所有的用户都可以使用分布式数据库中的数据。系统可用性则是如果某个场地的数据发生了故障，用户还可以通过其他场地访问这些数据。</p>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>第一，系统实现技术更加复杂、难度更大。<br>第二，系统的安全性更难处理。</p>
-<h2 id="分布式数据存储技术"><a href="#分布式数据存储技术" class="headerlink" title="分布式数据存储技术"></a>分布式数据存储技术</h2><p>在分布式数据库中，数据的存储可以通过三种方式实现，即复制存储方式、分片存储方式和混合存储方式。</p>
-<h3 id="数据复制"><a href="#数据复制" class="headerlink" title="数据复制"></a>数据复制</h3><p>通过把数据库中的一个关系存储多次而实现分布式存储。数据复制的有点事提高可用性、增加数据库系统的并行度、增强并发能力。数据复制也存在明显的缺点，即数据更新成本大大增加。</p>
-<h3 id="数据分片"><a href="#数据分片" class="headerlink" title="数据分片"></a>数据分片</h3><p>通过把数据库中的一个关系分成多个片断，每个片断都存储在不同场地上，且所有的片断包含的信息足够重构原始关系，该数据存储方式成为数据分片。</p>
-<p>数据分片分为水平分片、垂直分片和混合分片。</p>
-<h3 id="数据混合存储"><a href="#数据混合存储" class="headerlink" title="数据混合存储"></a>数据混合存储</h3><p>在数据存储过程中，既包含了水平分片存储方式，又包含了垂直分片存储方式，则将这种方式称为数据混合存储方式。</p>
-<h2 id="分布式数据查询技术"><a href="#分布式数据查询技术" class="headerlink" title="分布式数据查询技术"></a>分布式数据查询技术</h2><p>在集中式数据库的数据查询中，查询代价主要是本地处理代价，具体内容包括CPU代价和I/O代价。但是，分布式数据库的数据查询中，查询代价除了本地处理代价之外，还包括网络传输代价。</p>
-<p><strong>基于半连接的优化策略</strong>，在执行分布式查询时，只传输参与连接运算的数据，不传输不参与连接运算的数据。</p>
-<p><strong>基于连接的优化策略</strong>，在对于网络传输代价要求比较严格时，可以使用半连接优化策略。但对于网络传输代价要求比较低，对本地处理代价要求比较高时，可以考虑使用基于连接的优化策略。基于连接的优化策略的事项是把某个场地的整个关系的元组传输到另外的场地执行连接操作。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-01T07:43:47.758Z"><a href="/blog/2016/04/01/怎么在sublime中写markdown/">2016-04-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/blog/2016/04/01/怎么在sublime中写markdown/"></a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="怎么在Sublime中写Markdown"><a href="#怎么在Sublime中写Markdown" class="headerlink" title="怎么在Sublime中写Markdown"></a>怎么在Sublime中写Markdown</h1><p>Tags:sublime markdown</p>
-<h2 id="Sublime安装"><a href="#Sublime安装" class="headerlink" title="Sublime安装"></a>Sublime安装</h2><p>Sublime2官网:<a href="http://www.sublimetext.com/2" target="_blank" rel="external">http://www.sublimetext.com/2</a></p>
-<p>Sublime3官网:<a href="http://www.sublimetext.com/3" target="_blank" rel="external">http://www.sublimetext.com/3</a></p>
-<h2 id="安装Markdown-Preview"><a href="#安装Markdown-Preview" class="headerlink" title="安装Markdown Preview"></a>安装Markdown Preview</h2><p><strong>sublime2（<code>未验证</code>）</strong><br>打开Ctrl+~,输入如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import urllib2,os; pf=&apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), &apos;wb&apos; ).write( urllib2.urlopen( &apos;http://sublime.wbond.net/&apos; +pf.replace( &apos; &apos;,&apos;%20&apos; )).read()); print( &apos;Please restart Sublime Text to finish installation&apos;)</span><br></pre></td></tr></table></figure></p>
-<p><strong>sublime3（<code>未验证</code>)</strong><br>打开Ctrl+~,输入如下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request,os; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &apos;wb&apos;).write(urllib.request.urlopen( &apos;http://sublime.wbond.net/&apos; + pf.replace(&apos; &apos;,&apos;%20&apos;)).read())</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>Ctrl+Shift+p 打开Package Control 输入install,选择 install package</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/mrgao1008/picture/master/sublime_install_package.png" alt="install_package"></p>
-<p>-. 输入markdown 选择preview安装</p>
-<p><img src="https://raw.githubusercontent.com/mrgao1008/picture/master/markdown_preview.png" alt="markdown_preview"></p>
-<h2 id="Markdown基本语法"><a href="#Markdown基本语法" class="headerlink" title="Markdown基本语法"></a>Markdown基本语法</h2><h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><p>通过在句首加入#，表示标题</p>
-<h1 id="标题1"><a href="#标题1" class="headerlink" title="标题1"></a>标题1</h1><h2 id="标题2"><a href="#标题2" class="headerlink" title="标题2"></a>标题2</h2><p>…</p>
-<h6 id="标题6"><a href="#标题6" class="headerlink" title="标题6"></a>标题6</h6><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	printf(&quot;hello world\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>为了使的图片在互联网上能够访问，需要将图片上传到网盘上，比如github.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![name](url)来表示图片</span><br></pre></td></tr></table></figure></p>
-<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>链接和图片类似<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[name](url)</span><br></pre></td></tr></table></figure></p>
-<h3 id="加粗和斜体"><a href="#加粗和斜体" class="headerlink" title="加粗和斜体"></a>加粗和斜体</h3><p><strong>加粗</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**加粗**</span><br></pre></td></tr></table></figure></p>
-<p><em>斜体</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*斜体*</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-01T07:43:47.758Z"><a href="/blog/2016/04/01/数据库系统原理与应用（第三版）1/">2016-04-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/blog/2016/04/01/数据库系统原理与应用（第三版）1/"></a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="数据库系统原理与应用（第三版）"><a href="#数据库系统原理与应用（第三版）" class="headerlink" title="数据库系统原理与应用（第三版）"></a>数据库系统原理与应用（第三版）</h1><p><em>第五章 关系模型</em></p>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>关系模型是一种以二维表的形式表示实体数据和实体之间关系等信息的数据库模型。</p>
-<p>在关系模型中，基本元素包括属性、模式、元祖、域、键码、关系等价表示法以及关系实例等。</p>
-<p><strong>属性</strong> 在二维表中，关系的第一行成为属性（attribute），它描述了属性所在列各项的含义。</p>
-<p><strong>模式</strong> 关系名和关系的属性集成为关系的模式。一般地，模式的表示形式有两种。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">第一种：</span><br><span class="line">	模式名(属性1,属性2,...,属性n)</span><br><span class="line">	例如：</span><br><span class="line">	Book(isbn,titlle,page,bookType,year,price)</span><br><span class="line">第二种：</span><br><span class="line">	模式名=(属性1,属性2,...,属性n)</span><br><span class="line">	例如：</span><br><span class="line">	Book=(isbn,titlle,page,bookType,year,price)</span><br></pre></td></tr></table></figure>
-<p>关系的概念对应于程序设计语言中变量的概念，而关系模式的概念对应于程序设计语言中类型定义的概念。</p>
-<p>关系模式中的属性是一个<strong>集合</strong>，而不是<strong>列表</strong>，所以关系模式中属性的顺序不重要。但是便于讨论，一般为关系模式中的属性规定一个标准的排列顺序。</p>
-<p>当谈论数据库时，还必须区分关系模式和关系实例的概念。关系模式是一个逻辑设计包括了关系名和关系属性，相对比较稳定。而关系实例是定义的关系模式中数据的快照，相对来说经常发生变化。</p>
-<p>在关系模型中，数据库设计包含了一个或多个关系模式。关系数据库模式就是关系模式的集合，简称数据库模式。</p>
-<p><strong>元祖</strong> 在关系模式中，除了第一行是标题栏之外，关系中的其他行成为元组。元组实际上是关系中的数据。</p>
-<p><strong>域</strong> 一般地，把关系中的每个属性相关的特定类型称为域，那么关系中任何元组的每个分量都必须在相应列的域中取指。在关系模型中，要求组成元组的每个分量都是不可再分割的原子型，即这些分量必须属于某种基本类型，例如整数型、浮点型和字符型等。不允许将某个属性值属于记录结构、集合、列表、数组或可以合理地分割成更小分量的任何类型。</p>
-<p><strong>关系的等价表示方法</strong> 前面已经讲过，关系的模式和元组都是集合，不是列表。因此，关系的模式和元组的顺序不重要，无论模式中属性顺序或元组顺序如何变换，只要是模式中的属性和元组本身没有变化，那么得到的关系模式都是相同的。这种方式称为关系的等价表示方法。</p>
-<p><strong>关系实例</strong> 习惯上，把给定关系中元组的集合称为关系实例。</p>
-<p><strong>键码</strong> 如果关系中的所有元组在一个属性或多个属性的集合中都互不相同，即可以使用该属性或属性的集合来确定关系中的元组，那么该属性或属性的集合称为关系中的键码。</p>
-<ul>
-<li>第六章 关系模式的规范化设计*</li>
-</ul>
-<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="异常问题"><a href="#异常问题" class="headerlink" title="异常问题"></a>异常问题</h3><p>在设计关系模式时，应该避免出现异常现象。这些异常现象包括数据冗余、修改异常、插入异常和删除冗余。</p>
-<p><strong>数据冗余</strong>的含义是表示相同信息的数据在关系的多个元组中重复出现。<br><strong>修改异常</strong>是指当修改了关系中某一个元组中的信息后，该关系中的另一个元组中相同的信息却没有修改。<br><strong>插入异常</strong>是指当向关系中插入一个元组数据时，仅知道该元组的一部分数据，结果这些已知的数据由于那些未知的数据而很难在关系中正确地插入。<br><strong>删除异常</strong>的含义是如果某些属性的值变为空，可能会丢失其他一些有用的信息。</p>
-<h3 id="泛关系模式和数据库模式"><a href="#泛关系模式和数据库模式" class="headerlink" title="泛关系模式和数据库模式"></a>泛关系模式和数据库模式</h3><p>在关系模式设计过程中，应当采取一些方法消除这些数据异常现象，把最初的关系模式分解成最终的合适的关系模式。这种最初设计的关系模式也成为泛关系模式（universal relation scheme）。关系模式的当前值称为关系实例，关系实例是特定元组的集合。可以把泛关系模式分解成一系列小的符合规范化要求的关系模式集合，这种比较小的最终的关系模式的集合称为数据库模式（database scheme）。对数据库模式的每个关系模式赋予一个当前值，这时称为数据库实例。</p>
-<h2 id="函数依赖"><a href="#函数依赖" class="headerlink" title="函数依赖"></a>函数依赖</h2><p>数据依赖是数据之间存在的各种联系现象。数据异常现象与数据依赖有着紧密的关联。在数据依赖中，函数依赖是最基本的一种依赖形式。</p>
-<h3 id="函数依赖的定义"><a href="#函数依赖的定义" class="headerlink" title="函数依赖的定义"></a>函数依赖的定义</h3><p>函数依赖（Function Dependency，FD）的定义可以叙述为：如果关系$R$的两个元组在属性$A_1,A_2,\cdots,A_n$上一致，那么它在另一属性$B$上也一致。这种函数依赖记作$A_1A_2 \cdots A_n \xrightarrow{} B$,读作属性$A_1,A_2,\cdots,A_n$函数决定属性$B$,或属性$B$函数依赖于属性$A_1,A_2,\cdots,A_n$。</p>
-<p>函数依赖的逻辑定义：设关系模式$R$的属性集是$U$,$X$和$Y$是$U$的子集，函数依赖是形如$X \xrightarrow{} Y$的命题，即$r$是$R$的当前实例值，对r中的任意两个元组$t$和$s$，如果$t[X]=s[X]$，则$t[Y]=s[Y]$,那么$X \xrightarrow{} Y$在关系模式$R$中成立。其中，$t[X]$表示元组$t$在属性集$X$上的值。</p>
-<p>函数依赖的定义表示了关系模式属性集$X$值和$Y$值之间的多对一联系。</p>
-<p>如果一组属性$A_1,A_2,\cdots,A_n$函数决定一组属性$B_1,B_2,\cdots,B_m$,那么可以把这组依赖关系简记为：$$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$$</p>
-<p>对于关系Book(isbn,title,page,bookType,price,pressName,authorName)，根据客观现实和经验，可以得到以下函数依赖</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">isbn-&gt;title</span><br><span class="line">isbn-&gt;page</span><br><span class="line">isbn-&gt;bookType</span><br><span class="line">isbn-&gt;price</span><br><span class="line">isbn-&gt;pressName</span><br></pre></td></tr></table></figure>
-<p>简写为$$isbn \xrightarrow{} title\ page\ bookType\ price\ pressName$$.<br>不能得到$isbn \xrightarrow{} authorName$因为其中一个isbn对应了3个作者。</p>
-<h3 id="函数依赖和键码"><a href="#函数依赖和键码" class="headerlink" title="函数依赖和键码"></a>函数依赖和键码</h3><h4 id="超键码"><a href="#超键码" class="headerlink" title="超键码"></a>超键码</h4><p>在某个关系中，如果一个或多个属性的集合${A_1,A_2,\cdots,A_n}$函数决定该关系的其他属性，那么称该属性的集合为该关系的超键码。超键码的含义是关系中不可能存在两个不同的元组在属性$A_1,A_2,\cdots,A_n$的取值完全相同。根据上面的定义可以看到，在一个关系中，超键码的数量是没有限制的，例如如果属性集合${A_1,A_2,\cdots,A_n}$是超键码，那么包含该属性集合的所有属性集合都是超键码。</p>
-<h4 id="键码"><a href="#键码" class="headerlink" title="键码"></a>键码</h4><p>在某个关系中，如果一个或多个属性的集合${A_1,A_2,\cdots,A_n}$函数决定该关系的其他属性，并且集合${A_1,A_2,\cdots,A_n}$的任何真子集都不能函数决定该关系的所有其他属性，那么称该属性的集合为该属性的键码。</p>
-<p>在一个关系中，有时会有多个不同的键码。如果这样，可以把其中一个最为重要的键码指定为主键码，把其他键码成为候选键码。</p>
-<h3 id="逻辑蕴含"><a href="#逻辑蕴含" class="headerlink" title="逻辑蕴含"></a>逻辑蕴含</h3><p>在讨论函数依赖时，经常需要从一些已知的函数依赖去判断另外一些函数依赖是否成立。例如，如果$A \xrightarrow{} B$和$B \xrightarrow{} C$在某个关系中成立，那么$ A \xrightarrow{} C$在该关系中是否成立的问题成为逻辑蕴含问题。</p>
-<p>假定$F$是在某个关系上成立的函数依赖集，$T$是在该关系上成立的另外一个函数依赖集，如果对于该关系中满足$F$的每一个关系实例都满足$T$，那么称函数依赖集$F$蕴含于函数依赖集$T$，记作$F$蕴含于$T$。</p>
-<p>如果$F$蕴含于$T$，且$T$蕴含于$F$，那么函数依赖集$F$和$T$等价。</p>
-<p>函数关系$R(A,B,C)$具有函数依赖$A \xrightarrow{} B$和$B \xrightarrow{} C$，那么可以证明$A \xrightarrow{} C$在该关系中成立。证明思路：在关系$R$中任取两个元组，如果这两个元组在属性$A$上一致，那么证明这两个元组在属性$C$上一致。</p>
-<p>在这里可以把函数依赖$A \xrightarrow{} B$和$B \xrightarrow{} C$记作函数依赖集$F$，把$A \xrightarrow{} C$记作函数依赖集$T$，那么已经证明了满足$F$的每一个关系实例都满足$T$，因此可以说函数依赖集$F$蕴含于函数依赖集$T$。</p>
-<h3 id="函数依赖的推理规则"><a href="#函数依赖的推理规则" class="headerlink" title="函数依赖的推理规则"></a>函数依赖的推理规则</h3><p><strong>分解规则</strong>：可以把一个函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$用一组函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1,A_1A_2 \cdots A_n \xrightarrow{} B_2,\cdots,A_1A_2 \cdots A_n \xrightarrow{} B_m$来代替。<br><strong>合并规则</strong>：可以把一组函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1,A_1A_2 \cdots A_n \xrightarrow{} B_2,\cdots,A_1A_2 \cdots A_n \xrightarrow{} B_m$用一个函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$来代替。</p>
-<p>对于函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$，设$A={A_1A_2 \cdots A_n},B={B_1B_2 \cdots B_m}$，如果$B$是$A$的子集，那么称该依赖为平凡依赖；如果$B$中至少有一个属性不在$A$中，那么称该依赖是非平凡依赖；如果$B$中的任何一个属性都不在$A$中，那么称该依赖是完全非平凡依赖。</p>
-<p>Armstrong公理。<br><strong>自反律</strong>：如果${B_1B_2 \cdots B_m} \subset {A_1A_2 \cdots A_n}$，则$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$。这是平凡依赖。</p>
-<p><strong>增长率</strong>：如果$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$，则对于任何属性集$C_1,C_2,\cdots,C_k$，都存在$A_1A_2 \cdots A_nC_1C_2 \cdots C_k \xrightarrow{} B_1B_2 \cdots B_mC_1C_2 \cdots C_k$。</p>
-<p><strong>传递率</strong>：如果$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m,B_1B_2 \cdots B_m \xrightarrow{} C_1C_2 \cdots C_k$，则$A_1A_2 \cdots A_n \xrightarrow{} C_1C_2 \cdots C_k$。</p>
-<h3 id="属性集的闭包"><a href="#属性集的闭包" class="headerlink" title="属性集的闭包"></a>属性集的闭包</h3><p>假设${A_1A_2 \cdots A_n}$是属性集，$S$是函数依赖集。属性集${A_1A_2 \cdots A_n}$在函数依赖集$S$下的闭包是这样的属性集$B$，它使得满足依赖集$S$中所有依赖的每一个关系都满足$A_1A_2 \cdots A_n \xrightarrow{} B$。即$A_1A_2 \cdots A_n \xrightarrow{} B$蕴含于$S$中的函数依赖。使用${A_1A_2 \cdots A_n}^+$表示属性集${A_1A_2 \cdots A_n}$的闭包。</p>
-<p>计算属性集${A_1A_2 \cdots A_n}$闭包的步骤如下：</p>
-<p>第一步，设最终将成为闭包的属性集是$X$,把$X$初始化为${A_1A_2 \cdots A_n}$。</p>
-<p>第二步，重复搜索和判断函数依赖$B_1B_2 \cdots B_m \xrightarrow{} C$。如果左边所有的属性$B_1,B_2,\cdots,B_m$都在属性集$X$中，但是属性$C$不在$X$中，则将$C$添加到属性集$X$中。</p>
-<p>第三步，重复第二步，知道没有属性可以添加到属性集$X$中为止。</p>
-<p>第四步，最后得到的不能再添加的属性集$X$就是${A_1A_2 \cdots A_n}^+$。</p>
-<p>如果用户知道了如何计算任意属性的闭包，就能检验给定的任意函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B$是否蕴含于函数依赖集$S$。检验步骤如下：</p>
-<p>第一步，计算闭包。根据函数依赖集$S$计算${A_1A_2 \cdots A_n}^+$。</p>
-<p>第二步，判断。如果$B$在${A_1A_2 \cdots A_n}^+$中，则$A_1A_2 \cdots A_n \xrightarrow{} B$蕴含于函数依赖集$S$；如果$B$不在${A_1A_2 \cdots A_n}^+$中，则该函数不蕴含于函数依赖集$S$。</p>
-<h3 id="正则覆盖"><a href="#正则覆盖" class="headerlink" title="正则覆盖"></a>正则覆盖</h3><p>如果可以去掉一个函数依赖集中的属性而不改变函数依赖集的闭包，那么称该属性是无关的。无关属性可以形式化的定义如下，考虑函数依赖集$S$和$S$中的某个函数依赖$X \xrightarrow{} Y$。</p>
-<p>如果$A \in X$，且$S$逻辑蕴含$(S-\{X \xrightarrow{} Y\}) \cup \{(X-A) \xrightarrow{} Y\}$，那么属性$A$在$X$中是无关的。</p>
-<p>如果$A \in Y$，且$S$逻辑蕴含$(S-\{X \xrightarrow{} Y\}) \cup \{X \xrightarrow{} (Y-A)\}$，那么属性$A$在$Y$中是无关的。</p>
-<p>$S$的正则覆盖是一个函数依赖集$S_C$，含义是$S$逻辑蕴含$S_C$中的所有依赖，并且$S_C$逻辑蕴含$S$中的所有依赖。此外，$S_C$具有如下三个性质：</p>
-<ul>
-<li>$S_C$的闭包与$S$的闭包相同，即${S}^+ ={S_C}^+$。</li>
-<li>$S_C$的任何函数依赖都不包含无关属性。</li>
-<li>$S_C$中的函数依赖的左半部都是唯一的，即$S_C$中不存在两个函数依赖$X_1 \xrightarrow{} Y_1$和$X_2 \xrightarrow{} Y_2$，且$X_1 = X_2$。</li>
-</ul>
-<h2 id="关系模式的分解"><a href="#关系模式的分解" class="headerlink" title="关系模式的分解"></a>关系模式的分解</h2><p>消除关系模式中数据异常的常用办法是分解关系模式。关系模式$R$的分解就是把关系$R$中的属性分开，以构成两个新的关系模式。</p>
-<p>在分解关系模式时，一定要注意两个问题：第一，保证分解前后关系模式的信息不能丢失和增加，保持原有的信息不变，这称为无损连接；第二，保持分解前后猿猴的函数依赖依然成立。</p>
-<p>给定一个关系模式$R$，其属性集合为$\{A_1,A_2,\cdots,A_n\}$，现在把其分解成两个关系模式$X$和$Y$，其属性集合分别是$\{B_1,B_2,\cdots,B_m\}$和$\{C_1,C_2,\cdots,C_k\}$，这种分解应该满足如下条件：</p>
-<p>第一个条件：$\{A_1,A_2,\cdots,A_n\}=\{B_1,B_2,\cdots,B_m\} \cup \{C_1,C_2,\cdots,C_k\}$。</p>
-<p>第二个条件：关系$X$中的元组是关系$R$的所有元组在$\{B_1,B_2,\cdots,B_m\}$上的投影，包含相同元组。</p>
-<p>第三个条件：关系$Y$中的元组是关系$R$的所有元组在$\{C_1,C_2,\cdots,C_k\}$上的投影，不包含相同元组。</p>
-<p>例如：略。</p>
-<h2 id="关系模型的范式"><a href="#关系模型的范式" class="headerlink" title="关系模型的范式"></a>关系模型的范式</h2><h3 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h3><p>如果关系模式$R$中的所有属性值都是不可在分解的原子值，那么就称关系$R$是第一范式（first normal form，1NF）的关系模式。不是1NF的关系称为非规范化的关系，满足1NF的关系简称关系。在关系型数据库管理系统中，涉及到的研究对象都是满足1NF的规范化关系。</p>
-<h3 id="BCNF范式"><a href="#BCNF范式" class="headerlink" title="BCNF范式"></a>BCNF范式</h3><p>BCNF范式（Boyce-Codd normal form）的定义是，如果某个关系R有非平凡依赖$A_1,A_2,\cdots,A_n \xrightarrow{} B$，那么$\{A_1,A_2,\cdots,A_n\}$必然是关系R的超键码。满足这样条件的关系就属于BCNF。即BCNF条件的含义是每一个非平凡依赖的左边必须包含超键码。</p>
-<h3 id="分解成BCNF模式的算法"><a href="#分解成BCNF模式的算法" class="headerlink" title="分解成BCNF模式的算法"></a>分解成BCNF模式的算法</h3><p>第一步，找到一个违背BCNF的非平凡依赖，并在该依赖的右边加上尽量多的属性。</p>
-<p>第二步，把原始关系模型分解成两个属性重迭的关系模式，一个模式包含了违背BCNF的所有属性，另外一个模式包含了该依赖左边以及未包含在该依赖中的所有属性。</p>
-<p>第三步，判断新的关系模式是否满足BCNF。如果不满足，继续进行分解；如果满足，则停止。</p>
-<p><strong>任何包含了两个属性的关系模式都自然满足BCNF条件。</strong></p>
-<h3 id="函数依赖的投影"><a href="#函数依赖的投影" class="headerlink" title="函数依赖的投影"></a>函数依赖的投影</h3><p>在分解关系模式时，需要确定新关系模式是否满足BCNF条件。这种判断的前提是知道新关系模式中成立的函数依赖，这些函数依赖是原关系模式的函数依赖在新关系模式上的投影。下面介绍一种找到新关系模式中函数依赖的方法。</p>
-<p>假设把关系$R$分解成关系$S$和$T$，$F$是$R$中已知的函数依赖集。现在计算$S$中成立的函数依赖。考虑包含于$S$的属性集的每个属性集$X$，计算$X^+$。于是，满足下列条件的每个属性$B$，函数$X \xrightarrow{} B$在关系$S$中成立：</p>
-<ul>
-<li>$B$是$S$的一个属性；</li>
-<li>$B$属于$X^+$;</li>
-<li>$B$不属于$X$。</li>
-</ul>
-<h3 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h3><p>在某些情况下，按照BCNF进行分解，但是当对得到的关系模式进行连接时，却不能保证原先所有的函数依赖都能得到保持。这是，关系模式就不应该继续进行分解，该关系模式满足的范式称为第三范式。</p>
-<p>如果对于任何非平凡依赖$A_1,A_2,\cdots,\A_n \xrightarrow{} B$，那么或$\{A_1,A_2,\cdots,A_n\}$是关系$R$的超键码，或$B$是某个键码的组成部分。满足这样条件的关系就属于第三范式（third normal form, 3NF）。</p>
-<h3 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h3><p>在一个关系中，如果$\{A_1,A_2,\cdots,A_n\}$是关系$R$的键码，$B$是关系中的任意非键码，那么非平凡依赖$A_1,A_2,\cdots,A_n \xrightarrow{} B$都成立，则该关系模式属于第二范式（second normal form, 2NF）。</p>
-<h3 id="多值依赖"><a href="#多值依赖" class="headerlink" title="多值依赖"></a>多值依赖</h3><p>多值依赖的含义是如果确定了关系$R$的一个属性集的取值，则其他某些特征属性的取值与该关系的所有其他属性的取值无关。确切的说，如果限定关系$R$的元组在属于$A$的每个属性上取特定的值，结果属性$B$的属性取值的集合与既不属于$A$也不属于$B$但属于$R$的属性取值的集合无关，则称如下所示的多值依赖在关系$R$中成立：$$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$$</p>
-<p>多值依赖满足规则</p>
-<p>平凡依赖规则：在某个关系中，如果多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$成立，则多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$也成立，其中$C$是$B$加上$A$中的一个或多个属性。反之，也可以从$B$中删除一些属于$A$的属性，并推导出多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} D_1D_2 \cdots D_r$，其中，$D$是在$B$中而不属于$A$的属性。</p>
-<p>传递规则：在某个关系中，如果多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$和$B_1B_2 \cdots B_m \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$，则多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$成立。</p>
-<p>复制规则：在关系中，每个函数依赖都是多值依赖。</p>
-<p>互补规则：如果$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$是关系$R$的多值依赖，则$R$也满足$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$,其中，$C$是不属于$A$和$B$的$R$的所有其他属性。</p>
-<p>第四范式：如果$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$是非平凡的多值依赖，且$\{A_1,A_2,\cdots,A_n\}$是关系的超键码，那么该关系就属于第四范式（Fourth Normal Form, 4NF）。</p>
-<p>分解方法：</p>
-<p>第一步：找到一个4NF违例，例如$A \xrightarrow{}\xrightarrow{} B$.</p>
-<p>第二步：分解该关系模式，第一个关系模式包含$A$和$B$中的属性，第二个关系模式包含$A$中的属性以及不属于$A$也不属于$B$的$R$的所有其他属性。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/Windows API hook 开发环境配置/">2016-04-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/blog/2016/04/01/Windows API hook 开发环境配置/"></a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <h1 id="Windows-API-Hook-开发环境配置"><a href="#Windows-API-Hook-开发环境配置" class="headerlink" title="Windows API Hook 开发环境配置"></a>Windows API Hook 开发环境配置</h1><p><span id="top"></span><br><!-- MarkdownTOC --></p>
-<ul>
-<li><a href="#detours安装和配置">Detours安装和配置</a><ul>
-<li><a href="#detours介绍">Detours介绍</a></li>
-<li><a href="#detours安装">Detours安装</a></li>
-<li><a href="#detours编译">Detours编译</a></li>
-</ul>
-</li>
-<li><a href="#windows-api-hook例子">Windows API Hook例子</a><ul>
-<li><a href="#加入detours头文件和动态库文件">加入detours头文件和动态库文件</a></li>
-</ul>
-</li>
-<li><a href="#利用withdll进行远程dll注入">利用withdll进行远程dll注入</a></li>
-</ul>
-<!-- /MarkdownTOC -->
-<p><a name="detours安装和配置"></a></p>
-<h2 id="Detours安装和配置"><a href="#Detours安装和配置" class="headerlink" title="Detours安装和配置"></a>Detours安装和配置</h2><p><a name="detours介绍"></a></p>
-<h3 id="Detours介绍"><a href="#Detours介绍" class="headerlink" title="Detours介绍"></a>Detours介绍</h3><p>Detours是Windows下一个API Hook 开源框架。<br><a href="http://research.microsoft.com/en-us/projects/detours/" target="_blank" rel="external">Detours官网</a><br><a href="http://research.microsoft.com/en-us/downloads/d36340fb-4d3c-4ddd-bf5b-1db25d03713d/default.aspx" target="_blank" rel="external">Detours 3.0下载地址</a></p>
-<p><a name="detours安装"></a></p>
-<h3 id="Detours安装"><a href="#Detours安装" class="headerlink" title="Detours安装"></a>Detours安装</h3><p>msi文件一路next。记下安装目录。</p>
-<p><a name="detours编译"></a></p>
-<h3 id="Detours编译"><a href="#Detours编译" class="headerlink" title="Detours编译"></a>Detours编译</h3><p>安装完成后，进入目录<code>C:\Program Files\Microsoft Research\Detours Express 3.0</code>会看到下面的目录结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">samples\</span><br><span class="line">	...</span><br><span class="line">	simple\</span><br><span class="line">	...</span><br><span class="line">	withdll\</span><br><span class="line">	...</span><br><span class="line">src\</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<p>其中src是需要编译的detours源码。simple和withdll是实现windows API Hook需要用到的2个示例。</p>
-<p>编译步骤如下:</p>
-<ul>
-<li>以管理员权限启动cmd</li>
-<li><p>设置环境变量，不然nmake会出错</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &quot;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\vcvars32.bat&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>进入detours的src文件夹并进行编译</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\src</span><br><span class="line"># nmake</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>编译在src和samples同一目录会生成lib.X86文件夹，里面的detours.lib就是我们需要的。</p>
-<p><a name="windows-api-hook例子"></a></p>
-<h2 id="Windows-API-Hook例子"><a href="#Windows-API-Hook例子" class="headerlink" title="Windows API Hook例子"></a>Windows API Hook例子</h2><p><a name="加入detours头文件和动态库文件"></a></p>
-<h3 id="加入detours头文件和动态库文件"><a href="#加入detours头文件和动态库文件" class="headerlink" title="加入detours头文件和动态库文件"></a>加入detours头文件和动态库文件</h3><p>在vs中新建windows控制台程序，设置解决方案的属性。</p>
-<ul>
-<li>打开<strong>项目</strong>–<strong>XXX 属性</strong></li>
-<li><p><strong>配置属性</strong>–<strong>C/C++</strong>–<strong>常规</strong> 在<strong>附加目录项</strong>中加入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\include</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>配置属性</strong>–<strong>链接器</strong>–<strong>常规</strong> 在<strong>附加库目录</strong>中加入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\lib.X86</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>配置属性</strong>–<strong>链接器</strong>–<strong>输入</strong> 在<strong>附加依赖项</strong>中加入<code>detours.lib</code></p>
-</li>
-<li><strong>配置属性</strong>–<strong>C/C++</strong>–<strong>代码生成</strong> 在<strong>运行库</strong>选择<code>/MT</code></li>
-<li><strong>配置属性</strong>–<strong>常规</strong> 在<strong>字符集</strong>选择<code>未设置</code></li>
-<li>在命令栏中选择<code>release</code>版本</li>
-</ul>
-<h4 id="withdll的编译"><a href="#withdll的编译" class="headerlink" title="withdll的编译"></a>withdll的编译</h4><p>在源文件中新建cpp文件，拷贝detours安装目录下的<code>samples\withdll\withdll.cpp</code>内容到cpp中。编译。</p>
-<h4 id="simple的编译"><a href="#simple的编译" class="headerlink" title="simple的编译"></a>simple的编译</h4><p>在vs新建项目时，选择windows控制台程序，并选择dll。设置解决方案属性。拷贝<code>samples\simple\simple.cpp</code>到新建的cpp文件中，编译。</p>
-<p><a name="利用withdll进行远程dll注入"></a></p>
-<h2 id="利用withdll进行远程dll注入"><a href="#利用withdll进行远程dll注入" class="headerlink" title="利用withdll进行远程dll注入"></a>利用withdll进行远程dll注入</h2><p><code>withdll /d:simple.dll a.exe</code>会将simple.dll注入到a.exe中。注意<code>/d:simple.dll</code>分号后不要有空格。exe和dll用绝对地址和相对地址都可以。</p>
-<p><a href="#top">回到顶部</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2016-04-01T07:43:47.743Z"><a href="/blog/2016/04/01/如何给Linux kernel提交代码/">2016-04-01</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/blog/2016/04/01/如何给Linux kernel提交代码/"></a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>#如何给Linux Kernel提交代码</p>
-<p><strong><a href="http://kernelnewbies.org/UpstreamMerge/SubmittingPatches" target="_blank" rel="external">英文</a></strong></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><span id="前言">前言</span></h2><p>个人或者公司如果不熟悉提交代码流程，代码很难被接受。利用本文给出一些建议将会大大的增加代码被接受的概率。</p>
-<p>在提交代码之前，你需要阅读一些注意事项<code>Documentation\SubmitChecklist</code>。如果是提交的驱动，同时也请阅读<code>Documentation\SubmittingDrivers</code>。</p>
-<h2 id="创造并提交改动"><a href="#创造并提交改动" class="headerlink" title="创造并提交改动"></a>创造并提交改动</h2><p>###diff -up</p>
-<p>利用<code>diff -up</code>或者<code>diff -uprN</code>创造patch文件。</p>
-<p>linux所有的更改都以patche方式存在。patch命令中<code>-u</code>代表<code>unified diff</code>,<code>-p</code>会显示哪个函数发生了改变。patche都是以linux源码的根目录为其实点。<br>比如你更改了一个文件。你需要进行下面的操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SRCTREE= linux-2.6</span><br><span class="line">MYFILE= drivers/net/mydriver.c</span><br><span class="line"></span><br><span class="line">cd $SRCTREE</span><br><span class="line">cp $MYFILE $MYFILE.orig</span><br><span class="line">vi $MYFILE       # make your change</span><br><span class="line">cd ..</span><br><span class="line">diff -up $SRCTREE/$MYFILE&#123;.orig,&#125; &gt; /tmp/patch</span><br></pre></td></tr></table></figure></p>
-<p>如果更改了多个文件，你需要解压一个<code>vanilla</code>或者原版linux kernel。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MYSRC= /devel/linux-2.6</span><br><span class="line"></span><br><span class="line">tar xvfz linux-2.6.12.tar.gz</span><br><span class="line">mv linux-2.6.12 linux-2.6.12-vanilla</span><br><span class="line">diff -uprN -X linux-2.6.12-vanilla/Documentation/dontdiff \</span><br><span class="line">    linux-2.6.12-vanilla $MYSRC &gt; /tmp/patch</span><br></pre></td></tr></table></figure></p>
-<p>其中<code>dontdiff</code>是diff需要忽略的文件列表。</p>
-<p>确保patche中不包含其他无关文件。</p>
-<p>如果你的更改比较巨大，可以按照逻辑分成几个部分。这方便其他内核开发者审查。</p>
-<p>patch管理工具<a href="http://savannah.nongnu.org/projects/quilt" target="_blank" rel="external">Quilt</a>.一些脚本工具<a href="http://userweb.kernel.org/~akpm/stuff/patch-scripts.tar.gz" target="_blank" rel="external">Scripts</a></p>
-<p>###描述更改</p>
-<p>描述更改过程中的技术细节，做到尽可能清晰。如果描述过长，可能你需要分成几个patch。</p>
-<p>###分割更改</p>
-<p>按照逻辑分割patch文件。<br>比如，你填补了一个驱动的bug同时还提高了它的性能，那么你需要将他分成多个patche。如果你更改了一个API,并提供一个新的驱动利用了该API，这需要分成2个patch。另一方面，如果你只是更改了很多不同文件的同一个地方，你需要将更改放在同一个patch中。如果你的patch比如依赖另外一个patch，你需要在描述patch时说明<code>this patch depends on patch X</code>。</p>
-<p>###检查代码风格</p>
-<p>按照<code>Documentation/Codingstyle</code>中的描述，检查更改的编码风格。没有进行这一步的代码可能在甚至没有被阅读情况下被拒绝。最基本的，你可以采用<code>scripts/checkpatch.pl</code>检查patch的编码风格，并且修改所有不恰当的地方。</p>
-<p>###选择发送者</p>
-<p>linux主线的每一部分都由一个维护者负责。更改属于哪一部分就发给对应的维护者。如果维护者没有列出，或者不回应邮件，你可以将patch发给<code>linux-kernel@vger.kernel.org</code>。</p>
-<p>Linus Torvalds是接受更改的仲裁者，但是一般不要给他发邮件。比较明显的bug修复或者不需要讨论的patch可以直接抄送给Linux Torvalds。如果Patch没有明显的优势或者需要讨论，你需要先发给linux-kernel.</p>
-<p>###选择抄送人</p>
-<p>如果没有特别原因需要抄送给<code>linux-kernel@vger.kernel.org</code>。这样可以让其他开发者可以检查代码和提出意见。</p>
-<p>如果你的更改影响了用户和内核接口，请抄送给MAN-PAGES维护者，方便他们做更改。<br>小的更改：比如字符拼写错误等你需要抄送给<code>trivial@kernel.org</code>。<br>比如在文档中的拼写错误等。关于小错误的定义可以查看<a href="http://www.kernel.org/pub/linux/kernel/people/juhl/trivial/" target="_blank" rel="external">trivial</a>。</p>
-<p>###只允许文字（没有多媒体，链接，压缩，附件）</p>
-<p>所以patch都写在邮件中。</p>
-<p>###email的大小</p>
-<p>email的大小如果超过40kb，你需要放到网络上，并提供链接。</p>
-<p>###指明kernel版本</p>
-<p>你需要指明patch的kernel版本，如果patch不适用于最新的kernel，linus不会接受。</p>
-<p>###别沮丧，重新提交</p>
-<p>提交更改后，需要耐心等待。如果更改没有出现在下一个版本中，那么可能是一下原因：</p>
-<ul>
-<li>更改不适用于最新内核版本</li>
-<li>更改没有经过足够讨论</li>
-<li>代码风格问题</li>
-<li>e-mail格式问题</li>
-<li>更改存在技术问题</li>
-<li>意外丢失</li>
-<li>你太烦了</li>
-</ul>
-<p>如果有疑问，可以在linux-kernel邮件列表上询问。</p>
-<p>###在邮件主题上加上[PATCH]</p>
-<p>###签名</p>
-<p>为了方便跟踪作者和管理复杂的更改，引入了签名机制。如果确认一下4点就可以在对patch的描述后加上一句：<br>Signed-off-by: Random J Developer <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x72;&#97;&#110;&#x64;&#x6f;&#x6d;&#64;&#100;&#101;&#x76;&#101;&#x6c;&#x6f;&#112;&#101;&#x72;&#x2e;&#x65;&#120;&#97;&#109;&#x70;&#x6c;&#x65;&#46;&#x6f;&#x72;&#103;">&#x72;&#97;&#110;&#x64;&#x6f;&#x6d;&#64;&#100;&#101;&#x76;&#101;&#x6c;&#x6f;&#112;&#101;&#x72;&#x2e;&#x65;&#120;&#97;&#109;&#x70;&#x6c;&#x65;&#46;&#x6f;&#x72;&#103;</a></p>
-<ul>
-<li>更改部分或者全部由我完成。我有权利开源</li>
-<li>更改基于一个开源项目，需提交到同一个开源license下。否则可以提交给别的开源license</li>
-<li>更改由别人转交给我，别人确认1,2,3条，我没有修改更改</li>
-<li>我知道这是一个开源项目，并且贡献有可能不被记录</li>
-</ul>
-<p>###Acked-by</p>
-<p>子系统的维护者需要这么做，表示patch你觉得还不错。</p>
-<p>###Tested-by和Reviewed-by</p>
-<p>Tested-by表示某人在某种环境下patch测试是有效的。<br>Reviewed-by表示这个patch被检查，说明你对patch的观点。</p>
-<p>###patch的规范格式</p>
-<p>主题：[PATCH 001/123] 子系统: 总结</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from:</span><br><span class="line">空行</span><br><span class="line">patch的描述</span><br><span class="line">Signed-off-by:</span><br><span class="line">标识符---</span><br><span class="line">其他一些评论</span><br><span class="line">diff output</span><br></pre></td></tr></table></figure>
-<p>主题的2个示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Subject: [patch 2/5] ext2: improve scalability of bitmap searching</span><br><span class="line">Subject: [PATCHv2 001/207] x86: fix eflags tracking</span><br></pre></td></tr></table></figure></p>
-<p>from行的示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">From: Original Author &lt;author@example.com&gt;</span><br></pre></td></tr></table></figure></p>
-<p>—表示改动日志的结束。<br>其他一些评论可以用来写上<code>diffstat -p 1 -w 70</code>。</p>
-<p>###发送git pull请求</p>
-<p>发送从哪能够获得更改，格式如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Please pull from</span><br><span class="line">        git://jdelvare.pck.nerim.net/jdelvare-2.6 i2c-for-linus</span><br><span class="line"> to get these changes:</span><br></pre></td></tr></table></figure></p>
-<p>同时用<code>git diff -M --stat --summary</code>生成diffstat.</p>
-<h2 id="忠告、建议、技巧"><a href="#忠告、建议、技巧" class="headerlink" title="忠告、建议、技巧"></a>忠告、建议、技巧</h2><ul>
-<li><p>阅读Documentation/CodingStyle</p>
-<p>  可以利用scripts/checkpatch.pl来检查代码风格。这个脚本会提供3种水平的忠告</p>
-<ul>
-<li>ERROR: 很可能有错</li>
-<li>WARNING: 需要认真检查</li>
-<li>CHECK：需要考虑</li>
-</ul>
-</li>
-<li><p>不要在函数内使用ifdef。<br>  例如：</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dev = alloc_etherdev (sizeof(struct funky_private));</span><br><span class="line">if (!dev)</span><br><span class="line">        return -ENODEV;</span><br><span class="line">#ifdef CONFIG_NET_FUNKINESS</span><br><span class="line">init_funky_net(dev);</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
-<p>  上面的可以更改为</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(in header)</span><br><span class="line">    #ifndef CONFIG_NET_FUNKINESS</span><br><span class="line">    static inline void init_funky_net (struct net_device *d) &#123;&#125;</span><br><span class="line">    #endif</span><br><span class="line">(in the code itself)</span><br><span class="line">    dev = alloc_etherdev (sizeof(struct funky_private));</span><br><span class="line">    if (!dev)</span><br><span class="line">            return -ENODEV;</span><br><span class="line">    init_funky_net(dev);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>static inline 比宏更好</p>
-</li>
-<li><p>不要过度设计</p>
-<p>  Make it as simple as you can, and no simpler.</p>
-</li>
-</ul>
-<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>这篇文章翻译于<a href="http://kernelnewbies.org/UpstreamMerge/SubmittingPatches" target="_blank" rel="external">英文原稿</a>.</p>
-<p><a href="#前言">回到顶部</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -923,17 +1036,35 @@
   
     <li><a href="/blog/tags/Django/">Django</a><small>2</small></li>
   
+    <li><a href="/blog/tags/GUI/">GUI</a><small>1</small></li>
+  
     <li><a href="/blog/tags/None/">None</a><small>1</small></li>
+  
+    <li><a href="/blog/tags/Windows/">Windows</a><small>1</small></li>
   
     <li><a href="/blog/tags/c/">c++</a><small>1</small></li>
   
-    <li><a href="/blog/tags/problem-solution/">problem solution</a><small>1</small></li>
+    <li><a href="/blog/tags/database/">database</a><small>2</small></li>
+  
+    <li><a href="/blog/tags/hook/">hook</a><small>1</small></li>
+  
+    <li><a href="/blog/tags/kernel/">kernel</a><small>1</small></li>
+  
+    <li><a href="/blog/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/blog/tags/problem-solution/">problem solution</a><small>2</small></li>
   
     <li><a href="/blog/tags/site/">site</a><small>1</small></li>
   
     <li><a href="/blog/tags/virtualization/">virtualization</a><small>1</small></li>
   
+    <li><a href="/blog/tags/分布式计算/">分布式计算</a><small>1</small></li>
+  
     <li><a href="/blog/tags/安装/">安装</a><small>2</small></li>
+  
+    <li><a href="/blog/tags/并行计算/">并行计算</a><small>1</small></li>
+  
+    <li><a href="/blog/tags/锁/">锁</a><small>1</small></li>
   
   </ul>
 </div>
