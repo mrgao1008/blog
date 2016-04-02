@@ -146,106 +146,6 @@
   </entry>
   
   <entry>
-    <title>Windows API Hook 开发环境配置</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/02/Windows%20API%20hook%20%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/02/Windows API hook 开发环境配置/</id>
-    <published>2016-04-01T16:00:00.000Z</published>
-    <updated>2016-04-02T01:39:47.238Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;span id=&quot;top&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;!-- MarkdownTOC --&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#detours安装和配置&quot;&gt;Detours安装和配置&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#detours介绍&quot;&gt;Detours介绍&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#detours安装&quot;&gt;Detours安装&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#detours编译&quot;&gt;Detours编译&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#windows-api-hook例子&quot;&gt;Windows API Hook例子&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#加入detours头文件和动态库文件&quot;&gt;加入detours头文件和动态库文件&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#利用withdll进行远程dll注入&quot;&gt;利用withdll进行远程dll注入&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- /MarkdownTOC --&gt;
-&lt;p&gt;&lt;a name=&quot;detours安装和配置&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Detours安装和配置&quot;&gt;&lt;a href=&quot;#Detours安装和配置&quot; class=&quot;headerlink&quot; title=&quot;Detours安装和配置&quot;&gt;&lt;/a&gt;Detours安装和配置&lt;/h2&gt;&lt;p&gt;&lt;a name=&quot;detours介绍&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Detours介绍&quot;&gt;&lt;a href=&quot;#Detours介绍&quot; class=&quot;headerlink&quot; title=&quot;Detours介绍&quot;&gt;&lt;/a&gt;Detours介绍&lt;/h3&gt;&lt;p&gt;Detours是Windows下一个API Hook 开源框架。&lt;br&gt;&lt;a href=&quot;http://research.microsoft.com/en-us/projects/detours/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Detours官网&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://research.microsoft.com/en-us/downloads/d36340fb-4d3c-4ddd-bf5b-1db25d03713d/default.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Detours 3.0下载地址&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a name=&quot;detours安装&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Detours安装&quot;&gt;&lt;a href=&quot;#Detours安装&quot; class=&quot;headerlink&quot; title=&quot;Detours安装&quot;&gt;&lt;/a&gt;Detours安装&lt;/h3&gt;&lt;p&gt;msi文件一路next。记下安装目录。&lt;/p&gt;
-&lt;p&gt;&lt;a name=&quot;detours编译&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Detours编译&quot;&gt;&lt;a href=&quot;#Detours编译&quot; class=&quot;headerlink&quot; title=&quot;Detours编译&quot;&gt;&lt;/a&gt;Detours编译&lt;/h3&gt;&lt;p&gt;安装完成后，进入目录&lt;code&gt;C:\Program Files\Microsoft Research\Detours Express 3.0&lt;/code&gt;会看到下面的目录结构&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;samples\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	simple\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	withdll\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;src\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;其中src是需要编译的detours源码。simple和withdll是实现windows API Hook需要用到的2个示例。&lt;/p&gt;
-&lt;p&gt;编译步骤如下:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;以管理员权限启动cmd&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;设置环境变量，不然nmake会出错&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# &amp;quot;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\vcvars32.bat&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;进入detours的src文件夹并进行编译&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# cd C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\src&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# nmake&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;编译在src和samples同一目录会生成lib.X86文件夹，里面的detours.lib就是我们需要的。&lt;/p&gt;
-&lt;p&gt;&lt;a name=&quot;windows-api-hook例子&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Windows-API-Hook例子&quot;&gt;&lt;a href=&quot;#Windows-API-Hook例子&quot; class=&quot;headerlink&quot; title=&quot;Windows API Hook例子&quot;&gt;&lt;/a&gt;Windows API Hook例子&lt;/h2&gt;&lt;p&gt;&lt;a name=&quot;加入detours头文件和动态库文件&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;加入detours头文件和动态库文件&quot;&gt;&lt;a href=&quot;#加入detours头文件和动态库文件&quot; class=&quot;headerlink&quot; title=&quot;加入detours头文件和动态库文件&quot;&gt;&lt;/a&gt;加入detours头文件和动态库文件&lt;/h3&gt;&lt;p&gt;在vs中新建windows控制台程序，设置解决方案的属性。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;打开&lt;strong&gt;项目&lt;/strong&gt;–&lt;strong&gt;XXX 属性&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;C/C++&lt;/strong&gt;–&lt;strong&gt;常规&lt;/strong&gt; 在&lt;strong&gt;附加目录项&lt;/strong&gt;中加入&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\include&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;链接器&lt;/strong&gt;–&lt;strong&gt;常规&lt;/strong&gt; 在&lt;strong&gt;附加库目录&lt;/strong&gt;中加入&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\lib.X86&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;链接器&lt;/strong&gt;–&lt;strong&gt;输入&lt;/strong&gt; 在&lt;strong&gt;附加依赖项&lt;/strong&gt;中加入&lt;code&gt;detours.lib&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;C/C++&lt;/strong&gt;–&lt;strong&gt;代码生成&lt;/strong&gt; 在&lt;strong&gt;运行库&lt;/strong&gt;选择&lt;code&gt;/MT&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;常规&lt;/strong&gt; 在&lt;strong&gt;字符集&lt;/strong&gt;选择&lt;code&gt;未设置&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;在命令栏中选择&lt;code&gt;release&lt;/code&gt;版本&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;withdll的编译&quot;&gt;&lt;a href=&quot;#withdll的编译&quot; class=&quot;headerlink&quot; title=&quot;withdll的编译&quot;&gt;&lt;/a&gt;withdll的编译&lt;/h4&gt;&lt;p&gt;在源文件中新建cpp文件，拷贝detours安装目录下的&lt;code&gt;samples\withdll\withdll.cpp&lt;/code&gt;内容到cpp中。编译。&lt;/p&gt;
-&lt;h4 id=&quot;simple的编译&quot;&gt;&lt;a href=&quot;#simple的编译&quot; class=&quot;headerlink&quot; title=&quot;simple的编译&quot;&gt;&lt;/a&gt;simple的编译&lt;/h4&gt;&lt;p&gt;在vs新建项目时，选择windows控制台程序，并选择dll。设置解决方案属性。拷贝&lt;code&gt;samples\simple\simple.cpp&lt;/code&gt;到新建的cpp文件中，编译。&lt;/p&gt;
-&lt;p&gt;&lt;a name=&quot;利用withdll进行远程dll注入&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;利用withdll进行远程dll注入&quot;&gt;&lt;a href=&quot;#利用withdll进行远程dll注入&quot; class=&quot;headerlink&quot; title=&quot;利用withdll进行远程dll注入&quot;&gt;&lt;/a&gt;利用withdll进行远程dll注入&lt;/h2&gt;&lt;p&gt;&lt;code&gt;withdll /d:simple.dll a.exe&lt;/code&gt;会将simple.dll注入到a.exe中。注意&lt;code&gt;/d:simple.dll&lt;/code&gt;分号后不要有空格。exe和dll用绝对地址和相对地址都可以。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;#top&quot;&gt;回到顶部&lt;/a&gt;&lt;/p&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;span id=&quot;top&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;!-- MarkdownTOC --&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#detours安装和配置&quot;&gt;Detours安装和配置&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#detours介绍&quot;&gt;Detours
-    
-    </summary>
-    
-    
-      <category term="Windows" scheme="http://mrgao1008.github.io/blog/tags/Windows/"/>
-    
-      <category term="hook" scheme="http://mrgao1008.github.io/blog/tags/hook/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LoadLibrary error 126</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/02/LoadLibrary%20126/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/02/LoadLibrary 126/</id>
-    <published>2016-04-01T16:00:00.000Z</published>
-    <updated>2016-04-02T01:40:55.211Z</updated>
-    
-    <content type="html">&lt;p&gt;可能是UNICODE和ASCII字符的问题。&lt;/p&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;可能是UNICODE和ASCII字符的问题。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="problem solution" scheme="http://mrgao1008.github.io/blog/tags/problem-solution/"/>
-    
-  </entry>
-  
-  <entry>
     <title>第五章 关系模型</title>
     <link href="http://mrgao1008.github.io/blog/2016/04/02/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E7%AC%AC%E4%B8%89%E7%89%88%EF%BC%891/"/>
     <id>http://mrgao1008.github.io/blog/2016/04/02/数据库系统原理与应用（第三版）1/</id>
@@ -358,6 +258,106 @@
   </entry>
   
   <entry>
+    <title>LoadLibrary error 126</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/LoadLibrary%20126/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/LoadLibrary 126/</id>
+    <published>2016-04-01T16:00:00.000Z</published>
+    <updated>2016-04-02T01:40:55.211Z</updated>
+    
+    <content type="html">&lt;p&gt;可能是UNICODE和ASCII字符的问题。&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;可能是UNICODE和ASCII字符的问题。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="problem solution" scheme="http://mrgao1008.github.io/blog/tags/problem-solution/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows API Hook 开发环境配置</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/Windows%20API%20hook%20%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/Windows API hook 开发环境配置/</id>
+    <published>2016-04-01T16:00:00.000Z</published>
+    <updated>2016-04-02T01:39:47.238Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;span id=&quot;top&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;!-- MarkdownTOC --&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#detours安装和配置&quot;&gt;Detours安装和配置&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#detours介绍&quot;&gt;Detours介绍&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#detours安装&quot;&gt;Detours安装&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#detours编译&quot;&gt;Detours编译&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#windows-api-hook例子&quot;&gt;Windows API Hook例子&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#加入detours头文件和动态库文件&quot;&gt;加入detours头文件和动态库文件&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#利用withdll进行远程dll注入&quot;&gt;利用withdll进行远程dll注入&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+&lt;p&gt;&lt;a name=&quot;detours安装和配置&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Detours安装和配置&quot;&gt;&lt;a href=&quot;#Detours安装和配置&quot; class=&quot;headerlink&quot; title=&quot;Detours安装和配置&quot;&gt;&lt;/a&gt;Detours安装和配置&lt;/h2&gt;&lt;p&gt;&lt;a name=&quot;detours介绍&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Detours介绍&quot;&gt;&lt;a href=&quot;#Detours介绍&quot; class=&quot;headerlink&quot; title=&quot;Detours介绍&quot;&gt;&lt;/a&gt;Detours介绍&lt;/h3&gt;&lt;p&gt;Detours是Windows下一个API Hook 开源框架。&lt;br&gt;&lt;a href=&quot;http://research.microsoft.com/en-us/projects/detours/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Detours官网&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://research.microsoft.com/en-us/downloads/d36340fb-4d3c-4ddd-bf5b-1db25d03713d/default.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Detours 3.0下载地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;detours安装&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Detours安装&quot;&gt;&lt;a href=&quot;#Detours安装&quot; class=&quot;headerlink&quot; title=&quot;Detours安装&quot;&gt;&lt;/a&gt;Detours安装&lt;/h3&gt;&lt;p&gt;msi文件一路next。记下安装目录。&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;detours编译&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Detours编译&quot;&gt;&lt;a href=&quot;#Detours编译&quot; class=&quot;headerlink&quot; title=&quot;Detours编译&quot;&gt;&lt;/a&gt;Detours编译&lt;/h3&gt;&lt;p&gt;安装完成后，进入目录&lt;code&gt;C:\Program Files\Microsoft Research\Detours Express 3.0&lt;/code&gt;会看到下面的目录结构&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;samples\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	simple\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	withdll\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;src\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;其中src是需要编译的detours源码。simple和withdll是实现windows API Hook需要用到的2个示例。&lt;/p&gt;
+&lt;p&gt;编译步骤如下:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;以管理员权限启动cmd&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;设置环境变量，不然nmake会出错&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# &amp;quot;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\vcvars32.bat&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;进入detours的src文件夹并进行编译&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# cd C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\src&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# nmake&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;编译在src和samples同一目录会生成lib.X86文件夹，里面的detours.lib就是我们需要的。&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;windows-api-hook例子&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Windows-API-Hook例子&quot;&gt;&lt;a href=&quot;#Windows-API-Hook例子&quot; class=&quot;headerlink&quot; title=&quot;Windows API Hook例子&quot;&gt;&lt;/a&gt;Windows API Hook例子&lt;/h2&gt;&lt;p&gt;&lt;a name=&quot;加入detours头文件和动态库文件&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;加入detours头文件和动态库文件&quot;&gt;&lt;a href=&quot;#加入detours头文件和动态库文件&quot; class=&quot;headerlink&quot; title=&quot;加入detours头文件和动态库文件&quot;&gt;&lt;/a&gt;加入detours头文件和动态库文件&lt;/h3&gt;&lt;p&gt;在vs中新建windows控制台程序，设置解决方案的属性。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;打开&lt;strong&gt;项目&lt;/strong&gt;–&lt;strong&gt;XXX 属性&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;C/C++&lt;/strong&gt;–&lt;strong&gt;常规&lt;/strong&gt; 在&lt;strong&gt;附加目录项&lt;/strong&gt;中加入&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\include&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;链接器&lt;/strong&gt;–&lt;strong&gt;常规&lt;/strong&gt; 在&lt;strong&gt;附加库目录&lt;/strong&gt;中加入&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\lib.X86&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;链接器&lt;/strong&gt;–&lt;strong&gt;输入&lt;/strong&gt; 在&lt;strong&gt;附加依赖项&lt;/strong&gt;中加入&lt;code&gt;detours.lib&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;C/C++&lt;/strong&gt;–&lt;strong&gt;代码生成&lt;/strong&gt; 在&lt;strong&gt;运行库&lt;/strong&gt;选择&lt;code&gt;/MT&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;常规&lt;/strong&gt; 在&lt;strong&gt;字符集&lt;/strong&gt;选择&lt;code&gt;未设置&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;在命令栏中选择&lt;code&gt;release&lt;/code&gt;版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;withdll的编译&quot;&gt;&lt;a href=&quot;#withdll的编译&quot; class=&quot;headerlink&quot; title=&quot;withdll的编译&quot;&gt;&lt;/a&gt;withdll的编译&lt;/h4&gt;&lt;p&gt;在源文件中新建cpp文件，拷贝detours安装目录下的&lt;code&gt;samples\withdll\withdll.cpp&lt;/code&gt;内容到cpp中。编译。&lt;/p&gt;
+&lt;h4 id=&quot;simple的编译&quot;&gt;&lt;a href=&quot;#simple的编译&quot; class=&quot;headerlink&quot; title=&quot;simple的编译&quot;&gt;&lt;/a&gt;simple的编译&lt;/h4&gt;&lt;p&gt;在vs新建项目时，选择windows控制台程序，并选择dll。设置解决方案属性。拷贝&lt;code&gt;samples\simple\simple.cpp&lt;/code&gt;到新建的cpp文件中，编译。&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;利用withdll进行远程dll注入&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;利用withdll进行远程dll注入&quot;&gt;&lt;a href=&quot;#利用withdll进行远程dll注入&quot; class=&quot;headerlink&quot; title=&quot;利用withdll进行远程dll注入&quot;&gt;&lt;/a&gt;利用withdll进行远程dll注入&lt;/h2&gt;&lt;p&gt;&lt;code&gt;withdll /d:simple.dll a.exe&lt;/code&gt;会将simple.dll注入到a.exe中。注意&lt;code&gt;/d:simple.dll&lt;/code&gt;分号后不要有空格。exe和dll用绝对地址和相对地址都可以。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#top&quot;&gt;回到顶部&lt;/a&gt;&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;span id=&quot;top&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;!-- MarkdownTOC --&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#detours安装和配置&quot;&gt;Detours安装和配置&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#detours介绍&quot;&gt;Detours
+    
+    </summary>
+    
+    
+      <category term="Windows" scheme="http://mrgao1008.github.io/blog/tags/Windows/"/>
+    
+      <category term="hook" scheme="http://mrgao1008.github.io/blog/tags/hook/"/>
+    
+  </entry>
+  
+  <entry>
     <title>分布式数据库技术</title>
     <link href="http://mrgao1008.github.io/blog/2016/04/02/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E7%AC%AC%E4%B8%89%E7%89%88%EF%BC%892/"/>
     <id>http://mrgao1008.github.io/blog/2016/04/02/数据库系统原理与应用（第三版）2/</id>
@@ -386,71 +386,6 @@
     
     
       <category term="database" scheme="http://mrgao1008.github.io/blog/tags/database/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>tk 编程</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/02/python%20tk/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/02/python tk/</id>
-    <published>2016-04-01T16:00:00.000Z</published>
-    <updated>2016-04-02T01:40:20.474Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;标准属性&quot;&gt;&lt;a href=&quot;#标准属性&quot; class=&quot;headerlink&quot; title=&quot;标准属性&quot;&gt;&lt;/a&gt;标准属性&lt;/h2&gt;&lt;h3 id=&quot;dimensions&quot;&gt;&lt;a href=&quot;#dimensions&quot; class=&quot;headerlink&quot; title=&quot;dimensions&quot;&gt;&lt;/a&gt;dimensions&lt;/h3&gt;&lt;p&gt;尺寸包含4种&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;字母&lt;/th&gt;
-&lt;th&gt;含义&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;c&lt;/td&gt;
-&lt;td&gt;厘米&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;i&lt;/td&gt;
-&lt;td&gt;英寸&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;m&lt;/td&gt;
-&lt;td&gt;毫米&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;p&lt;/td&gt;
-&lt;td&gt;打印机的点？？&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;坐标&quot;&gt;&lt;a href=&quot;#坐标&quot; class=&quot;headerlink&quot; title=&quot;坐标&quot;&gt;&lt;/a&gt;坐标&lt;/h3&gt;&lt;h3 id=&quot;颜色&quot;&gt;&lt;a href=&quot;#颜色&quot; class=&quot;headerlink&quot; title=&quot;颜色&quot;&gt;&lt;/a&gt;颜色&lt;/h3&gt;&lt;p&gt;||#rgb||four bits per color||&lt;br&gt;||#rrggbb||eight bits per color||&lt;br&gt;||#rrrgggbbb||twelve bits per color||&lt;/p&gt;
-&lt;p&gt;还一可以指定关键词’white’,’black’,’red’,’green’,’blue’,’cyan’,’yellow’,’magenta’&lt;/p&gt;
-&lt;h3 id=&quot;fonts&quot;&gt;&lt;a href=&quot;#fonts&quot; class=&quot;headerlink&quot; title=&quot;fonts&quot;&gt;&lt;/a&gt;fonts&lt;/h3&gt;&lt;p&gt;1.元组表示,第一表示字体，第二个表示大小，正数为points，负数为像素点，后续为其他一些特别设置&lt;br&gt;(‘Helvetica’,’16’)&lt;br&gt;(‘Times’,’24’,’bold italic’)&lt;br&gt;(‘Times’,-20,’bold’)&lt;/p&gt;
-&lt;p&gt;2.字体对象 tkFont&lt;/p&gt;
-&lt;p&gt;3.X font names.&lt;/p&gt;
-&lt;h3 id=&quot;锚&quot;&gt;&lt;a href=&quot;#锚&quot; class=&quot;headerlink&quot; title=&quot;锚&quot;&gt;&lt;/a&gt;锚&lt;/h3&gt;&lt;p&gt;N S W E CENTER&lt;br&gt;NW NE SW SE&lt;/p&gt;
-&lt;h3 id=&quot;释放样式&quot;&gt;&lt;a href=&quot;#释放样式&quot; class=&quot;headerlink&quot; title=&quot;释放样式&quot;&gt;&lt;/a&gt;释放样式&lt;/h3&gt;&lt;p&gt;FLAT RAISED SUNKEN GROOVE RIDGE&lt;/p&gt;
-&lt;h3 id=&quot;Bitmaps&quot;&gt;&lt;a href=&quot;#Bitmaps&quot; class=&quot;headerlink&quot; title=&quot;Bitmaps&quot;&gt;&lt;/a&gt;Bitmaps&lt;/h3&gt;&lt;p&gt;button支持 error gray75 gray50 gray25 gray12 hourglass info questhead question warning&lt;/p&gt;
-&lt;p&gt;也可以使用.xbm(X bit map)使用@path&lt;/p&gt;
-&lt;h3 id=&quot;cursors&quot;&gt;&lt;a href=&quot;#cursors&quot; class=&quot;headerlink&quot; title=&quot;cursors&quot;&gt;&lt;/a&gt;cursors&lt;/h3&gt;&lt;h3 id=&quot;images&quot;&gt;&lt;a href=&quot;#images&quot; class=&quot;headerlink&quot; title=&quot;images&quot;&gt;&lt;/a&gt;images&lt;/h3&gt;&lt;p&gt;BitmapImage 支持 .xbm&lt;br&gt;PhotoImage 支持 .gif .pgm .ppm&lt;br&gt;ImageTk 支持更多格式&lt;/p&gt;
-&lt;h4 id=&quot;the-BitmapImage-class&quot;&gt;&lt;a href=&quot;#the-BitmapImage-class&quot; class=&quot;headerlink&quot; title=&quot;the BitmapImage class&quot;&gt;&lt;/a&gt;the BitmapImage class&lt;/h4&gt;&lt;p&gt;原型&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tk.BitmapImage(file=f[, background=b][, foreground=c])&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;实例&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;logo = tk.BitmapImage(&lt;span class=&quot;string&quot;&gt;&#39;logo.xbm&#39;&lt;/span&gt;, foreground=&lt;span class=&quot;string&quot;&gt;&#39;red&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Label(image=logo).grid()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h4 id=&quot;the-PhotoImage-class&quot;&gt;&lt;a href=&quot;#the-PhotoImage-class&quot; class=&quot;headerlink&quot; title=&quot;the PhotoImage class&quot;&gt;&lt;/a&gt;the PhotoImage class&lt;/h4&gt;&lt;p&gt;原型&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tk.PhotoImage(file=f)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Geometry-strings&quot;&gt;&lt;a href=&quot;#Geometry-strings&quot; class=&quot;headerlink&quot; title=&quot;Geometry strings&quot;&gt;&lt;/a&gt;Geometry strings&lt;/h3&gt;&lt;p&gt;A geometry string is a standard way of describing the size and location of a top-level window on a desktop.&lt;br&gt;format: ‘wxh±x±y’&lt;br&gt;+x left side&lt;br&gt;-x right side&lt;br&gt;+y top&lt;br&gt;-y bottom&lt;/p&gt;
-&lt;h3 id=&quot;window-names&quot;&gt;&lt;a href=&quot;#window-names&quot; class=&quot;headerlink&quot; title=&quot;window names&quot;&gt;&lt;/a&gt;window names&lt;/h3&gt;&lt;p&gt;hierarchical window path name&lt;br&gt;root window ‘.’&lt;br&gt;child name ‘.n’&lt;br&gt;child windows of child ‘p.n’, p is the name of the parent window&lt;/p&gt;
-&lt;p&gt;str(w): to get the path name of a widget w&lt;/p&gt;
-&lt;h3 id=&quot;cap-and-join-styles&quot;&gt;&lt;a href=&quot;#cap-and-join-styles&quot; class=&quot;headerlink&quot; title=&quot;cap and join styles&quot;&gt;&lt;/a&gt;cap and join styles&lt;/h3&gt;&lt;p&gt;cap style: tk.BUTT, tk.PROJECTING, tk.ROUND&lt;br&gt;join style: tk.ROUND, tk.BEVEL, tk.MITER&lt;/p&gt;
-&lt;h3 id=&quot;dash-patterns&quot;&gt;&lt;a href=&quot;#dash-patterns&quot; class=&quot;headerlink&quot; title=&quot;dash patterns&quot;&gt;&lt;/a&gt;dash patterns&lt;/h3&gt;&lt;p&gt;dash=(3,5)&lt;br&gt;dash=(7,1,1,1)&lt;br&gt;dash=(5,1,2,1),dashoff=3&lt;/p&gt;
-&lt;h2 id=&quot;tk-TclError&quot;&gt;&lt;a href=&quot;#tk-TclError&quot; class=&quot;headerlink&quot; title=&quot;tk.TclError&quot;&gt;&lt;/a&gt;tk.TclError&lt;/h2&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;标准属性&quot;&gt;&lt;a href=&quot;#标准属性&quot; class=&quot;headerlink&quot; title=&quot;标准属性&quot;&gt;&lt;/a&gt;标准属性&lt;/h2&gt;&lt;h3 id=&quot;dimensions&quot;&gt;&lt;a href=&quot;#dimensions&quot; class=&quot;headerlink&quot; titl
-    
-    </summary>
-    
-    
-      <category term="GUI" scheme="http://mrgao1008.github.io/blog/tags/GUI/"/>
     
   </entry>
   
@@ -504,7 +439,7 @@
 &lt;p&gt;如果有疑问，可以在linux-kernel邮件列表上询问。&lt;/p&gt;
 &lt;p&gt;###在邮件主题上加上[PATCH]&lt;/p&gt;
 &lt;p&gt;###签名&lt;/p&gt;
-&lt;p&gt;为了方便跟踪作者和管理复杂的更改，引入了签名机制。如果确认一下4点就可以在对patch的描述后加上一句：&lt;br&gt;Signed-off-by: Random J Developer &lt;a href=&quot;&amp;#x6d;&amp;#97;&amp;#x69;&amp;#x6c;&amp;#116;&amp;#x6f;&amp;#58;&amp;#114;&amp;#x61;&amp;#110;&amp;#100;&amp;#111;&amp;#x6d;&amp;#x40;&amp;#100;&amp;#101;&amp;#118;&amp;#x65;&amp;#108;&amp;#x6f;&amp;#112;&amp;#101;&amp;#x72;&amp;#x2e;&amp;#x65;&amp;#120;&amp;#x61;&amp;#x6d;&amp;#x70;&amp;#x6c;&amp;#x65;&amp;#x2e;&amp;#x6f;&amp;#x72;&amp;#x67;&quot;&gt;&amp;#114;&amp;#x61;&amp;#110;&amp;#100;&amp;#111;&amp;#x6d;&amp;#x40;&amp;#100;&amp;#101;&amp;#118;&amp;#x65;&amp;#108;&amp;#x6f;&amp;#112;&amp;#101;&amp;#x72;&amp;#x2e;&amp;#x65;&amp;#120;&amp;#x61;&amp;#x6d;&amp;#x70;&amp;#x6c;&amp;#x65;&amp;#x2e;&amp;#x6f;&amp;#x72;&amp;#x67;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;为了方便跟踪作者和管理复杂的更改，引入了签名机制。如果确认一下4点就可以在对patch的描述后加上一句：&lt;br&gt;Signed-off-by: Random J Developer &lt;a href=&quot;&amp;#109;&amp;#x61;&amp;#x69;&amp;#x6c;&amp;#x74;&amp;#x6f;&amp;#58;&amp;#114;&amp;#x61;&amp;#x6e;&amp;#100;&amp;#111;&amp;#109;&amp;#x40;&amp;#x64;&amp;#101;&amp;#118;&amp;#101;&amp;#108;&amp;#111;&amp;#112;&amp;#101;&amp;#114;&amp;#46;&amp;#101;&amp;#120;&amp;#97;&amp;#x6d;&amp;#112;&amp;#108;&amp;#x65;&amp;#x2e;&amp;#111;&amp;#114;&amp;#x67;&quot;&gt;&amp;#114;&amp;#x61;&amp;#x6e;&amp;#100;&amp;#111;&amp;#109;&amp;#x40;&amp;#x64;&amp;#101;&amp;#118;&amp;#101;&amp;#108;&amp;#111;&amp;#112;&amp;#101;&amp;#114;&amp;#46;&amp;#101;&amp;#120;&amp;#97;&amp;#x6d;&amp;#112;&amp;#108;&amp;#x65;&amp;#x2e;&amp;#111;&amp;#114;&amp;#x67;&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;更改部分或者全部由我完成。我有权利开源&lt;/li&gt;
 &lt;li&gt;更改基于一个开源项目，需提交到同一个开源license下。否则可以提交给别的开源license&lt;/li&gt;
@@ -749,6 +684,71 @@
   </entry>
   
   <entry>
+    <title>tk 编程</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/python%20tk/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/python tk/</id>
+    <published>2016-04-01T16:00:00.000Z</published>
+    <updated>2016-04-02T01:40:20.474Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;标准属性&quot;&gt;&lt;a href=&quot;#标准属性&quot; class=&quot;headerlink&quot; title=&quot;标准属性&quot;&gt;&lt;/a&gt;标准属性&lt;/h2&gt;&lt;h3 id=&quot;dimensions&quot;&gt;&lt;a href=&quot;#dimensions&quot; class=&quot;headerlink&quot; title=&quot;dimensions&quot;&gt;&lt;/a&gt;dimensions&lt;/h3&gt;&lt;p&gt;尺寸包含4种&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字母&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;c&lt;/td&gt;
+&lt;td&gt;厘米&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;i&lt;/td&gt;
+&lt;td&gt;英寸&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;m&lt;/td&gt;
+&lt;td&gt;毫米&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p&lt;/td&gt;
+&lt;td&gt;打印机的点？？&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;坐标&quot;&gt;&lt;a href=&quot;#坐标&quot; class=&quot;headerlink&quot; title=&quot;坐标&quot;&gt;&lt;/a&gt;坐标&lt;/h3&gt;&lt;h3 id=&quot;颜色&quot;&gt;&lt;a href=&quot;#颜色&quot; class=&quot;headerlink&quot; title=&quot;颜色&quot;&gt;&lt;/a&gt;颜色&lt;/h3&gt;&lt;p&gt;||#rgb||four bits per color||&lt;br&gt;||#rrggbb||eight bits per color||&lt;br&gt;||#rrrgggbbb||twelve bits per color||&lt;/p&gt;
+&lt;p&gt;还一可以指定关键词’white’,’black’,’red’,’green’,’blue’,’cyan’,’yellow’,’magenta’&lt;/p&gt;
+&lt;h3 id=&quot;fonts&quot;&gt;&lt;a href=&quot;#fonts&quot; class=&quot;headerlink&quot; title=&quot;fonts&quot;&gt;&lt;/a&gt;fonts&lt;/h3&gt;&lt;p&gt;1.元组表示,第一表示字体，第二个表示大小，正数为points，负数为像素点，后续为其他一些特别设置&lt;br&gt;(‘Helvetica’,’16’)&lt;br&gt;(‘Times’,’24’,’bold italic’)&lt;br&gt;(‘Times’,-20,’bold’)&lt;/p&gt;
+&lt;p&gt;2.字体对象 tkFont&lt;/p&gt;
+&lt;p&gt;3.X font names.&lt;/p&gt;
+&lt;h3 id=&quot;锚&quot;&gt;&lt;a href=&quot;#锚&quot; class=&quot;headerlink&quot; title=&quot;锚&quot;&gt;&lt;/a&gt;锚&lt;/h3&gt;&lt;p&gt;N S W E CENTER&lt;br&gt;NW NE SW SE&lt;/p&gt;
+&lt;h3 id=&quot;释放样式&quot;&gt;&lt;a href=&quot;#释放样式&quot; class=&quot;headerlink&quot; title=&quot;释放样式&quot;&gt;&lt;/a&gt;释放样式&lt;/h3&gt;&lt;p&gt;FLAT RAISED SUNKEN GROOVE RIDGE&lt;/p&gt;
+&lt;h3 id=&quot;Bitmaps&quot;&gt;&lt;a href=&quot;#Bitmaps&quot; class=&quot;headerlink&quot; title=&quot;Bitmaps&quot;&gt;&lt;/a&gt;Bitmaps&lt;/h3&gt;&lt;p&gt;button支持 error gray75 gray50 gray25 gray12 hourglass info questhead question warning&lt;/p&gt;
+&lt;p&gt;也可以使用.xbm(X bit map)使用@path&lt;/p&gt;
+&lt;h3 id=&quot;cursors&quot;&gt;&lt;a href=&quot;#cursors&quot; class=&quot;headerlink&quot; title=&quot;cursors&quot;&gt;&lt;/a&gt;cursors&lt;/h3&gt;&lt;h3 id=&quot;images&quot;&gt;&lt;a href=&quot;#images&quot; class=&quot;headerlink&quot; title=&quot;images&quot;&gt;&lt;/a&gt;images&lt;/h3&gt;&lt;p&gt;BitmapImage 支持 .xbm&lt;br&gt;PhotoImage 支持 .gif .pgm .ppm&lt;br&gt;ImageTk 支持更多格式&lt;/p&gt;
+&lt;h4 id=&quot;the-BitmapImage-class&quot;&gt;&lt;a href=&quot;#the-BitmapImage-class&quot; class=&quot;headerlink&quot; title=&quot;the BitmapImage class&quot;&gt;&lt;/a&gt;the BitmapImage class&lt;/h4&gt;&lt;p&gt;原型&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tk.BitmapImage(file=f[, background=b][, foreground=c])&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;实例&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;logo = tk.BitmapImage(&lt;span class=&quot;string&quot;&gt;&#39;logo.xbm&#39;&lt;/span&gt;, foreground=&lt;span class=&quot;string&quot;&gt;&#39;red&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Label(image=logo).grid()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h4 id=&quot;the-PhotoImage-class&quot;&gt;&lt;a href=&quot;#the-PhotoImage-class&quot; class=&quot;headerlink&quot; title=&quot;the PhotoImage class&quot;&gt;&lt;/a&gt;the PhotoImage class&lt;/h4&gt;&lt;p&gt;原型&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tk.PhotoImage(file=f)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Geometry-strings&quot;&gt;&lt;a href=&quot;#Geometry-strings&quot; class=&quot;headerlink&quot; title=&quot;Geometry strings&quot;&gt;&lt;/a&gt;Geometry strings&lt;/h3&gt;&lt;p&gt;A geometry string is a standard way of describing the size and location of a top-level window on a desktop.&lt;br&gt;format: ‘wxh±x±y’&lt;br&gt;+x left side&lt;br&gt;-x right side&lt;br&gt;+y top&lt;br&gt;-y bottom&lt;/p&gt;
+&lt;h3 id=&quot;window-names&quot;&gt;&lt;a href=&quot;#window-names&quot; class=&quot;headerlink&quot; title=&quot;window names&quot;&gt;&lt;/a&gt;window names&lt;/h3&gt;&lt;p&gt;hierarchical window path name&lt;br&gt;root window ‘.’&lt;br&gt;child name ‘.n’&lt;br&gt;child windows of child ‘p.n’, p is the name of the parent window&lt;/p&gt;
+&lt;p&gt;str(w): to get the path name of a widget w&lt;/p&gt;
+&lt;h3 id=&quot;cap-and-join-styles&quot;&gt;&lt;a href=&quot;#cap-and-join-styles&quot; class=&quot;headerlink&quot; title=&quot;cap and join styles&quot;&gt;&lt;/a&gt;cap and join styles&lt;/h3&gt;&lt;p&gt;cap style: tk.BUTT, tk.PROJECTING, tk.ROUND&lt;br&gt;join style: tk.ROUND, tk.BEVEL, tk.MITER&lt;/p&gt;
+&lt;h3 id=&quot;dash-patterns&quot;&gt;&lt;a href=&quot;#dash-patterns&quot; class=&quot;headerlink&quot; title=&quot;dash patterns&quot;&gt;&lt;/a&gt;dash patterns&lt;/h3&gt;&lt;p&gt;dash=(3,5)&lt;br&gt;dash=(7,1,1,1)&lt;br&gt;dash=(5,1,2,1),dashoff=3&lt;/p&gt;
+&lt;h2 id=&quot;tk-TclError&quot;&gt;&lt;a href=&quot;#tk-TclError&quot; class=&quot;headerlink&quot; title=&quot;tk.TclError&quot;&gt;&lt;/a&gt;tk.TclError&lt;/h2&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;标准属性&quot;&gt;&lt;a href=&quot;#标准属性&quot; class=&quot;headerlink&quot; title=&quot;标准属性&quot;&gt;&lt;/a&gt;标准属性&lt;/h2&gt;&lt;h3 id=&quot;dimensions&quot;&gt;&lt;a href=&quot;#dimensions&quot; class=&quot;headerlink&quot; titl
+    
+    </summary>
+    
+    
+      <category term="GUI" scheme="http://mrgao1008.github.io/blog/tags/GUI/"/>
+    
+  </entry>
+  
+  <entry>
     <title>fgetc 0x1A EOF</title>
     <link href="http://mrgao1008.github.io/blog/2016/04/01/fgetc%200x1A%20EOF/"/>
     <id>http://mrgao1008.github.io/blog/2016/04/01/fgetc 0x1A EOF/</id>
@@ -873,6 +873,45 @@
   </entry>
   
   <entry>
+    <title>Django(2)视图和Urls</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/01/Django(2)%E8%A7%86%E5%9B%BE%E5%92%8CUrls/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/01/Django(2)视图和Urls/</id>
+    <published>2016-04-01T08:15:00.000Z</published>
+    <updated>2016-04-01T08:17:33.673Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;视图&quot;&gt;&lt;a href=&quot;#视图&quot; class=&quot;headerlink&quot; title=&quot;视图&quot;&gt;&lt;/a&gt;视图&lt;/h2&gt;&lt;p&gt;视图从某种一样上说是web页面，它有固定的模板，负责提供一定的服务。例如博客网站需要视图：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;博客主页–显示最近博客&lt;/li&gt;
+&lt;li&gt;细节页面–显示一篇博客&lt;/li&gt;
+&lt;li&gt;基于年的归档页面–显示给定年份的所有博客&lt;/li&gt;
+&lt;li&gt;基于月的归档页面–显示给定月份的所有博客&lt;/li&gt;
+&lt;li&gt;基于天的归档页面–显示给定日期的所有博客&lt;/li&gt;
+&lt;li&gt;评论功能–处理对博客的评论&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在投票应用中，我们需要4个视图&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Questions索引页–显示最近的Questions&lt;/li&gt;
+&lt;li&gt;Questions细节页–显示Questions的问题和投票表格（不包含结果）&lt;/li&gt;
+&lt;li&gt;Questions结果页–显示Question的结果&lt;/li&gt;
+&lt;li&gt;投票功能–处理对某个Question进行投票&lt;/li&gt;
+&lt;/ul&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;视图&quot;&gt;&lt;a href=&quot;#视图&quot; class=&quot;headerlink&quot; title=&quot;视图&quot;&gt;&lt;/a&gt;视图&lt;/h2&gt;&lt;p&gt;视图从某种一样上说是web页面，它有固定的模板，负责提供一定的服务。例如博客网站需要视图：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;博客主页–显示最近博客
+    
+    </summary>
+    
+    
+      <category term="Django" scheme="http://mrgao1008.github.io/blog/tags/Django/"/>
+    
+      <category term="安装" scheme="http://mrgao1008.github.io/blog/tags/%E5%AE%89%E8%A3%85/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Django(1) 安装和使用</title>
     <link href="http://mrgao1008.github.io/blog/2016/04/01/Django(1)%20%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/"/>
     <id>http://mrgao1008.github.io/blog/2016/04/01/Django(1) 安装和使用/</id>
@@ -953,45 +992,6 @@
   </entry>
   
   <entry>
-    <title>Django(2)视图和Urls</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/01/Django(2)%E8%A7%86%E5%9B%BE%E5%92%8CUrls/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/01/Django(2)视图和Urls/</id>
-    <published>2016-04-01T08:15:00.000Z</published>
-    <updated>2016-04-01T08:17:33.673Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;视图&quot;&gt;&lt;a href=&quot;#视图&quot; class=&quot;headerlink&quot; title=&quot;视图&quot;&gt;&lt;/a&gt;视图&lt;/h2&gt;&lt;p&gt;视图从某种一样上说是web页面，它有固定的模板，负责提供一定的服务。例如博客网站需要视图：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;博客主页–显示最近博客&lt;/li&gt;
-&lt;li&gt;细节页面–显示一篇博客&lt;/li&gt;
-&lt;li&gt;基于年的归档页面–显示给定年份的所有博客&lt;/li&gt;
-&lt;li&gt;基于月的归档页面–显示给定月份的所有博客&lt;/li&gt;
-&lt;li&gt;基于天的归档页面–显示给定日期的所有博客&lt;/li&gt;
-&lt;li&gt;评论功能–处理对博客的评论&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;在投票应用中，我们需要4个视图&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Questions索引页–显示最近的Questions&lt;/li&gt;
-&lt;li&gt;Questions细节页–显示Questions的问题和投票表格（不包含结果）&lt;/li&gt;
-&lt;li&gt;Questions结果页–显示Question的结果&lt;/li&gt;
-&lt;li&gt;投票功能–处理对某个Question进行投票&lt;/li&gt;
-&lt;/ul&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;视图&quot;&gt;&lt;a href=&quot;#视图&quot; class=&quot;headerlink&quot; title=&quot;视图&quot;&gt;&lt;/a&gt;视图&lt;/h2&gt;&lt;p&gt;视图从某种一样上说是web页面，它有固定的模板，负责提供一定的服务。例如博客网站需要视图：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;博客主页–显示最近博客
-    
-    </summary>
-    
-    
-      <category term="Django" scheme="http://mrgao1008.github.io/blog/tags/Django/"/>
-    
-      <category term="安装" scheme="http://mrgao1008.github.io/blog/tags/%E5%AE%89%E8%A3%85/"/>
-    
-  </entry>
-  
-  <entry>
     <title></title>
     <link href="http://mrgao1008.github.io/blog/2016/04/01/%E6%80%8E%E4%B9%88%E5%9C%A8sublime%E4%B8%AD%E5%86%99markdown/"/>
     <id>http://mrgao1008.github.io/blog/2016/04/01/怎么在sublime中写markdown/</id>
@@ -1049,6 +1049,32 @@
     
     </summary>
     
+    
+  </entry>
+  
+  <entry>
+    <title>exe文件分解</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/01/exe%E6%96%87%E4%BB%B6%E5%88%86%E8%A7%A3/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/01/exe文件分解/</id>
+    <published>2016-03-31T16:00:00.000Z</published>
+    <updated>2016-04-01T08:18:43.396Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;分解算法&quot;&gt;&lt;a href=&quot;#分解算法&quot; class=&quot;headerlink&quot; title=&quot;分解算法&quot;&gt;&lt;/a&gt;分解算法&lt;/h2&gt;&lt;h2 id=&quot;PE文件载入步骤&quot;&gt;&lt;a href=&quot;#PE文件载入步骤&quot; class=&quot;headerlink&quot; title=&quot;PE文件载入步骤&quot;&gt;&lt;/a&gt;PE文件载入步骤&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;文件Load进入内存        （ReadFile）&lt;/li&gt;
+&lt;li&gt;申请内存存放不同的节    （placeSection）&lt;/li&gt;
+&lt;li&gt;载入dll和设置IAT        （loadDll and setIAT）&lt;/li&gt;
+&lt;li&gt;重定位                （funcReloc）&lt;/li&gt;
+&lt;li&gt;运行EXE或者DLL        （doEntryPoint）&lt;/li&gt;
+&lt;/ul&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;分解算法&quot;&gt;&lt;a href=&quot;#分解算法&quot; class=&quot;headerlink&quot; title=&quot;分解算法&quot;&gt;&lt;/a&gt;分解算法&lt;/h2&gt;&lt;h2 id=&quot;PE文件载入步骤&quot;&gt;&lt;a href=&quot;#PE文件载入步骤&quot; class=&quot;headerlink&quot; title=&quot;P
+    
+    </summary>
+    
+    
+      <category term="None" scheme="http://mrgao1008.github.io/blog/tags/None/"/>
     
   </entry>
   
@@ -1161,32 +1187,6 @@
     
     
       <category term="site" scheme="http://mrgao1008.github.io/blog/tags/site/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>exe文件分解</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/01/exe%E6%96%87%E4%BB%B6%E5%88%86%E8%A7%A3/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/01/exe文件分解/</id>
-    <published>2016-03-31T16:00:00.000Z</published>
-    <updated>2016-04-01T08:18:43.396Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;分解算法&quot;&gt;&lt;a href=&quot;#分解算法&quot; class=&quot;headerlink&quot; title=&quot;分解算法&quot;&gt;&lt;/a&gt;分解算法&lt;/h2&gt;&lt;h2 id=&quot;PE文件载入步骤&quot;&gt;&lt;a href=&quot;#PE文件载入步骤&quot; class=&quot;headerlink&quot; title=&quot;PE文件载入步骤&quot;&gt;&lt;/a&gt;PE文件载入步骤&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;文件Load进入内存        （ReadFile）&lt;/li&gt;
-&lt;li&gt;申请内存存放不同的节    （placeSection）&lt;/li&gt;
-&lt;li&gt;载入dll和设置IAT        （loadDll and setIAT）&lt;/li&gt;
-&lt;li&gt;重定位                （funcReloc）&lt;/li&gt;
-&lt;li&gt;运行EXE或者DLL        （doEntryPoint）&lt;/li&gt;
-&lt;/ul&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;分解算法&quot;&gt;&lt;a href=&quot;#分解算法&quot; class=&quot;headerlink&quot; title=&quot;分解算法&quot;&gt;&lt;/a&gt;分解算法&lt;/h2&gt;&lt;h2 id=&quot;PE文件载入步骤&quot;&gt;&lt;a href=&quot;#PE文件载入步骤&quot; class=&quot;headerlink&quot; title=&quot;P
-    
-    </summary>
-    
-    
-      <category term="None" scheme="http://mrgao1008.github.io/blog/tags/None/"/>
     
   </entry>
   

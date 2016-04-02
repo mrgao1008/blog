@@ -62,6 +62,16 @@
   
 
   
+      <script>
+          var _hmt = _hmt || [];
+          (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?859c5e5f16f684a5497e88f9ac3d2586";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+          })();
+      </script>
+  
 </head>
 <body>
   <div id="container">
@@ -111,13 +121,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>菜單</li>
-                        <li>標籤</li>
+                        <li>菜单</li>
+                        <li>标签</li>
                         
-                        <li>友情鏈接</li>
+                        <li>友情链接</li>
                         
                         
-                        <li>關於我</li>
+                        <li>关于我</li>
                         
                     </ul>
                 </div>
@@ -222,6 +232,77 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Django(2)视图和Urls" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/blog/2016/04/01/Django(2)视图和Urls/" class="article-date">
+      <time datetime="2016-04-01T08:15:00.000Z" itemprop="datePublished">2016-04-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/04/01/Django(2)视图和Urls/">Django(2)视图和Urls</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>视图从某种一样上说是web页面，它有固定的模板，负责提供一定的服务。例如博客网站需要视图：</p>
+<ul>
+<li>博客主页–显示最近博客</li>
+<li>细节页面–显示一篇博客</li>
+<li>基于年的归档页面–显示给定年份的所有博客</li>
+<li>基于月的归档页面–显示给定月份的所有博客</li>
+<li>基于天的归档页面–显示给定日期的所有博客</li>
+<li>评论功能–处理对博客的评论</li>
+</ul>
+<p>在投票应用中，我们需要4个视图</p>
+<ul>
+<li>Questions索引页–显示最近的Questions</li>
+<li>Questions细节页–显示Questions的问题和投票表格（不包含结果）</li>
+<li>Questions结果页–显示Question的结果</li>
+<li>投票功能–处理对某个Question进行投票</li>
+</ul>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Django/">Django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/安装/">安装</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-Django(1) 安装和使用" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -307,77 +388,6 @@
 <p>利用命令<code>python manage.py createsuperuser</code>创建admin用户。<code>python manage.py runserver</code>后，打开<a href="http://127.0.0.1:8000/admin/.进去后你可以看到可以修改的Groups和Users.这部分由django.contrib.auth认证框架提供。" target="_blank" rel="external">http://127.0.0.1:8000/admin/.进去后你可以看到可以修改的Groups和Users.这部分由django.contrib.auth认证框架提供。</a></p>
 <p>7.注册polls(让polls app可以在网页中修改。)</p>
 <p>在polls/admin.py中添加<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line">admin.site.register(Question)</span><br></pre></td></tr></table></figure></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Django/">Django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/安装/">安装</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Django(2)视图和Urls" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/blog/2016/04/01/Django(2)视图和Urls/" class="article-date">
-      <time datetime="2016-04-01T08:15:00.000Z" itemprop="datePublished">2016-04-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2016/04/01/Django(2)视图和Urls/">Django(2)视图和Urls</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>视图从某种一样上说是web页面，它有固定的模板，负责提供一定的服务。例如博客网站需要视图：</p>
-<ul>
-<li>博客主页–显示最近博客</li>
-<li>细节页面–显示一篇博客</li>
-<li>基于年的归档页面–显示给定年份的所有博客</li>
-<li>基于月的归档页面–显示给定月份的所有博客</li>
-<li>基于天的归档页面–显示给定日期的所有博客</li>
-<li>评论功能–处理对博客的评论</li>
-</ul>
-<p>在投票应用中，我们需要4个视图</p>
-<ul>
-<li>Questions索引页–显示最近的Questions</li>
-<li>Questions细节页–显示Questions的问题和投票表格（不包含结果）</li>
-<li>Questions结果页–显示Question的结果</li>
-<li>投票功能–处理对某个Question进行投票</li>
-</ul>
       
     </div>
     
@@ -508,6 +518,68 @@
       
 
       
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-exe文件分解" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/blog/2016/04/01/exe文件分解/" class="article-date">
+      <time datetime="2016-03-31T16:00:00.000Z" itemprop="datePublished">2016-04-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/04/01/exe文件分解/">exe文件分解</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="分解算法"><a href="#分解算法" class="headerlink" title="分解算法"></a>分解算法</h2><h2 id="PE文件载入步骤"><a href="#PE文件载入步骤" class="headerlink" title="PE文件载入步骤"></a>PE文件载入步骤</h2><ul>
+<li>文件Load进入内存        （ReadFile）</li>
+<li>申请内存存放不同的节    （placeSection）</li>
+<li>载入dll和设置IAT        （loadDll and setIAT）</li>
+<li>重定位                （funcReloc）</li>
+<li>运行EXE或者DLL        （doEntryPoint）</li>
+</ul>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/None/">None</a></li></ul>
+    </div>
+
       
       <div class="clearfix"></div>
     </div>
@@ -707,68 +779,6 @@
 
 
   
-    <article id="post-exe文件分解" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/blog/2016/04/01/exe文件分解/" class="article-date">
-      <time datetime="2016-03-31T16:00:00.000Z" itemprop="datePublished">2016-04-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2016/04/01/exe文件分解/">exe文件分解</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="分解算法"><a href="#分解算法" class="headerlink" title="分解算法"></a>分解算法</h2><h2 id="PE文件载入步骤"><a href="#PE文件载入步骤" class="headerlink" title="PE文件载入步骤"></a>PE文件载入步骤</h2><ul>
-<li>文件Load进入内存        （ReadFile）</li>
-<li>申请内存存放不同的节    （placeSection）</li>
-<li>载入dll和设置IAT        （loadDll and setIAT）</li>
-<li>重定位                （funcReloc）</li>
-<li>运行EXE或者DLL        （doEntryPoint）</li>
-</ul>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/None/">None</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/blog/">&laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span>
@@ -782,14 +792,14 @@
                 &copy; 2016 mrgao1008
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、簡潔且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="簡而不減 Hexo 雙欄博客主題">Yelee</a> by MOxFIVE
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" >本站到訪數: 
+                        <span id="site-visit" >本站到访数: 
                             <span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
@@ -799,7 +809,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit">本頁閱讀量: 
+                        <span id="page-visit">本页阅读量: 
                             <span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
@@ -853,9 +863,9 @@ MathJax.Hub.Queue(function() {
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="返回頂部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" title="查看評論"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="轉到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">

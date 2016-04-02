@@ -62,6 +62,16 @@
   
 
   
+      <script>
+          var _hmt = _hmt || [];
+          (function() {
+              var hm = document.createElement("script");
+              hm.src = "//hm.baidu.com/hm.js?859c5e5f16f684a5497e88f9ac3d2586";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+          })();
+      </script>
+  
 </head>
 <body>
   <div id="container">
@@ -111,13 +121,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>菜單</li>
-                        <li>標籤</li>
+                        <li>菜单</li>
+                        <li>标签</li>
                         
-                        <li>友情鏈接</li>
+                        <li>友情链接</li>
                         
                         
-                        <li>關於我</li>
+                        <li>关于我</li>
                         
                     </ul>
                 </div>
@@ -387,173 +397,6 @@
 
 
   
-    <article id="post-Windows API hook 开发环境配置" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/blog/2016/04/02/Windows API hook 开发环境配置/" class="article-date">
-      <time datetime="2016-04-01T16:00:00.000Z" itemprop="datePublished">2016-04-02</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2016/04/02/Windows API hook 开发环境配置/">Windows API Hook 开发环境配置</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p><span id="top"></span><br><!-- MarkdownTOC --></p>
-<ul>
-<li><a href="#detours安装和配置">Detours安装和配置</a><ul>
-<li><a href="#detours介绍">Detours介绍</a></li>
-<li><a href="#detours安装">Detours安装</a></li>
-<li><a href="#detours编译">Detours编译</a></li>
-</ul>
-</li>
-<li><a href="#windows-api-hook例子">Windows API Hook例子</a><ul>
-<li><a href="#加入detours头文件和动态库文件">加入detours头文件和动态库文件</a></li>
-</ul>
-</li>
-<li><a href="#利用withdll进行远程dll注入">利用withdll进行远程dll注入</a></li>
-</ul>
-<!-- /MarkdownTOC -->
-<p><a name="detours安装和配置"></a></p>
-<h2 id="Detours安装和配置"><a href="#Detours安装和配置" class="headerlink" title="Detours安装和配置"></a>Detours安装和配置</h2><p><a name="detours介绍"></a></p>
-<h3 id="Detours介绍"><a href="#Detours介绍" class="headerlink" title="Detours介绍"></a>Detours介绍</h3><p>Detours是Windows下一个API Hook 开源框架。<br><a href="http://research.microsoft.com/en-us/projects/detours/" target="_blank" rel="external">Detours官网</a><br><a href="http://research.microsoft.com/en-us/downloads/d36340fb-4d3c-4ddd-bf5b-1db25d03713d/default.aspx" target="_blank" rel="external">Detours 3.0下载地址</a></p>
-<p><a name="detours安装"></a></p>
-<h3 id="Detours安装"><a href="#Detours安装" class="headerlink" title="Detours安装"></a>Detours安装</h3><p>msi文件一路next。记下安装目录。</p>
-<p><a name="detours编译"></a></p>
-<h3 id="Detours编译"><a href="#Detours编译" class="headerlink" title="Detours编译"></a>Detours编译</h3><p>安装完成后，进入目录<code>C:\Program Files\Microsoft Research\Detours Express 3.0</code>会看到下面的目录结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">samples\</span><br><span class="line">	...</span><br><span class="line">	simple\</span><br><span class="line">	...</span><br><span class="line">	withdll\</span><br><span class="line">	...</span><br><span class="line">src\</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<p>其中src是需要编译的detours源码。simple和withdll是实现windows API Hook需要用到的2个示例。</p>
-<p>编译步骤如下:</p>
-<ul>
-<li>以管理员权限启动cmd</li>
-<li><p>设置环境变量，不然nmake会出错</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &quot;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\vcvars32.bat&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>进入detours的src文件夹并进行编译</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\src</span><br><span class="line"># nmake</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>编译在src和samples同一目录会生成lib.X86文件夹，里面的detours.lib就是我们需要的。</p>
-<p><a name="windows-api-hook例子"></a></p>
-<h2 id="Windows-API-Hook例子"><a href="#Windows-API-Hook例子" class="headerlink" title="Windows API Hook例子"></a>Windows API Hook例子</h2><p><a name="加入detours头文件和动态库文件"></a></p>
-<h3 id="加入detours头文件和动态库文件"><a href="#加入detours头文件和动态库文件" class="headerlink" title="加入detours头文件和动态库文件"></a>加入detours头文件和动态库文件</h3><p>在vs中新建windows控制台程序，设置解决方案的属性。</p>
-<ul>
-<li>打开<strong>项目</strong>–<strong>XXX 属性</strong></li>
-<li><p><strong>配置属性</strong>–<strong>C/C++</strong>–<strong>常规</strong> 在<strong>附加目录项</strong>中加入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\include</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>配置属性</strong>–<strong>链接器</strong>–<strong>常规</strong> 在<strong>附加库目录</strong>中加入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\lib.X86</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>配置属性</strong>–<strong>链接器</strong>–<strong>输入</strong> 在<strong>附加依赖项</strong>中加入<code>detours.lib</code></p>
-</li>
-<li><strong>配置属性</strong>–<strong>C/C++</strong>–<strong>代码生成</strong> 在<strong>运行库</strong>选择<code>/MT</code></li>
-<li><strong>配置属性</strong>–<strong>常规</strong> 在<strong>字符集</strong>选择<code>未设置</code></li>
-<li>在命令栏中选择<code>release</code>版本</li>
-</ul>
-<h4 id="withdll的编译"><a href="#withdll的编译" class="headerlink" title="withdll的编译"></a>withdll的编译</h4><p>在源文件中新建cpp文件，拷贝detours安装目录下的<code>samples\withdll\withdll.cpp</code>内容到cpp中。编译。</p>
-<h4 id="simple的编译"><a href="#simple的编译" class="headerlink" title="simple的编译"></a>simple的编译</h4><p>在vs新建项目时，选择windows控制台程序，并选择dll。设置解决方案属性。拷贝<code>samples\simple\simple.cpp</code>到新建的cpp文件中，编译。</p>
-<p><a name="利用withdll进行远程dll注入"></a></p>
-<h2 id="利用withdll进行远程dll注入"><a href="#利用withdll进行远程dll注入" class="headerlink" title="利用withdll进行远程dll注入"></a>利用withdll进行远程dll注入</h2><p><code>withdll /d:simple.dll a.exe</code>会将simple.dll注入到a.exe中。注意<code>/d:simple.dll</code>分号后不要有空格。exe和dll用绝对地址和相对地址都可以。</p>
-<p><a href="#top">回到顶部</a></p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Windows/">Windows</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/hook/">hook</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-LoadLibrary 126" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/blog/2016/04/02/LoadLibrary 126/" class="article-date">
-      <time datetime="2016-04-01T16:00:00.000Z" itemprop="datePublished">2016-04-02</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2016/04/02/LoadLibrary 126/">LoadLibrary error 126</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>可能是UNICODE和ASCII字符的问题。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/problem-solution/">problem solution</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
     <article id="post-数据库系统原理与应用（第三版）1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -701,6 +544,173 @@
 
 
   
+    <article id="post-LoadLibrary 126" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/blog/2016/04/02/LoadLibrary 126/" class="article-date">
+      <time datetime="2016-04-01T16:00:00.000Z" itemprop="datePublished">2016-04-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/04/02/LoadLibrary 126/">LoadLibrary error 126</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>可能是UNICODE和ASCII字符的问题。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/problem-solution/">problem solution</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Windows API hook 开发环境配置" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/blog/2016/04/02/Windows API hook 开发环境配置/" class="article-date">
+      <time datetime="2016-04-01T16:00:00.000Z" itemprop="datePublished">2016-04-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/04/02/Windows API hook 开发环境配置/">Windows API Hook 开发环境配置</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><span id="top"></span><br><!-- MarkdownTOC --></p>
+<ul>
+<li><a href="#detours安装和配置">Detours安装和配置</a><ul>
+<li><a href="#detours介绍">Detours介绍</a></li>
+<li><a href="#detours安装">Detours安装</a></li>
+<li><a href="#detours编译">Detours编译</a></li>
+</ul>
+</li>
+<li><a href="#windows-api-hook例子">Windows API Hook例子</a><ul>
+<li><a href="#加入detours头文件和动态库文件">加入detours头文件和动态库文件</a></li>
+</ul>
+</li>
+<li><a href="#利用withdll进行远程dll注入">利用withdll进行远程dll注入</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+<p><a name="detours安装和配置"></a></p>
+<h2 id="Detours安装和配置"><a href="#Detours安装和配置" class="headerlink" title="Detours安装和配置"></a>Detours安装和配置</h2><p><a name="detours介绍"></a></p>
+<h3 id="Detours介绍"><a href="#Detours介绍" class="headerlink" title="Detours介绍"></a>Detours介绍</h3><p>Detours是Windows下一个API Hook 开源框架。<br><a href="http://research.microsoft.com/en-us/projects/detours/" target="_blank" rel="external">Detours官网</a><br><a href="http://research.microsoft.com/en-us/downloads/d36340fb-4d3c-4ddd-bf5b-1db25d03713d/default.aspx" target="_blank" rel="external">Detours 3.0下载地址</a></p>
+<p><a name="detours安装"></a></p>
+<h3 id="Detours安装"><a href="#Detours安装" class="headerlink" title="Detours安装"></a>Detours安装</h3><p>msi文件一路next。记下安装目录。</p>
+<p><a name="detours编译"></a></p>
+<h3 id="Detours编译"><a href="#Detours编译" class="headerlink" title="Detours编译"></a>Detours编译</h3><p>安装完成后，进入目录<code>C:\Program Files\Microsoft Research\Detours Express 3.0</code>会看到下面的目录结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">samples\</span><br><span class="line">	...</span><br><span class="line">	simple\</span><br><span class="line">	...</span><br><span class="line">	withdll\</span><br><span class="line">	...</span><br><span class="line">src\</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>其中src是需要编译的detours源码。simple和withdll是实现windows API Hook需要用到的2个示例。</p>
+<p>编译步骤如下:</p>
+<ul>
+<li>以管理员权限启动cmd</li>
+<li><p>设置环境变量，不然nmake会出错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &quot;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\vcvars32.bat&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入detours的src文件夹并进行编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\src</span><br><span class="line"># nmake</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>编译在src和samples同一目录会生成lib.X86文件夹，里面的detours.lib就是我们需要的。</p>
+<p><a name="windows-api-hook例子"></a></p>
+<h2 id="Windows-API-Hook例子"><a href="#Windows-API-Hook例子" class="headerlink" title="Windows API Hook例子"></a>Windows API Hook例子</h2><p><a name="加入detours头文件和动态库文件"></a></p>
+<h3 id="加入detours头文件和动态库文件"><a href="#加入detours头文件和动态库文件" class="headerlink" title="加入detours头文件和动态库文件"></a>加入detours头文件和动态库文件</h3><p>在vs中新建windows控制台程序，设置解决方案的属性。</p>
+<ul>
+<li>打开<strong>项目</strong>–<strong>XXX 属性</strong></li>
+<li><p><strong>配置属性</strong>–<strong>C/C++</strong>–<strong>常规</strong> 在<strong>附加目录项</strong>中加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\include</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>配置属性</strong>–<strong>链接器</strong>–<strong>常规</strong> 在<strong>附加库目录</strong>中加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\lib.X86</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>配置属性</strong>–<strong>链接器</strong>–<strong>输入</strong> 在<strong>附加依赖项</strong>中加入<code>detours.lib</code></p>
+</li>
+<li><strong>配置属性</strong>–<strong>C/C++</strong>–<strong>代码生成</strong> 在<strong>运行库</strong>选择<code>/MT</code></li>
+<li><strong>配置属性</strong>–<strong>常规</strong> 在<strong>字符集</strong>选择<code>未设置</code></li>
+<li>在命令栏中选择<code>release</code>版本</li>
+</ul>
+<h4 id="withdll的编译"><a href="#withdll的编译" class="headerlink" title="withdll的编译"></a>withdll的编译</h4><p>在源文件中新建cpp文件，拷贝detours安装目录下的<code>samples\withdll\withdll.cpp</code>内容到cpp中。编译。</p>
+<h4 id="simple的编译"><a href="#simple的编译" class="headerlink" title="simple的编译"></a>simple的编译</h4><p>在vs新建项目时，选择windows控制台程序，并选择dll。设置解决方案属性。拷贝<code>samples\simple\simple.cpp</code>到新建的cpp文件中，编译。</p>
+<p><a name="利用withdll进行远程dll注入"></a></p>
+<h2 id="利用withdll进行远程dll注入"><a href="#利用withdll进行远程dll注入" class="headerlink" title="利用withdll进行远程dll注入"></a>利用withdll进行远程dll注入</h2><p><code>withdll /d:simple.dll a.exe</code>会将simple.dll注入到a.exe中。注意<code>/d:simple.dll</code>分号后不要有空格。exe和dll用绝对地址和相对地址都可以。</p>
+<p><a href="#top">回到顶部</a></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Windows/">Windows</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/hook/">hook</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-数据库系统原理与应用（第三版）2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -751,107 +761,6 @@
       
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/database/">database</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-python tk" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/blog/2016/04/02/python tk/" class="article-date">
-      <time datetime="2016-04-01T16:00:00.000Z" itemprop="datePublished">2016-04-02</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2016/04/02/python tk/">tk 编程</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="标准属性"><a href="#标准属性" class="headerlink" title="标准属性"></a>标准属性</h2><h3 id="dimensions"><a href="#dimensions" class="headerlink" title="dimensions"></a>dimensions</h3><p>尺寸包含4种</p>
-<table>
-<thead>
-<tr>
-<th>字母</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>c</td>
-<td>厘米</td>
-</tr>
-<tr>
-<td>i</td>
-<td>英寸</td>
-</tr>
-<tr>
-<td>m</td>
-<td>毫米</td>
-</tr>
-<tr>
-<td>p</td>
-<td>打印机的点？？</td>
-</tr>
-</tbody>
-</table>
-<h3 id="坐标"><a href="#坐标" class="headerlink" title="坐标"></a>坐标</h3><h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><p>||#rgb||four bits per color||<br>||#rrggbb||eight bits per color||<br>||#rrrgggbbb||twelve bits per color||</p>
-<p>还一可以指定关键词’white’,’black’,’red’,’green’,’blue’,’cyan’,’yellow’,’magenta’</p>
-<h3 id="fonts"><a href="#fonts" class="headerlink" title="fonts"></a>fonts</h3><p>1.元组表示,第一表示字体，第二个表示大小，正数为points，负数为像素点，后续为其他一些特别设置<br>(‘Helvetica’,’16’)<br>(‘Times’,’24’,’bold italic’)<br>(‘Times’,-20,’bold’)</p>
-<p>2.字体对象 tkFont</p>
-<p>3.X font names.</p>
-<h3 id="锚"><a href="#锚" class="headerlink" title="锚"></a>锚</h3><p>N S W E CENTER<br>NW NE SW SE</p>
-<h3 id="释放样式"><a href="#释放样式" class="headerlink" title="释放样式"></a>释放样式</h3><p>FLAT RAISED SUNKEN GROOVE RIDGE</p>
-<h3 id="Bitmaps"><a href="#Bitmaps" class="headerlink" title="Bitmaps"></a>Bitmaps</h3><p>button支持 error gray75 gray50 gray25 gray12 hourglass info questhead question warning</p>
-<p>也可以使用.xbm(X bit map)使用@path</p>
-<h3 id="cursors"><a href="#cursors" class="headerlink" title="cursors"></a>cursors</h3><h3 id="images"><a href="#images" class="headerlink" title="images"></a>images</h3><p>BitmapImage 支持 .xbm<br>PhotoImage 支持 .gif .pgm .ppm<br>ImageTk 支持更多格式</p>
-<h4 id="the-BitmapImage-class"><a href="#the-BitmapImage-class" class="headerlink" title="the BitmapImage class"></a>the BitmapImage class</h4><p>原型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tk.BitmapImage(file=f[, background=b][, foreground=c])</span><br></pre></td></tr></table></figure></p>
-<p>实例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logo = tk.BitmapImage(<span class="string">'logo.xbm'</span>, foreground=<span class="string">'red'</span>)</span><br><span class="line">Label(image=logo).grid()</span><br></pre></td></tr></table></figure></p>
-<h4 id="the-PhotoImage-class"><a href="#the-PhotoImage-class" class="headerlink" title="the PhotoImage class"></a>the PhotoImage class</h4><p>原型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tk.PhotoImage(file=f)</span><br></pre></td></tr></table></figure></p>
-<h3 id="Geometry-strings"><a href="#Geometry-strings" class="headerlink" title="Geometry strings"></a>Geometry strings</h3><p>A geometry string is a standard way of describing the size and location of a top-level window on a desktop.<br>format: ‘wxh±x±y’<br>+x left side<br>-x right side<br>+y top<br>-y bottom</p>
-<h3 id="window-names"><a href="#window-names" class="headerlink" title="window names"></a>window names</h3><p>hierarchical window path name<br>root window ‘.’<br>child name ‘.n’<br>child windows of child ‘p.n’, p is the name of the parent window</p>
-<p>str(w): to get the path name of a widget w</p>
-<h3 id="cap-and-join-styles"><a href="#cap-and-join-styles" class="headerlink" title="cap and join styles"></a>cap and join styles</h3><p>cap style: tk.BUTT, tk.PROJECTING, tk.ROUND<br>join style: tk.ROUND, tk.BEVEL, tk.MITER</p>
-<h3 id="dash-patterns"><a href="#dash-patterns" class="headerlink" title="dash patterns"></a>dash patterns</h3><p>dash=(3,5)<br>dash=(7,1,1,1)<br>dash=(5,1,2,1),dashoff=3</p>
-<h2 id="tk-TclError"><a href="#tk-TclError" class="headerlink" title="tk.TclError"></a>tk.TclError</h2>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/GUI/">GUI</a></li></ul>
     </div>
 
       
@@ -940,7 +849,7 @@
 <p>如果有疑问，可以在linux-kernel邮件列表上询问。</p>
 <p>###在邮件主题上加上[PATCH]</p>
 <p>###签名</p>
-<p>为了方便跟踪作者和管理复杂的更改，引入了签名机制。如果确认一下4点就可以在对patch的描述后加上一句：<br>Signed-off-by: Random J Developer <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#114;&#x61;&#110;&#100;&#111;&#x6d;&#x40;&#100;&#101;&#118;&#x65;&#108;&#x6f;&#112;&#101;&#x72;&#x2e;&#x65;&#120;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x2e;&#x6f;&#x72;&#x67;">&#114;&#x61;&#110;&#100;&#111;&#x6d;&#x40;&#100;&#101;&#118;&#x65;&#108;&#x6f;&#112;&#101;&#x72;&#x2e;&#x65;&#120;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x2e;&#x6f;&#x72;&#x67;</a></p>
+<p>为了方便跟踪作者和管理复杂的更改，引入了签名机制。如果确认一下4点就可以在对patch的描述后加上一句：<br>Signed-off-by: Random J Developer <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#58;&#114;&#x61;&#x6e;&#100;&#111;&#109;&#x40;&#x64;&#101;&#118;&#101;&#108;&#111;&#112;&#101;&#114;&#46;&#101;&#120;&#97;&#x6d;&#112;&#108;&#x65;&#x2e;&#111;&#114;&#x67;">&#114;&#x61;&#x6e;&#100;&#111;&#109;&#x40;&#x64;&#101;&#118;&#101;&#108;&#111;&#112;&#101;&#114;&#46;&#101;&#120;&#97;&#x6d;&#112;&#108;&#x65;&#x2e;&#111;&#114;&#x67;</a></p>
 <ul>
 <li>更改部分或者全部由我完成。我有权利开源</li>
 <li>更改基于一个开源项目，需提交到同一个开源license下。否则可以提交给别的开源license</li>
@@ -1227,6 +1136,107 @@
 
 
   
+    <article id="post-python tk" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/blog/2016/04/02/python tk/" class="article-date">
+      <time datetime="2016-04-01T16:00:00.000Z" itemprop="datePublished">2016-04-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/04/02/python tk/">tk 编程</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="标准属性"><a href="#标准属性" class="headerlink" title="标准属性"></a>标准属性</h2><h3 id="dimensions"><a href="#dimensions" class="headerlink" title="dimensions"></a>dimensions</h3><p>尺寸包含4种</p>
+<table>
+<thead>
+<tr>
+<th>字母</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c</td>
+<td>厘米</td>
+</tr>
+<tr>
+<td>i</td>
+<td>英寸</td>
+</tr>
+<tr>
+<td>m</td>
+<td>毫米</td>
+</tr>
+<tr>
+<td>p</td>
+<td>打印机的点？？</td>
+</tr>
+</tbody>
+</table>
+<h3 id="坐标"><a href="#坐标" class="headerlink" title="坐标"></a>坐标</h3><h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><p>||#rgb||four bits per color||<br>||#rrggbb||eight bits per color||<br>||#rrrgggbbb||twelve bits per color||</p>
+<p>还一可以指定关键词’white’,’black’,’red’,’green’,’blue’,’cyan’,’yellow’,’magenta’</p>
+<h3 id="fonts"><a href="#fonts" class="headerlink" title="fonts"></a>fonts</h3><p>1.元组表示,第一表示字体，第二个表示大小，正数为points，负数为像素点，后续为其他一些特别设置<br>(‘Helvetica’,’16’)<br>(‘Times’,’24’,’bold italic’)<br>(‘Times’,-20,’bold’)</p>
+<p>2.字体对象 tkFont</p>
+<p>3.X font names.</p>
+<h3 id="锚"><a href="#锚" class="headerlink" title="锚"></a>锚</h3><p>N S W E CENTER<br>NW NE SW SE</p>
+<h3 id="释放样式"><a href="#释放样式" class="headerlink" title="释放样式"></a>释放样式</h3><p>FLAT RAISED SUNKEN GROOVE RIDGE</p>
+<h3 id="Bitmaps"><a href="#Bitmaps" class="headerlink" title="Bitmaps"></a>Bitmaps</h3><p>button支持 error gray75 gray50 gray25 gray12 hourglass info questhead question warning</p>
+<p>也可以使用.xbm(X bit map)使用@path</p>
+<h3 id="cursors"><a href="#cursors" class="headerlink" title="cursors"></a>cursors</h3><h3 id="images"><a href="#images" class="headerlink" title="images"></a>images</h3><p>BitmapImage 支持 .xbm<br>PhotoImage 支持 .gif .pgm .ppm<br>ImageTk 支持更多格式</p>
+<h4 id="the-BitmapImage-class"><a href="#the-BitmapImage-class" class="headerlink" title="the BitmapImage class"></a>the BitmapImage class</h4><p>原型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tk.BitmapImage(file=f[, background=b][, foreground=c])</span><br></pre></td></tr></table></figure></p>
+<p>实例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logo = tk.BitmapImage(<span class="string">'logo.xbm'</span>, foreground=<span class="string">'red'</span>)</span><br><span class="line">Label(image=logo).grid()</span><br></pre></td></tr></table></figure></p>
+<h4 id="the-PhotoImage-class"><a href="#the-PhotoImage-class" class="headerlink" title="the PhotoImage class"></a>the PhotoImage class</h4><p>原型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tk.PhotoImage(file=f)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Geometry-strings"><a href="#Geometry-strings" class="headerlink" title="Geometry strings"></a>Geometry strings</h3><p>A geometry string is a standard way of describing the size and location of a top-level window on a desktop.<br>format: ‘wxh±x±y’<br>+x left side<br>-x right side<br>+y top<br>-y bottom</p>
+<h3 id="window-names"><a href="#window-names" class="headerlink" title="window names"></a>window names</h3><p>hierarchical window path name<br>root window ‘.’<br>child name ‘.n’<br>child windows of child ‘p.n’, p is the name of the parent window</p>
+<p>str(w): to get the path name of a widget w</p>
+<h3 id="cap-and-join-styles"><a href="#cap-and-join-styles" class="headerlink" title="cap and join styles"></a>cap and join styles</h3><p>cap style: tk.BUTT, tk.PROJECTING, tk.ROUND<br>join style: tk.ROUND, tk.BEVEL, tk.MITER</p>
+<h3 id="dash-patterns"><a href="#dash-patterns" class="headerlink" title="dash patterns"></a>dash patterns</h3><p>dash=(3,5)<br>dash=(7,1,1,1)<br>dash=(5,1,2,1),dashoff=3</p>
+<h2 id="tk-TclError"><a href="#tk-TclError" class="headerlink" title="tk.TclError"></a>tk.TclError</h2>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/GUI/">GUI</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-fgetc 0x1A EOF" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1434,14 +1444,14 @@
                 &copy; 2016 mrgao1008
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、簡潔且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="簡而不減 Hexo 雙欄博客主題">Yelee</a> by MOxFIVE
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" >本站到訪數: 
+                        <span id="site-visit" >本站到访数: 
                             <span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
@@ -1451,7 +1461,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit">本頁閱讀量: 
+                        <span id="page-visit">本页阅读量: 
                             <span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
@@ -1505,9 +1515,9 @@ MathJax.Hub.Queue(function() {
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="返回頂部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" title="查看評論"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="轉到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
