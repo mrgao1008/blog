@@ -111,13 +111,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>Menu</li>
-                        <li>Tags</li>
+                        <li>菜單</li>
+                        <li>標籤</li>
                         
-                        <li>Friends</li>
+                        <li>友情鏈接</li>
                         
                         
-                        <li>About Me</li>
+                        <li>關於我</li>
                         
                     </ul>
                 </div>
@@ -143,12 +143,6 @@
                     <nav class="header-nav">
                         <ul class="social">
                             
-                                <li id="Email"><a class="Email" target="_blank" href="mailto:123@123.com" title="Email"></a></li>
-                            
-                                <li id="GitHub"><a class="GitHub" target="_blank" href="#" title="GitHub"></a></li>
-                            
-                                <li id="RSS"><a class="RSS" target="_blank" href="/blog/atom.xml" title="RSS"></a></li>
-                            
                         </ul>
                     </nav>
                 </section>
@@ -167,7 +161,7 @@
                     
                       <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
                     
-                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/mrgao1008/">GitHub</a>
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://github.com/">GitHub</a>
                     
                       <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
                     
@@ -220,12 +214,6 @@
             </nav>
             <nav class="header-nav">
                         <ul class="social">
-                            
-                                <li id="Email"><a class="Email" target="_blank" href="mailto:123@123.com" title="Email"></a></li>
-                            
-                                <li id="GitHub"><a class="GitHub" target="_blank" href="#" title="GitHub"></a></li>
-                            
-                                <li id="RSS"><a class="RSS" target="_blank" href="/blog/atom.xml" title="RSS"></a></li>
                             
                         </ul>
             </nav>
@@ -510,10 +498,10 @@
 
 
   
-    <article id="post-数据库系统原理与应用（第三版）2" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-LoadLibrary 126" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/blog/2016/04/02/数据库系统原理与应用（第三版）2/" class="article-date">
+      <a href="/blog/2016/04/02/LoadLibrary 126/" class="article-date">
       <time datetime="2016-04-01T16:00:00.000Z" itemprop="datePublished">2016-04-02</time>
 </a>
     </div>
@@ -527,7 +515,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/blog/2016/04/02/数据库系统原理与应用（第三版）2/">分布式数据库技术</a>
+      <a class="article-title" href="/blog/2016/04/02/LoadLibrary 126/">LoadLibrary error 126</a>
     </h1>
   
 
@@ -537,19 +525,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>通过使用分散在不同地理位置的计算机来满足本地用户需要的计算方式称为分布式计算，使用到的数据库是分布式数据库，涉及的数据库技术是分布式数据库技术。</p>
-<p>分布式数据库是与集中式数据库相对的概念，其主要差别在于处理的数据处于不同的地理位置。集中式数据库强调的是所有的数据存储在一个唯一的地方，而分布式数据库强调的是所有的数据作为一个整体存储在多个不同的地理位置。</p>
-<h2 id="分布式数据库的概念和特定"><a href="#分布式数据库的概念和特定" class="headerlink" title="分布式数据库的概念和特定"></a>分布式数据库的概念和特定</h2><p>在分布式计算方式中，数据库管理系统安装在多个所处地理位置不同的服务器上，用户的数据也是分布在不同的服务器中。但从逻辑上来讲，这些用户的数据是一个整体，构成一个逻辑数据库。本地服务器的用户不仅可以访问本地服务器上数据库中的数据，也可以访问异地服务器上数据库中的数据。</p>
-<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>分布式数据库具有物理分布性、逻辑整体性、场地自治性、数据共享性和系统可用性五个特点。自治表示自己管理自己，场地自治性表示每个场地的集中式数据库系统都是自己来管理自己的数据。数据共享性强调的是系统具有统一的模式，所有的用户都可以使用分布式数据库中的数据。系统可用性则是如果某个场地的数据发生了故障，用户还可以通过其他场地访问这些数据。</p>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>第一，系统实现技术更加复杂、难度更大。<br>第二，系统的安全性更难处理。</p>
-<h2 id="分布式数据存储技术"><a href="#分布式数据存储技术" class="headerlink" title="分布式数据存储技术"></a>分布式数据存储技术</h2><p>在分布式数据库中，数据的存储可以通过三种方式实现，即复制存储方式、分片存储方式和混合存储方式。</p>
-<h3 id="数据复制"><a href="#数据复制" class="headerlink" title="数据复制"></a>数据复制</h3><p>通过把数据库中的一个关系存储多次而实现分布式存储。数据复制的有点事提高可用性、增加数据库系统的并行度、增强并发能力。数据复制也存在明显的缺点，即数据更新成本大大增加。</p>
-<h3 id="数据分片"><a href="#数据分片" class="headerlink" title="数据分片"></a>数据分片</h3><p>通过把数据库中的一个关系分成多个片断，每个片断都存储在不同场地上，且所有的片断包含的信息足够重构原始关系，该数据存储方式成为数据分片。</p>
-<p>数据分片分为水平分片、垂直分片和混合分片。</p>
-<h3 id="数据混合存储"><a href="#数据混合存储" class="headerlink" title="数据混合存储"></a>数据混合存储</h3><p>在数据存储过程中，既包含了水平分片存储方式，又包含了垂直分片存储方式，则将这种方式称为数据混合存储方式。</p>
-<h2 id="分布式数据查询技术"><a href="#分布式数据查询技术" class="headerlink" title="分布式数据查询技术"></a>分布式数据查询技术</h2><p>在集中式数据库的数据查询中，查询代价主要是本地处理代价，具体内容包括CPU代价和I/O代价。但是，分布式数据库的数据查询中，查询代价除了本地处理代价之外，还包括网络传输代价。</p>
-<p><strong>基于半连接的优化策略</strong>，在执行分布式查询时，只传输参与连接运算的数据，不传输不参与连接运算的数据。</p>
-<p><strong>基于连接的优化策略</strong>，在对于网络传输代价要求比较严格时，可以使用半连接优化策略。但对于网络传输代价要求比较低，对本地处理代价要求比较高时，可以考虑使用基于连接的优化策略。基于连接的优化策略的事项是把某个场地的整个关系的元组传输到另外的场地执行连接操作。</p>
+        <p>可能是UNICODE和ASCII字符的问题。</p>
       
     </div>
     
@@ -559,7 +535,7 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/database/">database</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/problem-solution/">problem solution</a></li></ul>
     </div>
 
       
@@ -725,10 +701,10 @@
 
 
   
-    <article id="post-如何给Linux kernel提交代码" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-数据库系统原理与应用（第三版）2" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/blog/2016/04/02/如何给Linux kernel提交代码/" class="article-date">
+      <a href="/blog/2016/04/02/数据库系统原理与应用（第三版）2/" class="article-date">
       <time datetime="2016-04-01T16:00:00.000Z" itemprop="datePublished">2016-04-02</time>
 </a>
     </div>
@@ -742,7 +718,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/blog/2016/04/02/如何给Linux kernel提交代码/">如何给Linux Kernel提交代码</a>
+      <a class="article-title" href="/blog/2016/04/02/数据库系统原理与应用（第三版）2/">分布式数据库技术</a>
     </h1>
   
 
@@ -752,91 +728,19 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><strong><a href="http://kernelnewbies.org/UpstreamMerge/SubmittingPatches" target="_blank" rel="external">英文</a></strong></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><span id="前言">前言</span></h2><p>个人或者公司如果不熟悉提交代码流程，代码很难被接受。利用本文给出一些建议将会大大的增加代码被接受的概率。</p>
-<p>在提交代码之前，你需要阅读一些注意事项<code>Documentation\SubmitChecklist</code>。如果是提交的驱动，同时也请阅读<code>Documentation\SubmittingDrivers</code>。</p>
-<h2 id="创造并提交改动"><a href="#创造并提交改动" class="headerlink" title="创造并提交改动"></a>创造并提交改动</h2><p>###diff -up</p>
-<p>利用<code>diff -up</code>或者<code>diff -uprN</code>创造patch文件。</p>
-<p>linux所有的更改都以patche方式存在。patch命令中<code>-u</code>代表<code>unified diff</code>,<code>-p</code>会显示哪个函数发生了改变。patche都是以linux源码的根目录为其实点。<br>比如你更改了一个文件。你需要进行下面的操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SRCTREE= linux-2.6</span><br><span class="line">MYFILE= drivers/net/mydriver.c</span><br><span class="line"></span><br><span class="line">cd $SRCTREE</span><br><span class="line">cp $MYFILE $MYFILE.orig</span><br><span class="line">vi $MYFILE       # make your change</span><br><span class="line">cd ..</span><br><span class="line">diff -up $SRCTREE/$MYFILE&#123;.orig,&#125; &gt; /tmp/patch</span><br></pre></td></tr></table></figure></p>
-<p>如果更改了多个文件，你需要解压一个<code>vanilla</code>或者原版linux kernel。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MYSRC= /devel/linux-2.6</span><br><span class="line"></span><br><span class="line">tar xvfz linux-2.6.12.tar.gz</span><br><span class="line">mv linux-2.6.12 linux-2.6.12-vanilla</span><br><span class="line">diff -uprN -X linux-2.6.12-vanilla/Documentation/dontdiff \</span><br><span class="line">    linux-2.6.12-vanilla $MYSRC &gt; /tmp/patch</span><br></pre></td></tr></table></figure></p>
-<p>其中<code>dontdiff</code>是diff需要忽略的文件列表。</p>
-<p>确保patche中不包含其他无关文件。</p>
-<p>如果你的更改比较巨大，可以按照逻辑分成几个部分。这方便其他内核开发者审查。</p>
-<p>patch管理工具<a href="http://savannah.nongnu.org/projects/quilt" target="_blank" rel="external">Quilt</a>.一些脚本工具<a href="http://userweb.kernel.org/~akpm/stuff/patch-scripts.tar.gz" target="_blank" rel="external">Scripts</a></p>
-<p>###描述更改</p>
-<p>描述更改过程中的技术细节，做到尽可能清晰。如果描述过长，可能你需要分成几个patch。</p>
-<p>###分割更改</p>
-<p>按照逻辑分割patch文件。<br>比如，你填补了一个驱动的bug同时还提高了它的性能，那么你需要将他分成多个patche。如果你更改了一个API,并提供一个新的驱动利用了该API，这需要分成2个patch。另一方面，如果你只是更改了很多不同文件的同一个地方，你需要将更改放在同一个patch中。如果你的patch比如依赖另外一个patch，你需要在描述patch时说明<code>this patch depends on patch X</code>。</p>
-<p>###检查代码风格</p>
-<p>按照<code>Documentation/Codingstyle</code>中的描述，检查更改的编码风格。没有进行这一步的代码可能在甚至没有被阅读情况下被拒绝。最基本的，你可以采用<code>scripts/checkpatch.pl</code>检查patch的编码风格，并且修改所有不恰当的地方。</p>
-<p>###选择发送者</p>
-<p>linux主线的每一部分都由一个维护者负责。更改属于哪一部分就发给对应的维护者。如果维护者没有列出，或者不回应邮件，你可以将patch发给<code>linux-kernel@vger.kernel.org</code>。</p>
-<p>Linus Torvalds是接受更改的仲裁者，但是一般不要给他发邮件。比较明显的bug修复或者不需要讨论的patch可以直接抄送给Linux Torvalds。如果Patch没有明显的优势或者需要讨论，你需要先发给linux-kernel.</p>
-<p>###选择抄送人</p>
-<p>如果没有特别原因需要抄送给<code>linux-kernel@vger.kernel.org</code>。这样可以让其他开发者可以检查代码和提出意见。</p>
-<p>如果你的更改影响了用户和内核接口，请抄送给MAN-PAGES维护者，方便他们做更改。<br>小的更改：比如字符拼写错误等你需要抄送给<code>trivial@kernel.org</code>。<br>比如在文档中的拼写错误等。关于小错误的定义可以查看<a href="http://www.kernel.org/pub/linux/kernel/people/juhl/trivial/" target="_blank" rel="external">trivial</a>。</p>
-<p>###只允许文字（没有多媒体，链接，压缩，附件）</p>
-<p>所以patch都写在邮件中。</p>
-<p>###email的大小</p>
-<p>email的大小如果超过40kb，你需要放到网络上，并提供链接。</p>
-<p>###指明kernel版本</p>
-<p>你需要指明patch的kernel版本，如果patch不适用于最新的kernel，linus不会接受。</p>
-<p>###别沮丧，重新提交</p>
-<p>提交更改后，需要耐心等待。如果更改没有出现在下一个版本中，那么可能是一下原因：</p>
-<ul>
-<li>更改不适用于最新内核版本</li>
-<li>更改没有经过足够讨论</li>
-<li>代码风格问题</li>
-<li>e-mail格式问题</li>
-<li>更改存在技术问题</li>
-<li>意外丢失</li>
-<li>你太烦了</li>
-</ul>
-<p>如果有疑问，可以在linux-kernel邮件列表上询问。</p>
-<p>###在邮件主题上加上[PATCH]</p>
-<p>###签名</p>
-<p>为了方便跟踪作者和管理复杂的更改，引入了签名机制。如果确认一下4点就可以在对patch的描述后加上一句：<br>Signed-off-by: Random J Developer <a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#x72;&#97;&#x6e;&#x64;&#x6f;&#109;&#x40;&#100;&#x65;&#118;&#101;&#x6c;&#111;&#x70;&#x65;&#114;&#46;&#x65;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#x6f;&#x72;&#x67;">&#x72;&#97;&#x6e;&#x64;&#x6f;&#109;&#x40;&#100;&#x65;&#118;&#101;&#x6c;&#111;&#x70;&#x65;&#114;&#46;&#x65;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#x6f;&#x72;&#x67;</a></p>
-<ul>
-<li>更改部分或者全部由我完成。我有权利开源</li>
-<li>更改基于一个开源项目，需提交到同一个开源license下。否则可以提交给别的开源license</li>
-<li>更改由别人转交给我，别人确认1,2,3条，我没有修改更改</li>
-<li>我知道这是一个开源项目，并且贡献有可能不被记录</li>
-</ul>
-<p>###Acked-by</p>
-<p>子系统的维护者需要这么做，表示patch你觉得还不错。</p>
-<p>###Tested-by和Reviewed-by</p>
-<p>Tested-by表示某人在某种环境下patch测试是有效的。<br>Reviewed-by表示这个patch被检查，说明你对patch的观点。</p>
-<p>###patch的规范格式</p>
-<p>主题：[PATCH 001/123] 子系统: 总结</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from:</span><br><span class="line">空行</span><br><span class="line">patch的描述</span><br><span class="line">Signed-off-by:</span><br><span class="line">标识符---</span><br><span class="line">其他一些评论</span><br><span class="line">diff output</span><br></pre></td></tr></table></figure>
-<p>主题的2个示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Subject: [patch 2/5] ext2: improve scalability of bitmap searching</span><br><span class="line">Subject: [PATCHv2 001/207] x86: fix eflags tracking</span><br></pre></td></tr></table></figure></p>
-<p>from行的示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">From: Original Author &lt;author@example.com&gt;</span><br></pre></td></tr></table></figure></p>
-<p>—表示改动日志的结束。<br>其他一些评论可以用来写上<code>diffstat -p 1 -w 70</code>。</p>
-<p>###发送git pull请求</p>
-<p>发送从哪能够获得更改，格式如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Please pull from</span><br><span class="line">        git://jdelvare.pck.nerim.net/jdelvare-2.6 i2c-for-linus</span><br><span class="line"> to get these changes:</span><br></pre></td></tr></table></figure></p>
-<p>同时用<code>git diff -M --stat --summary</code>生成diffstat.</p>
-<h2 id="忠告、建议、技巧"><a href="#忠告、建议、技巧" class="headerlink" title="忠告、建议、技巧"></a>忠告、建议、技巧</h2><ul>
-<li><p>阅读Documentation/CodingStyle</p>
-<p>  可以利用scripts/checkpatch.pl来检查代码风格。这个脚本会提供3种水平的忠告</p>
-<ul>
-<li>ERROR: 很可能有错</li>
-<li>WARNING: 需要认真检查</li>
-<li>CHECK：需要考虑</li>
-</ul>
-</li>
-<li><p>不要在函数内使用ifdef。<br>  例如：</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dev = alloc_etherdev (sizeof(struct funky_private));</span><br><span class="line">if (!dev)</span><br><span class="line">        return -ENODEV;</span><br><span class="line">#ifdef CONFIG_NET_FUNKINESS</span><br><span class="line">init_funky_net(dev);</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
-<p>  上面的可以更改为</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(in header)</span><br><span class="line">    #ifndef CONFIG_NET_FUNKINESS</span><br><span class="line">    static inline void init_funky_net (struct net_device *d) &#123;&#125;</span><br><span class="line">    #endif</span><br><span class="line">(in the code itself)</span><br><span class="line">    dev = alloc_etherdev (sizeof(struct funky_private));</span><br><span class="line">    if (!dev)</span><br><span class="line">            return -ENODEV;</span><br><span class="line">    init_funky_net(dev);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>static inline 比宏更好</p>
-</li>
-<li><p>不要过度设计</p>
-<p>  Make it as simple as you can, and no simpler.</p>
-</li>
-</ul>
-<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>这篇文章翻译于<a href="http://kernelnewbies.org/UpstreamMerge/SubmittingPatches" target="_blank" rel="external">英文原稿</a>.</p>
-<p><a href="#前言">回到顶部</a></p>
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>通过使用分散在不同地理位置的计算机来满足本地用户需要的计算方式称为分布式计算，使用到的数据库是分布式数据库，涉及的数据库技术是分布式数据库技术。</p>
+<p>分布式数据库是与集中式数据库相对的概念，其主要差别在于处理的数据处于不同的地理位置。集中式数据库强调的是所有的数据存储在一个唯一的地方，而分布式数据库强调的是所有的数据作为一个整体存储在多个不同的地理位置。</p>
+<h2 id="分布式数据库的概念和特定"><a href="#分布式数据库的概念和特定" class="headerlink" title="分布式数据库的概念和特定"></a>分布式数据库的概念和特定</h2><p>在分布式计算方式中，数据库管理系统安装在多个所处地理位置不同的服务器上，用户的数据也是分布在不同的服务器中。但从逻辑上来讲，这些用户的数据是一个整体，构成一个逻辑数据库。本地服务器的用户不仅可以访问本地服务器上数据库中的数据，也可以访问异地服务器上数据库中的数据。</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>分布式数据库具有物理分布性、逻辑整体性、场地自治性、数据共享性和系统可用性五个特点。自治表示自己管理自己，场地自治性表示每个场地的集中式数据库系统都是自己来管理自己的数据。数据共享性强调的是系统具有统一的模式，所有的用户都可以使用分布式数据库中的数据。系统可用性则是如果某个场地的数据发生了故障，用户还可以通过其他场地访问这些数据。</p>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>第一，系统实现技术更加复杂、难度更大。<br>第二，系统的安全性更难处理。</p>
+<h2 id="分布式数据存储技术"><a href="#分布式数据存储技术" class="headerlink" title="分布式数据存储技术"></a>分布式数据存储技术</h2><p>在分布式数据库中，数据的存储可以通过三种方式实现，即复制存储方式、分片存储方式和混合存储方式。</p>
+<h3 id="数据复制"><a href="#数据复制" class="headerlink" title="数据复制"></a>数据复制</h3><p>通过把数据库中的一个关系存储多次而实现分布式存储。数据复制的有点事提高可用性、增加数据库系统的并行度、增强并发能力。数据复制也存在明显的缺点，即数据更新成本大大增加。</p>
+<h3 id="数据分片"><a href="#数据分片" class="headerlink" title="数据分片"></a>数据分片</h3><p>通过把数据库中的一个关系分成多个片断，每个片断都存储在不同场地上，且所有的片断包含的信息足够重构原始关系，该数据存储方式成为数据分片。</p>
+<p>数据分片分为水平分片、垂直分片和混合分片。</p>
+<h3 id="数据混合存储"><a href="#数据混合存储" class="headerlink" title="数据混合存储"></a>数据混合存储</h3><p>在数据存储过程中，既包含了水平分片存储方式，又包含了垂直分片存储方式，则将这种方式称为数据混合存储方式。</p>
+<h2 id="分布式数据查询技术"><a href="#分布式数据查询技术" class="headerlink" title="分布式数据查询技术"></a>分布式数据查询技术</h2><p>在集中式数据库的数据查询中，查询代价主要是本地处理代价，具体内容包括CPU代价和I/O代价。但是，分布式数据库的数据查询中，查询代价除了本地处理代价之外，还包括网络传输代价。</p>
+<p><strong>基于半连接的优化策略</strong>，在执行分布式查询时，只传输参与连接运算的数据，不传输不参与连接运算的数据。</p>
+<p><strong>基于连接的优化策略</strong>，在对于网络传输代价要求比较严格时，可以使用半连接优化策略。但对于网络传输代价要求比较低，对本地处理代价要求比较高时，可以考虑使用基于连接的优化策略。基于连接的优化策略的事项是把某个场地的整个关系的元组传输到另外的场地执行连接操作。</p>
       
     </div>
     
@@ -846,63 +750,7 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/kernel/">kernel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/linux/">linux</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-LoadLibrary 126" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/blog/2016/04/02/LoadLibrary 126/" class="article-date">
-      <time datetime="2016-04-01T16:00:00.000Z" itemprop="datePublished">2016-04-02</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2016/04/02/LoadLibrary 126/">LoadLibrary error 126</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>可能是UNICODE和ASCII字符的问题。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/problem-solution/">problem solution</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/database/">database</a></li></ul>
     </div>
 
       
@@ -1004,6 +852,146 @@
       
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/GUI/">GUI</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-如何给Linux kernel提交代码" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/blog/2016/04/02/如何给Linux kernel提交代码/" class="article-date">
+      <time datetime="2016-04-01T16:00:00.000Z" itemprop="datePublished">2016-04-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/04/02/如何给Linux kernel提交代码/">如何给Linux Kernel提交代码</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong><a href="http://kernelnewbies.org/UpstreamMerge/SubmittingPatches" target="_blank" rel="external">英文</a></strong></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a><span id="前言">前言</span></h2><p>个人或者公司如果不熟悉提交代码流程，代码很难被接受。利用本文给出一些建议将会大大的增加代码被接受的概率。</p>
+<p>在提交代码之前，你需要阅读一些注意事项<code>Documentation\SubmitChecklist</code>。如果是提交的驱动，同时也请阅读<code>Documentation\SubmittingDrivers</code>。</p>
+<h2 id="创造并提交改动"><a href="#创造并提交改动" class="headerlink" title="创造并提交改动"></a>创造并提交改动</h2><p>###diff -up</p>
+<p>利用<code>diff -up</code>或者<code>diff -uprN</code>创造patch文件。</p>
+<p>linux所有的更改都以patche方式存在。patch命令中<code>-u</code>代表<code>unified diff</code>,<code>-p</code>会显示哪个函数发生了改变。patche都是以linux源码的根目录为其实点。<br>比如你更改了一个文件。你需要进行下面的操作。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SRCTREE= linux-2.6</span><br><span class="line">MYFILE= drivers/net/mydriver.c</span><br><span class="line"></span><br><span class="line">cd $SRCTREE</span><br><span class="line">cp $MYFILE $MYFILE.orig</span><br><span class="line">vi $MYFILE       # make your change</span><br><span class="line">cd ..</span><br><span class="line">diff -up $SRCTREE/$MYFILE&#123;.orig,&#125; &gt; /tmp/patch</span><br></pre></td></tr></table></figure></p>
+<p>如果更改了多个文件，你需要解压一个<code>vanilla</code>或者原版linux kernel。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">MYSRC= /devel/linux-2.6</span><br><span class="line"></span><br><span class="line">tar xvfz linux-2.6.12.tar.gz</span><br><span class="line">mv linux-2.6.12 linux-2.6.12-vanilla</span><br><span class="line">diff -uprN -X linux-2.6.12-vanilla/Documentation/dontdiff \</span><br><span class="line">    linux-2.6.12-vanilla $MYSRC &gt; /tmp/patch</span><br></pre></td></tr></table></figure></p>
+<p>其中<code>dontdiff</code>是diff需要忽略的文件列表。</p>
+<p>确保patche中不包含其他无关文件。</p>
+<p>如果你的更改比较巨大，可以按照逻辑分成几个部分。这方便其他内核开发者审查。</p>
+<p>patch管理工具<a href="http://savannah.nongnu.org/projects/quilt" target="_blank" rel="external">Quilt</a>.一些脚本工具<a href="http://userweb.kernel.org/~akpm/stuff/patch-scripts.tar.gz" target="_blank" rel="external">Scripts</a></p>
+<p>###描述更改</p>
+<p>描述更改过程中的技术细节，做到尽可能清晰。如果描述过长，可能你需要分成几个patch。</p>
+<p>###分割更改</p>
+<p>按照逻辑分割patch文件。<br>比如，你填补了一个驱动的bug同时还提高了它的性能，那么你需要将他分成多个patche。如果你更改了一个API,并提供一个新的驱动利用了该API，这需要分成2个patch。另一方面，如果你只是更改了很多不同文件的同一个地方，你需要将更改放在同一个patch中。如果你的patch比如依赖另外一个patch，你需要在描述patch时说明<code>this patch depends on patch X</code>。</p>
+<p>###检查代码风格</p>
+<p>按照<code>Documentation/Codingstyle</code>中的描述，检查更改的编码风格。没有进行这一步的代码可能在甚至没有被阅读情况下被拒绝。最基本的，你可以采用<code>scripts/checkpatch.pl</code>检查patch的编码风格，并且修改所有不恰当的地方。</p>
+<p>###选择发送者</p>
+<p>linux主线的每一部分都由一个维护者负责。更改属于哪一部分就发给对应的维护者。如果维护者没有列出，或者不回应邮件，你可以将patch发给<code>linux-kernel@vger.kernel.org</code>。</p>
+<p>Linus Torvalds是接受更改的仲裁者，但是一般不要给他发邮件。比较明显的bug修复或者不需要讨论的patch可以直接抄送给Linux Torvalds。如果Patch没有明显的优势或者需要讨论，你需要先发给linux-kernel.</p>
+<p>###选择抄送人</p>
+<p>如果没有特别原因需要抄送给<code>linux-kernel@vger.kernel.org</code>。这样可以让其他开发者可以检查代码和提出意见。</p>
+<p>如果你的更改影响了用户和内核接口，请抄送给MAN-PAGES维护者，方便他们做更改。<br>小的更改：比如字符拼写错误等你需要抄送给<code>trivial@kernel.org</code>。<br>比如在文档中的拼写错误等。关于小错误的定义可以查看<a href="http://www.kernel.org/pub/linux/kernel/people/juhl/trivial/" target="_blank" rel="external">trivial</a>。</p>
+<p>###只允许文字（没有多媒体，链接，压缩，附件）</p>
+<p>所以patch都写在邮件中。</p>
+<p>###email的大小</p>
+<p>email的大小如果超过40kb，你需要放到网络上，并提供链接。</p>
+<p>###指明kernel版本</p>
+<p>你需要指明patch的kernel版本，如果patch不适用于最新的kernel，linus不会接受。</p>
+<p>###别沮丧，重新提交</p>
+<p>提交更改后，需要耐心等待。如果更改没有出现在下一个版本中，那么可能是一下原因：</p>
+<ul>
+<li>更改不适用于最新内核版本</li>
+<li>更改没有经过足够讨论</li>
+<li>代码风格问题</li>
+<li>e-mail格式问题</li>
+<li>更改存在技术问题</li>
+<li>意外丢失</li>
+<li>你太烦了</li>
+</ul>
+<p>如果有疑问，可以在linux-kernel邮件列表上询问。</p>
+<p>###在邮件主题上加上[PATCH]</p>
+<p>###签名</p>
+<p>为了方便跟踪作者和管理复杂的更改，引入了签名机制。如果确认一下4点就可以在对patch的描述后加上一句：<br>Signed-off-by: Random J Developer <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#114;&#x61;&#110;&#100;&#111;&#x6d;&#x40;&#100;&#101;&#118;&#x65;&#108;&#x6f;&#112;&#101;&#x72;&#x2e;&#x65;&#120;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x2e;&#x6f;&#x72;&#x67;">&#114;&#x61;&#110;&#100;&#111;&#x6d;&#x40;&#100;&#101;&#118;&#x65;&#108;&#x6f;&#112;&#101;&#x72;&#x2e;&#x65;&#120;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x2e;&#x6f;&#x72;&#x67;</a></p>
+<ul>
+<li>更改部分或者全部由我完成。我有权利开源</li>
+<li>更改基于一个开源项目，需提交到同一个开源license下。否则可以提交给别的开源license</li>
+<li>更改由别人转交给我，别人确认1,2,3条，我没有修改更改</li>
+<li>我知道这是一个开源项目，并且贡献有可能不被记录</li>
+</ul>
+<p>###Acked-by</p>
+<p>子系统的维护者需要这么做，表示patch你觉得还不错。</p>
+<p>###Tested-by和Reviewed-by</p>
+<p>Tested-by表示某人在某种环境下patch测试是有效的。<br>Reviewed-by表示这个patch被检查，说明你对patch的观点。</p>
+<p>###patch的规范格式</p>
+<p>主题：[PATCH 001/123] 子系统: 总结</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from:</span><br><span class="line">空行</span><br><span class="line">patch的描述</span><br><span class="line">Signed-off-by:</span><br><span class="line">标识符---</span><br><span class="line">其他一些评论</span><br><span class="line">diff output</span><br></pre></td></tr></table></figure>
+<p>主题的2个示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Subject: [patch 2/5] ext2: improve scalability of bitmap searching</span><br><span class="line">Subject: [PATCHv2 001/207] x86: fix eflags tracking</span><br></pre></td></tr></table></figure></p>
+<p>from行的示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">From: Original Author &lt;author@example.com&gt;</span><br></pre></td></tr></table></figure></p>
+<p>—表示改动日志的结束。<br>其他一些评论可以用来写上<code>diffstat -p 1 -w 70</code>。</p>
+<p>###发送git pull请求</p>
+<p>发送从哪能够获得更改，格式如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Please pull from</span><br><span class="line">        git://jdelvare.pck.nerim.net/jdelvare-2.6 i2c-for-linus</span><br><span class="line"> to get these changes:</span><br></pre></td></tr></table></figure></p>
+<p>同时用<code>git diff -M --stat --summary</code>生成diffstat.</p>
+<h2 id="忠告、建议、技巧"><a href="#忠告、建议、技巧" class="headerlink" title="忠告、建议、技巧"></a>忠告、建议、技巧</h2><ul>
+<li><p>阅读Documentation/CodingStyle</p>
+<p>  可以利用scripts/checkpatch.pl来检查代码风格。这个脚本会提供3种水平的忠告</p>
+<ul>
+<li>ERROR: 很可能有错</li>
+<li>WARNING: 需要认真检查</li>
+<li>CHECK：需要考虑</li>
+</ul>
+</li>
+<li><p>不要在函数内使用ifdef。<br>  例如：</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dev = alloc_etherdev (sizeof(struct funky_private));</span><br><span class="line">if (!dev)</span><br><span class="line">        return -ENODEV;</span><br><span class="line">#ifdef CONFIG_NET_FUNKINESS</span><br><span class="line">init_funky_net(dev);</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+<p>  上面的可以更改为</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(in header)</span><br><span class="line">    #ifndef CONFIG_NET_FUNKINESS</span><br><span class="line">    static inline void init_funky_net (struct net_device *d) &#123;&#125;</span><br><span class="line">    #endif</span><br><span class="line">(in the code itself)</span><br><span class="line">    dev = alloc_etherdev (sizeof(struct funky_private));</span><br><span class="line">    if (!dev)</span><br><span class="line">            return -ENODEV;</span><br><span class="line">    init_funky_net(dev);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>static inline 比宏更好</p>
+</li>
+<li><p>不要过度设计</p>
+<p>  Make it as simple as you can, and no simpler.</p>
+</li>
+</ul>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>这篇文章翻译于<a href="http://kernelnewbies.org/UpstreamMerge/SubmittingPatches" target="_blank" rel="external">英文原稿</a>.</p>
+<p><a href="#前言">回到顶部</a></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/kernel/">kernel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/linux/">linux</a></li></ul>
     </div>
 
       
@@ -1239,6 +1227,62 @@
 
 
   
+    <article id="post-fgetc 0x1A EOF" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/blog/2016/04/01/fgetc 0x1A EOF/" class="article-date">
+      <time datetime="2016-04-01T08:19:00.000Z" itemprop="datePublished">2016-04-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/04/01/fgetc 0x1A EOF/">fgetc 0x1A EOF</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>历史遗留问题，将fopen中的r改为rb即可</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/problem-solution/">problem solution</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-libvmi介绍" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1377,62 +1421,6 @@
 
 
   
-    <article id="post-fgetc 0x1A EOF" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/blog/2016/04/01/fgetc 0x1A EOF/" class="article-date">
-      <time datetime="2016-04-01T08:19:00.000Z" itemprop="datePublished">2016-04-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2016/04/01/fgetc 0x1A EOF/">fgetc 0x1A EOF</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>历史遗留问题，将fopen中的r改为rb即可</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/problem-solution/">problem solution</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="extend next" rel="next" href="/blog/page/2/">Next &raquo;</a>
@@ -1446,14 +1434,14 @@
                 &copy; 2016 mrgao1008
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo">Yelee</a> by MOxFIVE
+                <a href="http://hexo.io/" target="_blank" title="快速、簡潔且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="簡而不減 Hexo 雙欄博客主題">Yelee</a> by MOxFIVE
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" >Site Visitors: 
+                        <span id="site-visit" >本站到訪數: 
                             <span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
@@ -1463,7 +1451,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit">Page Hits: 
+                        <span id="page-visit">本頁閱讀量: 
                             <span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
@@ -1517,9 +1505,9 @@ MathJax.Hub.Queue(function() {
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" title="Comments"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="返回頂部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看評論"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="轉到底部"><i class="fa fa-arrow-down"></i></a>
 </div>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
