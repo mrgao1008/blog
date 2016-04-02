@@ -5,132 +5,15 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://mrgao1008.github.io/blog/"/>
-  <updated>2016-04-02T01:40:20.474Z</updated>
+  <updated>2016-04-02T01:36:59.129Z</updated>
   <id>http://mrgao1008.github.io/blog/</id>
   
   <author>
-    <name>mrgao1008@gmail.com</name>
+    <name>mrgao1008</name>
     
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>tk 编程</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/02/python%20tk/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/02/python tk/</id>
-    <published>2016-04-01T16:00:00.000Z</published>
-    <updated>2016-04-02T01:40:20.474Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;标准属性&quot;&gt;&lt;a href=&quot;#标准属性&quot; class=&quot;headerlink&quot; title=&quot;标准属性&quot;&gt;&lt;/a&gt;标准属性&lt;/h2&gt;&lt;h3 id=&quot;dimensions&quot;&gt;&lt;a href=&quot;#dimensions&quot; class=&quot;headerlink&quot; title=&quot;dimensions&quot;&gt;&lt;/a&gt;dimensions&lt;/h3&gt;&lt;p&gt;尺寸包含4种&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;字母&lt;/th&gt;
-&lt;th&gt;含义&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;c&lt;/td&gt;
-&lt;td&gt;厘米&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;i&lt;/td&gt;
-&lt;td&gt;英寸&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;m&lt;/td&gt;
-&lt;td&gt;毫米&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;p&lt;/td&gt;
-&lt;td&gt;打印机的点？？&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;坐标&quot;&gt;&lt;a href=&quot;#坐标&quot; class=&quot;headerlink&quot; title=&quot;坐标&quot;&gt;&lt;/a&gt;坐标&lt;/h3&gt;&lt;h3 id=&quot;颜色&quot;&gt;&lt;a href=&quot;#颜色&quot; class=&quot;headerlink&quot; title=&quot;颜色&quot;&gt;&lt;/a&gt;颜色&lt;/h3&gt;&lt;p&gt;||#rgb||four bits per color||&lt;br&gt;||#rrggbb||eight bits per color||&lt;br&gt;||#rrrgggbbb||twelve bits per color||&lt;/p&gt;
-&lt;p&gt;还一可以指定关键词’white’,’black’,’red’,’green’,’blue’,’cyan’,’yellow’,’magenta’&lt;/p&gt;
-&lt;h3 id=&quot;fonts&quot;&gt;&lt;a href=&quot;#fonts&quot; class=&quot;headerlink&quot; title=&quot;fonts&quot;&gt;&lt;/a&gt;fonts&lt;/h3&gt;&lt;p&gt;1.元组表示,第一表示字体，第二个表示大小，正数为points，负数为像素点，后续为其他一些特别设置&lt;br&gt;(‘Helvetica’,’16’)&lt;br&gt;(‘Times’,’24’,’bold italic’)&lt;br&gt;(‘Times’,-20,’bold’)&lt;/p&gt;
-&lt;p&gt;2.字体对象 tkFont&lt;/p&gt;
-&lt;p&gt;3.X font names.&lt;/p&gt;
-&lt;h3 id=&quot;锚&quot;&gt;&lt;a href=&quot;#锚&quot; class=&quot;headerlink&quot; title=&quot;锚&quot;&gt;&lt;/a&gt;锚&lt;/h3&gt;&lt;p&gt;N S W E CENTER&lt;br&gt;NW NE SW SE&lt;/p&gt;
-&lt;h3 id=&quot;释放样式&quot;&gt;&lt;a href=&quot;#释放样式&quot; class=&quot;headerlink&quot; title=&quot;释放样式&quot;&gt;&lt;/a&gt;释放样式&lt;/h3&gt;&lt;p&gt;FLAT RAISED SUNKEN GROOVE RIDGE&lt;/p&gt;
-&lt;h3 id=&quot;Bitmaps&quot;&gt;&lt;a href=&quot;#Bitmaps&quot; class=&quot;headerlink&quot; title=&quot;Bitmaps&quot;&gt;&lt;/a&gt;Bitmaps&lt;/h3&gt;&lt;p&gt;button支持 error gray75 gray50 gray25 gray12 hourglass info questhead question warning&lt;/p&gt;
-&lt;p&gt;也可以使用.xbm(X bit map)使用@path&lt;/p&gt;
-&lt;h3 id=&quot;cursors&quot;&gt;&lt;a href=&quot;#cursors&quot; class=&quot;headerlink&quot; title=&quot;cursors&quot;&gt;&lt;/a&gt;cursors&lt;/h3&gt;&lt;h3 id=&quot;images&quot;&gt;&lt;a href=&quot;#images&quot; class=&quot;headerlink&quot; title=&quot;images&quot;&gt;&lt;/a&gt;images&lt;/h3&gt;&lt;p&gt;BitmapImage 支持 .xbm&lt;br&gt;PhotoImage 支持 .gif .pgm .ppm&lt;br&gt;ImageTk 支持更多格式&lt;/p&gt;
-&lt;h4 id=&quot;the-BitmapImage-class&quot;&gt;&lt;a href=&quot;#the-BitmapImage-class&quot; class=&quot;headerlink&quot; title=&quot;the BitmapImage class&quot;&gt;&lt;/a&gt;the BitmapImage class&lt;/h4&gt;&lt;p&gt;原型&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tk.BitmapImage(file=f[, background=b][, foreground=c])&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;实例&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;logo = tk.BitmapImage(&lt;span class=&quot;string&quot;&gt;&#39;logo.xbm&#39;&lt;/span&gt;, foreground=&lt;span class=&quot;string&quot;&gt;&#39;red&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Label(image=logo).grid()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h4 id=&quot;the-PhotoImage-class&quot;&gt;&lt;a href=&quot;#the-PhotoImage-class&quot; class=&quot;headerlink&quot; title=&quot;the PhotoImage class&quot;&gt;&lt;/a&gt;the PhotoImage class&lt;/h4&gt;&lt;p&gt;原型&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tk.PhotoImage(file=f)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Geometry-strings&quot;&gt;&lt;a href=&quot;#Geometry-strings&quot; class=&quot;headerlink&quot; title=&quot;Geometry strings&quot;&gt;&lt;/a&gt;Geometry strings&lt;/h3&gt;&lt;p&gt;A geometry string is a standard way of describing the size and location of a top-level window on a desktop.&lt;br&gt;format: ‘wxh±x±y’&lt;br&gt;+x left side&lt;br&gt;-x right side&lt;br&gt;+y top&lt;br&gt;-y bottom&lt;/p&gt;
-&lt;h3 id=&quot;window-names&quot;&gt;&lt;a href=&quot;#window-names&quot; class=&quot;headerlink&quot; title=&quot;window names&quot;&gt;&lt;/a&gt;window names&lt;/h3&gt;&lt;p&gt;hierarchical window path name&lt;br&gt;root window ‘.’&lt;br&gt;child name ‘.n’&lt;br&gt;child windows of child ‘p.n’, p is the name of the parent window&lt;/p&gt;
-&lt;p&gt;str(w): to get the path name of a widget w&lt;/p&gt;
-&lt;h3 id=&quot;cap-and-join-styles&quot;&gt;&lt;a href=&quot;#cap-and-join-styles&quot; class=&quot;headerlink&quot; title=&quot;cap and join styles&quot;&gt;&lt;/a&gt;cap and join styles&lt;/h3&gt;&lt;p&gt;cap style: tk.BUTT, tk.PROJECTING, tk.ROUND&lt;br&gt;join style: tk.ROUND, tk.BEVEL, tk.MITER&lt;/p&gt;
-&lt;h3 id=&quot;dash-patterns&quot;&gt;&lt;a href=&quot;#dash-patterns&quot; class=&quot;headerlink&quot; title=&quot;dash patterns&quot;&gt;&lt;/a&gt;dash patterns&lt;/h3&gt;&lt;p&gt;dash=(3,5)&lt;br&gt;dash=(7,1,1,1)&lt;br&gt;dash=(5,1,2,1),dashoff=3&lt;/p&gt;
-&lt;h2 id=&quot;tk-TclError&quot;&gt;&lt;a href=&quot;#tk-TclError&quot; class=&quot;headerlink&quot; title=&quot;tk.TclError&quot;&gt;&lt;/a&gt;tk.TclError&lt;/h2&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;标准属性&quot;&gt;&lt;a href=&quot;#标准属性&quot; class=&quot;headerlink&quot; title=&quot;标准属性&quot;&gt;&lt;/a&gt;标准属性&lt;/h2&gt;&lt;h3 id=&quot;dimensions&quot;&gt;&lt;a href=&quot;#dimensions&quot; class=&quot;headerlink&quot; titl
-    
-    </summary>
-    
-    
-      <category term="GUI" scheme="http://mrgao1008.github.io/blog/tags/GUI/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>分布式数据库技术</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/02/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E7%AC%AC%E4%B8%89%E7%89%88%EF%BC%892/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/02/数据库系统原理与应用（第三版）2/</id>
-    <published>2016-04-01T16:00:00.000Z</published>
-    <updated>2016-04-02T01:37:29.338Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;通过使用分散在不同地理位置的计算机来满足本地用户需要的计算方式称为分布式计算，使用到的数据库是分布式数据库，涉及的数据库技术是分布式数据库技术。&lt;/p&gt;
-&lt;p&gt;分布式数据库是与集中式数据库相对的概念，其主要差别在于处理的数据处于不同的地理位置。集中式数据库强调的是所有的数据存储在一个唯一的地方，而分布式数据库强调的是所有的数据作为一个整体存储在多个不同的地理位置。&lt;/p&gt;
-&lt;h2 id=&quot;分布式数据库的概念和特定&quot;&gt;&lt;a href=&quot;#分布式数据库的概念和特定&quot; class=&quot;headerlink&quot; title=&quot;分布式数据库的概念和特定&quot;&gt;&lt;/a&gt;分布式数据库的概念和特定&lt;/h2&gt;&lt;p&gt;在分布式计算方式中，数据库管理系统安装在多个所处地理位置不同的服务器上，用户的数据也是分布在不同的服务器中。但从逻辑上来讲，这些用户的数据是一个整体，构成一个逻辑数据库。本地服务器的用户不仅可以访问本地服务器上数据库中的数据，也可以访问异地服务器上数据库中的数据。&lt;/p&gt;
-&lt;h3 id=&quot;特点&quot;&gt;&lt;a href=&quot;#特点&quot; class=&quot;headerlink&quot; title=&quot;特点&quot;&gt;&lt;/a&gt;特点&lt;/h3&gt;&lt;p&gt;分布式数据库具有物理分布性、逻辑整体性、场地自治性、数据共享性和系统可用性五个特点。自治表示自己管理自己，场地自治性表示每个场地的集中式数据库系统都是自己来管理自己的数据。数据共享性强调的是系统具有统一的模式，所有的用户都可以使用分布式数据库中的数据。系统可用性则是如果某个场地的数据发生了故障，用户还可以通过其他场地访问这些数据。&lt;/p&gt;
-&lt;h3 id=&quot;缺点&quot;&gt;&lt;a href=&quot;#缺点&quot; class=&quot;headerlink&quot; title=&quot;缺点&quot;&gt;&lt;/a&gt;缺点&lt;/h3&gt;&lt;p&gt;第一，系统实现技术更加复杂、难度更大。&lt;br&gt;第二，系统的安全性更难处理。&lt;/p&gt;
-&lt;h2 id=&quot;分布式数据存储技术&quot;&gt;&lt;a href=&quot;#分布式数据存储技术&quot; class=&quot;headerlink&quot; title=&quot;分布式数据存储技术&quot;&gt;&lt;/a&gt;分布式数据存储技术&lt;/h2&gt;&lt;p&gt;在分布式数据库中，数据的存储可以通过三种方式实现，即复制存储方式、分片存储方式和混合存储方式。&lt;/p&gt;
-&lt;h3 id=&quot;数据复制&quot;&gt;&lt;a href=&quot;#数据复制&quot; class=&quot;headerlink&quot; title=&quot;数据复制&quot;&gt;&lt;/a&gt;数据复制&lt;/h3&gt;&lt;p&gt;通过把数据库中的一个关系存储多次而实现分布式存储。数据复制的有点事提高可用性、增加数据库系统的并行度、增强并发能力。数据复制也存在明显的缺点，即数据更新成本大大增加。&lt;/p&gt;
-&lt;h3 id=&quot;数据分片&quot;&gt;&lt;a href=&quot;#数据分片&quot; class=&quot;headerlink&quot; title=&quot;数据分片&quot;&gt;&lt;/a&gt;数据分片&lt;/h3&gt;&lt;p&gt;通过把数据库中的一个关系分成多个片断，每个片断都存储在不同场地上，且所有的片断包含的信息足够重构原始关系，该数据存储方式成为数据分片。&lt;/p&gt;
-&lt;p&gt;数据分片分为水平分片、垂直分片和混合分片。&lt;/p&gt;
-&lt;h3 id=&quot;数据混合存储&quot;&gt;&lt;a href=&quot;#数据混合存储&quot; class=&quot;headerlink&quot; title=&quot;数据混合存储&quot;&gt;&lt;/a&gt;数据混合存储&lt;/h3&gt;&lt;p&gt;在数据存储过程中，既包含了水平分片存储方式，又包含了垂直分片存储方式，则将这种方式称为数据混合存储方式。&lt;/p&gt;
-&lt;h2 id=&quot;分布式数据查询技术&quot;&gt;&lt;a href=&quot;#分布式数据查询技术&quot; class=&quot;headerlink&quot; title=&quot;分布式数据查询技术&quot;&gt;&lt;/a&gt;分布式数据查询技术&lt;/h2&gt;&lt;p&gt;在集中式数据库的数据查询中，查询代价主要是本地处理代价，具体内容包括CPU代价和I/O代价。但是，分布式数据库的数据查询中，查询代价除了本地处理代价之外，还包括网络传输代价。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;基于半连接的优化策略&lt;/strong&gt;，在执行分布式查询时，只传输参与连接运算的数据，不传输不参与连接运算的数据。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;基于连接的优化策略&lt;/strong&gt;，在对于网络传输代价要求比较严格时，可以使用半连接优化策略。但对于网络传输代价要求比较低，对本地处理代价要求比较高时，可以考虑使用基于连接的优化策略。基于连接的优化策略的事项是把某个场地的整个关系的元组传输到另外的场地执行连接操作。&lt;/p&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;通过使用分散在不同地理位置的计算机来满足本地用户需要的计算方式称为分布式计算，使用到的数据库是分布式数据库，涉及的数据库技术是分布式数据库技
-    
-    </summary>
-    
-    
-      <category term="database" scheme="http://mrgao1008.github.io/blog/tags/database/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LoadLibrary error 126</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/02/LoadLibrary%20126/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/02/LoadLibrary 126/</id>
-    <published>2016-04-01T16:00:00.000Z</published>
-    <updated>2016-04-02T01:40:55.211Z</updated>
-    
-    <content type="html">&lt;p&gt;可能是UNICODE和ASCII字符的问题。&lt;/p&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;可能是UNICODE和ASCII字符的问题。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="problem solution" scheme="http://mrgao1008.github.io/blog/tags/problem-solution/"/>
-    
-  </entry>
   
   <entry>
     <title>锁与进程间通信</title>
@@ -259,113 +142,6 @@
     
     
       <category term="锁" scheme="http://mrgao1008.github.io/blog/tags/%E9%94%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何给Linux Kernel提交代码</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/02/%E5%A6%82%E4%BD%95%E7%BB%99Linux%20kernel%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/02/如何给Linux kernel提交代码/</id>
-    <published>2016-04-01T16:00:00.000Z</published>
-    <updated>2016-04-02T01:38:35.595Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://kernelnewbies.org/UpstreamMerge/SubmittingPatches&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;英文&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;个人或者公司如果不熟悉提交代码流程，代码很难被接受。利用本文给出一些建议将会大大的增加代码被接受的概率。&lt;/p&gt;
-&lt;p&gt;在提交代码之前，你需要阅读一些注意事项&lt;code&gt;Documentation\SubmitChecklist&lt;/code&gt;。如果是提交的驱动，同时也请阅读&lt;code&gt;Documentation\SubmittingDrivers&lt;/code&gt;。&lt;/p&gt;
-&lt;h2 id=&quot;创造并提交改动&quot;&gt;&lt;a href=&quot;#创造并提交改动&quot; class=&quot;headerlink&quot; title=&quot;创造并提交改动&quot;&gt;&lt;/a&gt;创造并提交改动&lt;/h2&gt;&lt;p&gt;###diff -up&lt;/p&gt;
-&lt;p&gt;利用&lt;code&gt;diff -up&lt;/code&gt;或者&lt;code&gt;diff -uprN&lt;/code&gt;创造patch文件。&lt;/p&gt;
-&lt;p&gt;linux所有的更改都以patche方式存在。patch命令中&lt;code&gt;-u&lt;/code&gt;代表&lt;code&gt;unified diff&lt;/code&gt;,&lt;code&gt;-p&lt;/code&gt;会显示哪个函数发生了改变。patche都是以linux源码的根目录为其实点。&lt;br&gt;比如你更改了一个文件。你需要进行下面的操作。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;SRCTREE= linux-2.6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;MYFILE= drivers/net/mydriver.c&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cd $SRCTREE&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cp $MYFILE $MYFILE.orig&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vi $MYFILE       # make your change&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cd ..&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;diff -up $SRCTREE/$MYFILE&amp;#123;.orig,&amp;#125; &amp;gt; /tmp/patch&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;如果更改了多个文件，你需要解压一个&lt;code&gt;vanilla&lt;/code&gt;或者原版linux kernel。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;MYSRC= /devel/linux-2.6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;tar xvfz linux-2.6.12.tar.gz&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;mv linux-2.6.12 linux-2.6.12-vanilla&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;diff -uprN -X linux-2.6.12-vanilla/Documentation/dontdiff \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    linux-2.6.12-vanilla $MYSRC &amp;gt; /tmp/patch&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;其中&lt;code&gt;dontdiff&lt;/code&gt;是diff需要忽略的文件列表。&lt;/p&gt;
-&lt;p&gt;确保patche中不包含其他无关文件。&lt;/p&gt;
-&lt;p&gt;如果你的更改比较巨大，可以按照逻辑分成几个部分。这方便其他内核开发者审查。&lt;/p&gt;
-&lt;p&gt;patch管理工具&lt;a href=&quot;http://savannah.nongnu.org/projects/quilt&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Quilt&lt;/a&gt;.一些脚本工具&lt;a href=&quot;http://userweb.kernel.org/~akpm/stuff/patch-scripts.tar.gz&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Scripts&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;###描述更改&lt;/p&gt;
-&lt;p&gt;描述更改过程中的技术细节，做到尽可能清晰。如果描述过长，可能你需要分成几个patch。&lt;/p&gt;
-&lt;p&gt;###分割更改&lt;/p&gt;
-&lt;p&gt;按照逻辑分割patch文件。&lt;br&gt;比如，你填补了一个驱动的bug同时还提高了它的性能，那么你需要将他分成多个patche。如果你更改了一个API,并提供一个新的驱动利用了该API，这需要分成2个patch。另一方面，如果你只是更改了很多不同文件的同一个地方，你需要将更改放在同一个patch中。如果你的patch比如依赖另外一个patch，你需要在描述patch时说明&lt;code&gt;this patch depends on patch X&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;###检查代码风格&lt;/p&gt;
-&lt;p&gt;按照&lt;code&gt;Documentation/Codingstyle&lt;/code&gt;中的描述，检查更改的编码风格。没有进行这一步的代码可能在甚至没有被阅读情况下被拒绝。最基本的，你可以采用&lt;code&gt;scripts/checkpatch.pl&lt;/code&gt;检查patch的编码风格，并且修改所有不恰当的地方。&lt;/p&gt;
-&lt;p&gt;###选择发送者&lt;/p&gt;
-&lt;p&gt;linux主线的每一部分都由一个维护者负责。更改属于哪一部分就发给对应的维护者。如果维护者没有列出，或者不回应邮件，你可以将patch发给&lt;code&gt;linux-kernel@vger.kernel.org&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;Linus Torvalds是接受更改的仲裁者，但是一般不要给他发邮件。比较明显的bug修复或者不需要讨论的patch可以直接抄送给Linux Torvalds。如果Patch没有明显的优势或者需要讨论，你需要先发给linux-kernel.&lt;/p&gt;
-&lt;p&gt;###选择抄送人&lt;/p&gt;
-&lt;p&gt;如果没有特别原因需要抄送给&lt;code&gt;linux-kernel@vger.kernel.org&lt;/code&gt;。这样可以让其他开发者可以检查代码和提出意见。&lt;/p&gt;
-&lt;p&gt;如果你的更改影响了用户和内核接口，请抄送给MAN-PAGES维护者，方便他们做更改。&lt;br&gt;小的更改：比如字符拼写错误等你需要抄送给&lt;code&gt;trivial@kernel.org&lt;/code&gt;。&lt;br&gt;比如在文档中的拼写错误等。关于小错误的定义可以查看&lt;a href=&quot;http://www.kernel.org/pub/linux/kernel/people/juhl/trivial/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;trivial&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;###只允许文字（没有多媒体，链接，压缩，附件）&lt;/p&gt;
-&lt;p&gt;所以patch都写在邮件中。&lt;/p&gt;
-&lt;p&gt;###email的大小&lt;/p&gt;
-&lt;p&gt;email的大小如果超过40kb，你需要放到网络上，并提供链接。&lt;/p&gt;
-&lt;p&gt;###指明kernel版本&lt;/p&gt;
-&lt;p&gt;你需要指明patch的kernel版本，如果patch不适用于最新的kernel，linus不会接受。&lt;/p&gt;
-&lt;p&gt;###别沮丧，重新提交&lt;/p&gt;
-&lt;p&gt;提交更改后，需要耐心等待。如果更改没有出现在下一个版本中，那么可能是一下原因：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;更改不适用于最新内核版本&lt;/li&gt;
-&lt;li&gt;更改没有经过足够讨论&lt;/li&gt;
-&lt;li&gt;代码风格问题&lt;/li&gt;
-&lt;li&gt;e-mail格式问题&lt;/li&gt;
-&lt;li&gt;更改存在技术问题&lt;/li&gt;
-&lt;li&gt;意外丢失&lt;/li&gt;
-&lt;li&gt;你太烦了&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;如果有疑问，可以在linux-kernel邮件列表上询问。&lt;/p&gt;
-&lt;p&gt;###在邮件主题上加上[PATCH]&lt;/p&gt;
-&lt;p&gt;###签名&lt;/p&gt;
-&lt;p&gt;为了方便跟踪作者和管理复杂的更改，引入了签名机制。如果确认一下4点就可以在对patch的描述后加上一句：&lt;br&gt;Signed-off-by: Random J Developer &lt;a href=&quot;&amp;#109;&amp;#x61;&amp;#x69;&amp;#108;&amp;#116;&amp;#111;&amp;#58;&amp;#114;&amp;#x61;&amp;#110;&amp;#100;&amp;#x6f;&amp;#109;&amp;#64;&amp;#x64;&amp;#101;&amp;#x76;&amp;#x65;&amp;#108;&amp;#x6f;&amp;#112;&amp;#101;&amp;#x72;&amp;#46;&amp;#101;&amp;#x78;&amp;#x61;&amp;#x6d;&amp;#112;&amp;#x6c;&amp;#101;&amp;#46;&amp;#111;&amp;#114;&amp;#x67;&quot;&gt;&amp;#114;&amp;#x61;&amp;#110;&amp;#100;&amp;#x6f;&amp;#109;&amp;#64;&amp;#x64;&amp;#101;&amp;#x76;&amp;#x65;&amp;#108;&amp;#x6f;&amp;#112;&amp;#101;&amp;#x72;&amp;#46;&amp;#101;&amp;#x78;&amp;#x61;&amp;#x6d;&amp;#112;&amp;#x6c;&amp;#101;&amp;#46;&amp;#111;&amp;#114;&amp;#x67;&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;更改部分或者全部由我完成。我有权利开源&lt;/li&gt;
-&lt;li&gt;更改基于一个开源项目，需提交到同一个开源license下。否则可以提交给别的开源license&lt;/li&gt;
-&lt;li&gt;更改由别人转交给我，别人确认1,2,3条，我没有修改更改&lt;/li&gt;
-&lt;li&gt;我知道这是一个开源项目，并且贡献有可能不被记录&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;###Acked-by&lt;/p&gt;
-&lt;p&gt;子系统的维护者需要这么做，表示patch你觉得还不错。&lt;/p&gt;
-&lt;p&gt;###Tested-by和Reviewed-by&lt;/p&gt;
-&lt;p&gt;Tested-by表示某人在某种环境下patch测试是有效的。&lt;br&gt;Reviewed-by表示这个patch被检查，说明你对patch的观点。&lt;/p&gt;
-&lt;p&gt;###patch的规范格式&lt;/p&gt;
-&lt;p&gt;主题：[PATCH 001/123] 子系统: 总结&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;from:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;空行&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;patch的描述&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Signed-off-by:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;标识符---&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;其他一些评论&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;diff output&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;主题的2个示例：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Subject: [patch 2/5] ext2: improve scalability of bitmap searching&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Subject: [PATCHv2 001/207] x86: fix eflags tracking&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;from行的示例：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;From: Original Author &amp;lt;author@example.com&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;—表示改动日志的结束。&lt;br&gt;其他一些评论可以用来写上&lt;code&gt;diffstat -p 1 -w 70&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;###发送git pull请求&lt;/p&gt;
-&lt;p&gt;发送从哪能够获得更改，格式如下&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Please pull from&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        git://jdelvare.pck.nerim.net/jdelvare-2.6 i2c-for-linus&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; to get these changes:&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;同时用&lt;code&gt;git diff -M --stat --summary&lt;/code&gt;生成diffstat.&lt;/p&gt;
-&lt;h2 id=&quot;忠告、建议、技巧&quot;&gt;&lt;a href=&quot;#忠告、建议、技巧&quot; class=&quot;headerlink&quot; title=&quot;忠告、建议、技巧&quot;&gt;&lt;/a&gt;忠告、建议、技巧&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;阅读Documentation/CodingStyle&lt;/p&gt;
-&lt;p&gt;  可以利用scripts/checkpatch.pl来检查代码风格。这个脚本会提供3种水平的忠告&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;ERROR: 很可能有错&lt;/li&gt;
-&lt;li&gt;WARNING: 需要认真检查&lt;/li&gt;
-&lt;li&gt;CHECK：需要考虑&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;不要在函数内使用ifdef。&lt;br&gt;  例如：&lt;/p&gt;
-  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dev = alloc_etherdev (sizeof(struct funky_private));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if (!dev)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return -ENODEV;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#ifdef CONFIG_NET_FUNKINESS&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;init_funky_net(dev);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#endif&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;  上面的可以更改为&lt;/p&gt;
-  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;(in header)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    #ifndef CONFIG_NET_FUNKINESS&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    static inline void init_funky_net (struct net_device *d) &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    #endif&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(in the code itself)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    dev = alloc_etherdev (sizeof(struct funky_private));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (!dev)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return -ENODEV;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    init_funky_net(dev);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;static inline 比宏更好&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;不要过度设计&lt;/p&gt;
-&lt;p&gt;  Make it as simple as you can, and no simpler.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;引用&quot;&gt;&lt;a href=&quot;#引用&quot; class=&quot;headerlink&quot; title=&quot;引用&quot;&gt;&lt;/a&gt;引用&lt;/h2&gt;&lt;p&gt;这篇文章翻译于&lt;a href=&quot;http://kernelnewbies.org/UpstreamMerge/SubmittingPatches&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;英文原稿&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;#前言&quot;&gt;回到顶部&lt;/a&gt;&lt;/p&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://kernelnewbies.org/UpstreamMerge/SubmittingPatches&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;英文&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;前言&quot;
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="http://mrgao1008.github.io/blog/tags/linux/"/>
-    
-      <category term="kernel" scheme="http://mrgao1008.github.io/blog/tags/kernel/"/>
     
   </entry>
   
@@ -562,6 +338,123 @@
   </entry>
   
   <entry>
+    <title>分布式数据库技术</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E7%AC%AC%E4%B8%89%E7%89%88%EF%BC%892/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/数据库系统原理与应用（第三版）2/</id>
+    <published>2016-04-01T16:00:00.000Z</published>
+    <updated>2016-04-02T01:37:29.338Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;通过使用分散在不同地理位置的计算机来满足本地用户需要的计算方式称为分布式计算，使用到的数据库是分布式数据库，涉及的数据库技术是分布式数据库技术。&lt;/p&gt;
+&lt;p&gt;分布式数据库是与集中式数据库相对的概念，其主要差别在于处理的数据处于不同的地理位置。集中式数据库强调的是所有的数据存储在一个唯一的地方，而分布式数据库强调的是所有的数据作为一个整体存储在多个不同的地理位置。&lt;/p&gt;
+&lt;h2 id=&quot;分布式数据库的概念和特定&quot;&gt;&lt;a href=&quot;#分布式数据库的概念和特定&quot; class=&quot;headerlink&quot; title=&quot;分布式数据库的概念和特定&quot;&gt;&lt;/a&gt;分布式数据库的概念和特定&lt;/h2&gt;&lt;p&gt;在分布式计算方式中，数据库管理系统安装在多个所处地理位置不同的服务器上，用户的数据也是分布在不同的服务器中。但从逻辑上来讲，这些用户的数据是一个整体，构成一个逻辑数据库。本地服务器的用户不仅可以访问本地服务器上数据库中的数据，也可以访问异地服务器上数据库中的数据。&lt;/p&gt;
+&lt;h3 id=&quot;特点&quot;&gt;&lt;a href=&quot;#特点&quot; class=&quot;headerlink&quot; title=&quot;特点&quot;&gt;&lt;/a&gt;特点&lt;/h3&gt;&lt;p&gt;分布式数据库具有物理分布性、逻辑整体性、场地自治性、数据共享性和系统可用性五个特点。自治表示自己管理自己，场地自治性表示每个场地的集中式数据库系统都是自己来管理自己的数据。数据共享性强调的是系统具有统一的模式，所有的用户都可以使用分布式数据库中的数据。系统可用性则是如果某个场地的数据发生了故障，用户还可以通过其他场地访问这些数据。&lt;/p&gt;
+&lt;h3 id=&quot;缺点&quot;&gt;&lt;a href=&quot;#缺点&quot; class=&quot;headerlink&quot; title=&quot;缺点&quot;&gt;&lt;/a&gt;缺点&lt;/h3&gt;&lt;p&gt;第一，系统实现技术更加复杂、难度更大。&lt;br&gt;第二，系统的安全性更难处理。&lt;/p&gt;
+&lt;h2 id=&quot;分布式数据存储技术&quot;&gt;&lt;a href=&quot;#分布式数据存储技术&quot; class=&quot;headerlink&quot; title=&quot;分布式数据存储技术&quot;&gt;&lt;/a&gt;分布式数据存储技术&lt;/h2&gt;&lt;p&gt;在分布式数据库中，数据的存储可以通过三种方式实现，即复制存储方式、分片存储方式和混合存储方式。&lt;/p&gt;
+&lt;h3 id=&quot;数据复制&quot;&gt;&lt;a href=&quot;#数据复制&quot; class=&quot;headerlink&quot; title=&quot;数据复制&quot;&gt;&lt;/a&gt;数据复制&lt;/h3&gt;&lt;p&gt;通过把数据库中的一个关系存储多次而实现分布式存储。数据复制的有点事提高可用性、增加数据库系统的并行度、增强并发能力。数据复制也存在明显的缺点，即数据更新成本大大增加。&lt;/p&gt;
+&lt;h3 id=&quot;数据分片&quot;&gt;&lt;a href=&quot;#数据分片&quot; class=&quot;headerlink&quot; title=&quot;数据分片&quot;&gt;&lt;/a&gt;数据分片&lt;/h3&gt;&lt;p&gt;通过把数据库中的一个关系分成多个片断，每个片断都存储在不同场地上，且所有的片断包含的信息足够重构原始关系，该数据存储方式成为数据分片。&lt;/p&gt;
+&lt;p&gt;数据分片分为水平分片、垂直分片和混合分片。&lt;/p&gt;
+&lt;h3 id=&quot;数据混合存储&quot;&gt;&lt;a href=&quot;#数据混合存储&quot; class=&quot;headerlink&quot; title=&quot;数据混合存储&quot;&gt;&lt;/a&gt;数据混合存储&lt;/h3&gt;&lt;p&gt;在数据存储过程中，既包含了水平分片存储方式，又包含了垂直分片存储方式，则将这种方式称为数据混合存储方式。&lt;/p&gt;
+&lt;h2 id=&quot;分布式数据查询技术&quot;&gt;&lt;a href=&quot;#分布式数据查询技术&quot; class=&quot;headerlink&quot; title=&quot;分布式数据查询技术&quot;&gt;&lt;/a&gt;分布式数据查询技术&lt;/h2&gt;&lt;p&gt;在集中式数据库的数据查询中，查询代价主要是本地处理代价，具体内容包括CPU代价和I/O代价。但是，分布式数据库的数据查询中，查询代价除了本地处理代价之外，还包括网络传输代价。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;基于半连接的优化策略&lt;/strong&gt;，在执行分布式查询时，只传输参与连接运算的数据，不传输不参与连接运算的数据。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;基于连接的优化策略&lt;/strong&gt;，在对于网络传输代价要求比较严格时，可以使用半连接优化策略。但对于网络传输代价要求比较低，对本地处理代价要求比较高时，可以考虑使用基于连接的优化策略。基于连接的优化策略的事项是把某个场地的整个关系的元组传输到另外的场地执行连接操作。&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;通过使用分散在不同地理位置的计算机来满足本地用户需要的计算方式称为分布式计算，使用到的数据库是分布式数据库，涉及的数据库技术是分布式数据库技
+    
+    </summary>
+    
+    
+      <category term="database" scheme="http://mrgao1008.github.io/blog/tags/database/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LoadLibrary error 126</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/LoadLibrary%20126/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/LoadLibrary 126/</id>
+    <published>2016-04-01T16:00:00.000Z</published>
+    <updated>2016-04-02T01:40:55.211Z</updated>
+    
+    <content type="html">&lt;p&gt;可能是UNICODE和ASCII字符的问题。&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;可能是UNICODE和ASCII字符的问题。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="problem solution" scheme="http://mrgao1008.github.io/blog/tags/problem-solution/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>tk 编程</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/python%20tk/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/python tk/</id>
+    <published>2016-04-01T16:00:00.000Z</published>
+    <updated>2016-04-02T01:40:20.474Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;标准属性&quot;&gt;&lt;a href=&quot;#标准属性&quot; class=&quot;headerlink&quot; title=&quot;标准属性&quot;&gt;&lt;/a&gt;标准属性&lt;/h2&gt;&lt;h3 id=&quot;dimensions&quot;&gt;&lt;a href=&quot;#dimensions&quot; class=&quot;headerlink&quot; title=&quot;dimensions&quot;&gt;&lt;/a&gt;dimensions&lt;/h3&gt;&lt;p&gt;尺寸包含4种&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字母&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;c&lt;/td&gt;
+&lt;td&gt;厘米&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;i&lt;/td&gt;
+&lt;td&gt;英寸&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;m&lt;/td&gt;
+&lt;td&gt;毫米&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p&lt;/td&gt;
+&lt;td&gt;打印机的点？？&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;坐标&quot;&gt;&lt;a href=&quot;#坐标&quot; class=&quot;headerlink&quot; title=&quot;坐标&quot;&gt;&lt;/a&gt;坐标&lt;/h3&gt;&lt;h3 id=&quot;颜色&quot;&gt;&lt;a href=&quot;#颜色&quot; class=&quot;headerlink&quot; title=&quot;颜色&quot;&gt;&lt;/a&gt;颜色&lt;/h3&gt;&lt;p&gt;||#rgb||four bits per color||&lt;br&gt;||#rrggbb||eight bits per color||&lt;br&gt;||#rrrgggbbb||twelve bits per color||&lt;/p&gt;
+&lt;p&gt;还一可以指定关键词’white’,’black’,’red’,’green’,’blue’,’cyan’,’yellow’,’magenta’&lt;/p&gt;
+&lt;h3 id=&quot;fonts&quot;&gt;&lt;a href=&quot;#fonts&quot; class=&quot;headerlink&quot; title=&quot;fonts&quot;&gt;&lt;/a&gt;fonts&lt;/h3&gt;&lt;p&gt;1.元组表示,第一表示字体，第二个表示大小，正数为points，负数为像素点，后续为其他一些特别设置&lt;br&gt;(‘Helvetica’,’16’)&lt;br&gt;(‘Times’,’24’,’bold italic’)&lt;br&gt;(‘Times’,-20,’bold’)&lt;/p&gt;
+&lt;p&gt;2.字体对象 tkFont&lt;/p&gt;
+&lt;p&gt;3.X font names.&lt;/p&gt;
+&lt;h3 id=&quot;锚&quot;&gt;&lt;a href=&quot;#锚&quot; class=&quot;headerlink&quot; title=&quot;锚&quot;&gt;&lt;/a&gt;锚&lt;/h3&gt;&lt;p&gt;N S W E CENTER&lt;br&gt;NW NE SW SE&lt;/p&gt;
+&lt;h3 id=&quot;释放样式&quot;&gt;&lt;a href=&quot;#释放样式&quot; class=&quot;headerlink&quot; title=&quot;释放样式&quot;&gt;&lt;/a&gt;释放样式&lt;/h3&gt;&lt;p&gt;FLAT RAISED SUNKEN GROOVE RIDGE&lt;/p&gt;
+&lt;h3 id=&quot;Bitmaps&quot;&gt;&lt;a href=&quot;#Bitmaps&quot; class=&quot;headerlink&quot; title=&quot;Bitmaps&quot;&gt;&lt;/a&gt;Bitmaps&lt;/h3&gt;&lt;p&gt;button支持 error gray75 gray50 gray25 gray12 hourglass info questhead question warning&lt;/p&gt;
+&lt;p&gt;也可以使用.xbm(X bit map)使用@path&lt;/p&gt;
+&lt;h3 id=&quot;cursors&quot;&gt;&lt;a href=&quot;#cursors&quot; class=&quot;headerlink&quot; title=&quot;cursors&quot;&gt;&lt;/a&gt;cursors&lt;/h3&gt;&lt;h3 id=&quot;images&quot;&gt;&lt;a href=&quot;#images&quot; class=&quot;headerlink&quot; title=&quot;images&quot;&gt;&lt;/a&gt;images&lt;/h3&gt;&lt;p&gt;BitmapImage 支持 .xbm&lt;br&gt;PhotoImage 支持 .gif .pgm .ppm&lt;br&gt;ImageTk 支持更多格式&lt;/p&gt;
+&lt;h4 id=&quot;the-BitmapImage-class&quot;&gt;&lt;a href=&quot;#the-BitmapImage-class&quot; class=&quot;headerlink&quot; title=&quot;the BitmapImage class&quot;&gt;&lt;/a&gt;the BitmapImage class&lt;/h4&gt;&lt;p&gt;原型&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tk.BitmapImage(file=f[, background=b][, foreground=c])&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;实例&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;logo = tk.BitmapImage(&lt;span class=&quot;string&quot;&gt;&#39;logo.xbm&#39;&lt;/span&gt;, foreground=&lt;span class=&quot;string&quot;&gt;&#39;red&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Label(image=logo).grid()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h4 id=&quot;the-PhotoImage-class&quot;&gt;&lt;a href=&quot;#the-PhotoImage-class&quot; class=&quot;headerlink&quot; title=&quot;the PhotoImage class&quot;&gt;&lt;/a&gt;the PhotoImage class&lt;/h4&gt;&lt;p&gt;原型&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tk.PhotoImage(file=f)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Geometry-strings&quot;&gt;&lt;a href=&quot;#Geometry-strings&quot; class=&quot;headerlink&quot; title=&quot;Geometry strings&quot;&gt;&lt;/a&gt;Geometry strings&lt;/h3&gt;&lt;p&gt;A geometry string is a standard way of describing the size and location of a top-level window on a desktop.&lt;br&gt;format: ‘wxh±x±y’&lt;br&gt;+x left side&lt;br&gt;-x right side&lt;br&gt;+y top&lt;br&gt;-y bottom&lt;/p&gt;
+&lt;h3 id=&quot;window-names&quot;&gt;&lt;a href=&quot;#window-names&quot; class=&quot;headerlink&quot; title=&quot;window names&quot;&gt;&lt;/a&gt;window names&lt;/h3&gt;&lt;p&gt;hierarchical window path name&lt;br&gt;root window ‘.’&lt;br&gt;child name ‘.n’&lt;br&gt;child windows of child ‘p.n’, p is the name of the parent window&lt;/p&gt;
+&lt;p&gt;str(w): to get the path name of a widget w&lt;/p&gt;
+&lt;h3 id=&quot;cap-and-join-styles&quot;&gt;&lt;a href=&quot;#cap-and-join-styles&quot; class=&quot;headerlink&quot; title=&quot;cap and join styles&quot;&gt;&lt;/a&gt;cap and join styles&lt;/h3&gt;&lt;p&gt;cap style: tk.BUTT, tk.PROJECTING, tk.ROUND&lt;br&gt;join style: tk.ROUND, tk.BEVEL, tk.MITER&lt;/p&gt;
+&lt;h3 id=&quot;dash-patterns&quot;&gt;&lt;a href=&quot;#dash-patterns&quot; class=&quot;headerlink&quot; title=&quot;dash patterns&quot;&gt;&lt;/a&gt;dash patterns&lt;/h3&gt;&lt;p&gt;dash=(3,5)&lt;br&gt;dash=(7,1,1,1)&lt;br&gt;dash=(5,1,2,1),dashoff=3&lt;/p&gt;
+&lt;h2 id=&quot;tk-TclError&quot;&gt;&lt;a href=&quot;#tk-TclError&quot; class=&quot;headerlink&quot; title=&quot;tk.TclError&quot;&gt;&lt;/a&gt;tk.TclError&lt;/h2&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;标准属性&quot;&gt;&lt;a href=&quot;#标准属性&quot; class=&quot;headerlink&quot; title=&quot;标准属性&quot;&gt;&lt;/a&gt;标准属性&lt;/h2&gt;&lt;h3 id=&quot;dimensions&quot;&gt;&lt;a href=&quot;#dimensions&quot; class=&quot;headerlink&quot; titl
+    
+    </summary>
+    
+    
+      <category term="GUI" scheme="http://mrgao1008.github.io/blog/tags/GUI/"/>
+    
+  </entry>
+  
+  <entry>
     <title>并行计算与分布式计算原理</title>
     <link href="http://mrgao1008.github.io/blog/2016/04/02/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E5%8E%9F%E7%90%86/"/>
     <id>http://mrgao1008.github.io/blog/2016/04/02/并行计算与分布式计算原理/</id>
@@ -749,6 +642,113 @@
   </entry>
   
   <entry>
+    <title>如何给Linux Kernel提交代码</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/%E5%A6%82%E4%BD%95%E7%BB%99Linux%20kernel%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/如何给Linux kernel提交代码/</id>
+    <published>2016-04-01T16:00:00.000Z</published>
+    <updated>2016-04-02T01:38:35.595Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://kernelnewbies.org/UpstreamMerge/SubmittingPatches&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;英文&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;个人或者公司如果不熟悉提交代码流程，代码很难被接受。利用本文给出一些建议将会大大的增加代码被接受的概率。&lt;/p&gt;
+&lt;p&gt;在提交代码之前，你需要阅读一些注意事项&lt;code&gt;Documentation\SubmitChecklist&lt;/code&gt;。如果是提交的驱动，同时也请阅读&lt;code&gt;Documentation\SubmittingDrivers&lt;/code&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;创造并提交改动&quot;&gt;&lt;a href=&quot;#创造并提交改动&quot; class=&quot;headerlink&quot; title=&quot;创造并提交改动&quot;&gt;&lt;/a&gt;创造并提交改动&lt;/h2&gt;&lt;p&gt;###diff -up&lt;/p&gt;
+&lt;p&gt;利用&lt;code&gt;diff -up&lt;/code&gt;或者&lt;code&gt;diff -uprN&lt;/code&gt;创造patch文件。&lt;/p&gt;
+&lt;p&gt;linux所有的更改都以patche方式存在。patch命令中&lt;code&gt;-u&lt;/code&gt;代表&lt;code&gt;unified diff&lt;/code&gt;,&lt;code&gt;-p&lt;/code&gt;会显示哪个函数发生了改变。patche都是以linux源码的根目录为其实点。&lt;br&gt;比如你更改了一个文件。你需要进行下面的操作。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;SRCTREE= linux-2.6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;MYFILE= drivers/net/mydriver.c&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cd $SRCTREE&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cp $MYFILE $MYFILE.orig&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vi $MYFILE       # make your change&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cd ..&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;diff -up $SRCTREE/$MYFILE&amp;#123;.orig,&amp;#125; &amp;gt; /tmp/patch&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;如果更改了多个文件，你需要解压一个&lt;code&gt;vanilla&lt;/code&gt;或者原版linux kernel。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;MYSRC= /devel/linux-2.6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;tar xvfz linux-2.6.12.tar.gz&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;mv linux-2.6.12 linux-2.6.12-vanilla&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;diff -uprN -X linux-2.6.12-vanilla/Documentation/dontdiff \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    linux-2.6.12-vanilla $MYSRC &amp;gt; /tmp/patch&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;其中&lt;code&gt;dontdiff&lt;/code&gt;是diff需要忽略的文件列表。&lt;/p&gt;
+&lt;p&gt;确保patche中不包含其他无关文件。&lt;/p&gt;
+&lt;p&gt;如果你的更改比较巨大，可以按照逻辑分成几个部分。这方便其他内核开发者审查。&lt;/p&gt;
+&lt;p&gt;patch管理工具&lt;a href=&quot;http://savannah.nongnu.org/projects/quilt&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Quilt&lt;/a&gt;.一些脚本工具&lt;a href=&quot;http://userweb.kernel.org/~akpm/stuff/patch-scripts.tar.gz&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Scripts&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;###描述更改&lt;/p&gt;
+&lt;p&gt;描述更改过程中的技术细节，做到尽可能清晰。如果描述过长，可能你需要分成几个patch。&lt;/p&gt;
+&lt;p&gt;###分割更改&lt;/p&gt;
+&lt;p&gt;按照逻辑分割patch文件。&lt;br&gt;比如，你填补了一个驱动的bug同时还提高了它的性能，那么你需要将他分成多个patche。如果你更改了一个API,并提供一个新的驱动利用了该API，这需要分成2个patch。另一方面，如果你只是更改了很多不同文件的同一个地方，你需要将更改放在同一个patch中。如果你的patch比如依赖另外一个patch，你需要在描述patch时说明&lt;code&gt;this patch depends on patch X&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;###检查代码风格&lt;/p&gt;
+&lt;p&gt;按照&lt;code&gt;Documentation/Codingstyle&lt;/code&gt;中的描述，检查更改的编码风格。没有进行这一步的代码可能在甚至没有被阅读情况下被拒绝。最基本的，你可以采用&lt;code&gt;scripts/checkpatch.pl&lt;/code&gt;检查patch的编码风格，并且修改所有不恰当的地方。&lt;/p&gt;
+&lt;p&gt;###选择发送者&lt;/p&gt;
+&lt;p&gt;linux主线的每一部分都由一个维护者负责。更改属于哪一部分就发给对应的维护者。如果维护者没有列出，或者不回应邮件，你可以将patch发给&lt;code&gt;linux-kernel@vger.kernel.org&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;Linus Torvalds是接受更改的仲裁者，但是一般不要给他发邮件。比较明显的bug修复或者不需要讨论的patch可以直接抄送给Linux Torvalds。如果Patch没有明显的优势或者需要讨论，你需要先发给linux-kernel.&lt;/p&gt;
+&lt;p&gt;###选择抄送人&lt;/p&gt;
+&lt;p&gt;如果没有特别原因需要抄送给&lt;code&gt;linux-kernel@vger.kernel.org&lt;/code&gt;。这样可以让其他开发者可以检查代码和提出意见。&lt;/p&gt;
+&lt;p&gt;如果你的更改影响了用户和内核接口，请抄送给MAN-PAGES维护者，方便他们做更改。&lt;br&gt;小的更改：比如字符拼写错误等你需要抄送给&lt;code&gt;trivial@kernel.org&lt;/code&gt;。&lt;br&gt;比如在文档中的拼写错误等。关于小错误的定义可以查看&lt;a href=&quot;http://www.kernel.org/pub/linux/kernel/people/juhl/trivial/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;trivial&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;###只允许文字（没有多媒体，链接，压缩，附件）&lt;/p&gt;
+&lt;p&gt;所以patch都写在邮件中。&lt;/p&gt;
+&lt;p&gt;###email的大小&lt;/p&gt;
+&lt;p&gt;email的大小如果超过40kb，你需要放到网络上，并提供链接。&lt;/p&gt;
+&lt;p&gt;###指明kernel版本&lt;/p&gt;
+&lt;p&gt;你需要指明patch的kernel版本，如果patch不适用于最新的kernel，linus不会接受。&lt;/p&gt;
+&lt;p&gt;###别沮丧，重新提交&lt;/p&gt;
+&lt;p&gt;提交更改后，需要耐心等待。如果更改没有出现在下一个版本中，那么可能是一下原因：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;更改不适用于最新内核版本&lt;/li&gt;
+&lt;li&gt;更改没有经过足够讨论&lt;/li&gt;
+&lt;li&gt;代码风格问题&lt;/li&gt;
+&lt;li&gt;e-mail格式问题&lt;/li&gt;
+&lt;li&gt;更改存在技术问题&lt;/li&gt;
+&lt;li&gt;意外丢失&lt;/li&gt;
+&lt;li&gt;你太烦了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果有疑问，可以在linux-kernel邮件列表上询问。&lt;/p&gt;
+&lt;p&gt;###在邮件主题上加上[PATCH]&lt;/p&gt;
+&lt;p&gt;###签名&lt;/p&gt;
+&lt;p&gt;为了方便跟踪作者和管理复杂的更改，引入了签名机制。如果确认一下4点就可以在对patch的描述后加上一句：&lt;br&gt;Signed-off-by: Random J Developer &lt;a href=&quot;&amp;#109;&amp;#x61;&amp;#x69;&amp;#x6c;&amp;#x74;&amp;#111;&amp;#x3a;&amp;#114;&amp;#x61;&amp;#x6e;&amp;#x64;&amp;#x6f;&amp;#x6d;&amp;#x40;&amp;#x64;&amp;#101;&amp;#118;&amp;#x65;&amp;#108;&amp;#111;&amp;#112;&amp;#101;&amp;#114;&amp;#x2e;&amp;#x65;&amp;#x78;&amp;#97;&amp;#x6d;&amp;#x70;&amp;#108;&amp;#101;&amp;#x2e;&amp;#111;&amp;#x72;&amp;#x67;&quot;&gt;&amp;#114;&amp;#x61;&amp;#x6e;&amp;#x64;&amp;#x6f;&amp;#x6d;&amp;#x40;&amp;#x64;&amp;#101;&amp;#118;&amp;#x65;&amp;#108;&amp;#111;&amp;#112;&amp;#101;&amp;#114;&amp;#x2e;&amp;#x65;&amp;#x78;&amp;#97;&amp;#x6d;&amp;#x70;&amp;#108;&amp;#101;&amp;#x2e;&amp;#111;&amp;#x72;&amp;#x67;&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;更改部分或者全部由我完成。我有权利开源&lt;/li&gt;
+&lt;li&gt;更改基于一个开源项目，需提交到同一个开源license下。否则可以提交给别的开源license&lt;/li&gt;
+&lt;li&gt;更改由别人转交给我，别人确认1,2,3条，我没有修改更改&lt;/li&gt;
+&lt;li&gt;我知道这是一个开源项目，并且贡献有可能不被记录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;###Acked-by&lt;/p&gt;
+&lt;p&gt;子系统的维护者需要这么做，表示patch你觉得还不错。&lt;/p&gt;
+&lt;p&gt;###Tested-by和Reviewed-by&lt;/p&gt;
+&lt;p&gt;Tested-by表示某人在某种环境下patch测试是有效的。&lt;br&gt;Reviewed-by表示这个patch被检查，说明你对patch的观点。&lt;/p&gt;
+&lt;p&gt;###patch的规范格式&lt;/p&gt;
+&lt;p&gt;主题：[PATCH 001/123] 子系统: 总结&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;from:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;空行&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;patch的描述&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Signed-off-by:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;标识符---&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;其他一些评论&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;diff output&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;主题的2个示例：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Subject: [patch 2/5] ext2: improve scalability of bitmap searching&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Subject: [PATCHv2 001/207] x86: fix eflags tracking&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;from行的示例：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;From: Original Author &amp;lt;author@example.com&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;—表示改动日志的结束。&lt;br&gt;其他一些评论可以用来写上&lt;code&gt;diffstat -p 1 -w 70&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;###发送git pull请求&lt;/p&gt;
+&lt;p&gt;发送从哪能够获得更改，格式如下&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Please pull from&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        git://jdelvare.pck.nerim.net/jdelvare-2.6 i2c-for-linus&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; to get these changes:&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;同时用&lt;code&gt;git diff -M --stat --summary&lt;/code&gt;生成diffstat.&lt;/p&gt;
+&lt;h2 id=&quot;忠告、建议、技巧&quot;&gt;&lt;a href=&quot;#忠告、建议、技巧&quot; class=&quot;headerlink&quot; title=&quot;忠告、建议、技巧&quot;&gt;&lt;/a&gt;忠告、建议、技巧&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;阅读Documentation/CodingStyle&lt;/p&gt;
+&lt;p&gt;  可以利用scripts/checkpatch.pl来检查代码风格。这个脚本会提供3种水平的忠告&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ERROR: 很可能有错&lt;/li&gt;
+&lt;li&gt;WARNING: 需要认真检查&lt;/li&gt;
+&lt;li&gt;CHECK：需要考虑&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;不要在函数内使用ifdef。&lt;br&gt;  例如：&lt;/p&gt;
+  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dev = alloc_etherdev (sizeof(struct funky_private));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if (!dev)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return -ENODEV;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#ifdef CONFIG_NET_FUNKINESS&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;init_funky_net(dev);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#endif&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  上面的可以更改为&lt;/p&gt;
+  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;(in header)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    #ifndef CONFIG_NET_FUNKINESS&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    static inline void init_funky_net (struct net_device *d) &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    #endif&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(in the code itself)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    dev = alloc_etherdev (sizeof(struct funky_private));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (!dev)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return -ENODEV;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    init_funky_net(dev);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;static inline 比宏更好&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;不要过度设计&lt;/p&gt;
+&lt;p&gt;  Make it as simple as you can, and no simpler.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;引用&quot;&gt;&lt;a href=&quot;#引用&quot; class=&quot;headerlink&quot; title=&quot;引用&quot;&gt;&lt;/a&gt;引用&lt;/h2&gt;&lt;p&gt;这篇文章翻译于&lt;a href=&quot;http://kernelnewbies.org/UpstreamMerge/SubmittingPatches&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;英文原稿&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#前言&quot;&gt;回到顶部&lt;/a&gt;&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://kernelnewbies.org/UpstreamMerge/SubmittingPatches&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;英文&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;前言&quot;
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://mrgao1008.github.io/blog/tags/linux/"/>
+    
+      <category term="kernel" scheme="http://mrgao1008.github.io/blog/tags/kernel/"/>
+    
+  </entry>
+  
+  <entry>
     <title>libvmi介绍</title>
     <link href="http://mrgao1008.github.io/blog/2016/04/01/libvmi%E4%BB%8B%E7%BB%8D/"/>
     <id>http://mrgao1008.github.io/blog/2016/04/01/libvmi介绍/</id>
@@ -873,45 +873,6 @@
   </entry>
   
   <entry>
-    <title>Django(2)视图和Urls</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/01/Django(2)%E8%A7%86%E5%9B%BE%E5%92%8CUrls/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/01/Django(2)视图和Urls/</id>
-    <published>2016-04-01T08:15:00.000Z</published>
-    <updated>2016-04-01T08:17:33.673Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;视图&quot;&gt;&lt;a href=&quot;#视图&quot; class=&quot;headerlink&quot; title=&quot;视图&quot;&gt;&lt;/a&gt;视图&lt;/h2&gt;&lt;p&gt;视图从某种一样上说是web页面，它有固定的模板，负责提供一定的服务。例如博客网站需要视图：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;博客主页–显示最近博客&lt;/li&gt;
-&lt;li&gt;细节页面–显示一篇博客&lt;/li&gt;
-&lt;li&gt;基于年的归档页面–显示给定年份的所有博客&lt;/li&gt;
-&lt;li&gt;基于月的归档页面–显示给定月份的所有博客&lt;/li&gt;
-&lt;li&gt;基于天的归档页面–显示给定日期的所有博客&lt;/li&gt;
-&lt;li&gt;评论功能–处理对博客的评论&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;在投票应用中，我们需要4个视图&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Questions索引页–显示最近的Questions&lt;/li&gt;
-&lt;li&gt;Questions细节页–显示Questions的问题和投票表格（不包含结果）&lt;/li&gt;
-&lt;li&gt;Questions结果页–显示Question的结果&lt;/li&gt;
-&lt;li&gt;投票功能–处理对某个Question进行投票&lt;/li&gt;
-&lt;/ul&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;视图&quot;&gt;&lt;a href=&quot;#视图&quot; class=&quot;headerlink&quot; title=&quot;视图&quot;&gt;&lt;/a&gt;视图&lt;/h2&gt;&lt;p&gt;视图从某种一样上说是web页面，它有固定的模板，负责提供一定的服务。例如博客网站需要视图：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;博客主页–显示最近博客
-    
-    </summary>
-    
-    
-      <category term="Django" scheme="http://mrgao1008.github.io/blog/tags/Django/"/>
-    
-      <category term="安装" scheme="http://mrgao1008.github.io/blog/tags/%E5%AE%89%E8%A3%85/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Django(1) 安装和使用</title>
     <link href="http://mrgao1008.github.io/blog/2016/04/01/Django(1)%20%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/"/>
     <id>http://mrgao1008.github.io/blog/2016/04/01/Django(1) 安装和使用/</id>
@@ -981,6 +942,45 @@
     
       &lt;h2 id=&quot;Django-安装&quot;&gt;&lt;a href=&quot;#Django-安装&quot; class=&quot;headerlink&quot; title=&quot;Django 安装&quot;&gt;&lt;/a&gt;Django 安装&lt;/h2&gt;&lt;p&gt;&lt;code&gt;easy_install django&lt;/code&gt;即可&lt;/p&gt;
 &lt;h2
+    
+    </summary>
+    
+    
+      <category term="Django" scheme="http://mrgao1008.github.io/blog/tags/Django/"/>
+    
+      <category term="安装" scheme="http://mrgao1008.github.io/blog/tags/%E5%AE%89%E8%A3%85/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Django(2)视图和Urls</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/01/Django(2)%E8%A7%86%E5%9B%BE%E5%92%8CUrls/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/01/Django(2)视图和Urls/</id>
+    <published>2016-04-01T08:15:00.000Z</published>
+    <updated>2016-04-01T08:17:33.673Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;视图&quot;&gt;&lt;a href=&quot;#视图&quot; class=&quot;headerlink&quot; title=&quot;视图&quot;&gt;&lt;/a&gt;视图&lt;/h2&gt;&lt;p&gt;视图从某种一样上说是web页面，它有固定的模板，负责提供一定的服务。例如博客网站需要视图：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;博客主页–显示最近博客&lt;/li&gt;
+&lt;li&gt;细节页面–显示一篇博客&lt;/li&gt;
+&lt;li&gt;基于年的归档页面–显示给定年份的所有博客&lt;/li&gt;
+&lt;li&gt;基于月的归档页面–显示给定月份的所有博客&lt;/li&gt;
+&lt;li&gt;基于天的归档页面–显示给定日期的所有博客&lt;/li&gt;
+&lt;li&gt;评论功能–处理对博客的评论&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在投票应用中，我们需要4个视图&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Questions索引页–显示最近的Questions&lt;/li&gt;
+&lt;li&gt;Questions细节页–显示Questions的问题和投票表格（不包含结果）&lt;/li&gt;
+&lt;li&gt;Questions结果页–显示Question的结果&lt;/li&gt;
+&lt;li&gt;投票功能–处理对某个Question进行投票&lt;/li&gt;
+&lt;/ul&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;视图&quot;&gt;&lt;a href=&quot;#视图&quot; class=&quot;headerlink&quot; title=&quot;视图&quot;&gt;&lt;/a&gt;视图&lt;/h2&gt;&lt;p&gt;视图从某种一样上说是web页面，它有固定的模板，负责提供一定的服务。例如博客网站需要视图：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;博客主页–显示最近博客
     
     </summary>
     

@@ -73,7 +73,7 @@
             <img src="/img/avatar.png" class="animated zoomIn">
         </a>
         <hgroup>
-          <h1 class="header-author"><a href="/blog/">mrgao1008@gmail.com</a></h1>
+          <h1 class="header-author"><a href="/blog/">mrgao1008</a></h1>
         </hgroup>
 
         
@@ -191,7 +191,7 @@
       <nav id="mobile-nav">
       <div class="overlay">
           <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">mrgao1008@gmail.com</a></h1>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">mrgao1008</a></h1>
       </div>
     <div class="intrude-less">
         <header id="header" class="inner">
@@ -199,7 +199,7 @@
                 <img src="/img/avatar.png" class="animated zoomIn">
             </a>
             <hgroup>
-              <h1 class="header-author"><a href="/blog/" title="回到主页">mrgao1008@gmail.com</a></h1>
+              <h1 class="header-author"><a href="/blog/" title="回到主页">mrgao1008</a></h1>
             </hgroup>
             
             <p class="header-subtitle">technology documents</p>
@@ -233,77 +233,6 @@
     </div>
 </nav>
       <div class="body-wrap">
-  
-    <article id="post-Django(2)视图和Urls" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/blog/2016/04/01/Django(2)视图和Urls/" class="article-date">
-      <time datetime="2016-04-01T08:15:00.000Z" itemprop="datePublished">2016-04-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2016/04/01/Django(2)视图和Urls/">Django(2)视图和Urls</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>视图从某种一样上说是web页面，它有固定的模板，负责提供一定的服务。例如博客网站需要视图：</p>
-<ul>
-<li>博客主页–显示最近博客</li>
-<li>细节页面–显示一篇博客</li>
-<li>基于年的归档页面–显示给定年份的所有博客</li>
-<li>基于月的归档页面–显示给定月份的所有博客</li>
-<li>基于天的归档页面–显示给定日期的所有博客</li>
-<li>评论功能–处理对博客的评论</li>
-</ul>
-<p>在投票应用中，我们需要4个视图</p>
-<ul>
-<li>Questions索引页–显示最近的Questions</li>
-<li>Questions细节页–显示Questions的问题和投票表格（不包含结果）</li>
-<li>Questions结果页–显示Question的结果</li>
-<li>投票功能–处理对某个Question进行投票</li>
-</ul>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Django/">Django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/安装/">安装</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
   
     <article id="post-Django(1) 安装和使用" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -390,6 +319,77 @@
 <p>利用命令<code>python manage.py createsuperuser</code>创建admin用户。<code>python manage.py runserver</code>后，打开<a href="http://127.0.0.1:8000/admin/.进去后你可以看到可以修改的Groups和Users.这部分由django.contrib.auth认证框架提供。" target="_blank" rel="external">http://127.0.0.1:8000/admin/.进去后你可以看到可以修改的Groups和Users.这部分由django.contrib.auth认证框架提供。</a></p>
 <p>7.注册polls(让polls app可以在网页中修改。)</p>
 <p>在polls/admin.py中添加<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</span><br><span class="line"></span><br><span class="line">admin.site.register(Question)</span><br></pre></td></tr></table></figure></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Django/">Django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/安装/">安装</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Django(2)视图和Urls" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/blog/2016/04/01/Django(2)视图和Urls/" class="article-date">
+      <time datetime="2016-04-01T08:15:00.000Z" itemprop="datePublished">2016-04-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/04/01/Django(2)视图和Urls/">Django(2)视图和Urls</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>视图从某种一样上说是web页面，它有固定的模板，负责提供一定的服务。例如博客网站需要视图：</p>
+<ul>
+<li>博客主页–显示最近博客</li>
+<li>细节页面–显示一篇博客</li>
+<li>基于年的归档页面–显示给定年份的所有博客</li>
+<li>基于月的归档页面–显示给定月份的所有博客</li>
+<li>基于天的归档页面–显示给定日期的所有博客</li>
+<li>评论功能–处理对博客的评论</li>
+</ul>
+<p>在投票应用中，我们需要4个视图</p>
+<ul>
+<li>Questions索引页–显示最近的Questions</li>
+<li>Questions细节页–显示Questions的问题和投票表格（不包含结果）</li>
+<li>Questions结果页–显示Question的结果</li>
+<li>投票功能–处理对某个Question进行投票</li>
+</ul>
       
     </div>
     
@@ -791,7 +791,7 @@
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                &copy; 2016 mrgao1008@gmail.com
+                &copy; 2016 mrgao1008
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE
