@@ -5,7 +5,7 @@
   <link href="/blog/atom.xml" rel="self"/>
   
   <link href="http://mrgao1008.github.io/blog/"/>
-  <updated>2016-04-03T15:10:15.396Z</updated>
+  <updated>2016-04-03T15:15:13.723Z</updated>
   <id>http://mrgao1008.github.io/blog/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://mrgao1008.github.io/blog/2016/04/03/%E7%B3%BB%E7%BB%9F%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF/"/>
     <id>http://mrgao1008.github.io/blog/2016/04/03/系统虚拟化技术/</id>
     <published>2016-04-03T14:23:00.000Z</published>
-    <updated>2016-04-03T15:10:15.396Z</updated>
+    <updated>2016-04-03T15:15:13.723Z</updated>
     
     <content type="html">&lt;h2 id=&quot;第一章&quot;&gt;&lt;a href=&quot;#第一章&quot; class=&quot;headerlink&quot; title=&quot;第一章&quot;&gt;&lt;/a&gt;第一章&lt;/h2&gt;&lt;p&gt;虚拟化关系到虚拟化资源.虚拟化资源有物理资源时间分时,空间分割,可以一分多,也可以多分一.&lt;/p&gt;
 &lt;p&gt;粗略划分:&lt;/p&gt;
@@ -38,7 +38,7 @@
 &lt;li&gt;更新CR3:此操作导致TLB中所有条目失效.进程切换时用到.&lt;/li&gt;
 &lt;li&gt;INVLPG指令:对TLB中单独的页目录项,页表项进行刷新.通常在操作系统修改页表后进行(如分配/释放页面).&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;/images/x86地址转换流程.jpg&quot; alt=&quot;x86地址转换流程&quot;&gt;&lt;/p&gt;</content>
+&lt;p&gt;&lt;img src=&quot;/blog/images/x86地址转换流程.jpg&quot; alt=&quot;x86地址转换流程&quot;&gt;&lt;/p&gt;</content>
     
     <summary type="html">
     
@@ -90,132 +90,87 @@
   </entry>
   
   <entry>
-    <title>锁与进程间通信</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/02/%E9%94%81%E4%B8%8E%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/02/锁与进程间通信/</id>
+    <title>tk 编程</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/python%20tk/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/python tk/</id>
     <published>2016-04-01T16:00:00.000Z</published>
-    <updated>2016-04-02T01:36:59.129Z</updated>
+    <updated>2016-04-02T01:40:20.474Z</updated>
     
-    <content type="html">&lt;h2 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;竞态条件(race condition)&lt;/strong&gt;是几个进程在访问资源时彼此干扰的情况。&lt;/p&gt;
-&lt;p&gt;难点在于：无法通过测试完全找到竞态条件，只有彻底研究源代码并通过敏锐的直觉，才能找到并消除竞态条件。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;临界区(Critical section)&lt;/strong&gt;&lt;br&gt;是在并行编程中，一段不能被多个处理器同时执行的代码。&lt;/p&gt;
-&lt;p&gt;解决方法：&lt;/p&gt;
-&lt;p&gt;信号量(semaphore):受保护的特殊变量。初始值为1。有2个标准操作up和down。在一个进程试图进入临界区时，调用down函数。这会将信号量减1，即将其设置为0，然后执行临界区代码。在执行操作完成后，调用up函数将信号量加1，即重置为初始值。信号量有下面2中特性：&lt;/p&gt;
-&lt;p&gt;（1）又一个进程试图进入临界区，首先必须对信号量执行down操作。因为信号量当前值为0，会导致进程在该信号量上“睡眠”，直到前一个进程退出。&lt;/p&gt;
-&lt;p&gt;（2）进程退出临界区，执行up操作。不仅将信号量加1，而且还会选择一个在该信号量上睡眠的进程。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;查询和修改信号量的操作比如为原子的，反正竞态条件。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;各种锁：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;原子操作:保证简单的计数器加1可以原子执行&lt;/li&gt;
-&lt;li&gt;自旋锁:用于短期保护某段代码，以防止其他处理器访问&lt;/li&gt;
-&lt;li&gt;信号量：在等待信号量释放时，进入睡眠，直至被唤醒，内核重新尝试获取信号量&lt;/li&gt;
-&lt;li&gt;读写锁：区分对数据结构的两种不同类型的操作。任何数目的处理器都可以对数据结构进行并发&lt;strong&gt;读&lt;/strong&gt;,但是只有一个处理器能进行&lt;strong&gt;写&lt;/strong&gt;操作。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;原子操作&quot;&gt;&lt;a href=&quot;#原子操作&quot; class=&quot;headerlink&quot; title=&quot;原子操作&quot;&gt;&lt;/a&gt;原子操作&lt;/h2&gt;&lt;p&gt;原子类型为&lt;code&gt;atomic_t&lt;/code&gt;，定义在&lt;code&gt;&amp;lt;asm-arch/atomic.h&amp;gt;&lt;/code&gt;中。原子类型只能借助&lt;code&gt;ATOMIC_INIT&lt;/code&gt;宏初始化。原子类型是基于c语言通用类型实现，不能用++等操作。&lt;/p&gt;
+    <content type="html">&lt;h2 id=&quot;标准属性&quot;&gt;&lt;a href=&quot;#标准属性&quot; class=&quot;headerlink&quot; title=&quot;标准属性&quot;&gt;&lt;/a&gt;标准属性&lt;/h2&gt;&lt;h3 id=&quot;dimensions&quot;&gt;&lt;a href=&quot;#dimensions&quot; class=&quot;headerlink&quot; title=&quot;dimensions&quot;&gt;&lt;/a&gt;dimensions&lt;/h3&gt;&lt;p&gt;尺寸包含4种&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th&gt;操作&lt;/th&gt;
-&lt;th&gt;效果&lt;/th&gt;
+&lt;th&gt;字母&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;atomic_read(atomic_t *v)&lt;/td&gt;
-&lt;td&gt;读取原子变量的值&lt;/td&gt;
+&lt;td&gt;c&lt;/td&gt;
+&lt;td&gt;厘米&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;atomic_set(atomic_t *v, int i)&lt;/td&gt;
-&lt;td&gt;将v设置为i&lt;/td&gt;
+&lt;td&gt;i&lt;/td&gt;
+&lt;td&gt;英寸&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;atomic_add(int i, atomic_t *v)&lt;/td&gt;
-&lt;td&gt;将i加到v&lt;/td&gt;
+&lt;td&gt;m&lt;/td&gt;
+&lt;td&gt;毫米&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;atomic_add_return(int i, atomic_t *v)&lt;/td&gt;
-&lt;td&gt;将i加到v，并返回结果&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;atomic_sub(int i, atomic_t *v)&lt;/td&gt;
-&lt;td&gt;从v减去i&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;atomic_sub_return(int i, atomic_t *v)&lt;/td&gt;
-&lt;td&gt;从v减去i，并返回结果&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;atomic_inc(atomic_t *v)&lt;/td&gt;
-&lt;td&gt;将v加1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;atomic_inc_and_test(atomic_t *v)&lt;/td&gt;
-&lt;td&gt;将v加1。结果如果为0则返回true，否则返回false&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;atomic_dec(atomic_t *v)&lt;/td&gt;
-&lt;td&gt;从v减1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;atomic_dec_and_test(atomic_t *v)&lt;/td&gt;
-&lt;td&gt;从v减1。结果如果为0则返回true，否则返回false&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;atomic_add_negative(int i, atomic_i *v)&lt;/td&gt;
-&lt;td&gt;将i加到v.如果结果小于0则返回true,否则返回false&lt;/td&gt;
+&lt;td&gt;p&lt;/td&gt;
+&lt;td&gt;打印机的点？？&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;local_t类型，允许在单个CPU上原子操作。&lt;/p&gt;
-&lt;h2 id=&quot;自旋锁&quot;&gt;&lt;a href=&quot;#自旋锁&quot; class=&quot;headerlink&quot; title=&quot;自旋锁&quot;&gt;&lt;/a&gt;自旋锁&lt;/h2&gt;&lt;p&gt;自旋锁用于保护段的代码段，其中只包含少量c语言，因此会很快执行完毕。&lt;/p&gt;
-&lt;p&gt;自旋锁通过spinlock_t数据结构实现，基本可以使用spin_lock和spin_unlock操作。还有其他一些自旋锁操作：spin_lock_irqsave不仅获得自旋锁，还停用本地cpu的中断，而sin_lock_bh则停用softIRQ。这两个操作获得的自旋锁必须用对应的接口释放，分别是spin_unlock_irqsave和spin_unlock_bh。&lt;/p&gt;
-&lt;h2 id=&quot;信号量&quot;&gt;&lt;a href=&quot;#信号量&quot; class=&quot;headerlink&quot; title=&quot;信号量&quot;&gt;&lt;/a&gt;信号量&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;asm-arch/semaphore.h&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;struct semaphor &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	atomic_t count;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	int sleepers;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	wait_queue_head_t wait;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;与自旋锁相比，信号量适合于保护更长的临界区，以防止并行访问。但它们不应该用于保护较短的代码范围，因为竞争信号量时需要使进程睡眠和再次唤醒，代价很高。&lt;/p&gt;
-&lt;h2 id=&quot;RCU机制&quot;&gt;&lt;a href=&quot;#RCU机制&quot; class=&quot;headerlink&quot; title=&quot;RCU机制&quot;&gt;&lt;/a&gt;RCU机制&lt;/h2&gt;&lt;p&gt;RCU(read-copy-update)是一个相当新的同步机制。RCU对使用者提出一些约束&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;对共享资源的访问在大部分时间应该是只读的，写访问应该相对很少。&lt;/li&gt;
-&lt;li&gt;在RCU保护的代码范围内，内核不能进入睡眠状态。&lt;/li&gt;
-&lt;li&gt;受保护资源必须通过指针访问。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;RCU原理很简单:该机制记录了指向共享数据结构的指针的所有使用者。在该结构将要改变时，则首先创建一个副本（或一个新的实例，填充适当的内容，这没什么差别），在副本中修改。在所有进行读访问的使用者结束对旧副本的读取之后，指针可以替换为指向新的、修改后副本的指针。请注意，这种机制允许读写并发执行。&lt;/p&gt;
-&lt;h3 id=&quot;核心API&quot;&gt;&lt;a href=&quot;#核心API&quot; class=&quot;headerlink&quot; title=&quot;核心API&quot;&gt;&lt;/a&gt;核心API&lt;/h3&gt;&lt;p&gt;假定指针ptr指向一个被RCU保护的数据结构。直接反引用指针是禁止的，首先必须调用rcu_dereference(ptr)，然后反引用返回的结果。此外，凡引用指针并使用其结果的代码，需要用rcu_read_lock和rcu_read_unlock调用保护起来：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;rcu_read_lock();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;p = rcu_derefence(ptr);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if (p != NULL) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	awesome_function(p);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;rcu_read_unlock();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;strong&gt;被反映用的指针不能在rcu_read_lock和rcu_read_unlock保护代码范围之外使用，也不能用于写访问&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;如果必须修改ptr指向的对象，则需要使用rcu_assign_pointer:&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;struct super_duper *new_ptr = kmalloc(...);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;new_ptr-&amp;gt;meaing = xyz;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;new_ptr-&amp;gt;of = 42;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;new_ptr-&amp;gt;life = 23;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;rcu_assign_pointer(ptr, new_ptr);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;按RCU的术语，该操作公布了这个指针，后续的读取操作将看到新的结构，而不是原来的。&lt;br&gt;&lt;strong&gt;如果更新可能来自内核中许多地方，那么必须使用普通的同步源于防止并发的写操作，如自旋锁。尽管RCU能保护读访问不受写访问的干扰，但它不对写访问之间的相互干扰提供防护！&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;synchronize_rcu()等待所有现存的读访问完成。在函数返回之后，释放与原指针关联的内存是安全的。&lt;/p&gt;
-&lt;p&gt;call_rcu可用于注册一个函数，在所有针对共享资源的读访问完成以后调用。这要求将一个rcu_read实例嵌入（不能通过指针）到RCU保护的数据结构：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;struct super_duper &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct rcu_head head;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	int meaning, of, life;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;该回调函数可通过参数访问对象的rcu_head成员，进而使用container_of机制访问对象本身。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;kernel/rcuupdate.c&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;void fastcall call_rcu(struct rcu_head * head, void(*func)(struct rcu_head *rcu))&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h3 id=&quot;链表操作&quot;&gt;&lt;a href=&quot;#链表操作&quot; class=&quot;headerlink&quot; title=&quot;链表操作&quot;&gt;&lt;/a&gt;链表操作&lt;/h3&gt;&lt;p&gt;RCU能保护的，不仅仅是一般的指针。内核也提供了标准函数，使得能通过RCU机制保护双链表，这是RCU机制在内核内部最重要的应用。此外，由struct hlist_head和struct hlist_node组成的散列表也可以通过RCU保护。&lt;/p&gt;
-&lt;p&gt;有关通过RCU保护的链表，好消息是仍然可以使用标准的链表元素。只有在遍历链表、修改和删除链表元素时，必须调用标准函数的RCU变体。函数名称是在标准函数之后附加_rcu后缀。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;list.h&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static inline void list_add_rcu(struct list_head *new,struct list_head *head)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static inline void list_add_tail_rcu(struct list_head *new,struct list_head *head)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static inline void list_del_rcu(struct list_head *entry)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static inline void list_replace_rcu(struct list_head *old,struct list_head *new)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;还有list_for_each_rcu允许遍历链表的所有元素。而list_for_each_rcu_safe甚至对删除链表元素也是安全的。这两个操作都必须通过一对rcu_read_lock()和rcu_read_unlock()包围。&lt;/p&gt;
-&lt;h2 id=&quot;内存和优化屏障&quot;&gt;&lt;a href=&quot;#内存和优化屏障&quot; class=&quot;headerlink&quot; title=&quot;内存和优化屏障&quot;&gt;&lt;/a&gt;内存和优化屏障&lt;/h2&gt;&lt;h2 id=&quot;读-写锁&quot;&gt;&lt;a href=&quot;#读-写锁&quot; class=&quot;headerlink&quot; title=&quot;读/写锁&quot;&gt;&lt;/a&gt;读/写锁&lt;/h2&gt;&lt;p&gt;读写信号量和读写自旋锁。&lt;/p&gt;
-&lt;p&gt;读写自旋锁定义为rwlock_t。必须根据读写访问，以不同的方法获取锁。&lt;/p&gt;
-&lt;p&gt;进程对临界区进行读访问时，在进入和离开是需要分别执行read_lock和read_unlock。内核允许任意数目的读进程并发访问临界区。&lt;/p&gt;
-&lt;p&gt;write_lock和write_unlock用于写访问。内核保证只有一个写进程（此时没有读进程）能够处于临界区。&lt;/p&gt;
-&lt;p&gt;_irq_irqsave变体也同样可用，运作方式如果普通的自旋锁。以_bh结果的变体也是可用的，用于停用软件中断，但硬件中断中断仍然是开启的。&lt;/p&gt;
-&lt;h2 id=&quot;大内核锁&quot;&gt;&lt;a href=&quot;#大内核锁&quot; class=&quot;headerlink&quot; title=&quot;大内核锁&quot;&gt;&lt;/a&gt;大内核锁&lt;/h2&gt;&lt;h2 id=&quot;互斥量&quot;&gt;&lt;a href=&quot;#互斥量&quot; class=&quot;headerlink&quot; title=&quot;互斥量&quot;&gt;&lt;/a&gt;互斥量&lt;/h2&gt;&lt;p&gt;尽管信号量可用于实现互斥量的功能，信号量的通用性导致的开销通常是不必要的。因此，内核包含了一个专用互斥量的独立实现，他们不依赖于信号量。&lt;strong&gt;互斥量是信号量的特例，count为1时&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;经典的互斥量&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;mutex.h&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;struct mutex &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	/* 1: 未锁定， 0： 锁定， 负值： 锁定，可能有等待者*/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	atomic_t count;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	spinlock_t wait_lock;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct list_head wait_list;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;实时互斥量&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;rtmutex.h&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;struct rt_mutex &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	spinlock_t wait_lock;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct plist_head wait_list;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct task_struct *owner;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;近似的per-CPU计数器&quot;&gt;&lt;a href=&quot;#近似的per-CPU计数器&quot; class=&quot;headerlink&quot; title=&quot;近似的per-CPU计数器&quot;&gt;&lt;/a&gt;近似的per-CPU计数器&lt;/h2&gt;&lt;p&gt;对于某些计数器没必要时时了解其准确值。&lt;/p&gt;
-&lt;h2 id=&quot;锁竞争与细粒度锁&quot;&gt;&lt;a href=&quot;#锁竞争与细粒度锁&quot; class=&quot;headerlink&quot; title=&quot;锁竞争与细粒度锁&quot;&gt;&lt;/a&gt;锁竞争与细粒度锁&lt;/h2&gt;</content>
+&lt;h3 id=&quot;坐标&quot;&gt;&lt;a href=&quot;#坐标&quot; class=&quot;headerlink&quot; title=&quot;坐标&quot;&gt;&lt;/a&gt;坐标&lt;/h3&gt;&lt;h3 id=&quot;颜色&quot;&gt;&lt;a href=&quot;#颜色&quot; class=&quot;headerlink&quot; title=&quot;颜色&quot;&gt;&lt;/a&gt;颜色&lt;/h3&gt;&lt;p&gt;||#rgb||four bits per color||&lt;br&gt;||#rrggbb||eight bits per color||&lt;br&gt;||#rrrgggbbb||twelve bits per color||&lt;/p&gt;
+&lt;p&gt;还一可以指定关键词’white’,’black’,’red’,’green’,’blue’,’cyan’,’yellow’,’magenta’&lt;/p&gt;
+&lt;h3 id=&quot;fonts&quot;&gt;&lt;a href=&quot;#fonts&quot; class=&quot;headerlink&quot; title=&quot;fonts&quot;&gt;&lt;/a&gt;fonts&lt;/h3&gt;&lt;p&gt;1.元组表示,第一表示字体，第二个表示大小，正数为points，负数为像素点，后续为其他一些特别设置&lt;br&gt;(‘Helvetica’,’16’)&lt;br&gt;(‘Times’,’24’,’bold italic’)&lt;br&gt;(‘Times’,-20,’bold’)&lt;/p&gt;
+&lt;p&gt;2.字体对象 tkFont&lt;/p&gt;
+&lt;p&gt;3.X font names.&lt;/p&gt;
+&lt;h3 id=&quot;锚&quot;&gt;&lt;a href=&quot;#锚&quot; class=&quot;headerlink&quot; title=&quot;锚&quot;&gt;&lt;/a&gt;锚&lt;/h3&gt;&lt;p&gt;N S W E CENTER&lt;br&gt;NW NE SW SE&lt;/p&gt;
+&lt;h3 id=&quot;释放样式&quot;&gt;&lt;a href=&quot;#释放样式&quot; class=&quot;headerlink&quot; title=&quot;释放样式&quot;&gt;&lt;/a&gt;释放样式&lt;/h3&gt;&lt;p&gt;FLAT RAISED SUNKEN GROOVE RIDGE&lt;/p&gt;
+&lt;h3 id=&quot;Bitmaps&quot;&gt;&lt;a href=&quot;#Bitmaps&quot; class=&quot;headerlink&quot; title=&quot;Bitmaps&quot;&gt;&lt;/a&gt;Bitmaps&lt;/h3&gt;&lt;p&gt;button支持 error gray75 gray50 gray25 gray12 hourglass info questhead question warning&lt;/p&gt;
+&lt;p&gt;也可以使用.xbm(X bit map)使用@path&lt;/p&gt;
+&lt;h3 id=&quot;cursors&quot;&gt;&lt;a href=&quot;#cursors&quot; class=&quot;headerlink&quot; title=&quot;cursors&quot;&gt;&lt;/a&gt;cursors&lt;/h3&gt;&lt;h3 id=&quot;images&quot;&gt;&lt;a href=&quot;#images&quot; class=&quot;headerlink&quot; title=&quot;images&quot;&gt;&lt;/a&gt;images&lt;/h3&gt;&lt;p&gt;BitmapImage 支持 .xbm&lt;br&gt;PhotoImage 支持 .gif .pgm .ppm&lt;br&gt;ImageTk 支持更多格式&lt;/p&gt;
+&lt;h4 id=&quot;the-BitmapImage-class&quot;&gt;&lt;a href=&quot;#the-BitmapImage-class&quot; class=&quot;headerlink&quot; title=&quot;the BitmapImage class&quot;&gt;&lt;/a&gt;the BitmapImage class&lt;/h4&gt;&lt;p&gt;原型&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tk.BitmapImage(file=f[, background=b][, foreground=c])&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;实例&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;logo = tk.BitmapImage(&lt;span class=&quot;string&quot;&gt;&#39;logo.xbm&#39;&lt;/span&gt;, foreground=&lt;span class=&quot;string&quot;&gt;&#39;red&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Label(image=logo).grid()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h4 id=&quot;the-PhotoImage-class&quot;&gt;&lt;a href=&quot;#the-PhotoImage-class&quot; class=&quot;headerlink&quot; title=&quot;the PhotoImage class&quot;&gt;&lt;/a&gt;the PhotoImage class&lt;/h4&gt;&lt;p&gt;原型&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tk.PhotoImage(file=f)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Geometry-strings&quot;&gt;&lt;a href=&quot;#Geometry-strings&quot; class=&quot;headerlink&quot; title=&quot;Geometry strings&quot;&gt;&lt;/a&gt;Geometry strings&lt;/h3&gt;&lt;p&gt;A geometry string is a standard way of describing the size and location of a top-level window on a desktop.&lt;br&gt;format: ‘wxh±x±y’&lt;br&gt;+x left side&lt;br&gt;-x right side&lt;br&gt;+y top&lt;br&gt;-y bottom&lt;/p&gt;
+&lt;h3 id=&quot;window-names&quot;&gt;&lt;a href=&quot;#window-names&quot; class=&quot;headerlink&quot; title=&quot;window names&quot;&gt;&lt;/a&gt;window names&lt;/h3&gt;&lt;p&gt;hierarchical window path name&lt;br&gt;root window ‘.’&lt;br&gt;child name ‘.n’&lt;br&gt;child windows of child ‘p.n’, p is the name of the parent window&lt;/p&gt;
+&lt;p&gt;str(w): to get the path name of a widget w&lt;/p&gt;
+&lt;h3 id=&quot;cap-and-join-styles&quot;&gt;&lt;a href=&quot;#cap-and-join-styles&quot; class=&quot;headerlink&quot; title=&quot;cap and join styles&quot;&gt;&lt;/a&gt;cap and join styles&lt;/h3&gt;&lt;p&gt;cap style: tk.BUTT, tk.PROJECTING, tk.ROUND&lt;br&gt;join style: tk.ROUND, tk.BEVEL, tk.MITER&lt;/p&gt;
+&lt;h3 id=&quot;dash-patterns&quot;&gt;&lt;a href=&quot;#dash-patterns&quot; class=&quot;headerlink&quot; title=&quot;dash patterns&quot;&gt;&lt;/a&gt;dash patterns&lt;/h3&gt;&lt;p&gt;dash=(3,5)&lt;br&gt;dash=(7,1,1,1)&lt;br&gt;dash=(5,1,2,1),dashoff=3&lt;/p&gt;
+&lt;h2 id=&quot;tk-TclError&quot;&gt;&lt;a href=&quot;#tk-TclError&quot; class=&quot;headerlink&quot; title=&quot;tk.TclError&quot;&gt;&lt;/a&gt;tk.TclError&lt;/h2&gt;</content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;竞态条件(race condition)&lt;/strong&gt;是几个进程在访问资源时彼此干扰的情况。&lt;/p&gt;
-&lt;p&gt;难点在于：无
+      &lt;h2 id=&quot;标准属性&quot;&gt;&lt;a href=&quot;#标准属性&quot; class=&quot;headerlink&quot; title=&quot;标准属性&quot;&gt;&lt;/a&gt;标准属性&lt;/h2&gt;&lt;h3 id=&quot;dimensions&quot;&gt;&lt;a href=&quot;#dimensions&quot; class=&quot;headerlink&quot; titl
     
     </summary>
     
     
-      <category term="锁" scheme="http://mrgao1008.github.io/blog/tags/%E9%94%81/"/>
+      <category term="GUI" scheme="http://mrgao1008.github.io/blog/tags/GUI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LoadLibrary error 126</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/LoadLibrary%20126/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/LoadLibrary 126/</id>
+    <published>2016-04-01T16:00:00.000Z</published>
+    <updated>2016-04-02T01:40:55.211Z</updated>
+    
+    <content type="html">&lt;p&gt;可能是UNICODE和ASCII字符的问题。&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;可能是UNICODE和ASCII字符的问题。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="problem solution" scheme="http://mrgao1008.github.io/blog/tags/problem-solution/"/>
     
   </entry>
   
@@ -296,38 +251,6 @@
       <category term="Windows" scheme="http://mrgao1008.github.io/blog/tags/Windows/"/>
     
       <category term="hook" scheme="http://mrgao1008.github.io/blog/tags/hook/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>分布式数据库技术</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/02/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E7%AC%AC%E4%B8%89%E7%89%88%EF%BC%892/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/02/数据库系统原理与应用（第三版）2/</id>
-    <published>2016-04-01T16:00:00.000Z</published>
-    <updated>2016-04-02T01:37:29.338Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;通过使用分散在不同地理位置的计算机来满足本地用户需要的计算方式称为分布式计算，使用到的数据库是分布式数据库，涉及的数据库技术是分布式数据库技术。&lt;/p&gt;
-&lt;p&gt;分布式数据库是与集中式数据库相对的概念，其主要差别在于处理的数据处于不同的地理位置。集中式数据库强调的是所有的数据存储在一个唯一的地方，而分布式数据库强调的是所有的数据作为一个整体存储在多个不同的地理位置。&lt;/p&gt;
-&lt;h2 id=&quot;分布式数据库的概念和特定&quot;&gt;&lt;a href=&quot;#分布式数据库的概念和特定&quot; class=&quot;headerlink&quot; title=&quot;分布式数据库的概念和特定&quot;&gt;&lt;/a&gt;分布式数据库的概念和特定&lt;/h2&gt;&lt;p&gt;在分布式计算方式中，数据库管理系统安装在多个所处地理位置不同的服务器上，用户的数据也是分布在不同的服务器中。但从逻辑上来讲，这些用户的数据是一个整体，构成一个逻辑数据库。本地服务器的用户不仅可以访问本地服务器上数据库中的数据，也可以访问异地服务器上数据库中的数据。&lt;/p&gt;
-&lt;h3 id=&quot;特点&quot;&gt;&lt;a href=&quot;#特点&quot; class=&quot;headerlink&quot; title=&quot;特点&quot;&gt;&lt;/a&gt;特点&lt;/h3&gt;&lt;p&gt;分布式数据库具有物理分布性、逻辑整体性、场地自治性、数据共享性和系统可用性五个特点。自治表示自己管理自己，场地自治性表示每个场地的集中式数据库系统都是自己来管理自己的数据。数据共享性强调的是系统具有统一的模式，所有的用户都可以使用分布式数据库中的数据。系统可用性则是如果某个场地的数据发生了故障，用户还可以通过其他场地访问这些数据。&lt;/p&gt;
-&lt;h3 id=&quot;缺点&quot;&gt;&lt;a href=&quot;#缺点&quot; class=&quot;headerlink&quot; title=&quot;缺点&quot;&gt;&lt;/a&gt;缺点&lt;/h3&gt;&lt;p&gt;第一，系统实现技术更加复杂、难度更大。&lt;br&gt;第二，系统的安全性更难处理。&lt;/p&gt;
-&lt;h2 id=&quot;分布式数据存储技术&quot;&gt;&lt;a href=&quot;#分布式数据存储技术&quot; class=&quot;headerlink&quot; title=&quot;分布式数据存储技术&quot;&gt;&lt;/a&gt;分布式数据存储技术&lt;/h2&gt;&lt;p&gt;在分布式数据库中，数据的存储可以通过三种方式实现，即复制存储方式、分片存储方式和混合存储方式。&lt;/p&gt;
-&lt;h3 id=&quot;数据复制&quot;&gt;&lt;a href=&quot;#数据复制&quot; class=&quot;headerlink&quot; title=&quot;数据复制&quot;&gt;&lt;/a&gt;数据复制&lt;/h3&gt;&lt;p&gt;通过把数据库中的一个关系存储多次而实现分布式存储。数据复制的有点事提高可用性、增加数据库系统的并行度、增强并发能力。数据复制也存在明显的缺点，即数据更新成本大大增加。&lt;/p&gt;
-&lt;h3 id=&quot;数据分片&quot;&gt;&lt;a href=&quot;#数据分片&quot; class=&quot;headerlink&quot; title=&quot;数据分片&quot;&gt;&lt;/a&gt;数据分片&lt;/h3&gt;&lt;p&gt;通过把数据库中的一个关系分成多个片断，每个片断都存储在不同场地上，且所有的片断包含的信息足够重构原始关系，该数据存储方式成为数据分片。&lt;/p&gt;
-&lt;p&gt;数据分片分为水平分片、垂直分片和混合分片。&lt;/p&gt;
-&lt;h3 id=&quot;数据混合存储&quot;&gt;&lt;a href=&quot;#数据混合存储&quot; class=&quot;headerlink&quot; title=&quot;数据混合存储&quot;&gt;&lt;/a&gt;数据混合存储&lt;/h3&gt;&lt;p&gt;在数据存储过程中，既包含了水平分片存储方式，又包含了垂直分片存储方式，则将这种方式称为数据混合存储方式。&lt;/p&gt;
-&lt;h2 id=&quot;分布式数据查询技术&quot;&gt;&lt;a href=&quot;#分布式数据查询技术&quot; class=&quot;headerlink&quot; title=&quot;分布式数据查询技术&quot;&gt;&lt;/a&gt;分布式数据查询技术&lt;/h2&gt;&lt;p&gt;在集中式数据库的数据查询中，查询代价主要是本地处理代价，具体内容包括CPU代价和I/O代价。但是，分布式数据库的数据查询中，查询代价除了本地处理代价之外，还包括网络传输代价。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;基于半连接的优化策略&lt;/strong&gt;，在执行分布式查询时，只传输参与连接运算的数据，不传输不参与连接运算的数据。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;基于连接的优化策略&lt;/strong&gt;，在对于网络传输代价要求比较严格时，可以使用半连接优化策略。但对于网络传输代价要求比较低，对本地处理代价要求比较高时，可以考虑使用基于连接的优化策略。基于连接的优化策略的事项是把某个场地的整个关系的元组传输到另外的场地执行连接操作。&lt;/p&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;通过使用分散在不同地理位置的计算机来满足本地用户需要的计算方式称为分布式计算，使用到的数据库是分布式数据库，涉及的数据库技术是分布式数据库技
-    
-    </summary>
-    
-    
-      <category term="database" scheme="http://mrgao1008.github.io/blog/tags/database/"/>
     
   </entry>
   
@@ -444,194 +367,34 @@
   </entry>
   
   <entry>
-    <title>LoadLibrary error 126</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/02/LoadLibrary%20126/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/02/LoadLibrary 126/</id>
+    <title>分布式数据库技术</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E7%AC%AC%E4%B8%89%E7%89%88%EF%BC%892/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/数据库系统原理与应用（第三版）2/</id>
     <published>2016-04-01T16:00:00.000Z</published>
-    <updated>2016-04-02T01:40:55.211Z</updated>
+    <updated>2016-04-02T01:37:29.338Z</updated>
     
-    <content type="html">&lt;p&gt;可能是UNICODE和ASCII字符的问题。&lt;/p&gt;</content>
+    <content type="html">&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;通过使用分散在不同地理位置的计算机来满足本地用户需要的计算方式称为分布式计算，使用到的数据库是分布式数据库，涉及的数据库技术是分布式数据库技术。&lt;/p&gt;
+&lt;p&gt;分布式数据库是与集中式数据库相对的概念，其主要差别在于处理的数据处于不同的地理位置。集中式数据库强调的是所有的数据存储在一个唯一的地方，而分布式数据库强调的是所有的数据作为一个整体存储在多个不同的地理位置。&lt;/p&gt;
+&lt;h2 id=&quot;分布式数据库的概念和特定&quot;&gt;&lt;a href=&quot;#分布式数据库的概念和特定&quot; class=&quot;headerlink&quot; title=&quot;分布式数据库的概念和特定&quot;&gt;&lt;/a&gt;分布式数据库的概念和特定&lt;/h2&gt;&lt;p&gt;在分布式计算方式中，数据库管理系统安装在多个所处地理位置不同的服务器上，用户的数据也是分布在不同的服务器中。但从逻辑上来讲，这些用户的数据是一个整体，构成一个逻辑数据库。本地服务器的用户不仅可以访问本地服务器上数据库中的数据，也可以访问异地服务器上数据库中的数据。&lt;/p&gt;
+&lt;h3 id=&quot;特点&quot;&gt;&lt;a href=&quot;#特点&quot; class=&quot;headerlink&quot; title=&quot;特点&quot;&gt;&lt;/a&gt;特点&lt;/h3&gt;&lt;p&gt;分布式数据库具有物理分布性、逻辑整体性、场地自治性、数据共享性和系统可用性五个特点。自治表示自己管理自己，场地自治性表示每个场地的集中式数据库系统都是自己来管理自己的数据。数据共享性强调的是系统具有统一的模式，所有的用户都可以使用分布式数据库中的数据。系统可用性则是如果某个场地的数据发生了故障，用户还可以通过其他场地访问这些数据。&lt;/p&gt;
+&lt;h3 id=&quot;缺点&quot;&gt;&lt;a href=&quot;#缺点&quot; class=&quot;headerlink&quot; title=&quot;缺点&quot;&gt;&lt;/a&gt;缺点&lt;/h3&gt;&lt;p&gt;第一，系统实现技术更加复杂、难度更大。&lt;br&gt;第二，系统的安全性更难处理。&lt;/p&gt;
+&lt;h2 id=&quot;分布式数据存储技术&quot;&gt;&lt;a href=&quot;#分布式数据存储技术&quot; class=&quot;headerlink&quot; title=&quot;分布式数据存储技术&quot;&gt;&lt;/a&gt;分布式数据存储技术&lt;/h2&gt;&lt;p&gt;在分布式数据库中，数据的存储可以通过三种方式实现，即复制存储方式、分片存储方式和混合存储方式。&lt;/p&gt;
+&lt;h3 id=&quot;数据复制&quot;&gt;&lt;a href=&quot;#数据复制&quot; class=&quot;headerlink&quot; title=&quot;数据复制&quot;&gt;&lt;/a&gt;数据复制&lt;/h3&gt;&lt;p&gt;通过把数据库中的一个关系存储多次而实现分布式存储。数据复制的有点事提高可用性、增加数据库系统的并行度、增强并发能力。数据复制也存在明显的缺点，即数据更新成本大大增加。&lt;/p&gt;
+&lt;h3 id=&quot;数据分片&quot;&gt;&lt;a href=&quot;#数据分片&quot; class=&quot;headerlink&quot; title=&quot;数据分片&quot;&gt;&lt;/a&gt;数据分片&lt;/h3&gt;&lt;p&gt;通过把数据库中的一个关系分成多个片断，每个片断都存储在不同场地上，且所有的片断包含的信息足够重构原始关系，该数据存储方式成为数据分片。&lt;/p&gt;
+&lt;p&gt;数据分片分为水平分片、垂直分片和混合分片。&lt;/p&gt;
+&lt;h3 id=&quot;数据混合存储&quot;&gt;&lt;a href=&quot;#数据混合存储&quot; class=&quot;headerlink&quot; title=&quot;数据混合存储&quot;&gt;&lt;/a&gt;数据混合存储&lt;/h3&gt;&lt;p&gt;在数据存储过程中，既包含了水平分片存储方式，又包含了垂直分片存储方式，则将这种方式称为数据混合存储方式。&lt;/p&gt;
+&lt;h2 id=&quot;分布式数据查询技术&quot;&gt;&lt;a href=&quot;#分布式数据查询技术&quot; class=&quot;headerlink&quot; title=&quot;分布式数据查询技术&quot;&gt;&lt;/a&gt;分布式数据查询技术&lt;/h2&gt;&lt;p&gt;在集中式数据库的数据查询中，查询代价主要是本地处理代价，具体内容包括CPU代价和I/O代价。但是，分布式数据库的数据查询中，查询代价除了本地处理代价之外，还包括网络传输代价。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;基于半连接的优化策略&lt;/strong&gt;，在执行分布式查询时，只传输参与连接运算的数据，不传输不参与连接运算的数据。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;基于连接的优化策略&lt;/strong&gt;，在对于网络传输代价要求比较严格时，可以使用半连接优化策略。但对于网络传输代价要求比较低，对本地处理代价要求比较高时，可以考虑使用基于连接的优化策略。基于连接的优化策略的事项是把某个场地的整个关系的元组传输到另外的场地执行连接操作。&lt;/p&gt;</content>
     
     <summary type="html">
     
-      &lt;p&gt;可能是UNICODE和ASCII字符的问题。&lt;/p&gt;
+      &lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;通过使用分散在不同地理位置的计算机来满足本地用户需要的计算方式称为分布式计算，使用到的数据库是分布式数据库，涉及的数据库技术是分布式数据库技
     
     </summary>
     
     
-      <category term="problem solution" scheme="http://mrgao1008.github.io/blog/tags/problem-solution/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何给Linux Kernel提交代码</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/02/%E5%A6%82%E4%BD%95%E7%BB%99Linux%20kernel%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/02/如何给Linux kernel提交代码/</id>
-    <published>2016-04-01T16:00:00.000Z</published>
-    <updated>2016-04-02T01:38:35.595Z</updated>
-    
-    <content type="html">&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://kernelnewbies.org/UpstreamMerge/SubmittingPatches&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;英文&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;个人或者公司如果不熟悉提交代码流程，代码很难被接受。利用本文给出一些建议将会大大的增加代码被接受的概率。&lt;/p&gt;
-&lt;p&gt;在提交代码之前，你需要阅读一些注意事项&lt;code&gt;Documentation\SubmitChecklist&lt;/code&gt;。如果是提交的驱动，同时也请阅读&lt;code&gt;Documentation\SubmittingDrivers&lt;/code&gt;。&lt;/p&gt;
-&lt;h2 id=&quot;创造并提交改动&quot;&gt;&lt;a href=&quot;#创造并提交改动&quot; class=&quot;headerlink&quot; title=&quot;创造并提交改动&quot;&gt;&lt;/a&gt;创造并提交改动&lt;/h2&gt;&lt;p&gt;###diff -up&lt;/p&gt;
-&lt;p&gt;利用&lt;code&gt;diff -up&lt;/code&gt;或者&lt;code&gt;diff -uprN&lt;/code&gt;创造patch文件。&lt;/p&gt;
-&lt;p&gt;linux所有的更改都以patche方式存在。patch命令中&lt;code&gt;-u&lt;/code&gt;代表&lt;code&gt;unified diff&lt;/code&gt;,&lt;code&gt;-p&lt;/code&gt;会显示哪个函数发生了改变。patche都是以linux源码的根目录为其实点。&lt;br&gt;比如你更改了一个文件。你需要进行下面的操作。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;SRCTREE= linux-2.6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;MYFILE= drivers/net/mydriver.c&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cd $SRCTREE&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cp $MYFILE $MYFILE.orig&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vi $MYFILE       # make your change&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cd ..&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;diff -up $SRCTREE/$MYFILE&amp;#123;.orig,&amp;#125; &amp;gt; /tmp/patch&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;如果更改了多个文件，你需要解压一个&lt;code&gt;vanilla&lt;/code&gt;或者原版linux kernel。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;MYSRC= /devel/linux-2.6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;tar xvfz linux-2.6.12.tar.gz&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;mv linux-2.6.12 linux-2.6.12-vanilla&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;diff -uprN -X linux-2.6.12-vanilla/Documentation/dontdiff \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    linux-2.6.12-vanilla $MYSRC &amp;gt; /tmp/patch&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;其中&lt;code&gt;dontdiff&lt;/code&gt;是diff需要忽略的文件列表。&lt;/p&gt;
-&lt;p&gt;确保patche中不包含其他无关文件。&lt;/p&gt;
-&lt;p&gt;如果你的更改比较巨大，可以按照逻辑分成几个部分。这方便其他内核开发者审查。&lt;/p&gt;
-&lt;p&gt;patch管理工具&lt;a href=&quot;http://savannah.nongnu.org/projects/quilt&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Quilt&lt;/a&gt;.一些脚本工具&lt;a href=&quot;http://userweb.kernel.org/~akpm/stuff/patch-scripts.tar.gz&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Scripts&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;###描述更改&lt;/p&gt;
-&lt;p&gt;描述更改过程中的技术细节，做到尽可能清晰。如果描述过长，可能你需要分成几个patch。&lt;/p&gt;
-&lt;p&gt;###分割更改&lt;/p&gt;
-&lt;p&gt;按照逻辑分割patch文件。&lt;br&gt;比如，你填补了一个驱动的bug同时还提高了它的性能，那么你需要将他分成多个patche。如果你更改了一个API,并提供一个新的驱动利用了该API，这需要分成2个patch。另一方面，如果你只是更改了很多不同文件的同一个地方，你需要将更改放在同一个patch中。如果你的patch比如依赖另外一个patch，你需要在描述patch时说明&lt;code&gt;this patch depends on patch X&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;###检查代码风格&lt;/p&gt;
-&lt;p&gt;按照&lt;code&gt;Documentation/Codingstyle&lt;/code&gt;中的描述，检查更改的编码风格。没有进行这一步的代码可能在甚至没有被阅读情况下被拒绝。最基本的，你可以采用&lt;code&gt;scripts/checkpatch.pl&lt;/code&gt;检查patch的编码风格，并且修改所有不恰当的地方。&lt;/p&gt;
-&lt;p&gt;###选择发送者&lt;/p&gt;
-&lt;p&gt;linux主线的每一部分都由一个维护者负责。更改属于哪一部分就发给对应的维护者。如果维护者没有列出，或者不回应邮件，你可以将patch发给&lt;code&gt;linux-kernel@vger.kernel.org&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;Linus Torvalds是接受更改的仲裁者，但是一般不要给他发邮件。比较明显的bug修复或者不需要讨论的patch可以直接抄送给Linux Torvalds。如果Patch没有明显的优势或者需要讨论，你需要先发给linux-kernel.&lt;/p&gt;
-&lt;p&gt;###选择抄送人&lt;/p&gt;
-&lt;p&gt;如果没有特别原因需要抄送给&lt;code&gt;linux-kernel@vger.kernel.org&lt;/code&gt;。这样可以让其他开发者可以检查代码和提出意见。&lt;/p&gt;
-&lt;p&gt;如果你的更改影响了用户和内核接口，请抄送给MAN-PAGES维护者，方便他们做更改。&lt;br&gt;小的更改：比如字符拼写错误等你需要抄送给&lt;code&gt;trivial@kernel.org&lt;/code&gt;。&lt;br&gt;比如在文档中的拼写错误等。关于小错误的定义可以查看&lt;a href=&quot;http://www.kernel.org/pub/linux/kernel/people/juhl/trivial/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;trivial&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;###只允许文字（没有多媒体，链接，压缩，附件）&lt;/p&gt;
-&lt;p&gt;所以patch都写在邮件中。&lt;/p&gt;
-&lt;p&gt;###email的大小&lt;/p&gt;
-&lt;p&gt;email的大小如果超过40kb，你需要放到网络上，并提供链接。&lt;/p&gt;
-&lt;p&gt;###指明kernel版本&lt;/p&gt;
-&lt;p&gt;你需要指明patch的kernel版本，如果patch不适用于最新的kernel，linus不会接受。&lt;/p&gt;
-&lt;p&gt;###别沮丧，重新提交&lt;/p&gt;
-&lt;p&gt;提交更改后，需要耐心等待。如果更改没有出现在下一个版本中，那么可能是一下原因：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;更改不适用于最新内核版本&lt;/li&gt;
-&lt;li&gt;更改没有经过足够讨论&lt;/li&gt;
-&lt;li&gt;代码风格问题&lt;/li&gt;
-&lt;li&gt;e-mail格式问题&lt;/li&gt;
-&lt;li&gt;更改存在技术问题&lt;/li&gt;
-&lt;li&gt;意外丢失&lt;/li&gt;
-&lt;li&gt;你太烦了&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;如果有疑问，可以在linux-kernel邮件列表上询问。&lt;/p&gt;
-&lt;p&gt;###在邮件主题上加上[PATCH]&lt;/p&gt;
-&lt;p&gt;###签名&lt;/p&gt;
-&lt;p&gt;为了方便跟踪作者和管理复杂的更改，引入了签名机制。如果确认一下4点就可以在对patch的描述后加上一句：&lt;br&gt;Signed-off-by: Random J Developer &lt;a href=&quot;&amp;#x6d;&amp;#97;&amp;#x69;&amp;#108;&amp;#116;&amp;#111;&amp;#x3a;&amp;#x72;&amp;#x61;&amp;#110;&amp;#x64;&amp;#x6f;&amp;#x6d;&amp;#64;&amp;#100;&amp;#x65;&amp;#118;&amp;#x65;&amp;#x6c;&amp;#111;&amp;#112;&amp;#101;&amp;#x72;&amp;#46;&amp;#101;&amp;#120;&amp;#97;&amp;#x6d;&amp;#x70;&amp;#108;&amp;#x65;&amp;#46;&amp;#111;&amp;#x72;&amp;#x67;&quot;&gt;&amp;#x72;&amp;#x61;&amp;#110;&amp;#x64;&amp;#x6f;&amp;#x6d;&amp;#64;&amp;#100;&amp;#x65;&amp;#118;&amp;#x65;&amp;#x6c;&amp;#111;&amp;#112;&amp;#101;&amp;#x72;&amp;#46;&amp;#101;&amp;#120;&amp;#97;&amp;#x6d;&amp;#x70;&amp;#108;&amp;#x65;&amp;#46;&amp;#111;&amp;#x72;&amp;#x67;&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;更改部分或者全部由我完成。我有权利开源&lt;/li&gt;
-&lt;li&gt;更改基于一个开源项目，需提交到同一个开源license下。否则可以提交给别的开源license&lt;/li&gt;
-&lt;li&gt;更改由别人转交给我，别人确认1,2,3条，我没有修改更改&lt;/li&gt;
-&lt;li&gt;我知道这是一个开源项目，并且贡献有可能不被记录&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;###Acked-by&lt;/p&gt;
-&lt;p&gt;子系统的维护者需要这么做，表示patch你觉得还不错。&lt;/p&gt;
-&lt;p&gt;###Tested-by和Reviewed-by&lt;/p&gt;
-&lt;p&gt;Tested-by表示某人在某种环境下patch测试是有效的。&lt;br&gt;Reviewed-by表示这个patch被检查，说明你对patch的观点。&lt;/p&gt;
-&lt;p&gt;###patch的规范格式&lt;/p&gt;
-&lt;p&gt;主题：[PATCH 001/123] 子系统: 总结&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;from:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;空行&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;patch的描述&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Signed-off-by:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;标识符---&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;其他一些评论&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;diff output&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;主题的2个示例：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Subject: [patch 2/5] ext2: improve scalability of bitmap searching&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Subject: [PATCHv2 001/207] x86: fix eflags tracking&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;from行的示例：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;From: Original Author &amp;lt;author@example.com&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;—表示改动日志的结束。&lt;br&gt;其他一些评论可以用来写上&lt;code&gt;diffstat -p 1 -w 70&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;###发送git pull请求&lt;/p&gt;
-&lt;p&gt;发送从哪能够获得更改，格式如下&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Please pull from&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        git://jdelvare.pck.nerim.net/jdelvare-2.6 i2c-for-linus&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; to get these changes:&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;同时用&lt;code&gt;git diff -M --stat --summary&lt;/code&gt;生成diffstat.&lt;/p&gt;
-&lt;h2 id=&quot;忠告、建议、技巧&quot;&gt;&lt;a href=&quot;#忠告、建议、技巧&quot; class=&quot;headerlink&quot; title=&quot;忠告、建议、技巧&quot;&gt;&lt;/a&gt;忠告、建议、技巧&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;阅读Documentation/CodingStyle&lt;/p&gt;
-&lt;p&gt;  可以利用scripts/checkpatch.pl来检查代码风格。这个脚本会提供3种水平的忠告&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;ERROR: 很可能有错&lt;/li&gt;
-&lt;li&gt;WARNING: 需要认真检查&lt;/li&gt;
-&lt;li&gt;CHECK：需要考虑&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;不要在函数内使用ifdef。&lt;br&gt;  例如：&lt;/p&gt;
-  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dev = alloc_etherdev (sizeof(struct funky_private));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if (!dev)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return -ENODEV;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#ifdef CONFIG_NET_FUNKINESS&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;init_funky_net(dev);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#endif&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;  上面的可以更改为&lt;/p&gt;
-  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;(in header)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    #ifndef CONFIG_NET_FUNKINESS&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    static inline void init_funky_net (struct net_device *d) &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    #endif&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(in the code itself)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    dev = alloc_etherdev (sizeof(struct funky_private));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (!dev)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return -ENODEV;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    init_funky_net(dev);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;static inline 比宏更好&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;不要过度设计&lt;/p&gt;
-&lt;p&gt;  Make it as simple as you can, and no simpler.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;引用&quot;&gt;&lt;a href=&quot;#引用&quot; class=&quot;headerlink&quot; title=&quot;引用&quot;&gt;&lt;/a&gt;引用&lt;/h2&gt;&lt;p&gt;这篇文章翻译于&lt;a href=&quot;http://kernelnewbies.org/UpstreamMerge/SubmittingPatches&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;英文原稿&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;#前言&quot;&gt;回到顶部&lt;/a&gt;&lt;/p&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://kernelnewbies.org/UpstreamMerge/SubmittingPatches&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;英文&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;h2 id=&quot;前言&quot;
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="http://mrgao1008.github.io/blog/tags/linux/"/>
-    
-      <category term="kernel" scheme="http://mrgao1008.github.io/blog/tags/kernel/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>tk 编程</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/02/python%20tk/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/02/python tk/</id>
-    <published>2016-04-01T16:00:00.000Z</published>
-    <updated>2016-04-02T01:40:20.474Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;标准属性&quot;&gt;&lt;a href=&quot;#标准属性&quot; class=&quot;headerlink&quot; title=&quot;标准属性&quot;&gt;&lt;/a&gt;标准属性&lt;/h2&gt;&lt;h3 id=&quot;dimensions&quot;&gt;&lt;a href=&quot;#dimensions&quot; class=&quot;headerlink&quot; title=&quot;dimensions&quot;&gt;&lt;/a&gt;dimensions&lt;/h3&gt;&lt;p&gt;尺寸包含4种&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;字母&lt;/th&gt;
-&lt;th&gt;含义&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;c&lt;/td&gt;
-&lt;td&gt;厘米&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;i&lt;/td&gt;
-&lt;td&gt;英寸&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;m&lt;/td&gt;
-&lt;td&gt;毫米&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;p&lt;/td&gt;
-&lt;td&gt;打印机的点？？&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;坐标&quot;&gt;&lt;a href=&quot;#坐标&quot; class=&quot;headerlink&quot; title=&quot;坐标&quot;&gt;&lt;/a&gt;坐标&lt;/h3&gt;&lt;h3 id=&quot;颜色&quot;&gt;&lt;a href=&quot;#颜色&quot; class=&quot;headerlink&quot; title=&quot;颜色&quot;&gt;&lt;/a&gt;颜色&lt;/h3&gt;&lt;p&gt;||#rgb||four bits per color||&lt;br&gt;||#rrggbb||eight bits per color||&lt;br&gt;||#rrrgggbbb||twelve bits per color||&lt;/p&gt;
-&lt;p&gt;还一可以指定关键词’white’,’black’,’red’,’green’,’blue’,’cyan’,’yellow’,’magenta’&lt;/p&gt;
-&lt;h3 id=&quot;fonts&quot;&gt;&lt;a href=&quot;#fonts&quot; class=&quot;headerlink&quot; title=&quot;fonts&quot;&gt;&lt;/a&gt;fonts&lt;/h3&gt;&lt;p&gt;1.元组表示,第一表示字体，第二个表示大小，正数为points，负数为像素点，后续为其他一些特别设置&lt;br&gt;(‘Helvetica’,’16’)&lt;br&gt;(‘Times’,’24’,’bold italic’)&lt;br&gt;(‘Times’,-20,’bold’)&lt;/p&gt;
-&lt;p&gt;2.字体对象 tkFont&lt;/p&gt;
-&lt;p&gt;3.X font names.&lt;/p&gt;
-&lt;h3 id=&quot;锚&quot;&gt;&lt;a href=&quot;#锚&quot; class=&quot;headerlink&quot; title=&quot;锚&quot;&gt;&lt;/a&gt;锚&lt;/h3&gt;&lt;p&gt;N S W E CENTER&lt;br&gt;NW NE SW SE&lt;/p&gt;
-&lt;h3 id=&quot;释放样式&quot;&gt;&lt;a href=&quot;#释放样式&quot; class=&quot;headerlink&quot; title=&quot;释放样式&quot;&gt;&lt;/a&gt;释放样式&lt;/h3&gt;&lt;p&gt;FLAT RAISED SUNKEN GROOVE RIDGE&lt;/p&gt;
-&lt;h3 id=&quot;Bitmaps&quot;&gt;&lt;a href=&quot;#Bitmaps&quot; class=&quot;headerlink&quot; title=&quot;Bitmaps&quot;&gt;&lt;/a&gt;Bitmaps&lt;/h3&gt;&lt;p&gt;button支持 error gray75 gray50 gray25 gray12 hourglass info questhead question warning&lt;/p&gt;
-&lt;p&gt;也可以使用.xbm(X bit map)使用@path&lt;/p&gt;
-&lt;h3 id=&quot;cursors&quot;&gt;&lt;a href=&quot;#cursors&quot; class=&quot;headerlink&quot; title=&quot;cursors&quot;&gt;&lt;/a&gt;cursors&lt;/h3&gt;&lt;h3 id=&quot;images&quot;&gt;&lt;a href=&quot;#images&quot; class=&quot;headerlink&quot; title=&quot;images&quot;&gt;&lt;/a&gt;images&lt;/h3&gt;&lt;p&gt;BitmapImage 支持 .xbm&lt;br&gt;PhotoImage 支持 .gif .pgm .ppm&lt;br&gt;ImageTk 支持更多格式&lt;/p&gt;
-&lt;h4 id=&quot;the-BitmapImage-class&quot;&gt;&lt;a href=&quot;#the-BitmapImage-class&quot; class=&quot;headerlink&quot; title=&quot;the BitmapImage class&quot;&gt;&lt;/a&gt;the BitmapImage class&lt;/h4&gt;&lt;p&gt;原型&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tk.BitmapImage(file=f[, background=b][, foreground=c])&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;实例&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;logo = tk.BitmapImage(&lt;span class=&quot;string&quot;&gt;&#39;logo.xbm&#39;&lt;/span&gt;, foreground=&lt;span class=&quot;string&quot;&gt;&#39;red&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Label(image=logo).grid()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h4 id=&quot;the-PhotoImage-class&quot;&gt;&lt;a href=&quot;#the-PhotoImage-class&quot; class=&quot;headerlink&quot; title=&quot;the PhotoImage class&quot;&gt;&lt;/a&gt;the PhotoImage class&lt;/h4&gt;&lt;p&gt;原型&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tk.PhotoImage(file=f)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Geometry-strings&quot;&gt;&lt;a href=&quot;#Geometry-strings&quot; class=&quot;headerlink&quot; title=&quot;Geometry strings&quot;&gt;&lt;/a&gt;Geometry strings&lt;/h3&gt;&lt;p&gt;A geometry string is a standard way of describing the size and location of a top-level window on a desktop.&lt;br&gt;format: ‘wxh±x±y’&lt;br&gt;+x left side&lt;br&gt;-x right side&lt;br&gt;+y top&lt;br&gt;-y bottom&lt;/p&gt;
-&lt;h3 id=&quot;window-names&quot;&gt;&lt;a href=&quot;#window-names&quot; class=&quot;headerlink&quot; title=&quot;window names&quot;&gt;&lt;/a&gt;window names&lt;/h3&gt;&lt;p&gt;hierarchical window path name&lt;br&gt;root window ‘.’&lt;br&gt;child name ‘.n’&lt;br&gt;child windows of child ‘p.n’, p is the name of the parent window&lt;/p&gt;
-&lt;p&gt;str(w): to get the path name of a widget w&lt;/p&gt;
-&lt;h3 id=&quot;cap-and-join-styles&quot;&gt;&lt;a href=&quot;#cap-and-join-styles&quot; class=&quot;headerlink&quot; title=&quot;cap and join styles&quot;&gt;&lt;/a&gt;cap and join styles&lt;/h3&gt;&lt;p&gt;cap style: tk.BUTT, tk.PROJECTING, tk.ROUND&lt;br&gt;join style: tk.ROUND, tk.BEVEL, tk.MITER&lt;/p&gt;
-&lt;h3 id=&quot;dash-patterns&quot;&gt;&lt;a href=&quot;#dash-patterns&quot; class=&quot;headerlink&quot; title=&quot;dash patterns&quot;&gt;&lt;/a&gt;dash patterns&lt;/h3&gt;&lt;p&gt;dash=(3,5)&lt;br&gt;dash=(7,1,1,1)&lt;br&gt;dash=(5,1,2,1),dashoff=3&lt;/p&gt;
-&lt;h2 id=&quot;tk-TclError&quot;&gt;&lt;a href=&quot;#tk-TclError&quot; class=&quot;headerlink&quot; title=&quot;tk.TclError&quot;&gt;&lt;/a&gt;tk.TclError&lt;/h2&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;标准属性&quot;&gt;&lt;a href=&quot;#标准属性&quot; class=&quot;headerlink&quot; title=&quot;标准属性&quot;&gt;&lt;/a&gt;标准属性&lt;/h2&gt;&lt;h3 id=&quot;dimensions&quot;&gt;&lt;a href=&quot;#dimensions&quot; class=&quot;headerlink&quot; titl
-    
-    </summary>
-    
-    
-      <category term="GUI" scheme="http://mrgao1008.github.io/blog/tags/GUI/"/>
+      <category term="database" scheme="http://mrgao1008.github.io/blog/tags/database/"/>
     
   </entry>
   
@@ -819,6 +582,243 @@
       <category term="并行计算" scheme="http://mrgao1008.github.io/blog/tags/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97/"/>
     
       <category term="分布式计算" scheme="http://mrgao1008.github.io/blog/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何给Linux Kernel提交代码</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/%E5%A6%82%E4%BD%95%E7%BB%99Linux%20kernel%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/如何给Linux kernel提交代码/</id>
+    <published>2016-04-01T16:00:00.000Z</published>
+    <updated>2016-04-02T01:38:35.595Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://kernelnewbies.org/UpstreamMerge/SubmittingPatches&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;英文&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;&lt;span id=&quot;前言&quot;&gt;前言&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;个人或者公司如果不熟悉提交代码流程，代码很难被接受。利用本文给出一些建议将会大大的增加代码被接受的概率。&lt;/p&gt;
+&lt;p&gt;在提交代码之前，你需要阅读一些注意事项&lt;code&gt;Documentation\SubmitChecklist&lt;/code&gt;。如果是提交的驱动，同时也请阅读&lt;code&gt;Documentation\SubmittingDrivers&lt;/code&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;创造并提交改动&quot;&gt;&lt;a href=&quot;#创造并提交改动&quot; class=&quot;headerlink&quot; title=&quot;创造并提交改动&quot;&gt;&lt;/a&gt;创造并提交改动&lt;/h2&gt;&lt;p&gt;###diff -up&lt;/p&gt;
+&lt;p&gt;利用&lt;code&gt;diff -up&lt;/code&gt;或者&lt;code&gt;diff -uprN&lt;/code&gt;创造patch文件。&lt;/p&gt;
+&lt;p&gt;linux所有的更改都以patche方式存在。patch命令中&lt;code&gt;-u&lt;/code&gt;代表&lt;code&gt;unified diff&lt;/code&gt;,&lt;code&gt;-p&lt;/code&gt;会显示哪个函数发生了改变。patche都是以linux源码的根目录为其实点。&lt;br&gt;比如你更改了一个文件。你需要进行下面的操作。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;SRCTREE= linux-2.6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;MYFILE= drivers/net/mydriver.c&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cd $SRCTREE&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cp $MYFILE $MYFILE.orig&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;vi $MYFILE       # make your change&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cd ..&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;diff -up $SRCTREE/$MYFILE&amp;#123;.orig,&amp;#125; &amp;gt; /tmp/patch&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;如果更改了多个文件，你需要解压一个&lt;code&gt;vanilla&lt;/code&gt;或者原版linux kernel。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;MYSRC= /devel/linux-2.6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;tar xvfz linux-2.6.12.tar.gz&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;mv linux-2.6.12 linux-2.6.12-vanilla&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;diff -uprN -X linux-2.6.12-vanilla/Documentation/dontdiff \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    linux-2.6.12-vanilla $MYSRC &amp;gt; /tmp/patch&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;其中&lt;code&gt;dontdiff&lt;/code&gt;是diff需要忽略的文件列表。&lt;/p&gt;
+&lt;p&gt;确保patche中不包含其他无关文件。&lt;/p&gt;
+&lt;p&gt;如果你的更改比较巨大，可以按照逻辑分成几个部分。这方便其他内核开发者审查。&lt;/p&gt;
+&lt;p&gt;patch管理工具&lt;a href=&quot;http://savannah.nongnu.org/projects/quilt&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Quilt&lt;/a&gt;.一些脚本工具&lt;a href=&quot;http://userweb.kernel.org/~akpm/stuff/patch-scripts.tar.gz&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Scripts&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;###描述更改&lt;/p&gt;
+&lt;p&gt;描述更改过程中的技术细节，做到尽可能清晰。如果描述过长，可能你需要分成几个patch。&lt;/p&gt;
+&lt;p&gt;###分割更改&lt;/p&gt;
+&lt;p&gt;按照逻辑分割patch文件。&lt;br&gt;比如，你填补了一个驱动的bug同时还提高了它的性能，那么你需要将他分成多个patche。如果你更改了一个API,并提供一个新的驱动利用了该API，这需要分成2个patch。另一方面，如果你只是更改了很多不同文件的同一个地方，你需要将更改放在同一个patch中。如果你的patch比如依赖另外一个patch，你需要在描述patch时说明&lt;code&gt;this patch depends on patch X&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;###检查代码风格&lt;/p&gt;
+&lt;p&gt;按照&lt;code&gt;Documentation/Codingstyle&lt;/code&gt;中的描述，检查更改的编码风格。没有进行这一步的代码可能在甚至没有被阅读情况下被拒绝。最基本的，你可以采用&lt;code&gt;scripts/checkpatch.pl&lt;/code&gt;检查patch的编码风格，并且修改所有不恰当的地方。&lt;/p&gt;
+&lt;p&gt;###选择发送者&lt;/p&gt;
+&lt;p&gt;linux主线的每一部分都由一个维护者负责。更改属于哪一部分就发给对应的维护者。如果维护者没有列出，或者不回应邮件，你可以将patch发给&lt;code&gt;linux-kernel@vger.kernel.org&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;Linus Torvalds是接受更改的仲裁者，但是一般不要给他发邮件。比较明显的bug修复或者不需要讨论的patch可以直接抄送给Linux Torvalds。如果Patch没有明显的优势或者需要讨论，你需要先发给linux-kernel.&lt;/p&gt;
+&lt;p&gt;###选择抄送人&lt;/p&gt;
+&lt;p&gt;如果没有特别原因需要抄送给&lt;code&gt;linux-kernel@vger.kernel.org&lt;/code&gt;。这样可以让其他开发者可以检查代码和提出意见。&lt;/p&gt;
+&lt;p&gt;如果你的更改影响了用户和内核接口，请抄送给MAN-PAGES维护者，方便他们做更改。&lt;br&gt;小的更改：比如字符拼写错误等你需要抄送给&lt;code&gt;trivial@kernel.org&lt;/code&gt;。&lt;br&gt;比如在文档中的拼写错误等。关于小错误的定义可以查看&lt;a href=&quot;http://www.kernel.org/pub/linux/kernel/people/juhl/trivial/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;trivial&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;###只允许文字（没有多媒体，链接，压缩，附件）&lt;/p&gt;
+&lt;p&gt;所以patch都写在邮件中。&lt;/p&gt;
+&lt;p&gt;###email的大小&lt;/p&gt;
+&lt;p&gt;email的大小如果超过40kb，你需要放到网络上，并提供链接。&lt;/p&gt;
+&lt;p&gt;###指明kernel版本&lt;/p&gt;
+&lt;p&gt;你需要指明patch的kernel版本，如果patch不适用于最新的kernel，linus不会接受。&lt;/p&gt;
+&lt;p&gt;###别沮丧，重新提交&lt;/p&gt;
+&lt;p&gt;提交更改后，需要耐心等待。如果更改没有出现在下一个版本中，那么可能是一下原因：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;更改不适用于最新内核版本&lt;/li&gt;
+&lt;li&gt;更改没有经过足够讨论&lt;/li&gt;
+&lt;li&gt;代码风格问题&lt;/li&gt;
+&lt;li&gt;e-mail格式问题&lt;/li&gt;
+&lt;li&gt;更改存在技术问题&lt;/li&gt;
+&lt;li&gt;意外丢失&lt;/li&gt;
+&lt;li&gt;你太烦了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果有疑问，可以在linux-kernel邮件列表上询问。&lt;/p&gt;
+&lt;p&gt;###在邮件主题上加上[PATCH]&lt;/p&gt;
+&lt;p&gt;###签名&lt;/p&gt;
+&lt;p&gt;为了方便跟踪作者和管理复杂的更改，引入了签名机制。如果确认一下4点就可以在对patch的描述后加上一句：&lt;br&gt;Signed-off-by: Random J Developer &lt;a href=&quot;&amp;#109;&amp;#x61;&amp;#105;&amp;#108;&amp;#x74;&amp;#x6f;&amp;#x3a;&amp;#x72;&amp;#97;&amp;#110;&amp;#x64;&amp;#x6f;&amp;#109;&amp;#x40;&amp;#x64;&amp;#x65;&amp;#118;&amp;#x65;&amp;#x6c;&amp;#x6f;&amp;#112;&amp;#101;&amp;#114;&amp;#x2e;&amp;#101;&amp;#120;&amp;#97;&amp;#x6d;&amp;#x70;&amp;#108;&amp;#x65;&amp;#x2e;&amp;#111;&amp;#114;&amp;#x67;&quot;&gt;&amp;#x72;&amp;#97;&amp;#110;&amp;#x64;&amp;#x6f;&amp;#109;&amp;#x40;&amp;#x64;&amp;#x65;&amp;#118;&amp;#x65;&amp;#x6c;&amp;#x6f;&amp;#112;&amp;#101;&amp;#114;&amp;#x2e;&amp;#101;&amp;#120;&amp;#97;&amp;#x6d;&amp;#x70;&amp;#108;&amp;#x65;&amp;#x2e;&amp;#111;&amp;#114;&amp;#x67;&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;更改部分或者全部由我完成。我有权利开源&lt;/li&gt;
+&lt;li&gt;更改基于一个开源项目，需提交到同一个开源license下。否则可以提交给别的开源license&lt;/li&gt;
+&lt;li&gt;更改由别人转交给我，别人确认1,2,3条，我没有修改更改&lt;/li&gt;
+&lt;li&gt;我知道这是一个开源项目，并且贡献有可能不被记录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;###Acked-by&lt;/p&gt;
+&lt;p&gt;子系统的维护者需要这么做，表示patch你觉得还不错。&lt;/p&gt;
+&lt;p&gt;###Tested-by和Reviewed-by&lt;/p&gt;
+&lt;p&gt;Tested-by表示某人在某种环境下patch测试是有效的。&lt;br&gt;Reviewed-by表示这个patch被检查，说明你对patch的观点。&lt;/p&gt;
+&lt;p&gt;###patch的规范格式&lt;/p&gt;
+&lt;p&gt;主题：[PATCH 001/123] 子系统: 总结&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;from:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;空行&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;patch的描述&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Signed-off-by:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;标识符---&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;其他一些评论&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;diff output&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;主题的2个示例：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Subject: [patch 2/5] ext2: improve scalability of bitmap searching&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Subject: [PATCHv2 001/207] x86: fix eflags tracking&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;from行的示例：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;From: Original Author &amp;lt;author@example.com&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;—表示改动日志的结束。&lt;br&gt;其他一些评论可以用来写上&lt;code&gt;diffstat -p 1 -w 70&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;###发送git pull请求&lt;/p&gt;
+&lt;p&gt;发送从哪能够获得更改，格式如下&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Please pull from&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        git://jdelvare.pck.nerim.net/jdelvare-2.6 i2c-for-linus&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; to get these changes:&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;同时用&lt;code&gt;git diff -M --stat --summary&lt;/code&gt;生成diffstat.&lt;/p&gt;
+&lt;h2 id=&quot;忠告、建议、技巧&quot;&gt;&lt;a href=&quot;#忠告、建议、技巧&quot; class=&quot;headerlink&quot; title=&quot;忠告、建议、技巧&quot;&gt;&lt;/a&gt;忠告、建议、技巧&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;阅读Documentation/CodingStyle&lt;/p&gt;
+&lt;p&gt;  可以利用scripts/checkpatch.pl来检查代码风格。这个脚本会提供3种水平的忠告&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ERROR: 很可能有错&lt;/li&gt;
+&lt;li&gt;WARNING: 需要认真检查&lt;/li&gt;
+&lt;li&gt;CHECK：需要考虑&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;不要在函数内使用ifdef。&lt;br&gt;  例如：&lt;/p&gt;
+  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;dev = alloc_etherdev (sizeof(struct funky_private));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if (!dev)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return -ENODEV;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#ifdef CONFIG_NET_FUNKINESS&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;init_funky_net(dev);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#endif&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  上面的可以更改为&lt;/p&gt;
+  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;(in header)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    #ifndef CONFIG_NET_FUNKINESS&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    static inline void init_funky_net (struct net_device *d) &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    #endif&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;(in the code itself)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    dev = alloc_etherdev (sizeof(struct funky_private));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    if (!dev)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            return -ENODEV;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    init_funky_net(dev);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;static inline 比宏更好&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;不要过度设计&lt;/p&gt;
+&lt;p&gt;  Make it as simple as you can, and no simpler.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;引用&quot;&gt;&lt;a href=&quot;#引用&quot; class=&quot;headerlink&quot; title=&quot;引用&quot;&gt;&lt;/a&gt;引用&lt;/h2&gt;&lt;p&gt;这篇文章翻译于&lt;a href=&quot;http://kernelnewbies.org/UpstreamMerge/SubmittingPatches&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;英文原稿&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#前言&quot;&gt;回到顶部&lt;/a&gt;&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://kernelnewbies.org/UpstreamMerge/SubmittingPatches&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;英文&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;前言&quot;
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="http://mrgao1008.github.io/blog/tags/linux/"/>
+    
+      <category term="kernel" scheme="http://mrgao1008.github.io/blog/tags/kernel/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>锁与进程间通信</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/%E9%94%81%E4%B8%8E%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/锁与进程间通信/</id>
+    <published>2016-04-01T16:00:00.000Z</published>
+    <updated>2016-04-02T01:36:59.129Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;竞态条件(race condition)&lt;/strong&gt;是几个进程在访问资源时彼此干扰的情况。&lt;/p&gt;
+&lt;p&gt;难点在于：无法通过测试完全找到竞态条件，只有彻底研究源代码并通过敏锐的直觉，才能找到并消除竞态条件。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;临界区(Critical section)&lt;/strong&gt;&lt;br&gt;是在并行编程中，一段不能被多个处理器同时执行的代码。&lt;/p&gt;
+&lt;p&gt;解决方法：&lt;/p&gt;
+&lt;p&gt;信号量(semaphore):受保护的特殊变量。初始值为1。有2个标准操作up和down。在一个进程试图进入临界区时，调用down函数。这会将信号量减1，即将其设置为0，然后执行临界区代码。在执行操作完成后，调用up函数将信号量加1，即重置为初始值。信号量有下面2中特性：&lt;/p&gt;
+&lt;p&gt;（1）又一个进程试图进入临界区，首先必须对信号量执行down操作。因为信号量当前值为0，会导致进程在该信号量上“睡眠”，直到前一个进程退出。&lt;/p&gt;
+&lt;p&gt;（2）进程退出临界区，执行up操作。不仅将信号量加1，而且还会选择一个在该信号量上睡眠的进程。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;查询和修改信号量的操作比如为原子的，反正竞态条件。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;各种锁：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;原子操作:保证简单的计数器加1可以原子执行&lt;/li&gt;
+&lt;li&gt;自旋锁:用于短期保护某段代码，以防止其他处理器访问&lt;/li&gt;
+&lt;li&gt;信号量：在等待信号量释放时，进入睡眠，直至被唤醒，内核重新尝试获取信号量&lt;/li&gt;
+&lt;li&gt;读写锁：区分对数据结构的两种不同类型的操作。任何数目的处理器都可以对数据结构进行并发&lt;strong&gt;读&lt;/strong&gt;,但是只有一个处理器能进行&lt;strong&gt;写&lt;/strong&gt;操作。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;原子操作&quot;&gt;&lt;a href=&quot;#原子操作&quot; class=&quot;headerlink&quot; title=&quot;原子操作&quot;&gt;&lt;/a&gt;原子操作&lt;/h2&gt;&lt;p&gt;原子类型为&lt;code&gt;atomic_t&lt;/code&gt;，定义在&lt;code&gt;&amp;lt;asm-arch/atomic.h&amp;gt;&lt;/code&gt;中。原子类型只能借助&lt;code&gt;ATOMIC_INIT&lt;/code&gt;宏初始化。原子类型是基于c语言通用类型实现，不能用++等操作。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;操作&lt;/th&gt;
+&lt;th&gt;效果&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_read(atomic_t *v)&lt;/td&gt;
+&lt;td&gt;读取原子变量的值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_set(atomic_t *v, int i)&lt;/td&gt;
+&lt;td&gt;将v设置为i&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_add(int i, atomic_t *v)&lt;/td&gt;
+&lt;td&gt;将i加到v&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_add_return(int i, atomic_t *v)&lt;/td&gt;
+&lt;td&gt;将i加到v，并返回结果&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_sub(int i, atomic_t *v)&lt;/td&gt;
+&lt;td&gt;从v减去i&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_sub_return(int i, atomic_t *v)&lt;/td&gt;
+&lt;td&gt;从v减去i，并返回结果&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_inc(atomic_t *v)&lt;/td&gt;
+&lt;td&gt;将v加1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_inc_and_test(atomic_t *v)&lt;/td&gt;
+&lt;td&gt;将v加1。结果如果为0则返回true，否则返回false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_dec(atomic_t *v)&lt;/td&gt;
+&lt;td&gt;从v减1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_dec_and_test(atomic_t *v)&lt;/td&gt;
+&lt;td&gt;从v减1。结果如果为0则返回true，否则返回false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;atomic_add_negative(int i, atomic_i *v)&lt;/td&gt;
+&lt;td&gt;将i加到v.如果结果小于0则返回true,否则返回false&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;local_t类型，允许在单个CPU上原子操作。&lt;/p&gt;
+&lt;h2 id=&quot;自旋锁&quot;&gt;&lt;a href=&quot;#自旋锁&quot; class=&quot;headerlink&quot; title=&quot;自旋锁&quot;&gt;&lt;/a&gt;自旋锁&lt;/h2&gt;&lt;p&gt;自旋锁用于保护段的代码段，其中只包含少量c语言，因此会很快执行完毕。&lt;/p&gt;
+&lt;p&gt;自旋锁通过spinlock_t数据结构实现，基本可以使用spin_lock和spin_unlock操作。还有其他一些自旋锁操作：spin_lock_irqsave不仅获得自旋锁，还停用本地cpu的中断，而sin_lock_bh则停用softIRQ。这两个操作获得的自旋锁必须用对应的接口释放，分别是spin_unlock_irqsave和spin_unlock_bh。&lt;/p&gt;
+&lt;h2 id=&quot;信号量&quot;&gt;&lt;a href=&quot;#信号量&quot; class=&quot;headerlink&quot; title=&quot;信号量&quot;&gt;&lt;/a&gt;信号量&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;asm-arch/semaphore.h&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;struct semaphor &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	atomic_t count;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	int sleepers;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	wait_queue_head_t wait;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;与自旋锁相比，信号量适合于保护更长的临界区，以防止并行访问。但它们不应该用于保护较短的代码范围，因为竞争信号量时需要使进程睡眠和再次唤醒，代价很高。&lt;/p&gt;
+&lt;h2 id=&quot;RCU机制&quot;&gt;&lt;a href=&quot;#RCU机制&quot; class=&quot;headerlink&quot; title=&quot;RCU机制&quot;&gt;&lt;/a&gt;RCU机制&lt;/h2&gt;&lt;p&gt;RCU(read-copy-update)是一个相当新的同步机制。RCU对使用者提出一些约束&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对共享资源的访问在大部分时间应该是只读的，写访问应该相对很少。&lt;/li&gt;
+&lt;li&gt;在RCU保护的代码范围内，内核不能进入睡眠状态。&lt;/li&gt;
+&lt;li&gt;受保护资源必须通过指针访问。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;RCU原理很简单:该机制记录了指向共享数据结构的指针的所有使用者。在该结构将要改变时，则首先创建一个副本（或一个新的实例，填充适当的内容，这没什么差别），在副本中修改。在所有进行读访问的使用者结束对旧副本的读取之后，指针可以替换为指向新的、修改后副本的指针。请注意，这种机制允许读写并发执行。&lt;/p&gt;
+&lt;h3 id=&quot;核心API&quot;&gt;&lt;a href=&quot;#核心API&quot; class=&quot;headerlink&quot; title=&quot;核心API&quot;&gt;&lt;/a&gt;核心API&lt;/h3&gt;&lt;p&gt;假定指针ptr指向一个被RCU保护的数据结构。直接反引用指针是禁止的，首先必须调用rcu_dereference(ptr)，然后反引用返回的结果。此外，凡引用指针并使用其结果的代码，需要用rcu_read_lock和rcu_read_unlock调用保护起来：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;rcu_read_lock();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;p = rcu_derefence(ptr);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;if (p != NULL) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	awesome_function(p);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;rcu_read_unlock();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;被反映用的指针不能在rcu_read_lock和rcu_read_unlock保护代码范围之外使用，也不能用于写访问&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如果必须修改ptr指向的对象，则需要使用rcu_assign_pointer:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;struct super_duper *new_ptr = kmalloc(...);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;new_ptr-&amp;gt;meaing = xyz;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;new_ptr-&amp;gt;of = 42;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;new_ptr-&amp;gt;life = 23;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;rcu_assign_pointer(ptr, new_ptr);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;按RCU的术语，该操作公布了这个指针，后续的读取操作将看到新的结构，而不是原来的。&lt;br&gt;&lt;strong&gt;如果更新可能来自内核中许多地方，那么必须使用普通的同步源于防止并发的写操作，如自旋锁。尽管RCU能保护读访问不受写访问的干扰，但它不对写访问之间的相互干扰提供防护！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;synchronize_rcu()等待所有现存的读访问完成。在函数返回之后，释放与原指针关联的内存是安全的。&lt;/p&gt;
+&lt;p&gt;call_rcu可用于注册一个函数，在所有针对共享资源的读访问完成以后调用。这要求将一个rcu_read实例嵌入（不能通过指针）到RCU保护的数据结构：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;struct super_duper &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct rcu_head head;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	int meaning, of, life;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;该回调函数可通过参数访问对象的rcu_head成员，进而使用container_of机制访问对象本身。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;kernel/rcuupdate.c&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;void fastcall call_rcu(struct rcu_head * head, void(*func)(struct rcu_head *rcu))&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;链表操作&quot;&gt;&lt;a href=&quot;#链表操作&quot; class=&quot;headerlink&quot; title=&quot;链表操作&quot;&gt;&lt;/a&gt;链表操作&lt;/h3&gt;&lt;p&gt;RCU能保护的，不仅仅是一般的指针。内核也提供了标准函数，使得能通过RCU机制保护双链表，这是RCU机制在内核内部最重要的应用。此外，由struct hlist_head和struct hlist_node组成的散列表也可以通过RCU保护。&lt;/p&gt;
+&lt;p&gt;有关通过RCU保护的链表，好消息是仍然可以使用标准的链表元素。只有在遍历链表、修改和删除链表元素时，必须调用标准函数的RCU变体。函数名称是在标准函数之后附加_rcu后缀。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;list.h&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static inline void list_add_rcu(struct list_head *new,struct list_head *head)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static inline void list_add_tail_rcu(struct list_head *new,struct list_head *head)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static inline void list_del_rcu(struct list_head *entry)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;static inline void list_replace_rcu(struct list_head *old,struct list_head *new)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;还有list_for_each_rcu允许遍历链表的所有元素。而list_for_each_rcu_safe甚至对删除链表元素也是安全的。这两个操作都必须通过一对rcu_read_lock()和rcu_read_unlock()包围。&lt;/p&gt;
+&lt;h2 id=&quot;内存和优化屏障&quot;&gt;&lt;a href=&quot;#内存和优化屏障&quot; class=&quot;headerlink&quot; title=&quot;内存和优化屏障&quot;&gt;&lt;/a&gt;内存和优化屏障&lt;/h2&gt;&lt;h2 id=&quot;读-写锁&quot;&gt;&lt;a href=&quot;#读-写锁&quot; class=&quot;headerlink&quot; title=&quot;读/写锁&quot;&gt;&lt;/a&gt;读/写锁&lt;/h2&gt;&lt;p&gt;读写信号量和读写自旋锁。&lt;/p&gt;
+&lt;p&gt;读写自旋锁定义为rwlock_t。必须根据读写访问，以不同的方法获取锁。&lt;/p&gt;
+&lt;p&gt;进程对临界区进行读访问时，在进入和离开是需要分别执行read_lock和read_unlock。内核允许任意数目的读进程并发访问临界区。&lt;/p&gt;
+&lt;p&gt;write_lock和write_unlock用于写访问。内核保证只有一个写进程（此时没有读进程）能够处于临界区。&lt;/p&gt;
+&lt;p&gt;_irq_irqsave变体也同样可用，运作方式如果普通的自旋锁。以_bh结果的变体也是可用的，用于停用软件中断，但硬件中断中断仍然是开启的。&lt;/p&gt;
+&lt;h2 id=&quot;大内核锁&quot;&gt;&lt;a href=&quot;#大内核锁&quot; class=&quot;headerlink&quot; title=&quot;大内核锁&quot;&gt;&lt;/a&gt;大内核锁&lt;/h2&gt;&lt;h2 id=&quot;互斥量&quot;&gt;&lt;a href=&quot;#互斥量&quot; class=&quot;headerlink&quot; title=&quot;互斥量&quot;&gt;&lt;/a&gt;互斥量&lt;/h2&gt;&lt;p&gt;尽管信号量可用于实现互斥量的功能，信号量的通用性导致的开销通常是不必要的。因此，内核包含了一个专用互斥量的独立实现，他们不依赖于信号量。&lt;strong&gt;互斥量是信号量的特例，count为1时&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;经典的互斥量&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;mutex.h&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;struct mutex &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	/* 1: 未锁定， 0： 锁定， 负值： 锁定，可能有等待者*/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	atomic_t count;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	spinlock_t wait_lock;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct list_head wait_list;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;实时互斥量&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;rtmutex.h&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;struct rt_mutex &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	spinlock_t wait_lock;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct plist_head wait_list;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	struct task_struct *owner;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;近似的per-CPU计数器&quot;&gt;&lt;a href=&quot;#近似的per-CPU计数器&quot; class=&quot;headerlink&quot; title=&quot;近似的per-CPU计数器&quot;&gt;&lt;/a&gt;近似的per-CPU计数器&lt;/h2&gt;&lt;p&gt;对于某些计数器没必要时时了解其准确值。&lt;/p&gt;
+&lt;h2 id=&quot;锁竞争与细粒度锁&quot;&gt;&lt;a href=&quot;#锁竞争与细粒度锁&quot; class=&quot;headerlink&quot; title=&quot;锁竞争与细粒度锁&quot;&gt;&lt;/a&gt;锁竞争与细粒度锁&lt;/h2&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;竞态条件(race condition)&lt;/strong&gt;是几个进程在访问资源时彼此干扰的情况。&lt;/p&gt;
+&lt;p&gt;难点在于：无
+    
+    </summary>
+    
+    
+      <category term="锁" scheme="http://mrgao1008.github.io/blog/tags/%E9%94%81/"/>
     
   </entry>
   
@@ -1153,6 +1153,26 @@
   </entry>
   
   <entry>
+    <title>网站访问记录</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/01/%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E8%AE%B0%E5%BD%95/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/01/网站访问记录/</id>
+    <published>2016-03-31T16:00:00.000Z</published>
+    <updated>2016-04-01T08:02:20.426Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;网站访问记录&quot;&gt;&lt;a href=&quot;#网站访问记录&quot; class=&quot;headerlink&quot; title=&quot;网站访问记录&quot;&gt;&lt;/a&gt;网站访问记录&lt;/h1&gt;&lt;h2 id=&quot;1-记录访问的时间，ip，次数。&quot;&gt;&lt;a href=&quot;#1-记录访问的时间，ip，次数。&quot; class=&quot;headerlink&quot; title=&quot;1.记录访问的时间，ip，次数。&quot;&gt;&lt;/a&gt;1.记录访问的时间，ip，次数。&lt;/h2&gt;&lt;h2 id=&quot;2-画图&quot;&gt;&lt;a href=&quot;#2-画图&quot; class=&quot;headerlink&quot; title=&quot;2.画图&quot;&gt;&lt;/a&gt;2.画图&lt;/h2&gt;&lt;h2 id=&quot;3-可视化&quot;&gt;&lt;a href=&quot;#3-可视化&quot; class=&quot;headerlink&quot; title=&quot;3.可视化&quot;&gt;&lt;/a&gt;3.可视化&lt;/h2&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;网站访问记录&quot;&gt;&lt;a href=&quot;#网站访问记录&quot; class=&quot;headerlink&quot; title=&quot;网站访问记录&quot;&gt;&lt;/a&gt;网站访问记录&lt;/h1&gt;&lt;h2 id=&quot;1-记录访问的时间，ip，次数。&quot;&gt;&lt;a href=&quot;#1-记录访问的时间，ip，次数。&quot; cla
+    
+    </summary>
+    
+    
+      <category term="site" scheme="http://mrgao1008.github.io/blog/tags/site/"/>
+    
+  </entry>
+  
+  <entry>
     <title>c++ 学习文档</title>
     <link href="http://mrgao1008.github.io/blog/2016/04/01/c++%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3/"/>
     <id>http://mrgao1008.github.io/blog/2016/04/01/c++学习文档/</id>
@@ -1241,26 +1261,6 @@
     
     
       <category term="c++" scheme="http://mrgao1008.github.io/blog/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>网站访问记录</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/01/%E7%BD%91%E7%AB%99%E8%AE%BF%E9%97%AE%E8%AE%B0%E5%BD%95/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/01/网站访问记录/</id>
-    <published>2016-03-31T16:00:00.000Z</published>
-    <updated>2016-04-01T08:02:20.426Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;网站访问记录&quot;&gt;&lt;a href=&quot;#网站访问记录&quot; class=&quot;headerlink&quot; title=&quot;网站访问记录&quot;&gt;&lt;/a&gt;网站访问记录&lt;/h1&gt;&lt;h2 id=&quot;1-记录访问的时间，ip，次数。&quot;&gt;&lt;a href=&quot;#1-记录访问的时间，ip，次数。&quot; class=&quot;headerlink&quot; title=&quot;1.记录访问的时间，ip，次数。&quot;&gt;&lt;/a&gt;1.记录访问的时间，ip，次数。&lt;/h2&gt;&lt;h2 id=&quot;2-画图&quot;&gt;&lt;a href=&quot;#2-画图&quot; class=&quot;headerlink&quot; title=&quot;2.画图&quot;&gt;&lt;/a&gt;2.画图&lt;/h2&gt;&lt;h2 id=&quot;3-可视化&quot;&gt;&lt;a href=&quot;#3-可视化&quot; class=&quot;headerlink&quot; title=&quot;3.可视化&quot;&gt;&lt;/a&gt;3.可视化&lt;/h2&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;网站访问记录&quot;&gt;&lt;a href=&quot;#网站访问记录&quot; class=&quot;headerlink&quot; title=&quot;网站访问记录&quot;&gt;&lt;/a&gt;网站访问记录&lt;/h1&gt;&lt;h2 id=&quot;1-记录访问的时间，ip，次数。&quot;&gt;&lt;a href=&quot;#1-记录访问的时间，ip，次数。&quot; cla
-    
-    </summary>
-    
-    
-      <category term="site" scheme="http://mrgao1008.github.io/blog/tags/site/"/>
     
   </entry>
   
