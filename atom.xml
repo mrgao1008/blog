@@ -50,194 +50,22 @@
   </entry>
   
   <entry>
-    <title>Windows API Hook 开发环境配置</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/02/Windows%20API%20hook%20%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/02/Windows API hook 开发环境配置/</id>
+    <title>LoadLibrary error 126</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/LoadLibrary%20126/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/LoadLibrary 126/</id>
     <published>2016-04-01T16:00:00.000Z</published>
-    <updated>2016-04-02T01:39:47.238Z</updated>
+    <updated>2016-04-02T01:40:55.211Z</updated>
     
-    <content type="html">&lt;p&gt;&lt;span id=&quot;top&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;!-- MarkdownTOC --&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#detours安装和配置&quot;&gt;Detours安装和配置&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#detours介绍&quot;&gt;Detours介绍&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#detours安装&quot;&gt;Detours安装&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#detours编译&quot;&gt;Detours编译&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#windows-api-hook例子&quot;&gt;Windows API Hook例子&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#加入detours头文件和动态库文件&quot;&gt;加入detours头文件和动态库文件&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#利用withdll进行远程dll注入&quot;&gt;利用withdll进行远程dll注入&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;!-- /MarkdownTOC --&gt;
-&lt;p&gt;&lt;a name=&quot;detours安装和配置&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Detours安装和配置&quot;&gt;&lt;a href=&quot;#Detours安装和配置&quot; class=&quot;headerlink&quot; title=&quot;Detours安装和配置&quot;&gt;&lt;/a&gt;Detours安装和配置&lt;/h2&gt;&lt;p&gt;&lt;a name=&quot;detours介绍&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Detours介绍&quot;&gt;&lt;a href=&quot;#Detours介绍&quot; class=&quot;headerlink&quot; title=&quot;Detours介绍&quot;&gt;&lt;/a&gt;Detours介绍&lt;/h3&gt;&lt;p&gt;Detours是Windows下一个API Hook 开源框架。&lt;br&gt;&lt;a href=&quot;http://research.microsoft.com/en-us/projects/detours/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Detours官网&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://research.microsoft.com/en-us/downloads/d36340fb-4d3c-4ddd-bf5b-1db25d03713d/default.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Detours 3.0下载地址&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a name=&quot;detours安装&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Detours安装&quot;&gt;&lt;a href=&quot;#Detours安装&quot; class=&quot;headerlink&quot; title=&quot;Detours安装&quot;&gt;&lt;/a&gt;Detours安装&lt;/h3&gt;&lt;p&gt;msi文件一路next。记下安装目录。&lt;/p&gt;
-&lt;p&gt;&lt;a name=&quot;detours编译&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Detours编译&quot;&gt;&lt;a href=&quot;#Detours编译&quot; class=&quot;headerlink&quot; title=&quot;Detours编译&quot;&gt;&lt;/a&gt;Detours编译&lt;/h3&gt;&lt;p&gt;安装完成后，进入目录&lt;code&gt;C:\Program Files\Microsoft Research\Detours Express 3.0&lt;/code&gt;会看到下面的目录结构&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;samples\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	simple\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	withdll\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;src\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;其中src是需要编译的detours源码。simple和withdll是实现windows API Hook需要用到的2个示例。&lt;/p&gt;
-&lt;p&gt;编译步骤如下:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;以管理员权限启动cmd&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;设置环境变量，不然nmake会出错&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# &amp;quot;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\vcvars32.bat&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;进入detours的src文件夹并进行编译&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# cd C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\src&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# nmake&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;编译在src和samples同一目录会生成lib.X86文件夹，里面的detours.lib就是我们需要的。&lt;/p&gt;
-&lt;p&gt;&lt;a name=&quot;windows-api-hook例子&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Windows-API-Hook例子&quot;&gt;&lt;a href=&quot;#Windows-API-Hook例子&quot; class=&quot;headerlink&quot; title=&quot;Windows API Hook例子&quot;&gt;&lt;/a&gt;Windows API Hook例子&lt;/h2&gt;&lt;p&gt;&lt;a name=&quot;加入detours头文件和动态库文件&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;加入detours头文件和动态库文件&quot;&gt;&lt;a href=&quot;#加入detours头文件和动态库文件&quot; class=&quot;headerlink&quot; title=&quot;加入detours头文件和动态库文件&quot;&gt;&lt;/a&gt;加入detours头文件和动态库文件&lt;/h3&gt;&lt;p&gt;在vs中新建windows控制台程序，设置解决方案的属性。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;打开&lt;strong&gt;项目&lt;/strong&gt;–&lt;strong&gt;XXX 属性&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;C/C++&lt;/strong&gt;–&lt;strong&gt;常规&lt;/strong&gt; 在&lt;strong&gt;附加目录项&lt;/strong&gt;中加入&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\include&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;链接器&lt;/strong&gt;–&lt;strong&gt;常规&lt;/strong&gt; 在&lt;strong&gt;附加库目录&lt;/strong&gt;中加入&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\lib.X86&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;链接器&lt;/strong&gt;–&lt;strong&gt;输入&lt;/strong&gt; 在&lt;strong&gt;附加依赖项&lt;/strong&gt;中加入&lt;code&gt;detours.lib&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;C/C++&lt;/strong&gt;–&lt;strong&gt;代码生成&lt;/strong&gt; 在&lt;strong&gt;运行库&lt;/strong&gt;选择&lt;code&gt;/MT&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;常规&lt;/strong&gt; 在&lt;strong&gt;字符集&lt;/strong&gt;选择&lt;code&gt;未设置&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;在命令栏中选择&lt;code&gt;release&lt;/code&gt;版本&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&quot;withdll的编译&quot;&gt;&lt;a href=&quot;#withdll的编译&quot; class=&quot;headerlink&quot; title=&quot;withdll的编译&quot;&gt;&lt;/a&gt;withdll的编译&lt;/h4&gt;&lt;p&gt;在源文件中新建cpp文件，拷贝detours安装目录下的&lt;code&gt;samples\withdll\withdll.cpp&lt;/code&gt;内容到cpp中。编译。&lt;/p&gt;
-&lt;h4 id=&quot;simple的编译&quot;&gt;&lt;a href=&quot;#simple的编译&quot; class=&quot;headerlink&quot; title=&quot;simple的编译&quot;&gt;&lt;/a&gt;simple的编译&lt;/h4&gt;&lt;p&gt;在vs新建项目时，选择windows控制台程序，并选择dll。设置解决方案属性。拷贝&lt;code&gt;samples\simple\simple.cpp&lt;/code&gt;到新建的cpp文件中，编译。&lt;/p&gt;
-&lt;p&gt;&lt;a name=&quot;利用withdll进行远程dll注入&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;利用withdll进行远程dll注入&quot;&gt;&lt;a href=&quot;#利用withdll进行远程dll注入&quot; class=&quot;headerlink&quot; title=&quot;利用withdll进行远程dll注入&quot;&gt;&lt;/a&gt;利用withdll进行远程dll注入&lt;/h2&gt;&lt;p&gt;&lt;code&gt;withdll /d:simple.dll a.exe&lt;/code&gt;会将simple.dll注入到a.exe中。注意&lt;code&gt;/d:simple.dll&lt;/code&gt;分号后不要有空格。exe和dll用绝对地址和相对地址都可以。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;#top&quot;&gt;回到顶部&lt;/a&gt;&lt;/p&gt;</content>
+    <content type="html">&lt;p&gt;可能是UNICODE和ASCII字符的问题。&lt;/p&gt;</content>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;span id=&quot;top&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;!-- MarkdownTOC --&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#detours安装和配置&quot;&gt;Detours安装和配置&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#detours介绍&quot;&gt;Detours
+      &lt;p&gt;可能是UNICODE和ASCII字符的问题。&lt;/p&gt;
     
     </summary>
     
     
-      <category term="Windows" scheme="http://mrgao1008.github.io/blog/tags/Windows/"/>
-    
-      <category term="hook" scheme="http://mrgao1008.github.io/blog/tags/hook/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第五章 关系模型</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/02/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E7%AC%AC%E4%B8%89%E7%89%88%EF%BC%891/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/02/数据库系统原理与应用（第三版）1/</id>
-    <published>2016-04-01T16:00:00.000Z</published>
-    <updated>2016-04-02T01:37:55.664Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h2&gt;&lt;p&gt;关系模型是一种以二维表的形式表示实体数据和实体之间关系等信息的数据库模型。&lt;/p&gt;
-&lt;p&gt;在关系模型中，基本元素包括属性、模式、元祖、域、键码、关系等价表示法以及关系实例等。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;属性&lt;/strong&gt; 在二维表中，关系的第一行成为属性（attribute），它描述了属性所在列各项的含义。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;模式&lt;/strong&gt; 关系名和关系的属性集成为关系的模式。一般地，模式的表示形式有两种。&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;第一种：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	模式名(属性1,属性2,...,属性n)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	例如：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	Book(isbn,titlle,page,bookType,year,price)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;第二种：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	模式名=(属性1,属性2,...,属性n)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	例如：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	Book=(isbn,titlle,page,bookType,year,price)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;关系的概念对应于程序设计语言中变量的概念，而关系模式的概念对应于程序设计语言中类型定义的概念。&lt;/p&gt;
-&lt;p&gt;关系模式中的属性是一个&lt;strong&gt;集合&lt;/strong&gt;，而不是&lt;strong&gt;列表&lt;/strong&gt;，所以关系模式中属性的顺序不重要。但是便于讨论，一般为关系模式中的属性规定一个标准的排列顺序。&lt;/p&gt;
-&lt;p&gt;当谈论数据库时，还必须区分关系模式和关系实例的概念。关系模式是一个逻辑设计包括了关系名和关系属性，相对比较稳定。而关系实例是定义的关系模式中数据的快照，相对来说经常发生变化。&lt;/p&gt;
-&lt;p&gt;在关系模型中，数据库设计包含了一个或多个关系模式。关系数据库模式就是关系模式的集合，简称数据库模式。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;元祖&lt;/strong&gt; 在关系模式中，除了第一行是标题栏之外，关系中的其他行成为元组。元组实际上是关系中的数据。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;域&lt;/strong&gt; 一般地，把关系中的每个属性相关的特定类型称为域，那么关系中任何元组的每个分量都必须在相应列的域中取指。在关系模型中，要求组成元组的每个分量都是不可再分割的原子型，即这些分量必须属于某种基本类型，例如整数型、浮点型和字符型等。不允许将某个属性值属于记录结构、集合、列表、数组或可以合理地分割成更小分量的任何类型。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;关系的等价表示方法&lt;/strong&gt; 前面已经讲过，关系的模式和元组都是集合，不是列表。因此，关系的模式和元组的顺序不重要，无论模式中属性顺序或元组顺序如何变换，只要是模式中的属性和元组本身没有变化，那么得到的关系模式都是相同的。这种方式称为关系的等价表示方法。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;关系实例&lt;/strong&gt; 习惯上，把给定关系中元组的集合称为关系实例。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;键码&lt;/strong&gt; 如果关系中的所有元组在一个属性或多个属性的集合中都互不相同，即可以使用该属性或属性的集合来确定关系中的元组，那么该属性或属性的集合称为关系中的键码。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;第六章 关系模式的规范化设计*&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h2&gt;&lt;h3 id=&quot;异常问题&quot;&gt;&lt;a href=&quot;#异常问题&quot; class=&quot;headerlink&quot; title=&quot;异常问题&quot;&gt;&lt;/a&gt;异常问题&lt;/h3&gt;&lt;p&gt;在设计关系模式时，应该避免出现异常现象。这些异常现象包括数据冗余、修改异常、插入异常和删除冗余。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;数据冗余&lt;/strong&gt;的含义是表示相同信息的数据在关系的多个元组中重复出现。&lt;br&gt;&lt;strong&gt;修改异常&lt;/strong&gt;是指当修改了关系中某一个元组中的信息后，该关系中的另一个元组中相同的信息却没有修改。&lt;br&gt;&lt;strong&gt;插入异常&lt;/strong&gt;是指当向关系中插入一个元组数据时，仅知道该元组的一部分数据，结果这些已知的数据由于那些未知的数据而很难在关系中正确地插入。&lt;br&gt;&lt;strong&gt;删除异常&lt;/strong&gt;的含义是如果某些属性的值变为空，可能会丢失其他一些有用的信息。&lt;/p&gt;
-&lt;h3 id=&quot;泛关系模式和数据库模式&quot;&gt;&lt;a href=&quot;#泛关系模式和数据库模式&quot; class=&quot;headerlink&quot; title=&quot;泛关系模式和数据库模式&quot;&gt;&lt;/a&gt;泛关系模式和数据库模式&lt;/h3&gt;&lt;p&gt;在关系模式设计过程中，应当采取一些方法消除这些数据异常现象，把最初的关系模式分解成最终的合适的关系模式。这种最初设计的关系模式也成为泛关系模式（universal relation scheme）。关系模式的当前值称为关系实例，关系实例是特定元组的集合。可以把泛关系模式分解成一系列小的符合规范化要求的关系模式集合，这种比较小的最终的关系模式的集合称为数据库模式（database scheme）。对数据库模式的每个关系模式赋予一个当前值，这时称为数据库实例。&lt;/p&gt;
-&lt;h2 id=&quot;函数依赖&quot;&gt;&lt;a href=&quot;#函数依赖&quot; class=&quot;headerlink&quot; title=&quot;函数依赖&quot;&gt;&lt;/a&gt;函数依赖&lt;/h2&gt;&lt;p&gt;数据依赖是数据之间存在的各种联系现象。数据异常现象与数据依赖有着紧密的关联。在数据依赖中，函数依赖是最基本的一种依赖形式。&lt;/p&gt;
-&lt;h3 id=&quot;函数依赖的定义&quot;&gt;&lt;a href=&quot;#函数依赖的定义&quot; class=&quot;headerlink&quot; title=&quot;函数依赖的定义&quot;&gt;&lt;/a&gt;函数依赖的定义&lt;/h3&gt;&lt;p&gt;函数依赖（Function Dependency，FD）的定义可以叙述为：如果关系$R$的两个元组在属性$A_1,A_2,\cdots,A_n$上一致，那么它在另一属性$B$上也一致。这种函数依赖记作$A_1A_2 \cdots A_n \xrightarrow{} B$,读作属性$A_1,A_2,\cdots,A_n$函数决定属性$B$,或属性$B$函数依赖于属性$A_1,A_2,\cdots,A_n$。&lt;/p&gt;
-&lt;p&gt;函数依赖的逻辑定义：设关系模式$R$的属性集是$U$,$X$和$Y$是$U$的子集，函数依赖是形如$X \xrightarrow{} Y$的命题，即$r$是$R$的当前实例值，对r中的任意两个元组$t$和$s$，如果$t[X]=s[X]$，则$t[Y]=s[Y]$,那么$X \xrightarrow{} Y$在关系模式$R$中成立。其中，$t[X]$表示元组$t$在属性集$X$上的值。&lt;/p&gt;
-&lt;p&gt;函数依赖的定义表示了关系模式属性集$X$值和$Y$值之间的多对一联系。&lt;/p&gt;
-&lt;p&gt;如果一组属性$A_1,A_2,\cdots,A_n$函数决定一组属性$B_1,B_2,\cdots,B_m$,那么可以把这组依赖关系简记为：$$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$$&lt;/p&gt;
-&lt;p&gt;对于关系Book(isbn,title,page,bookType,price,pressName,authorName)，根据客观现实和经验，可以得到以下函数依赖&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;isbn-&amp;gt;title&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;isbn-&amp;gt;page&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;isbn-&amp;gt;bookType&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;isbn-&amp;gt;price&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;isbn-&amp;gt;pressName&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;简写为$$isbn \xrightarrow{} title\ page\ bookType\ price\ pressName$$.&lt;br&gt;不能得到$isbn \xrightarrow{} authorName$因为其中一个isbn对应了3个作者。&lt;/p&gt;
-&lt;h3 id=&quot;函数依赖和键码&quot;&gt;&lt;a href=&quot;#函数依赖和键码&quot; class=&quot;headerlink&quot; title=&quot;函数依赖和键码&quot;&gt;&lt;/a&gt;函数依赖和键码&lt;/h3&gt;&lt;h4 id=&quot;超键码&quot;&gt;&lt;a href=&quot;#超键码&quot; class=&quot;headerlink&quot; title=&quot;超键码&quot;&gt;&lt;/a&gt;超键码&lt;/h4&gt;&lt;p&gt;在某个关系中，如果一个或多个属性的集合${A_1,A_2,\cdots,A_n}$函数决定该关系的其他属性，那么称该属性的集合为该关系的超键码。超键码的含义是关系中不可能存在两个不同的元组在属性$A_1,A_2,\cdots,A_n$的取值完全相同。根据上面的定义可以看到，在一个关系中，超键码的数量是没有限制的，例如如果属性集合${A_1,A_2,\cdots,A_n}$是超键码，那么包含该属性集合的所有属性集合都是超键码。&lt;/p&gt;
-&lt;h4 id=&quot;键码&quot;&gt;&lt;a href=&quot;#键码&quot; class=&quot;headerlink&quot; title=&quot;键码&quot;&gt;&lt;/a&gt;键码&lt;/h4&gt;&lt;p&gt;在某个关系中，如果一个或多个属性的集合${A_1,A_2,\cdots,A_n}$函数决定该关系的其他属性，并且集合${A_1,A_2,\cdots,A_n}$的任何真子集都不能函数决定该关系的所有其他属性，那么称该属性的集合为该属性的键码。&lt;/p&gt;
-&lt;p&gt;在一个关系中，有时会有多个不同的键码。如果这样，可以把其中一个最为重要的键码指定为主键码，把其他键码成为候选键码。&lt;/p&gt;
-&lt;h3 id=&quot;逻辑蕴含&quot;&gt;&lt;a href=&quot;#逻辑蕴含&quot; class=&quot;headerlink&quot; title=&quot;逻辑蕴含&quot;&gt;&lt;/a&gt;逻辑蕴含&lt;/h3&gt;&lt;p&gt;在讨论函数依赖时，经常需要从一些已知的函数依赖去判断另外一些函数依赖是否成立。例如，如果$A \xrightarrow{} B$和$B \xrightarrow{} C$在某个关系中成立，那么$ A \xrightarrow{} C$在该关系中是否成立的问题成为逻辑蕴含问题。&lt;/p&gt;
-&lt;p&gt;假定$F$是在某个关系上成立的函数依赖集，$T$是在该关系上成立的另外一个函数依赖集，如果对于该关系中满足$F$的每一个关系实例都满足$T$，那么称函数依赖集$F$蕴含于函数依赖集$T$，记作$F$蕴含于$T$。&lt;/p&gt;
-&lt;p&gt;如果$F$蕴含于$T$，且$T$蕴含于$F$，那么函数依赖集$F$和$T$等价。&lt;/p&gt;
-&lt;p&gt;函数关系$R(A,B,C)$具有函数依赖$A \xrightarrow{} B$和$B \xrightarrow{} C$，那么可以证明$A \xrightarrow{} C$在该关系中成立。证明思路：在关系$R$中任取两个元组，如果这两个元组在属性$A$上一致，那么证明这两个元组在属性$C$上一致。&lt;/p&gt;
-&lt;p&gt;在这里可以把函数依赖$A \xrightarrow{} B$和$B \xrightarrow{} C$记作函数依赖集$F$，把$A \xrightarrow{} C$记作函数依赖集$T$，那么已经证明了满足$F$的每一个关系实例都满足$T$，因此可以说函数依赖集$F$蕴含于函数依赖集$T$。&lt;/p&gt;
-&lt;h3 id=&quot;函数依赖的推理规则&quot;&gt;&lt;a href=&quot;#函数依赖的推理规则&quot; class=&quot;headerlink&quot; title=&quot;函数依赖的推理规则&quot;&gt;&lt;/a&gt;函数依赖的推理规则&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;分解规则&lt;/strong&gt;：可以把一个函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$用一组函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1,A_1A_2 \cdots A_n \xrightarrow{} B_2,\cdots,A_1A_2 \cdots A_n \xrightarrow{} B_m$来代替。&lt;br&gt;&lt;strong&gt;合并规则&lt;/strong&gt;：可以把一组函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1,A_1A_2 \cdots A_n \xrightarrow{} B_2,\cdots,A_1A_2 \cdots A_n \xrightarrow{} B_m$用一个函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$来代替。&lt;/p&gt;
-&lt;p&gt;对于函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$，设$A={A_1A_2 \cdots A_n},B={B_1B_2 \cdots B_m}$，如果$B$是$A$的子集，那么称该依赖为平凡依赖；如果$B$中至少有一个属性不在$A$中，那么称该依赖是非平凡依赖；如果$B$中的任何一个属性都不在$A$中，那么称该依赖是完全非平凡依赖。&lt;/p&gt;
-&lt;p&gt;Armstrong公理。&lt;br&gt;&lt;strong&gt;自反律&lt;/strong&gt;：如果${B_1B_2 \cdots B_m} \subset {A_1A_2 \cdots A_n}$，则$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$。这是平凡依赖。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;增长率&lt;/strong&gt;：如果$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$，则对于任何属性集$C_1,C_2,\cdots,C_k$，都存在$A_1A_2 \cdots A_nC_1C_2 \cdots C_k \xrightarrow{} B_1B_2 \cdots B_mC_1C_2 \cdots C_k$。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;传递率&lt;/strong&gt;：如果$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m,B_1B_2 \cdots B_m \xrightarrow{} C_1C_2 \cdots C_k$，则$A_1A_2 \cdots A_n \xrightarrow{} C_1C_2 \cdots C_k$。&lt;/p&gt;
-&lt;h3 id=&quot;属性集的闭包&quot;&gt;&lt;a href=&quot;#属性集的闭包&quot; class=&quot;headerlink&quot; title=&quot;属性集的闭包&quot;&gt;&lt;/a&gt;属性集的闭包&lt;/h3&gt;&lt;p&gt;假设${A_1A_2 \cdots A_n}$是属性集，$S$是函数依赖集。属性集${A_1A_2 \cdots A_n}$在函数依赖集$S$下的闭包是这样的属性集$B$，它使得满足依赖集$S$中所有依赖的每一个关系都满足$A_1A_2 \cdots A_n \xrightarrow{} B$。即$A_1A_2 \cdots A_n \xrightarrow{} B$蕴含于$S$中的函数依赖。使用${A_1A_2 \cdots A_n}^+$表示属性集${A_1A_2 \cdots A_n}$的闭包。&lt;/p&gt;
-&lt;p&gt;计算属性集${A_1A_2 \cdots A_n}$闭包的步骤如下：&lt;/p&gt;
-&lt;p&gt;第一步，设最终将成为闭包的属性集是$X$,把$X$初始化为${A_1A_2 \cdots A_n}$。&lt;/p&gt;
-&lt;p&gt;第二步，重复搜索和判断函数依赖$B_1B_2 \cdots B_m \xrightarrow{} C$。如果左边所有的属性$B_1,B_2,\cdots,B_m$都在属性集$X$中，但是属性$C$不在$X$中，则将$C$添加到属性集$X$中。&lt;/p&gt;
-&lt;p&gt;第三步，重复第二步，知道没有属性可以添加到属性集$X$中为止。&lt;/p&gt;
-&lt;p&gt;第四步，最后得到的不能再添加的属性集$X$就是${A_1A_2 \cdots A_n}^+$。&lt;/p&gt;
-&lt;p&gt;如果用户知道了如何计算任意属性的闭包，就能检验给定的任意函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B$是否蕴含于函数依赖集$S$。检验步骤如下：&lt;/p&gt;
-&lt;p&gt;第一步，计算闭包。根据函数依赖集$S$计算${A_1A_2 \cdots A_n}^+$。&lt;/p&gt;
-&lt;p&gt;第二步，判断。如果$B$在${A_1A_2 \cdots A_n}^+$中，则$A_1A_2 \cdots A_n \xrightarrow{} B$蕴含于函数依赖集$S$；如果$B$不在${A_1A_2 \cdots A_n}^+$中，则该函数不蕴含于函数依赖集$S$。&lt;/p&gt;
-&lt;h3 id=&quot;正则覆盖&quot;&gt;&lt;a href=&quot;#正则覆盖&quot; class=&quot;headerlink&quot; title=&quot;正则覆盖&quot;&gt;&lt;/a&gt;正则覆盖&lt;/h3&gt;&lt;p&gt;如果可以去掉一个函数依赖集中的属性而不改变函数依赖集的闭包，那么称该属性是无关的。无关属性可以形式化的定义如下，考虑函数依赖集$S$和$S$中的某个函数依赖$X \xrightarrow{} Y$。&lt;/p&gt;
-&lt;p&gt;如果$A \in X$，且$S$逻辑蕴含$(S-\{X \xrightarrow{} Y\}) \cup \{(X-A) \xrightarrow{} Y\}$，那么属性$A$在$X$中是无关的。&lt;/p&gt;
-&lt;p&gt;如果$A \in Y$，且$S$逻辑蕴含$(S-\{X \xrightarrow{} Y\}) \cup \{X \xrightarrow{} (Y-A)\}$，那么属性$A$在$Y$中是无关的。&lt;/p&gt;
-&lt;p&gt;$S$的正则覆盖是一个函数依赖集$S_C$，含义是$S$逻辑蕴含$S_C$中的所有依赖，并且$S_C$逻辑蕴含$S$中的所有依赖。此外，$S_C$具有如下三个性质：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;$S_C$的闭包与$S$的闭包相同，即${S}^+ ={S_C}^+$。&lt;/li&gt;
-&lt;li&gt;$S_C$的任何函数依赖都不包含无关属性。&lt;/li&gt;
-&lt;li&gt;$S_C$中的函数依赖的左半部都是唯一的，即$S_C$中不存在两个函数依赖$X_1 \xrightarrow{} Y_1$和$X_2 \xrightarrow{} Y_2$，且$X_1 = X_2$。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;关系模式的分解&quot;&gt;&lt;a href=&quot;#关系模式的分解&quot; class=&quot;headerlink&quot; title=&quot;关系模式的分解&quot;&gt;&lt;/a&gt;关系模式的分解&lt;/h2&gt;&lt;p&gt;消除关系模式中数据异常的常用办法是分解关系模式。关系模式$R$的分解就是把关系$R$中的属性分开，以构成两个新的关系模式。&lt;/p&gt;
-&lt;p&gt;在分解关系模式时，一定要注意两个问题：第一，保证分解前后关系模式的信息不能丢失和增加，保持原有的信息不变，这称为无损连接；第二，保持分解前后猿猴的函数依赖依然成立。&lt;/p&gt;
-&lt;p&gt;给定一个关系模式$R$，其属性集合为$\{A_1,A_2,\cdots,A_n\}$，现在把其分解成两个关系模式$X$和$Y$，其属性集合分别是$\{B_1,B_2,\cdots,B_m\}$和$\{C_1,C_2,\cdots,C_k\}$，这种分解应该满足如下条件：&lt;/p&gt;
-&lt;p&gt;第一个条件：$\{A_1,A_2,\cdots,A_n\}=\{B_1,B_2,\cdots,B_m\} \cup \{C_1,C_2,\cdots,C_k\}$。&lt;/p&gt;
-&lt;p&gt;第二个条件：关系$X$中的元组是关系$R$的所有元组在$\{B_1,B_2,\cdots,B_m\}$上的投影，包含相同元组。&lt;/p&gt;
-&lt;p&gt;第三个条件：关系$Y$中的元组是关系$R$的所有元组在$\{C_1,C_2,\cdots,C_k\}$上的投影，不包含相同元组。&lt;/p&gt;
-&lt;p&gt;例如：略。&lt;/p&gt;
-&lt;h2 id=&quot;关系模型的范式&quot;&gt;&lt;a href=&quot;#关系模型的范式&quot; class=&quot;headerlink&quot; title=&quot;关系模型的范式&quot;&gt;&lt;/a&gt;关系模型的范式&lt;/h2&gt;&lt;h3 id=&quot;第一范式&quot;&gt;&lt;a href=&quot;#第一范式&quot; class=&quot;headerlink&quot; title=&quot;第一范式&quot;&gt;&lt;/a&gt;第一范式&lt;/h3&gt;&lt;p&gt;如果关系模式$R$中的所有属性值都是不可在分解的原子值，那么就称关系$R$是第一范式（first normal form，1NF）的关系模式。不是1NF的关系称为非规范化的关系，满足1NF的关系简称关系。在关系型数据库管理系统中，涉及到的研究对象都是满足1NF的规范化关系。&lt;/p&gt;
-&lt;h3 id=&quot;BCNF范式&quot;&gt;&lt;a href=&quot;#BCNF范式&quot; class=&quot;headerlink&quot; title=&quot;BCNF范式&quot;&gt;&lt;/a&gt;BCNF范式&lt;/h3&gt;&lt;p&gt;BCNF范式（Boyce-Codd normal form）的定义是，如果某个关系R有非平凡依赖$A_1,A_2,\cdots,A_n \xrightarrow{} B$，那么$\{A_1,A_2,\cdots,A_n\}$必然是关系R的超键码。满足这样条件的关系就属于BCNF。即BCNF条件的含义是每一个非平凡依赖的左边必须包含超键码。&lt;/p&gt;
-&lt;h3 id=&quot;分解成BCNF模式的算法&quot;&gt;&lt;a href=&quot;#分解成BCNF模式的算法&quot; class=&quot;headerlink&quot; title=&quot;分解成BCNF模式的算法&quot;&gt;&lt;/a&gt;分解成BCNF模式的算法&lt;/h3&gt;&lt;p&gt;第一步，找到一个违背BCNF的非平凡依赖，并在该依赖的右边加上尽量多的属性。&lt;/p&gt;
-&lt;p&gt;第二步，把原始关系模型分解成两个属性重迭的关系模式，一个模式包含了违背BCNF的所有属性，另外一个模式包含了该依赖左边以及未包含在该依赖中的所有属性。&lt;/p&gt;
-&lt;p&gt;第三步，判断新的关系模式是否满足BCNF。如果不满足，继续进行分解；如果满足，则停止。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;任何包含了两个属性的关系模式都自然满足BCNF条件。&lt;/strong&gt;&lt;/p&gt;
-&lt;h3 id=&quot;函数依赖的投影&quot;&gt;&lt;a href=&quot;#函数依赖的投影&quot; class=&quot;headerlink&quot; title=&quot;函数依赖的投影&quot;&gt;&lt;/a&gt;函数依赖的投影&lt;/h3&gt;&lt;p&gt;在分解关系模式时，需要确定新关系模式是否满足BCNF条件。这种判断的前提是知道新关系模式中成立的函数依赖，这些函数依赖是原关系模式的函数依赖在新关系模式上的投影。下面介绍一种找到新关系模式中函数依赖的方法。&lt;/p&gt;
-&lt;p&gt;假设把关系$R$分解成关系$S$和$T$，$F$是$R$中已知的函数依赖集。现在计算$S$中成立的函数依赖。考虑包含于$S$的属性集的每个属性集$X$，计算$X^+$。于是，满足下列条件的每个属性$B$，函数$X \xrightarrow{} B$在关系$S$中成立：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;$B$是$S$的一个属性；&lt;/li&gt;
-&lt;li&gt;$B$属于$X^+$;&lt;/li&gt;
-&lt;li&gt;$B$不属于$X$。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;第三范式&quot;&gt;&lt;a href=&quot;#第三范式&quot; class=&quot;headerlink&quot; title=&quot;第三范式&quot;&gt;&lt;/a&gt;第三范式&lt;/h3&gt;&lt;p&gt;在某些情况下，按照BCNF进行分解，但是当对得到的关系模式进行连接时，却不能保证原先所有的函数依赖都能得到保持。这是，关系模式就不应该继续进行分解，该关系模式满足的范式称为第三范式。&lt;/p&gt;
-&lt;p&gt;如果对于任何非平凡依赖$A_1,A_2,\cdots,\A_n \xrightarrow{} B$，那么或$\{A_1,A_2,\cdots,A_n\}$是关系$R$的超键码，或$B$是某个键码的组成部分。满足这样条件的关系就属于第三范式（third normal form, 3NF）。&lt;/p&gt;
-&lt;h3 id=&quot;第二范式&quot;&gt;&lt;a href=&quot;#第二范式&quot; class=&quot;headerlink&quot; title=&quot;第二范式&quot;&gt;&lt;/a&gt;第二范式&lt;/h3&gt;&lt;p&gt;在一个关系中，如果$\{A_1,A_2,\cdots,A_n\}$是关系$R$的键码，$B$是关系中的任意非键码，那么非平凡依赖$A_1,A_2,\cdots,A_n \xrightarrow{} B$都成立，则该关系模式属于第二范式（second normal form, 2NF）。&lt;/p&gt;
-&lt;h3 id=&quot;多值依赖&quot;&gt;&lt;a href=&quot;#多值依赖&quot; class=&quot;headerlink&quot; title=&quot;多值依赖&quot;&gt;&lt;/a&gt;多值依赖&lt;/h3&gt;&lt;p&gt;多值依赖的含义是如果确定了关系$R$的一个属性集的取值，则其他某些特征属性的取值与该关系的所有其他属性的取值无关。确切的说，如果限定关系$R$的元组在属于$A$的每个属性上取特定的值，结果属性$B$的属性取值的集合与既不属于$A$也不属于$B$但属于$R$的属性取值的集合无关，则称如下所示的多值依赖在关系$R$中成立：$$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$$&lt;/p&gt;
-&lt;p&gt;多值依赖满足规则&lt;/p&gt;
-&lt;p&gt;平凡依赖规则：在某个关系中，如果多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$成立，则多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$也成立，其中$C$是$B$加上$A$中的一个或多个属性。反之，也可以从$B$中删除一些属于$A$的属性，并推导出多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} D_1D_2 \cdots D_r$，其中，$D$是在$B$中而不属于$A$的属性。&lt;/p&gt;
-&lt;p&gt;传递规则：在某个关系中，如果多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$和$B_1B_2 \cdots B_m \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$，则多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$成立。&lt;/p&gt;
-&lt;p&gt;复制规则：在关系中，每个函数依赖都是多值依赖。&lt;/p&gt;
-&lt;p&gt;互补规则：如果$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$是关系$R$的多值依赖，则$R$也满足$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$,其中，$C$是不属于$A$和$B$的$R$的所有其他属性。&lt;/p&gt;
-&lt;p&gt;第四范式：如果$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$是非平凡的多值依赖，且$\{A_1,A_2,\cdots,A_n\}$是关系的超键码，那么该关系就属于第四范式（Fourth Normal Form, 4NF）。&lt;/p&gt;
-&lt;p&gt;分解方法：&lt;/p&gt;
-&lt;p&gt;第一步：找到一个4NF违例，例如$A \xrightarrow{}\xrightarrow{} B$.&lt;/p&gt;
-&lt;p&gt;第二步：分解该关系模式，第一个关系模式包含$A$和$B$中的属性，第二个关系模式包含$A$中的属性以及不属于$A$也不属于$B$的$R$的所有其他属性。&lt;/p&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h2&gt;&lt;p&gt;关系模型是一种以二维表的形式表示实体数据和实体之间关系等信息的数据库模型。&lt;/p&gt;
-&lt;p&gt;在关系模型中，基本元素包括属性、模
-    
-    </summary>
-    
-    
-      <category term="database" scheme="http://mrgao1008.github.io/blog/tags/database/"/>
+      <category term="problem solution" scheme="http://mrgao1008.github.io/blog/tags/problem-solution/"/>
     
   </entry>
   
@@ -270,71 +98,6 @@
     
     
       <category term="database" scheme="http://mrgao1008.github.io/blog/tags/database/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>tk 编程</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/02/python%20tk/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/02/python tk/</id>
-    <published>2016-04-01T16:00:00.000Z</published>
-    <updated>2016-04-02T01:40:20.474Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;标准属性&quot;&gt;&lt;a href=&quot;#标准属性&quot; class=&quot;headerlink&quot; title=&quot;标准属性&quot;&gt;&lt;/a&gt;标准属性&lt;/h2&gt;&lt;h3 id=&quot;dimensions&quot;&gt;&lt;a href=&quot;#dimensions&quot; class=&quot;headerlink&quot; title=&quot;dimensions&quot;&gt;&lt;/a&gt;dimensions&lt;/h3&gt;&lt;p&gt;尺寸包含4种&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;字母&lt;/th&gt;
-&lt;th&gt;含义&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;c&lt;/td&gt;
-&lt;td&gt;厘米&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;i&lt;/td&gt;
-&lt;td&gt;英寸&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;m&lt;/td&gt;
-&lt;td&gt;毫米&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;p&lt;/td&gt;
-&lt;td&gt;打印机的点？？&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;坐标&quot;&gt;&lt;a href=&quot;#坐标&quot; class=&quot;headerlink&quot; title=&quot;坐标&quot;&gt;&lt;/a&gt;坐标&lt;/h3&gt;&lt;h3 id=&quot;颜色&quot;&gt;&lt;a href=&quot;#颜色&quot; class=&quot;headerlink&quot; title=&quot;颜色&quot;&gt;&lt;/a&gt;颜色&lt;/h3&gt;&lt;p&gt;||#rgb||four bits per color||&lt;br&gt;||#rrggbb||eight bits per color||&lt;br&gt;||#rrrgggbbb||twelve bits per color||&lt;/p&gt;
-&lt;p&gt;还一可以指定关键词’white’,’black’,’red’,’green’,’blue’,’cyan’,’yellow’,’magenta’&lt;/p&gt;
-&lt;h3 id=&quot;fonts&quot;&gt;&lt;a href=&quot;#fonts&quot; class=&quot;headerlink&quot; title=&quot;fonts&quot;&gt;&lt;/a&gt;fonts&lt;/h3&gt;&lt;p&gt;1.元组表示,第一表示字体，第二个表示大小，正数为points，负数为像素点，后续为其他一些特别设置&lt;br&gt;(‘Helvetica’,’16’)&lt;br&gt;(‘Times’,’24’,’bold italic’)&lt;br&gt;(‘Times’,-20,’bold’)&lt;/p&gt;
-&lt;p&gt;2.字体对象 tkFont&lt;/p&gt;
-&lt;p&gt;3.X font names.&lt;/p&gt;
-&lt;h3 id=&quot;锚&quot;&gt;&lt;a href=&quot;#锚&quot; class=&quot;headerlink&quot; title=&quot;锚&quot;&gt;&lt;/a&gt;锚&lt;/h3&gt;&lt;p&gt;N S W E CENTER&lt;br&gt;NW NE SW SE&lt;/p&gt;
-&lt;h3 id=&quot;释放样式&quot;&gt;&lt;a href=&quot;#释放样式&quot; class=&quot;headerlink&quot; title=&quot;释放样式&quot;&gt;&lt;/a&gt;释放样式&lt;/h3&gt;&lt;p&gt;FLAT RAISED SUNKEN GROOVE RIDGE&lt;/p&gt;
-&lt;h3 id=&quot;Bitmaps&quot;&gt;&lt;a href=&quot;#Bitmaps&quot; class=&quot;headerlink&quot; title=&quot;Bitmaps&quot;&gt;&lt;/a&gt;Bitmaps&lt;/h3&gt;&lt;p&gt;button支持 error gray75 gray50 gray25 gray12 hourglass info questhead question warning&lt;/p&gt;
-&lt;p&gt;也可以使用.xbm(X bit map)使用@path&lt;/p&gt;
-&lt;h3 id=&quot;cursors&quot;&gt;&lt;a href=&quot;#cursors&quot; class=&quot;headerlink&quot; title=&quot;cursors&quot;&gt;&lt;/a&gt;cursors&lt;/h3&gt;&lt;h3 id=&quot;images&quot;&gt;&lt;a href=&quot;#images&quot; class=&quot;headerlink&quot; title=&quot;images&quot;&gt;&lt;/a&gt;images&lt;/h3&gt;&lt;p&gt;BitmapImage 支持 .xbm&lt;br&gt;PhotoImage 支持 .gif .pgm .ppm&lt;br&gt;ImageTk 支持更多格式&lt;/p&gt;
-&lt;h4 id=&quot;the-BitmapImage-class&quot;&gt;&lt;a href=&quot;#the-BitmapImage-class&quot; class=&quot;headerlink&quot; title=&quot;the BitmapImage class&quot;&gt;&lt;/a&gt;the BitmapImage class&lt;/h4&gt;&lt;p&gt;原型&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tk.BitmapImage(file=f[, background=b][, foreground=c])&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;实例&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;logo = tk.BitmapImage(&lt;span class=&quot;string&quot;&gt;&#39;logo.xbm&#39;&lt;/span&gt;, foreground=&lt;span class=&quot;string&quot;&gt;&#39;red&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Label(image=logo).grid()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h4 id=&quot;the-PhotoImage-class&quot;&gt;&lt;a href=&quot;#the-PhotoImage-class&quot; class=&quot;headerlink&quot; title=&quot;the PhotoImage class&quot;&gt;&lt;/a&gt;the PhotoImage class&lt;/h4&gt;&lt;p&gt;原型&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tk.PhotoImage(file=f)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Geometry-strings&quot;&gt;&lt;a href=&quot;#Geometry-strings&quot; class=&quot;headerlink&quot; title=&quot;Geometry strings&quot;&gt;&lt;/a&gt;Geometry strings&lt;/h3&gt;&lt;p&gt;A geometry string is a standard way of describing the size and location of a top-level window on a desktop.&lt;br&gt;format: ‘wxh±x±y’&lt;br&gt;+x left side&lt;br&gt;-x right side&lt;br&gt;+y top&lt;br&gt;-y bottom&lt;/p&gt;
-&lt;h3 id=&quot;window-names&quot;&gt;&lt;a href=&quot;#window-names&quot; class=&quot;headerlink&quot; title=&quot;window names&quot;&gt;&lt;/a&gt;window names&lt;/h3&gt;&lt;p&gt;hierarchical window path name&lt;br&gt;root window ‘.’&lt;br&gt;child name ‘.n’&lt;br&gt;child windows of child ‘p.n’, p is the name of the parent window&lt;/p&gt;
-&lt;p&gt;str(w): to get the path name of a widget w&lt;/p&gt;
-&lt;h3 id=&quot;cap-and-join-styles&quot;&gt;&lt;a href=&quot;#cap-and-join-styles&quot; class=&quot;headerlink&quot; title=&quot;cap and join styles&quot;&gt;&lt;/a&gt;cap and join styles&lt;/h3&gt;&lt;p&gt;cap style: tk.BUTT, tk.PROJECTING, tk.ROUND&lt;br&gt;join style: tk.ROUND, tk.BEVEL, tk.MITER&lt;/p&gt;
-&lt;h3 id=&quot;dash-patterns&quot;&gt;&lt;a href=&quot;#dash-patterns&quot; class=&quot;headerlink&quot; title=&quot;dash patterns&quot;&gt;&lt;/a&gt;dash patterns&lt;/h3&gt;&lt;p&gt;dash=(3,5)&lt;br&gt;dash=(7,1,1,1)&lt;br&gt;dash=(5,1,2,1),dashoff=3&lt;/p&gt;
-&lt;h2 id=&quot;tk-TclError&quot;&gt;&lt;a href=&quot;#tk-TclError&quot; class=&quot;headerlink&quot; title=&quot;tk.TclError&quot;&gt;&lt;/a&gt;tk.TclError&lt;/h2&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;标准属性&quot;&gt;&lt;a href=&quot;#标准属性&quot; class=&quot;headerlink&quot; title=&quot;标准属性&quot;&gt;&lt;/a&gt;标准属性&lt;/h2&gt;&lt;h3 id=&quot;dimensions&quot;&gt;&lt;a href=&quot;#dimensions&quot; class=&quot;headerlink&quot; titl
-    
-    </summary>
-    
-    
-      <category term="GUI" scheme="http://mrgao1008.github.io/blog/tags/GUI/"/>
     
   </entry>
   
@@ -526,22 +289,179 @@
   </entry>
   
   <entry>
-    <title>LoadLibrary error 126</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/02/LoadLibrary%20126/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/02/LoadLibrary 126/</id>
+    <title>tk 编程</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/python%20tk/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/python tk/</id>
     <published>2016-04-01T16:00:00.000Z</published>
-    <updated>2016-04-02T01:40:55.211Z</updated>
+    <updated>2016-04-02T01:40:20.474Z</updated>
     
-    <content type="html">&lt;p&gt;可能是UNICODE和ASCII字符的问题。&lt;/p&gt;</content>
+    <content type="html">&lt;h2 id=&quot;标准属性&quot;&gt;&lt;a href=&quot;#标准属性&quot; class=&quot;headerlink&quot; title=&quot;标准属性&quot;&gt;&lt;/a&gt;标准属性&lt;/h2&gt;&lt;h3 id=&quot;dimensions&quot;&gt;&lt;a href=&quot;#dimensions&quot; class=&quot;headerlink&quot; title=&quot;dimensions&quot;&gt;&lt;/a&gt;dimensions&lt;/h3&gt;&lt;p&gt;尺寸包含4种&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;字母&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;c&lt;/td&gt;
+&lt;td&gt;厘米&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;i&lt;/td&gt;
+&lt;td&gt;英寸&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;m&lt;/td&gt;
+&lt;td&gt;毫米&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p&lt;/td&gt;
+&lt;td&gt;打印机的点？？&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;坐标&quot;&gt;&lt;a href=&quot;#坐标&quot; class=&quot;headerlink&quot; title=&quot;坐标&quot;&gt;&lt;/a&gt;坐标&lt;/h3&gt;&lt;h3 id=&quot;颜色&quot;&gt;&lt;a href=&quot;#颜色&quot; class=&quot;headerlink&quot; title=&quot;颜色&quot;&gt;&lt;/a&gt;颜色&lt;/h3&gt;&lt;p&gt;||#rgb||four bits per color||&lt;br&gt;||#rrggbb||eight bits per color||&lt;br&gt;||#rrrgggbbb||twelve bits per color||&lt;/p&gt;
+&lt;p&gt;还一可以指定关键词’white’,’black’,’red’,’green’,’blue’,’cyan’,’yellow’,’magenta’&lt;/p&gt;
+&lt;h3 id=&quot;fonts&quot;&gt;&lt;a href=&quot;#fonts&quot; class=&quot;headerlink&quot; title=&quot;fonts&quot;&gt;&lt;/a&gt;fonts&lt;/h3&gt;&lt;p&gt;1.元组表示,第一表示字体，第二个表示大小，正数为points，负数为像素点，后续为其他一些特别设置&lt;br&gt;(‘Helvetica’,’16’)&lt;br&gt;(‘Times’,’24’,’bold italic’)&lt;br&gt;(‘Times’,-20,’bold’)&lt;/p&gt;
+&lt;p&gt;2.字体对象 tkFont&lt;/p&gt;
+&lt;p&gt;3.X font names.&lt;/p&gt;
+&lt;h3 id=&quot;锚&quot;&gt;&lt;a href=&quot;#锚&quot; class=&quot;headerlink&quot; title=&quot;锚&quot;&gt;&lt;/a&gt;锚&lt;/h3&gt;&lt;p&gt;N S W E CENTER&lt;br&gt;NW NE SW SE&lt;/p&gt;
+&lt;h3 id=&quot;释放样式&quot;&gt;&lt;a href=&quot;#释放样式&quot; class=&quot;headerlink&quot; title=&quot;释放样式&quot;&gt;&lt;/a&gt;释放样式&lt;/h3&gt;&lt;p&gt;FLAT RAISED SUNKEN GROOVE RIDGE&lt;/p&gt;
+&lt;h3 id=&quot;Bitmaps&quot;&gt;&lt;a href=&quot;#Bitmaps&quot; class=&quot;headerlink&quot; title=&quot;Bitmaps&quot;&gt;&lt;/a&gt;Bitmaps&lt;/h3&gt;&lt;p&gt;button支持 error gray75 gray50 gray25 gray12 hourglass info questhead question warning&lt;/p&gt;
+&lt;p&gt;也可以使用.xbm(X bit map)使用@path&lt;/p&gt;
+&lt;h3 id=&quot;cursors&quot;&gt;&lt;a href=&quot;#cursors&quot; class=&quot;headerlink&quot; title=&quot;cursors&quot;&gt;&lt;/a&gt;cursors&lt;/h3&gt;&lt;h3 id=&quot;images&quot;&gt;&lt;a href=&quot;#images&quot; class=&quot;headerlink&quot; title=&quot;images&quot;&gt;&lt;/a&gt;images&lt;/h3&gt;&lt;p&gt;BitmapImage 支持 .xbm&lt;br&gt;PhotoImage 支持 .gif .pgm .ppm&lt;br&gt;ImageTk 支持更多格式&lt;/p&gt;
+&lt;h4 id=&quot;the-BitmapImage-class&quot;&gt;&lt;a href=&quot;#the-BitmapImage-class&quot; class=&quot;headerlink&quot; title=&quot;the BitmapImage class&quot;&gt;&lt;/a&gt;the BitmapImage class&lt;/h4&gt;&lt;p&gt;原型&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tk.BitmapImage(file=f[, background=b][, foreground=c])&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;实例&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;logo = tk.BitmapImage(&lt;span class=&quot;string&quot;&gt;&#39;logo.xbm&#39;&lt;/span&gt;, foreground=&lt;span class=&quot;string&quot;&gt;&#39;red&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Label(image=logo).grid()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h4 id=&quot;the-PhotoImage-class&quot;&gt;&lt;a href=&quot;#the-PhotoImage-class&quot; class=&quot;headerlink&quot; title=&quot;the PhotoImage class&quot;&gt;&lt;/a&gt;the PhotoImage class&lt;/h4&gt;&lt;p&gt;原型&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;tk.PhotoImage(file=f)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Geometry-strings&quot;&gt;&lt;a href=&quot;#Geometry-strings&quot; class=&quot;headerlink&quot; title=&quot;Geometry strings&quot;&gt;&lt;/a&gt;Geometry strings&lt;/h3&gt;&lt;p&gt;A geometry string is a standard way of describing the size and location of a top-level window on a desktop.&lt;br&gt;format: ‘wxh±x±y’&lt;br&gt;+x left side&lt;br&gt;-x right side&lt;br&gt;+y top&lt;br&gt;-y bottom&lt;/p&gt;
+&lt;h3 id=&quot;window-names&quot;&gt;&lt;a href=&quot;#window-names&quot; class=&quot;headerlink&quot; title=&quot;window names&quot;&gt;&lt;/a&gt;window names&lt;/h3&gt;&lt;p&gt;hierarchical window path name&lt;br&gt;root window ‘.’&lt;br&gt;child name ‘.n’&lt;br&gt;child windows of child ‘p.n’, p is the name of the parent window&lt;/p&gt;
+&lt;p&gt;str(w): to get the path name of a widget w&lt;/p&gt;
+&lt;h3 id=&quot;cap-and-join-styles&quot;&gt;&lt;a href=&quot;#cap-and-join-styles&quot; class=&quot;headerlink&quot; title=&quot;cap and join styles&quot;&gt;&lt;/a&gt;cap and join styles&lt;/h3&gt;&lt;p&gt;cap style: tk.BUTT, tk.PROJECTING, tk.ROUND&lt;br&gt;join style: tk.ROUND, tk.BEVEL, tk.MITER&lt;/p&gt;
+&lt;h3 id=&quot;dash-patterns&quot;&gt;&lt;a href=&quot;#dash-patterns&quot; class=&quot;headerlink&quot; title=&quot;dash patterns&quot;&gt;&lt;/a&gt;dash patterns&lt;/h3&gt;&lt;p&gt;dash=(3,5)&lt;br&gt;dash=(7,1,1,1)&lt;br&gt;dash=(5,1,2,1),dashoff=3&lt;/p&gt;
+&lt;h2 id=&quot;tk-TclError&quot;&gt;&lt;a href=&quot;#tk-TclError&quot; class=&quot;headerlink&quot; title=&quot;tk.TclError&quot;&gt;&lt;/a&gt;tk.TclError&lt;/h2&gt;</content>
     
     <summary type="html">
     
-      &lt;p&gt;可能是UNICODE和ASCII字符的问题。&lt;/p&gt;
+      &lt;h2 id=&quot;标准属性&quot;&gt;&lt;a href=&quot;#标准属性&quot; class=&quot;headerlink&quot; title=&quot;标准属性&quot;&gt;&lt;/a&gt;标准属性&lt;/h2&gt;&lt;h3 id=&quot;dimensions&quot;&gt;&lt;a href=&quot;#dimensions&quot; class=&quot;headerlink&quot; titl
     
     </summary>
     
     
-      <category term="problem solution" scheme="http://mrgao1008.github.io/blog/tags/problem-solution/"/>
+      <category term="GUI" scheme="http://mrgao1008.github.io/blog/tags/GUI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>第五章 关系模型</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E7%AC%AC%E4%B8%89%E7%89%88%EF%BC%891/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/数据库系统原理与应用（第三版）1/</id>
+    <published>2016-04-01T16:00:00.000Z</published>
+    <updated>2016-04-02T01:37:55.664Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h2&gt;&lt;p&gt;关系模型是一种以二维表的形式表示实体数据和实体之间关系等信息的数据库模型。&lt;/p&gt;
+&lt;p&gt;在关系模型中，基本元素包括属性、模式、元祖、域、键码、关系等价表示法以及关系实例等。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;属性&lt;/strong&gt; 在二维表中，关系的第一行成为属性（attribute），它描述了属性所在列各项的含义。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;模式&lt;/strong&gt; 关系名和关系的属性集成为关系的模式。一般地，模式的表示形式有两种。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;第一种：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	模式名(属性1,属性2,...,属性n)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	例如：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	Book(isbn,titlle,page,bookType,year,price)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;第二种：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	模式名=(属性1,属性2,...,属性n)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	例如：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	Book=(isbn,titlle,page,bookType,year,price)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;关系的概念对应于程序设计语言中变量的概念，而关系模式的概念对应于程序设计语言中类型定义的概念。&lt;/p&gt;
+&lt;p&gt;关系模式中的属性是一个&lt;strong&gt;集合&lt;/strong&gt;，而不是&lt;strong&gt;列表&lt;/strong&gt;，所以关系模式中属性的顺序不重要。但是便于讨论，一般为关系模式中的属性规定一个标准的排列顺序。&lt;/p&gt;
+&lt;p&gt;当谈论数据库时，还必须区分关系模式和关系实例的概念。关系模式是一个逻辑设计包括了关系名和关系属性，相对比较稳定。而关系实例是定义的关系模式中数据的快照，相对来说经常发生变化。&lt;/p&gt;
+&lt;p&gt;在关系模型中，数据库设计包含了一个或多个关系模式。关系数据库模式就是关系模式的集合，简称数据库模式。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;元祖&lt;/strong&gt; 在关系模式中，除了第一行是标题栏之外，关系中的其他行成为元组。元组实际上是关系中的数据。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;域&lt;/strong&gt; 一般地，把关系中的每个属性相关的特定类型称为域，那么关系中任何元组的每个分量都必须在相应列的域中取指。在关系模型中，要求组成元组的每个分量都是不可再分割的原子型，即这些分量必须属于某种基本类型，例如整数型、浮点型和字符型等。不允许将某个属性值属于记录结构、集合、列表、数组或可以合理地分割成更小分量的任何类型。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;关系的等价表示方法&lt;/strong&gt; 前面已经讲过，关系的模式和元组都是集合，不是列表。因此，关系的模式和元组的顺序不重要，无论模式中属性顺序或元组顺序如何变换，只要是模式中的属性和元组本身没有变化，那么得到的关系模式都是相同的。这种方式称为关系的等价表示方法。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;关系实例&lt;/strong&gt; 习惯上，把给定关系中元组的集合称为关系实例。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;键码&lt;/strong&gt; 如果关系中的所有元组在一个属性或多个属性的集合中都互不相同，即可以使用该属性或属性的集合来确定关系中的元组，那么该属性或属性的集合称为关系中的键码。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第六章 关系模式的规范化设计*&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h2&gt;&lt;h3 id=&quot;异常问题&quot;&gt;&lt;a href=&quot;#异常问题&quot; class=&quot;headerlink&quot; title=&quot;异常问题&quot;&gt;&lt;/a&gt;异常问题&lt;/h3&gt;&lt;p&gt;在设计关系模式时，应该避免出现异常现象。这些异常现象包括数据冗余、修改异常、插入异常和删除冗余。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;数据冗余&lt;/strong&gt;的含义是表示相同信息的数据在关系的多个元组中重复出现。&lt;br&gt;&lt;strong&gt;修改异常&lt;/strong&gt;是指当修改了关系中某一个元组中的信息后，该关系中的另一个元组中相同的信息却没有修改。&lt;br&gt;&lt;strong&gt;插入异常&lt;/strong&gt;是指当向关系中插入一个元组数据时，仅知道该元组的一部分数据，结果这些已知的数据由于那些未知的数据而很难在关系中正确地插入。&lt;br&gt;&lt;strong&gt;删除异常&lt;/strong&gt;的含义是如果某些属性的值变为空，可能会丢失其他一些有用的信息。&lt;/p&gt;
+&lt;h3 id=&quot;泛关系模式和数据库模式&quot;&gt;&lt;a href=&quot;#泛关系模式和数据库模式&quot; class=&quot;headerlink&quot; title=&quot;泛关系模式和数据库模式&quot;&gt;&lt;/a&gt;泛关系模式和数据库模式&lt;/h3&gt;&lt;p&gt;在关系模式设计过程中，应当采取一些方法消除这些数据异常现象，把最初的关系模式分解成最终的合适的关系模式。这种最初设计的关系模式也成为泛关系模式（universal relation scheme）。关系模式的当前值称为关系实例，关系实例是特定元组的集合。可以把泛关系模式分解成一系列小的符合规范化要求的关系模式集合，这种比较小的最终的关系模式的集合称为数据库模式（database scheme）。对数据库模式的每个关系模式赋予一个当前值，这时称为数据库实例。&lt;/p&gt;
+&lt;h2 id=&quot;函数依赖&quot;&gt;&lt;a href=&quot;#函数依赖&quot; class=&quot;headerlink&quot; title=&quot;函数依赖&quot;&gt;&lt;/a&gt;函数依赖&lt;/h2&gt;&lt;p&gt;数据依赖是数据之间存在的各种联系现象。数据异常现象与数据依赖有着紧密的关联。在数据依赖中，函数依赖是最基本的一种依赖形式。&lt;/p&gt;
+&lt;h3 id=&quot;函数依赖的定义&quot;&gt;&lt;a href=&quot;#函数依赖的定义&quot; class=&quot;headerlink&quot; title=&quot;函数依赖的定义&quot;&gt;&lt;/a&gt;函数依赖的定义&lt;/h3&gt;&lt;p&gt;函数依赖（Function Dependency，FD）的定义可以叙述为：如果关系$R$的两个元组在属性$A_1,A_2,\cdots,A_n$上一致，那么它在另一属性$B$上也一致。这种函数依赖记作$A_1A_2 \cdots A_n \xrightarrow{} B$,读作属性$A_1,A_2,\cdots,A_n$函数决定属性$B$,或属性$B$函数依赖于属性$A_1,A_2,\cdots,A_n$。&lt;/p&gt;
+&lt;p&gt;函数依赖的逻辑定义：设关系模式$R$的属性集是$U$,$X$和$Y$是$U$的子集，函数依赖是形如$X \xrightarrow{} Y$的命题，即$r$是$R$的当前实例值，对r中的任意两个元组$t$和$s$，如果$t[X]=s[X]$，则$t[Y]=s[Y]$,那么$X \xrightarrow{} Y$在关系模式$R$中成立。其中，$t[X]$表示元组$t$在属性集$X$上的值。&lt;/p&gt;
+&lt;p&gt;函数依赖的定义表示了关系模式属性集$X$值和$Y$值之间的多对一联系。&lt;/p&gt;
+&lt;p&gt;如果一组属性$A_1,A_2,\cdots,A_n$函数决定一组属性$B_1,B_2,\cdots,B_m$,那么可以把这组依赖关系简记为：$$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$$&lt;/p&gt;
+&lt;p&gt;对于关系Book(isbn,title,page,bookType,price,pressName,authorName)，根据客观现实和经验，可以得到以下函数依赖&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;isbn-&amp;gt;title&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;isbn-&amp;gt;page&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;isbn-&amp;gt;bookType&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;isbn-&amp;gt;price&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;isbn-&amp;gt;pressName&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;简写为$$isbn \xrightarrow{} title\ page\ bookType\ price\ pressName$$.&lt;br&gt;不能得到$isbn \xrightarrow{} authorName$因为其中一个isbn对应了3个作者。&lt;/p&gt;
+&lt;h3 id=&quot;函数依赖和键码&quot;&gt;&lt;a href=&quot;#函数依赖和键码&quot; class=&quot;headerlink&quot; title=&quot;函数依赖和键码&quot;&gt;&lt;/a&gt;函数依赖和键码&lt;/h3&gt;&lt;h4 id=&quot;超键码&quot;&gt;&lt;a href=&quot;#超键码&quot; class=&quot;headerlink&quot; title=&quot;超键码&quot;&gt;&lt;/a&gt;超键码&lt;/h4&gt;&lt;p&gt;在某个关系中，如果一个或多个属性的集合${A_1,A_2,\cdots,A_n}$函数决定该关系的其他属性，那么称该属性的集合为该关系的超键码。超键码的含义是关系中不可能存在两个不同的元组在属性$A_1,A_2,\cdots,A_n$的取值完全相同。根据上面的定义可以看到，在一个关系中，超键码的数量是没有限制的，例如如果属性集合${A_1,A_2,\cdots,A_n}$是超键码，那么包含该属性集合的所有属性集合都是超键码。&lt;/p&gt;
+&lt;h4 id=&quot;键码&quot;&gt;&lt;a href=&quot;#键码&quot; class=&quot;headerlink&quot; title=&quot;键码&quot;&gt;&lt;/a&gt;键码&lt;/h4&gt;&lt;p&gt;在某个关系中，如果一个或多个属性的集合${A_1,A_2,\cdots,A_n}$函数决定该关系的其他属性，并且集合${A_1,A_2,\cdots,A_n}$的任何真子集都不能函数决定该关系的所有其他属性，那么称该属性的集合为该属性的键码。&lt;/p&gt;
+&lt;p&gt;在一个关系中，有时会有多个不同的键码。如果这样，可以把其中一个最为重要的键码指定为主键码，把其他键码成为候选键码。&lt;/p&gt;
+&lt;h3 id=&quot;逻辑蕴含&quot;&gt;&lt;a href=&quot;#逻辑蕴含&quot; class=&quot;headerlink&quot; title=&quot;逻辑蕴含&quot;&gt;&lt;/a&gt;逻辑蕴含&lt;/h3&gt;&lt;p&gt;在讨论函数依赖时，经常需要从一些已知的函数依赖去判断另外一些函数依赖是否成立。例如，如果$A \xrightarrow{} B$和$B \xrightarrow{} C$在某个关系中成立，那么$ A \xrightarrow{} C$在该关系中是否成立的问题成为逻辑蕴含问题。&lt;/p&gt;
+&lt;p&gt;假定$F$是在某个关系上成立的函数依赖集，$T$是在该关系上成立的另外一个函数依赖集，如果对于该关系中满足$F$的每一个关系实例都满足$T$，那么称函数依赖集$F$蕴含于函数依赖集$T$，记作$F$蕴含于$T$。&lt;/p&gt;
+&lt;p&gt;如果$F$蕴含于$T$，且$T$蕴含于$F$，那么函数依赖集$F$和$T$等价。&lt;/p&gt;
+&lt;p&gt;函数关系$R(A,B,C)$具有函数依赖$A \xrightarrow{} B$和$B \xrightarrow{} C$，那么可以证明$A \xrightarrow{} C$在该关系中成立。证明思路：在关系$R$中任取两个元组，如果这两个元组在属性$A$上一致，那么证明这两个元组在属性$C$上一致。&lt;/p&gt;
+&lt;p&gt;在这里可以把函数依赖$A \xrightarrow{} B$和$B \xrightarrow{} C$记作函数依赖集$F$，把$A \xrightarrow{} C$记作函数依赖集$T$，那么已经证明了满足$F$的每一个关系实例都满足$T$，因此可以说函数依赖集$F$蕴含于函数依赖集$T$。&lt;/p&gt;
+&lt;h3 id=&quot;函数依赖的推理规则&quot;&gt;&lt;a href=&quot;#函数依赖的推理规则&quot; class=&quot;headerlink&quot; title=&quot;函数依赖的推理规则&quot;&gt;&lt;/a&gt;函数依赖的推理规则&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;分解规则&lt;/strong&gt;：可以把一个函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$用一组函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1,A_1A_2 \cdots A_n \xrightarrow{} B_2,\cdots,A_1A_2 \cdots A_n \xrightarrow{} B_m$来代替。&lt;br&gt;&lt;strong&gt;合并规则&lt;/strong&gt;：可以把一组函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1,A_1A_2 \cdots A_n \xrightarrow{} B_2,\cdots,A_1A_2 \cdots A_n \xrightarrow{} B_m$用一个函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$来代替。&lt;/p&gt;
+&lt;p&gt;对于函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$，设$A={A_1A_2 \cdots A_n},B={B_1B_2 \cdots B_m}$，如果$B$是$A$的子集，那么称该依赖为平凡依赖；如果$B$中至少有一个属性不在$A$中，那么称该依赖是非平凡依赖；如果$B$中的任何一个属性都不在$A$中，那么称该依赖是完全非平凡依赖。&lt;/p&gt;
+&lt;p&gt;Armstrong公理。&lt;br&gt;&lt;strong&gt;自反律&lt;/strong&gt;：如果${B_1B_2 \cdots B_m} \subset {A_1A_2 \cdots A_n}$，则$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$。这是平凡依赖。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;增长率&lt;/strong&gt;：如果$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$，则对于任何属性集$C_1,C_2,\cdots,C_k$，都存在$A_1A_2 \cdots A_nC_1C_2 \cdots C_k \xrightarrow{} B_1B_2 \cdots B_mC_1C_2 \cdots C_k$。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;传递率&lt;/strong&gt;：如果$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m,B_1B_2 \cdots B_m \xrightarrow{} C_1C_2 \cdots C_k$，则$A_1A_2 \cdots A_n \xrightarrow{} C_1C_2 \cdots C_k$。&lt;/p&gt;
+&lt;h3 id=&quot;属性集的闭包&quot;&gt;&lt;a href=&quot;#属性集的闭包&quot; class=&quot;headerlink&quot; title=&quot;属性集的闭包&quot;&gt;&lt;/a&gt;属性集的闭包&lt;/h3&gt;&lt;p&gt;假设${A_1A_2 \cdots A_n}$是属性集，$S$是函数依赖集。属性集${A_1A_2 \cdots A_n}$在函数依赖集$S$下的闭包是这样的属性集$B$，它使得满足依赖集$S$中所有依赖的每一个关系都满足$A_1A_2 \cdots A_n \xrightarrow{} B$。即$A_1A_2 \cdots A_n \xrightarrow{} B$蕴含于$S$中的函数依赖。使用${A_1A_2 \cdots A_n}^+$表示属性集${A_1A_2 \cdots A_n}$的闭包。&lt;/p&gt;
+&lt;p&gt;计算属性集${A_1A_2 \cdots A_n}$闭包的步骤如下：&lt;/p&gt;
+&lt;p&gt;第一步，设最终将成为闭包的属性集是$X$,把$X$初始化为${A_1A_2 \cdots A_n}$。&lt;/p&gt;
+&lt;p&gt;第二步，重复搜索和判断函数依赖$B_1B_2 \cdots B_m \xrightarrow{} C$。如果左边所有的属性$B_1,B_2,\cdots,B_m$都在属性集$X$中，但是属性$C$不在$X$中，则将$C$添加到属性集$X$中。&lt;/p&gt;
+&lt;p&gt;第三步，重复第二步，知道没有属性可以添加到属性集$X$中为止。&lt;/p&gt;
+&lt;p&gt;第四步，最后得到的不能再添加的属性集$X$就是${A_1A_2 \cdots A_n}^+$。&lt;/p&gt;
+&lt;p&gt;如果用户知道了如何计算任意属性的闭包，就能检验给定的任意函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B$是否蕴含于函数依赖集$S$。检验步骤如下：&lt;/p&gt;
+&lt;p&gt;第一步，计算闭包。根据函数依赖集$S$计算${A_1A_2 \cdots A_n}^+$。&lt;/p&gt;
+&lt;p&gt;第二步，判断。如果$B$在${A_1A_2 \cdots A_n}^+$中，则$A_1A_2 \cdots A_n \xrightarrow{} B$蕴含于函数依赖集$S$；如果$B$不在${A_1A_2 \cdots A_n}^+$中，则该函数不蕴含于函数依赖集$S$。&lt;/p&gt;
+&lt;h3 id=&quot;正则覆盖&quot;&gt;&lt;a href=&quot;#正则覆盖&quot; class=&quot;headerlink&quot; title=&quot;正则覆盖&quot;&gt;&lt;/a&gt;正则覆盖&lt;/h3&gt;&lt;p&gt;如果可以去掉一个函数依赖集中的属性而不改变函数依赖集的闭包，那么称该属性是无关的。无关属性可以形式化的定义如下，考虑函数依赖集$S$和$S$中的某个函数依赖$X \xrightarrow{} Y$。&lt;/p&gt;
+&lt;p&gt;如果$A \in X$，且$S$逻辑蕴含$(S-\{X \xrightarrow{} Y\}) \cup \{(X-A) \xrightarrow{} Y\}$，那么属性$A$在$X$中是无关的。&lt;/p&gt;
+&lt;p&gt;如果$A \in Y$，且$S$逻辑蕴含$(S-\{X \xrightarrow{} Y\}) \cup \{X \xrightarrow{} (Y-A)\}$，那么属性$A$在$Y$中是无关的。&lt;/p&gt;
+&lt;p&gt;$S$的正则覆盖是一个函数依赖集$S_C$，含义是$S$逻辑蕴含$S_C$中的所有依赖，并且$S_C$逻辑蕴含$S$中的所有依赖。此外，$S_C$具有如下三个性质：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$S_C$的闭包与$S$的闭包相同，即${S}^+ ={S_C}^+$。&lt;/li&gt;
+&lt;li&gt;$S_C$的任何函数依赖都不包含无关属性。&lt;/li&gt;
+&lt;li&gt;$S_C$中的函数依赖的左半部都是唯一的，即$S_C$中不存在两个函数依赖$X_1 \xrightarrow{} Y_1$和$X_2 \xrightarrow{} Y_2$，且$X_1 = X_2$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;关系模式的分解&quot;&gt;&lt;a href=&quot;#关系模式的分解&quot; class=&quot;headerlink&quot; title=&quot;关系模式的分解&quot;&gt;&lt;/a&gt;关系模式的分解&lt;/h2&gt;&lt;p&gt;消除关系模式中数据异常的常用办法是分解关系模式。关系模式$R$的分解就是把关系$R$中的属性分开，以构成两个新的关系模式。&lt;/p&gt;
+&lt;p&gt;在分解关系模式时，一定要注意两个问题：第一，保证分解前后关系模式的信息不能丢失和增加，保持原有的信息不变，这称为无损连接；第二，保持分解前后猿猴的函数依赖依然成立。&lt;/p&gt;
+&lt;p&gt;给定一个关系模式$R$，其属性集合为$\{A_1,A_2,\cdots,A_n\}$，现在把其分解成两个关系模式$X$和$Y$，其属性集合分别是$\{B_1,B_2,\cdots,B_m\}$和$\{C_1,C_2,\cdots,C_k\}$，这种分解应该满足如下条件：&lt;/p&gt;
+&lt;p&gt;第一个条件：$\{A_1,A_2,\cdots,A_n\}=\{B_1,B_2,\cdots,B_m\} \cup \{C_1,C_2,\cdots,C_k\}$。&lt;/p&gt;
+&lt;p&gt;第二个条件：关系$X$中的元组是关系$R$的所有元组在$\{B_1,B_2,\cdots,B_m\}$上的投影，包含相同元组。&lt;/p&gt;
+&lt;p&gt;第三个条件：关系$Y$中的元组是关系$R$的所有元组在$\{C_1,C_2,\cdots,C_k\}$上的投影，不包含相同元组。&lt;/p&gt;
+&lt;p&gt;例如：略。&lt;/p&gt;
+&lt;h2 id=&quot;关系模型的范式&quot;&gt;&lt;a href=&quot;#关系模型的范式&quot; class=&quot;headerlink&quot; title=&quot;关系模型的范式&quot;&gt;&lt;/a&gt;关系模型的范式&lt;/h2&gt;&lt;h3 id=&quot;第一范式&quot;&gt;&lt;a href=&quot;#第一范式&quot; class=&quot;headerlink&quot; title=&quot;第一范式&quot;&gt;&lt;/a&gt;第一范式&lt;/h3&gt;&lt;p&gt;如果关系模式$R$中的所有属性值都是不可在分解的原子值，那么就称关系$R$是第一范式（first normal form，1NF）的关系模式。不是1NF的关系称为非规范化的关系，满足1NF的关系简称关系。在关系型数据库管理系统中，涉及到的研究对象都是满足1NF的规范化关系。&lt;/p&gt;
+&lt;h3 id=&quot;BCNF范式&quot;&gt;&lt;a href=&quot;#BCNF范式&quot; class=&quot;headerlink&quot; title=&quot;BCNF范式&quot;&gt;&lt;/a&gt;BCNF范式&lt;/h3&gt;&lt;p&gt;BCNF范式（Boyce-Codd normal form）的定义是，如果某个关系R有非平凡依赖$A_1,A_2,\cdots,A_n \xrightarrow{} B$，那么$\{A_1,A_2,\cdots,A_n\}$必然是关系R的超键码。满足这样条件的关系就属于BCNF。即BCNF条件的含义是每一个非平凡依赖的左边必须包含超键码。&lt;/p&gt;
+&lt;h3 id=&quot;分解成BCNF模式的算法&quot;&gt;&lt;a href=&quot;#分解成BCNF模式的算法&quot; class=&quot;headerlink&quot; title=&quot;分解成BCNF模式的算法&quot;&gt;&lt;/a&gt;分解成BCNF模式的算法&lt;/h3&gt;&lt;p&gt;第一步，找到一个违背BCNF的非平凡依赖，并在该依赖的右边加上尽量多的属性。&lt;/p&gt;
+&lt;p&gt;第二步，把原始关系模型分解成两个属性重迭的关系模式，一个模式包含了违背BCNF的所有属性，另外一个模式包含了该依赖左边以及未包含在该依赖中的所有属性。&lt;/p&gt;
+&lt;p&gt;第三步，判断新的关系模式是否满足BCNF。如果不满足，继续进行分解；如果满足，则停止。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;任何包含了两个属性的关系模式都自然满足BCNF条件。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;函数依赖的投影&quot;&gt;&lt;a href=&quot;#函数依赖的投影&quot; class=&quot;headerlink&quot; title=&quot;函数依赖的投影&quot;&gt;&lt;/a&gt;函数依赖的投影&lt;/h3&gt;&lt;p&gt;在分解关系模式时，需要确定新关系模式是否满足BCNF条件。这种判断的前提是知道新关系模式中成立的函数依赖，这些函数依赖是原关系模式的函数依赖在新关系模式上的投影。下面介绍一种找到新关系模式中函数依赖的方法。&lt;/p&gt;
+&lt;p&gt;假设把关系$R$分解成关系$S$和$T$，$F$是$R$中已知的函数依赖集。现在计算$S$中成立的函数依赖。考虑包含于$S$的属性集的每个属性集$X$，计算$X^+$。于是，满足下列条件的每个属性$B$，函数$X \xrightarrow{} B$在关系$S$中成立：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$B$是$S$的一个属性；&lt;/li&gt;
+&lt;li&gt;$B$属于$X^+$;&lt;/li&gt;
+&lt;li&gt;$B$不属于$X$。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;第三范式&quot;&gt;&lt;a href=&quot;#第三范式&quot; class=&quot;headerlink&quot; title=&quot;第三范式&quot;&gt;&lt;/a&gt;第三范式&lt;/h3&gt;&lt;p&gt;在某些情况下，按照BCNF进行分解，但是当对得到的关系模式进行连接时，却不能保证原先所有的函数依赖都能得到保持。这是，关系模式就不应该继续进行分解，该关系模式满足的范式称为第三范式。&lt;/p&gt;
+&lt;p&gt;如果对于任何非平凡依赖$A_1,A_2,\cdots,\A_n \xrightarrow{} B$，那么或$\{A_1,A_2,\cdots,A_n\}$是关系$R$的超键码，或$B$是某个键码的组成部分。满足这样条件的关系就属于第三范式（third normal form, 3NF）。&lt;/p&gt;
+&lt;h3 id=&quot;第二范式&quot;&gt;&lt;a href=&quot;#第二范式&quot; class=&quot;headerlink&quot; title=&quot;第二范式&quot;&gt;&lt;/a&gt;第二范式&lt;/h3&gt;&lt;p&gt;在一个关系中，如果$\{A_1,A_2,\cdots,A_n\}$是关系$R$的键码，$B$是关系中的任意非键码，那么非平凡依赖$A_1,A_2,\cdots,A_n \xrightarrow{} B$都成立，则该关系模式属于第二范式（second normal form, 2NF）。&lt;/p&gt;
+&lt;h3 id=&quot;多值依赖&quot;&gt;&lt;a href=&quot;#多值依赖&quot; class=&quot;headerlink&quot; title=&quot;多值依赖&quot;&gt;&lt;/a&gt;多值依赖&lt;/h3&gt;&lt;p&gt;多值依赖的含义是如果确定了关系$R$的一个属性集的取值，则其他某些特征属性的取值与该关系的所有其他属性的取值无关。确切的说，如果限定关系$R$的元组在属于$A$的每个属性上取特定的值，结果属性$B$的属性取值的集合与既不属于$A$也不属于$B$但属于$R$的属性取值的集合无关，则称如下所示的多值依赖在关系$R$中成立：$$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$$&lt;/p&gt;
+&lt;p&gt;多值依赖满足规则&lt;/p&gt;
+&lt;p&gt;平凡依赖规则：在某个关系中，如果多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$成立，则多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$也成立，其中$C$是$B$加上$A$中的一个或多个属性。反之，也可以从$B$中删除一些属于$A$的属性，并推导出多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} D_1D_2 \cdots D_r$，其中，$D$是在$B$中而不属于$A$的属性。&lt;/p&gt;
+&lt;p&gt;传递规则：在某个关系中，如果多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$和$B_1B_2 \cdots B_m \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$，则多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$成立。&lt;/p&gt;
+&lt;p&gt;复制规则：在关系中，每个函数依赖都是多值依赖。&lt;/p&gt;
+&lt;p&gt;互补规则：如果$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$是关系$R$的多值依赖，则$R$也满足$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$,其中，$C$是不属于$A$和$B$的$R$的所有其他属性。&lt;/p&gt;
+&lt;p&gt;第四范式：如果$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$是非平凡的多值依赖，且$\{A_1,A_2,\cdots,A_n\}$是关系的超键码，那么该关系就属于第四范式（Fourth Normal Form, 4NF）。&lt;/p&gt;
+&lt;p&gt;分解方法：&lt;/p&gt;
+&lt;p&gt;第一步：找到一个4NF违例，例如$A \xrightarrow{}\xrightarrow{} B$.&lt;/p&gt;
+&lt;p&gt;第二步：分解该关系模式，第一个关系模式包含$A$和$B$中的属性，第二个关系模式包含$A$中的属性以及不属于$A$也不属于$B$的$R$的所有其他属性。&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h2&gt;&lt;p&gt;关系模型是一种以二维表的形式表示实体数据和实体之间关系等信息的数据库模型。&lt;/p&gt;
+&lt;p&gt;在关系模型中，基本元素包括属性、模
+    
+    </summary>
+    
+    
+      <category term="database" scheme="http://mrgao1008.github.io/blog/tags/database/"/>
     
   </entry>
   
@@ -595,7 +515,7 @@
 &lt;p&gt;如果有疑问，可以在linux-kernel邮件列表上询问。&lt;/p&gt;
 &lt;p&gt;###在邮件主题上加上[PATCH]&lt;/p&gt;
 &lt;p&gt;###签名&lt;/p&gt;
-&lt;p&gt;为了方便跟踪作者和管理复杂的更改，引入了签名机制。如果确认一下4点就可以在对patch的描述后加上一句：&lt;br&gt;Signed-off-by: Random J Developer &lt;a href=&quot;&amp;#x6d;&amp;#97;&amp;#x69;&amp;#108;&amp;#116;&amp;#111;&amp;#58;&amp;#114;&amp;#97;&amp;#110;&amp;#x64;&amp;#x6f;&amp;#109;&amp;#x40;&amp;#100;&amp;#101;&amp;#118;&amp;#x65;&amp;#x6c;&amp;#111;&amp;#112;&amp;#x65;&amp;#x72;&amp;#x2e;&amp;#101;&amp;#120;&amp;#x61;&amp;#x6d;&amp;#112;&amp;#108;&amp;#x65;&amp;#46;&amp;#x6f;&amp;#x72;&amp;#x67;&quot;&gt;&amp;#114;&amp;#97;&amp;#110;&amp;#x64;&amp;#x6f;&amp;#109;&amp;#x40;&amp;#100;&amp;#101;&amp;#118;&amp;#x65;&amp;#x6c;&amp;#111;&amp;#112;&amp;#x65;&amp;#x72;&amp;#x2e;&amp;#101;&amp;#120;&amp;#x61;&amp;#x6d;&amp;#112;&amp;#108;&amp;#x65;&amp;#46;&amp;#x6f;&amp;#x72;&amp;#x67;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;为了方便跟踪作者和管理复杂的更改，引入了签名机制。如果确认一下4点就可以在对patch的描述后加上一句：&lt;br&gt;Signed-off-by: Random J Developer &lt;a href=&quot;&amp;#x6d;&amp;#97;&amp;#x69;&amp;#x6c;&amp;#116;&amp;#111;&amp;#x3a;&amp;#114;&amp;#97;&amp;#x6e;&amp;#100;&amp;#x6f;&amp;#109;&amp;#64;&amp;#x64;&amp;#x65;&amp;#118;&amp;#x65;&amp;#108;&amp;#x6f;&amp;#x70;&amp;#x65;&amp;#x72;&amp;#46;&amp;#101;&amp;#x78;&amp;#x61;&amp;#x6d;&amp;#112;&amp;#108;&amp;#101;&amp;#x2e;&amp;#x6f;&amp;#114;&amp;#103;&quot;&gt;&amp;#114;&amp;#97;&amp;#x6e;&amp;#100;&amp;#x6f;&amp;#109;&amp;#64;&amp;#x64;&amp;#x65;&amp;#118;&amp;#x65;&amp;#108;&amp;#x6f;&amp;#x70;&amp;#x65;&amp;#x72;&amp;#46;&amp;#101;&amp;#x78;&amp;#x61;&amp;#x6d;&amp;#112;&amp;#108;&amp;#101;&amp;#x2e;&amp;#x6f;&amp;#114;&amp;#103;&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;更改部分或者全部由我完成。我有权利开源&lt;/li&gt;
 &lt;li&gt;更改基于一个开源项目，需提交到同一个开源license下。否则可以提交给别的开源license&lt;/li&gt;
@@ -649,6 +569,86 @@
       <category term="linux" scheme="http://mrgao1008.github.io/blog/tags/linux/"/>
     
       <category term="kernel" scheme="http://mrgao1008.github.io/blog/tags/kernel/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows API Hook 开发环境配置</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/02/Windows%20API%20hook%20%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/02/Windows API hook 开发环境配置/</id>
+    <published>2016-04-01T16:00:00.000Z</published>
+    <updated>2016-04-02T01:39:47.238Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;span id=&quot;top&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;!-- MarkdownTOC --&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#detours安装和配置&quot;&gt;Detours安装和配置&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#detours介绍&quot;&gt;Detours介绍&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#detours安装&quot;&gt;Detours安装&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#detours编译&quot;&gt;Detours编译&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#windows-api-hook例子&quot;&gt;Windows API Hook例子&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#加入detours头文件和动态库文件&quot;&gt;加入detours头文件和动态库文件&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#利用withdll进行远程dll注入&quot;&gt;利用withdll进行远程dll注入&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /MarkdownTOC --&gt;
+&lt;p&gt;&lt;a name=&quot;detours安装和配置&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Detours安装和配置&quot;&gt;&lt;a href=&quot;#Detours安装和配置&quot; class=&quot;headerlink&quot; title=&quot;Detours安装和配置&quot;&gt;&lt;/a&gt;Detours安装和配置&lt;/h2&gt;&lt;p&gt;&lt;a name=&quot;detours介绍&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Detours介绍&quot;&gt;&lt;a href=&quot;#Detours介绍&quot; class=&quot;headerlink&quot; title=&quot;Detours介绍&quot;&gt;&lt;/a&gt;Detours介绍&lt;/h3&gt;&lt;p&gt;Detours是Windows下一个API Hook 开源框架。&lt;br&gt;&lt;a href=&quot;http://research.microsoft.com/en-us/projects/detours/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Detours官网&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://research.microsoft.com/en-us/downloads/d36340fb-4d3c-4ddd-bf5b-1db25d03713d/default.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Detours 3.0下载地址&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;detours安装&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Detours安装&quot;&gt;&lt;a href=&quot;#Detours安装&quot; class=&quot;headerlink&quot; title=&quot;Detours安装&quot;&gt;&lt;/a&gt;Detours安装&lt;/h3&gt;&lt;p&gt;msi文件一路next。记下安装目录。&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;detours编译&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Detours编译&quot;&gt;&lt;a href=&quot;#Detours编译&quot; class=&quot;headerlink&quot; title=&quot;Detours编译&quot;&gt;&lt;/a&gt;Detours编译&lt;/h3&gt;&lt;p&gt;安装完成后，进入目录&lt;code&gt;C:\Program Files\Microsoft Research\Detours Express 3.0&lt;/code&gt;会看到下面的目录结构&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;samples\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	simple\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	withdll\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	...&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;src\&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;其中src是需要编译的detours源码。simple和withdll是实现windows API Hook需要用到的2个示例。&lt;/p&gt;
+&lt;p&gt;编译步骤如下:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;以管理员权限启动cmd&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;设置环境变量，不然nmake会出错&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# &amp;quot;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\vcvars32.bat&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;进入detours的src文件夹并进行编译&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# cd C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\src&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# nmake&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;编译在src和samples同一目录会生成lib.X86文件夹，里面的detours.lib就是我们需要的。&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;windows-api-hook例子&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Windows-API-Hook例子&quot;&gt;&lt;a href=&quot;#Windows-API-Hook例子&quot; class=&quot;headerlink&quot; title=&quot;Windows API Hook例子&quot;&gt;&lt;/a&gt;Windows API Hook例子&lt;/h2&gt;&lt;p&gt;&lt;a name=&quot;加入detours头文件和动态库文件&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;加入detours头文件和动态库文件&quot;&gt;&lt;a href=&quot;#加入detours头文件和动态库文件&quot; class=&quot;headerlink&quot; title=&quot;加入detours头文件和动态库文件&quot;&gt;&lt;/a&gt;加入detours头文件和动态库文件&lt;/h3&gt;&lt;p&gt;在vs中新建windows控制台程序，设置解决方案的属性。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;打开&lt;strong&gt;项目&lt;/strong&gt;–&lt;strong&gt;XXX 属性&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;C/C++&lt;/strong&gt;–&lt;strong&gt;常规&lt;/strong&gt; 在&lt;strong&gt;附加目录项&lt;/strong&gt;中加入&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\include&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;链接器&lt;/strong&gt;–&lt;strong&gt;常规&lt;/strong&gt; 在&lt;strong&gt;附加库目录&lt;/strong&gt;中加入&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\lib.X86&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;链接器&lt;/strong&gt;–&lt;strong&gt;输入&lt;/strong&gt; 在&lt;strong&gt;附加依赖项&lt;/strong&gt;中加入&lt;code&gt;detours.lib&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;C/C++&lt;/strong&gt;–&lt;strong&gt;代码生成&lt;/strong&gt; 在&lt;strong&gt;运行库&lt;/strong&gt;选择&lt;code&gt;/MT&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配置属性&lt;/strong&gt;–&lt;strong&gt;常规&lt;/strong&gt; 在&lt;strong&gt;字符集&lt;/strong&gt;选择&lt;code&gt;未设置&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;在命令栏中选择&lt;code&gt;release&lt;/code&gt;版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;withdll的编译&quot;&gt;&lt;a href=&quot;#withdll的编译&quot; class=&quot;headerlink&quot; title=&quot;withdll的编译&quot;&gt;&lt;/a&gt;withdll的编译&lt;/h4&gt;&lt;p&gt;在源文件中新建cpp文件，拷贝detours安装目录下的&lt;code&gt;samples\withdll\withdll.cpp&lt;/code&gt;内容到cpp中。编译。&lt;/p&gt;
+&lt;h4 id=&quot;simple的编译&quot;&gt;&lt;a href=&quot;#simple的编译&quot; class=&quot;headerlink&quot; title=&quot;simple的编译&quot;&gt;&lt;/a&gt;simple的编译&lt;/h4&gt;&lt;p&gt;在vs新建项目时，选择windows控制台程序，并选择dll。设置解决方案属性。拷贝&lt;code&gt;samples\simple\simple.cpp&lt;/code&gt;到新建的cpp文件中，编译。&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;利用withdll进行远程dll注入&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;利用withdll进行远程dll注入&quot;&gt;&lt;a href=&quot;#利用withdll进行远程dll注入&quot; class=&quot;headerlink&quot; title=&quot;利用withdll进行远程dll注入&quot;&gt;&lt;/a&gt;利用withdll进行远程dll注入&lt;/h2&gt;&lt;p&gt;&lt;code&gt;withdll /d:simple.dll a.exe&lt;/code&gt;会将simple.dll注入到a.exe中。注意&lt;code&gt;/d:simple.dll&lt;/code&gt;分号后不要有空格。exe和dll用绝对地址和相对地址都可以。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;#top&quot;&gt;回到顶部&lt;/a&gt;&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;span id=&quot;top&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;!-- MarkdownTOC --&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#detours安装和配置&quot;&gt;Detours安装和配置&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#detours介绍&quot;&gt;Detours
+    
+    </summary>
+    
+    
+      <category term="Windows" scheme="http://mrgao1008.github.io/blog/tags/Windows/"/>
+    
+      <category term="hook" scheme="http://mrgao1008.github.io/blog/tags/hook/"/>
     
   </entry>
   
@@ -783,6 +783,26 @@
   </entry>
   
   <entry>
+    <title>fgetc 0x1A EOF</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/01/fgetc%200x1A%20EOF/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/01/fgetc 0x1A EOF/</id>
+    <published>2016-04-01T08:19:00.000Z</published>
+    <updated>2016-04-01T08:19:37.696Z</updated>
+    
+    <content type="html">&lt;p&gt;历史遗留问题，将fopen中的r改为rb即可&lt;/p&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;历史遗留问题，将fopen中的r改为rb即可&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="problem solution" scheme="http://mrgao1008.github.io/blog/tags/problem-solution/"/>
+    
+  </entry>
+  
+  <entry>
     <title>libvmi介绍</title>
     <link href="http://mrgao1008.github.io/blog/2016/04/01/libvmi%E4%BB%8B%E7%BB%8D/"/>
     <id>http://mrgao1008.github.io/blog/2016/04/01/libvmi介绍/</id>
@@ -883,26 +903,6 @@
     
     
       <category term="virtualization" scheme="http://mrgao1008.github.io/blog/tags/virtualization/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>fgetc 0x1A EOF</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/01/fgetc%200x1A%20EOF/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/01/fgetc 0x1A EOF/</id>
-    <published>2016-04-01T08:19:00.000Z</published>
-    <updated>2016-04-01T08:19:37.696Z</updated>
-    
-    <content type="html">&lt;p&gt;历史遗留问题，将fopen中的r改为rb即可&lt;/p&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;历史遗留问题，将fopen中的r改为rb即可&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="problem solution" scheme="http://mrgao1008.github.io/blog/tags/problem-solution/"/>
     
   </entry>
   
@@ -1107,32 +1107,6 @@
   </entry>
   
   <entry>
-    <title>exe文件分解</title>
-    <link href="http://mrgao1008.github.io/blog/2016/04/01/exe%E6%96%87%E4%BB%B6%E5%88%86%E8%A7%A3/"/>
-    <id>http://mrgao1008.github.io/blog/2016/04/01/exe文件分解/</id>
-    <published>2016-03-31T16:00:00.000Z</published>
-    <updated>2016-04-01T08:18:43.396Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;分解算法&quot;&gt;&lt;a href=&quot;#分解算法&quot; class=&quot;headerlink&quot; title=&quot;分解算法&quot;&gt;&lt;/a&gt;分解算法&lt;/h2&gt;&lt;h2 id=&quot;PE文件载入步骤&quot;&gt;&lt;a href=&quot;#PE文件载入步骤&quot; class=&quot;headerlink&quot; title=&quot;PE文件载入步骤&quot;&gt;&lt;/a&gt;PE文件载入步骤&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;文件Load进入内存        （ReadFile）&lt;/li&gt;
-&lt;li&gt;申请内存存放不同的节    （placeSection）&lt;/li&gt;
-&lt;li&gt;载入dll和设置IAT        （loadDll and setIAT）&lt;/li&gt;
-&lt;li&gt;重定位                （funcReloc）&lt;/li&gt;
-&lt;li&gt;运行EXE或者DLL        （doEntryPoint）&lt;/li&gt;
-&lt;/ul&gt;</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;分解算法&quot;&gt;&lt;a href=&quot;#分解算法&quot; class=&quot;headerlink&quot; title=&quot;分解算法&quot;&gt;&lt;/a&gt;分解算法&lt;/h2&gt;&lt;h2 id=&quot;PE文件载入步骤&quot;&gt;&lt;a href=&quot;#PE文件载入步骤&quot; class=&quot;headerlink&quot; title=&quot;P
-    
-    </summary>
-    
-    
-      <category term="None" scheme="http://mrgao1008.github.io/blog/tags/None/"/>
-    
-  </entry>
-  
-  <entry>
     <title>c++ 学习文档</title>
     <link href="http://mrgao1008.github.io/blog/2016/04/01/c++%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3/"/>
     <id>http://mrgao1008.github.io/blog/2016/04/01/c++学习文档/</id>
@@ -1221,6 +1195,32 @@
     
     
       <category term="c++" scheme="http://mrgao1008.github.io/blog/tags/c/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>exe文件分解</title>
+    <link href="http://mrgao1008.github.io/blog/2016/04/01/exe%E6%96%87%E4%BB%B6%E5%88%86%E8%A7%A3/"/>
+    <id>http://mrgao1008.github.io/blog/2016/04/01/exe文件分解/</id>
+    <published>2016-03-31T16:00:00.000Z</published>
+    <updated>2016-04-01T08:18:43.396Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;分解算法&quot;&gt;&lt;a href=&quot;#分解算法&quot; class=&quot;headerlink&quot; title=&quot;分解算法&quot;&gt;&lt;/a&gt;分解算法&lt;/h2&gt;&lt;h2 id=&quot;PE文件载入步骤&quot;&gt;&lt;a href=&quot;#PE文件载入步骤&quot; class=&quot;headerlink&quot; title=&quot;PE文件载入步骤&quot;&gt;&lt;/a&gt;PE文件载入步骤&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;文件Load进入内存        （ReadFile）&lt;/li&gt;
+&lt;li&gt;申请内存存放不同的节    （placeSection）&lt;/li&gt;
+&lt;li&gt;载入dll和设置IAT        （loadDll and setIAT）&lt;/li&gt;
+&lt;li&gt;重定位                （funcReloc）&lt;/li&gt;
+&lt;li&gt;运行EXE或者DLL        （doEntryPoint）&lt;/li&gt;
+&lt;/ul&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;分解算法&quot;&gt;&lt;a href=&quot;#分解算法&quot; class=&quot;headerlink&quot; title=&quot;分解算法&quot;&gt;&lt;/a&gt;分解算法&lt;/h2&gt;&lt;h2 id=&quot;PE文件载入步骤&quot;&gt;&lt;a href=&quot;#PE文件载入步骤&quot; class=&quot;headerlink&quot; title=&quot;P
+    
+    </summary>
+    
+    
+      <category term="None" scheme="http://mrgao1008.github.io/blog/tags/None/"/>
     
   </entry>
   

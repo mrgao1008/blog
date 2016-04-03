@@ -121,13 +121,13 @@
                 <div class="tips-box hide">
                     <div class="tips-arrow"></div>
                     <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
+                        <li>Menu</li>
+                        <li>Tags</li>
                         
-                        <li>友情链接</li>
+                        <li>Friends</li>
                         
                         
-                        <li>关于我</li>
+                        <li>About Me</li>
                         
                     </ul>
                 </div>
@@ -302,10 +302,10 @@
 
 
   
-    <article id="post-Windows API hook 开发环境配置" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-LoadLibrary 126" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/blog/2016/04/02/Windows API hook 开发环境配置/" class="article-date">
+      <a href="/blog/2016/04/02/LoadLibrary 126/" class="article-date">
       <time datetime="2016-04-01T16:00:00.000Z" itemprop="datePublished">2016-04-02</time>
 </a>
     </div>
@@ -319,7 +319,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/blog/2016/04/02/Windows API hook 开发环境配置/">Windows API Hook 开发环境配置</a>
+      <a class="article-title" href="/blog/2016/04/02/LoadLibrary 126/">LoadLibrary error 126</a>
     </h1>
   
 
@@ -329,62 +329,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><span id="top"></span><br><!-- MarkdownTOC --></p>
-<ul>
-<li><a href="#detours安装和配置">Detours安装和配置</a><ul>
-<li><a href="#detours介绍">Detours介绍</a></li>
-<li><a href="#detours安装">Detours安装</a></li>
-<li><a href="#detours编译">Detours编译</a></li>
-</ul>
-</li>
-<li><a href="#windows-api-hook例子">Windows API Hook例子</a><ul>
-<li><a href="#加入detours头文件和动态库文件">加入detours头文件和动态库文件</a></li>
-</ul>
-</li>
-<li><a href="#利用withdll进行远程dll注入">利用withdll进行远程dll注入</a></li>
-</ul>
-<!-- /MarkdownTOC -->
-<p><a name="detours安装和配置"></a></p>
-<h2 id="Detours安装和配置"><a href="#Detours安装和配置" class="headerlink" title="Detours安装和配置"></a>Detours安装和配置</h2><p><a name="detours介绍"></a></p>
-<h3 id="Detours介绍"><a href="#Detours介绍" class="headerlink" title="Detours介绍"></a>Detours介绍</h3><p>Detours是Windows下一个API Hook 开源框架。<br><a href="http://research.microsoft.com/en-us/projects/detours/" target="_blank" rel="external">Detours官网</a><br><a href="http://research.microsoft.com/en-us/downloads/d36340fb-4d3c-4ddd-bf5b-1db25d03713d/default.aspx" target="_blank" rel="external">Detours 3.0下载地址</a></p>
-<p><a name="detours安装"></a></p>
-<h3 id="Detours安装"><a href="#Detours安装" class="headerlink" title="Detours安装"></a>Detours安装</h3><p>msi文件一路next。记下安装目录。</p>
-<p><a name="detours编译"></a></p>
-<h3 id="Detours编译"><a href="#Detours编译" class="headerlink" title="Detours编译"></a>Detours编译</h3><p>安装完成后，进入目录<code>C:\Program Files\Microsoft Research\Detours Express 3.0</code>会看到下面的目录结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">samples\</span><br><span class="line">	...</span><br><span class="line">	simple\</span><br><span class="line">	...</span><br><span class="line">	withdll\</span><br><span class="line">	...</span><br><span class="line">src\</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<p>其中src是需要编译的detours源码。simple和withdll是实现windows API Hook需要用到的2个示例。</p>
-<p>编译步骤如下:</p>
-<ul>
-<li>以管理员权限启动cmd</li>
-<li><p>设置环境变量，不然nmake会出错</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &quot;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\vcvars32.bat&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>进入detours的src文件夹并进行编译</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\src</span><br><span class="line"># nmake</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>编译在src和samples同一目录会生成lib.X86文件夹，里面的detours.lib就是我们需要的。</p>
-<p><a name="windows-api-hook例子"></a></p>
-<h2 id="Windows-API-Hook例子"><a href="#Windows-API-Hook例子" class="headerlink" title="Windows API Hook例子"></a>Windows API Hook例子</h2><p><a name="加入detours头文件和动态库文件"></a></p>
-<h3 id="加入detours头文件和动态库文件"><a href="#加入detours头文件和动态库文件" class="headerlink" title="加入detours头文件和动态库文件"></a>加入detours头文件和动态库文件</h3><p>在vs中新建windows控制台程序，设置解决方案的属性。</p>
-<ul>
-<li>打开<strong>项目</strong>–<strong>XXX 属性</strong></li>
-<li><p><strong>配置属性</strong>–<strong>C/C++</strong>–<strong>常规</strong> 在<strong>附加目录项</strong>中加入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\include</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>配置属性</strong>–<strong>链接器</strong>–<strong>常规</strong> 在<strong>附加库目录</strong>中加入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\lib.X86</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>配置属性</strong>–<strong>链接器</strong>–<strong>输入</strong> 在<strong>附加依赖项</strong>中加入<code>detours.lib</code></p>
-</li>
-<li><strong>配置属性</strong>–<strong>C/C++</strong>–<strong>代码生成</strong> 在<strong>运行库</strong>选择<code>/MT</code></li>
-<li><strong>配置属性</strong>–<strong>常规</strong> 在<strong>字符集</strong>选择<code>未设置</code></li>
-<li>在命令栏中选择<code>release</code>版本</li>
-</ul>
-<h4 id="withdll的编译"><a href="#withdll的编译" class="headerlink" title="withdll的编译"></a>withdll的编译</h4><p>在源文件中新建cpp文件，拷贝detours安装目录下的<code>samples\withdll\withdll.cpp</code>内容到cpp中。编译。</p>
-<h4 id="simple的编译"><a href="#simple的编译" class="headerlink" title="simple的编译"></a>simple的编译</h4><p>在vs新建项目时，选择windows控制台程序，并选择dll。设置解决方案属性。拷贝<code>samples\simple\simple.cpp</code>到新建的cpp文件中，编译。</p>
-<p><a name="利用withdll进行远程dll注入"></a></p>
-<h2 id="利用withdll进行远程dll注入"><a href="#利用withdll进行远程dll注入" class="headerlink" title="利用withdll进行远程dll注入"></a>利用withdll进行远程dll注入</h2><p><code>withdll /d:simple.dll a.exe</code>会将simple.dll注入到a.exe中。注意<code>/d:simple.dll</code>分号后不要有空格。exe和dll用绝对地址和相对地址都可以。</p>
-<p><a href="#top">回到顶部</a></p>
+        <p>可能是UNICODE和ASCII字符的问题。</p>
       
     </div>
     
@@ -394,154 +339,7 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Windows/">Windows</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/hook/">hook</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-数据库系统原理与应用（第三版）1" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/blog/2016/04/02/数据库系统原理与应用（第三版）1/" class="article-date">
-      <time datetime="2016-04-01T16:00:00.000Z" itemprop="datePublished">2016-04-02</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2016/04/02/数据库系统原理与应用（第三版）1/">第五章 关系模型</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>关系模型是一种以二维表的形式表示实体数据和实体之间关系等信息的数据库模型。</p>
-<p>在关系模型中，基本元素包括属性、模式、元祖、域、键码、关系等价表示法以及关系实例等。</p>
-<p><strong>属性</strong> 在二维表中，关系的第一行成为属性（attribute），它描述了属性所在列各项的含义。</p>
-<p><strong>模式</strong> 关系名和关系的属性集成为关系的模式。一般地，模式的表示形式有两种。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">第一种：</span><br><span class="line">	模式名(属性1,属性2,...,属性n)</span><br><span class="line">	例如：</span><br><span class="line">	Book(isbn,titlle,page,bookType,year,price)</span><br><span class="line">第二种：</span><br><span class="line">	模式名=(属性1,属性2,...,属性n)</span><br><span class="line">	例如：</span><br><span class="line">	Book=(isbn,titlle,page,bookType,year,price)</span><br></pre></td></tr></table></figure>
-<p>关系的概念对应于程序设计语言中变量的概念，而关系模式的概念对应于程序设计语言中类型定义的概念。</p>
-<p>关系模式中的属性是一个<strong>集合</strong>，而不是<strong>列表</strong>，所以关系模式中属性的顺序不重要。但是便于讨论，一般为关系模式中的属性规定一个标准的排列顺序。</p>
-<p>当谈论数据库时，还必须区分关系模式和关系实例的概念。关系模式是一个逻辑设计包括了关系名和关系属性，相对比较稳定。而关系实例是定义的关系模式中数据的快照，相对来说经常发生变化。</p>
-<p>在关系模型中，数据库设计包含了一个或多个关系模式。关系数据库模式就是关系模式的集合，简称数据库模式。</p>
-<p><strong>元祖</strong> 在关系模式中，除了第一行是标题栏之外，关系中的其他行成为元组。元组实际上是关系中的数据。</p>
-<p><strong>域</strong> 一般地，把关系中的每个属性相关的特定类型称为域，那么关系中任何元组的每个分量都必须在相应列的域中取指。在关系模型中，要求组成元组的每个分量都是不可再分割的原子型，即这些分量必须属于某种基本类型，例如整数型、浮点型和字符型等。不允许将某个属性值属于记录结构、集合、列表、数组或可以合理地分割成更小分量的任何类型。</p>
-<p><strong>关系的等价表示方法</strong> 前面已经讲过，关系的模式和元组都是集合，不是列表。因此，关系的模式和元组的顺序不重要，无论模式中属性顺序或元组顺序如何变换，只要是模式中的属性和元组本身没有变化，那么得到的关系模式都是相同的。这种方式称为关系的等价表示方法。</p>
-<p><strong>关系实例</strong> 习惯上，把给定关系中元组的集合称为关系实例。</p>
-<p><strong>键码</strong> 如果关系中的所有元组在一个属性或多个属性的集合中都互不相同，即可以使用该属性或属性的集合来确定关系中的元组，那么该属性或属性的集合称为关系中的键码。</p>
-<ul>
-<li>第六章 关系模式的规范化设计*</li>
-</ul>
-<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="异常问题"><a href="#异常问题" class="headerlink" title="异常问题"></a>异常问题</h3><p>在设计关系模式时，应该避免出现异常现象。这些异常现象包括数据冗余、修改异常、插入异常和删除冗余。</p>
-<p><strong>数据冗余</strong>的含义是表示相同信息的数据在关系的多个元组中重复出现。<br><strong>修改异常</strong>是指当修改了关系中某一个元组中的信息后，该关系中的另一个元组中相同的信息却没有修改。<br><strong>插入异常</strong>是指当向关系中插入一个元组数据时，仅知道该元组的一部分数据，结果这些已知的数据由于那些未知的数据而很难在关系中正确地插入。<br><strong>删除异常</strong>的含义是如果某些属性的值变为空，可能会丢失其他一些有用的信息。</p>
-<h3 id="泛关系模式和数据库模式"><a href="#泛关系模式和数据库模式" class="headerlink" title="泛关系模式和数据库模式"></a>泛关系模式和数据库模式</h3><p>在关系模式设计过程中，应当采取一些方法消除这些数据异常现象，把最初的关系模式分解成最终的合适的关系模式。这种最初设计的关系模式也成为泛关系模式（universal relation scheme）。关系模式的当前值称为关系实例，关系实例是特定元组的集合。可以把泛关系模式分解成一系列小的符合规范化要求的关系模式集合，这种比较小的最终的关系模式的集合称为数据库模式（database scheme）。对数据库模式的每个关系模式赋予一个当前值，这时称为数据库实例。</p>
-<h2 id="函数依赖"><a href="#函数依赖" class="headerlink" title="函数依赖"></a>函数依赖</h2><p>数据依赖是数据之间存在的各种联系现象。数据异常现象与数据依赖有着紧密的关联。在数据依赖中，函数依赖是最基本的一种依赖形式。</p>
-<h3 id="函数依赖的定义"><a href="#函数依赖的定义" class="headerlink" title="函数依赖的定义"></a>函数依赖的定义</h3><p>函数依赖（Function Dependency，FD）的定义可以叙述为：如果关系$R$的两个元组在属性$A_1,A_2,\cdots,A_n$上一致，那么它在另一属性$B$上也一致。这种函数依赖记作$A_1A_2 \cdots A_n \xrightarrow{} B$,读作属性$A_1,A_2,\cdots,A_n$函数决定属性$B$,或属性$B$函数依赖于属性$A_1,A_2,\cdots,A_n$。</p>
-<p>函数依赖的逻辑定义：设关系模式$R$的属性集是$U$,$X$和$Y$是$U$的子集，函数依赖是形如$X \xrightarrow{} Y$的命题，即$r$是$R$的当前实例值，对r中的任意两个元组$t$和$s$，如果$t[X]=s[X]$，则$t[Y]=s[Y]$,那么$X \xrightarrow{} Y$在关系模式$R$中成立。其中，$t[X]$表示元组$t$在属性集$X$上的值。</p>
-<p>函数依赖的定义表示了关系模式属性集$X$值和$Y$值之间的多对一联系。</p>
-<p>如果一组属性$A_1,A_2,\cdots,A_n$函数决定一组属性$B_1,B_2,\cdots,B_m$,那么可以把这组依赖关系简记为：$$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$$</p>
-<p>对于关系Book(isbn,title,page,bookType,price,pressName,authorName)，根据客观现实和经验，可以得到以下函数依赖</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">isbn-&gt;title</span><br><span class="line">isbn-&gt;page</span><br><span class="line">isbn-&gt;bookType</span><br><span class="line">isbn-&gt;price</span><br><span class="line">isbn-&gt;pressName</span><br></pre></td></tr></table></figure>
-<p>简写为$$isbn \xrightarrow{} title\ page\ bookType\ price\ pressName$$.<br>不能得到$isbn \xrightarrow{} authorName$因为其中一个isbn对应了3个作者。</p>
-<h3 id="函数依赖和键码"><a href="#函数依赖和键码" class="headerlink" title="函数依赖和键码"></a>函数依赖和键码</h3><h4 id="超键码"><a href="#超键码" class="headerlink" title="超键码"></a>超键码</h4><p>在某个关系中，如果一个或多个属性的集合${A_1,A_2,\cdots,A_n}$函数决定该关系的其他属性，那么称该属性的集合为该关系的超键码。超键码的含义是关系中不可能存在两个不同的元组在属性$A_1,A_2,\cdots,A_n$的取值完全相同。根据上面的定义可以看到，在一个关系中，超键码的数量是没有限制的，例如如果属性集合${A_1,A_2,\cdots,A_n}$是超键码，那么包含该属性集合的所有属性集合都是超键码。</p>
-<h4 id="键码"><a href="#键码" class="headerlink" title="键码"></a>键码</h4><p>在某个关系中，如果一个或多个属性的集合${A_1,A_2,\cdots,A_n}$函数决定该关系的其他属性，并且集合${A_1,A_2,\cdots,A_n}$的任何真子集都不能函数决定该关系的所有其他属性，那么称该属性的集合为该属性的键码。</p>
-<p>在一个关系中，有时会有多个不同的键码。如果这样，可以把其中一个最为重要的键码指定为主键码，把其他键码成为候选键码。</p>
-<h3 id="逻辑蕴含"><a href="#逻辑蕴含" class="headerlink" title="逻辑蕴含"></a>逻辑蕴含</h3><p>在讨论函数依赖时，经常需要从一些已知的函数依赖去判断另外一些函数依赖是否成立。例如，如果$A \xrightarrow{} B$和$B \xrightarrow{} C$在某个关系中成立，那么$ A \xrightarrow{} C$在该关系中是否成立的问题成为逻辑蕴含问题。</p>
-<p>假定$F$是在某个关系上成立的函数依赖集，$T$是在该关系上成立的另外一个函数依赖集，如果对于该关系中满足$F$的每一个关系实例都满足$T$，那么称函数依赖集$F$蕴含于函数依赖集$T$，记作$F$蕴含于$T$。</p>
-<p>如果$F$蕴含于$T$，且$T$蕴含于$F$，那么函数依赖集$F$和$T$等价。</p>
-<p>函数关系$R(A,B,C)$具有函数依赖$A \xrightarrow{} B$和$B \xrightarrow{} C$，那么可以证明$A \xrightarrow{} C$在该关系中成立。证明思路：在关系$R$中任取两个元组，如果这两个元组在属性$A$上一致，那么证明这两个元组在属性$C$上一致。</p>
-<p>在这里可以把函数依赖$A \xrightarrow{} B$和$B \xrightarrow{} C$记作函数依赖集$F$，把$A \xrightarrow{} C$记作函数依赖集$T$，那么已经证明了满足$F$的每一个关系实例都满足$T$，因此可以说函数依赖集$F$蕴含于函数依赖集$T$。</p>
-<h3 id="函数依赖的推理规则"><a href="#函数依赖的推理规则" class="headerlink" title="函数依赖的推理规则"></a>函数依赖的推理规则</h3><p><strong>分解规则</strong>：可以把一个函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$用一组函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1,A_1A_2 \cdots A_n \xrightarrow{} B_2,\cdots,A_1A_2 \cdots A_n \xrightarrow{} B_m$来代替。<br><strong>合并规则</strong>：可以把一组函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1,A_1A_2 \cdots A_n \xrightarrow{} B_2,\cdots,A_1A_2 \cdots A_n \xrightarrow{} B_m$用一个函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$来代替。</p>
-<p>对于函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$，设$A={A_1A_2 \cdots A_n},B={B_1B_2 \cdots B_m}$，如果$B$是$A$的子集，那么称该依赖为平凡依赖；如果$B$中至少有一个属性不在$A$中，那么称该依赖是非平凡依赖；如果$B$中的任何一个属性都不在$A$中，那么称该依赖是完全非平凡依赖。</p>
-<p>Armstrong公理。<br><strong>自反律</strong>：如果${B_1B_2 \cdots B_m} \subset {A_1A_2 \cdots A_n}$，则$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$。这是平凡依赖。</p>
-<p><strong>增长率</strong>：如果$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$，则对于任何属性集$C_1,C_2,\cdots,C_k$，都存在$A_1A_2 \cdots A_nC_1C_2 \cdots C_k \xrightarrow{} B_1B_2 \cdots B_mC_1C_2 \cdots C_k$。</p>
-<p><strong>传递率</strong>：如果$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m,B_1B_2 \cdots B_m \xrightarrow{} C_1C_2 \cdots C_k$，则$A_1A_2 \cdots A_n \xrightarrow{} C_1C_2 \cdots C_k$。</p>
-<h3 id="属性集的闭包"><a href="#属性集的闭包" class="headerlink" title="属性集的闭包"></a>属性集的闭包</h3><p>假设${A_1A_2 \cdots A_n}$是属性集，$S$是函数依赖集。属性集${A_1A_2 \cdots A_n}$在函数依赖集$S$下的闭包是这样的属性集$B$，它使得满足依赖集$S$中所有依赖的每一个关系都满足$A_1A_2 \cdots A_n \xrightarrow{} B$。即$A_1A_2 \cdots A_n \xrightarrow{} B$蕴含于$S$中的函数依赖。使用${A_1A_2 \cdots A_n}^+$表示属性集${A_1A_2 \cdots A_n}$的闭包。</p>
-<p>计算属性集${A_1A_2 \cdots A_n}$闭包的步骤如下：</p>
-<p>第一步，设最终将成为闭包的属性集是$X$,把$X$初始化为${A_1A_2 \cdots A_n}$。</p>
-<p>第二步，重复搜索和判断函数依赖$B_1B_2 \cdots B_m \xrightarrow{} C$。如果左边所有的属性$B_1,B_2,\cdots,B_m$都在属性集$X$中，但是属性$C$不在$X$中，则将$C$添加到属性集$X$中。</p>
-<p>第三步，重复第二步，知道没有属性可以添加到属性集$X$中为止。</p>
-<p>第四步，最后得到的不能再添加的属性集$X$就是${A_1A_2 \cdots A_n}^+$。</p>
-<p>如果用户知道了如何计算任意属性的闭包，就能检验给定的任意函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B$是否蕴含于函数依赖集$S$。检验步骤如下：</p>
-<p>第一步，计算闭包。根据函数依赖集$S$计算${A_1A_2 \cdots A_n}^+$。</p>
-<p>第二步，判断。如果$B$在${A_1A_2 \cdots A_n}^+$中，则$A_1A_2 \cdots A_n \xrightarrow{} B$蕴含于函数依赖集$S$；如果$B$不在${A_1A_2 \cdots A_n}^+$中，则该函数不蕴含于函数依赖集$S$。</p>
-<h3 id="正则覆盖"><a href="#正则覆盖" class="headerlink" title="正则覆盖"></a>正则覆盖</h3><p>如果可以去掉一个函数依赖集中的属性而不改变函数依赖集的闭包，那么称该属性是无关的。无关属性可以形式化的定义如下，考虑函数依赖集$S$和$S$中的某个函数依赖$X \xrightarrow{} Y$。</p>
-<p>如果$A \in X$，且$S$逻辑蕴含$(S-\{X \xrightarrow{} Y\}) \cup \{(X-A) \xrightarrow{} Y\}$，那么属性$A$在$X$中是无关的。</p>
-<p>如果$A \in Y$，且$S$逻辑蕴含$(S-\{X \xrightarrow{} Y\}) \cup \{X \xrightarrow{} (Y-A)\}$，那么属性$A$在$Y$中是无关的。</p>
-<p>$S$的正则覆盖是一个函数依赖集$S_C$，含义是$S$逻辑蕴含$S_C$中的所有依赖，并且$S_C$逻辑蕴含$S$中的所有依赖。此外，$S_C$具有如下三个性质：</p>
-<ul>
-<li>$S_C$的闭包与$S$的闭包相同，即${S}^+ ={S_C}^+$。</li>
-<li>$S_C$的任何函数依赖都不包含无关属性。</li>
-<li>$S_C$中的函数依赖的左半部都是唯一的，即$S_C$中不存在两个函数依赖$X_1 \xrightarrow{} Y_1$和$X_2 \xrightarrow{} Y_2$，且$X_1 = X_2$。</li>
-</ul>
-<h2 id="关系模式的分解"><a href="#关系模式的分解" class="headerlink" title="关系模式的分解"></a>关系模式的分解</h2><p>消除关系模式中数据异常的常用办法是分解关系模式。关系模式$R$的分解就是把关系$R$中的属性分开，以构成两个新的关系模式。</p>
-<p>在分解关系模式时，一定要注意两个问题：第一，保证分解前后关系模式的信息不能丢失和增加，保持原有的信息不变，这称为无损连接；第二，保持分解前后猿猴的函数依赖依然成立。</p>
-<p>给定一个关系模式$R$，其属性集合为$\{A_1,A_2,\cdots,A_n\}$，现在把其分解成两个关系模式$X$和$Y$，其属性集合分别是$\{B_1,B_2,\cdots,B_m\}$和$\{C_1,C_2,\cdots,C_k\}$，这种分解应该满足如下条件：</p>
-<p>第一个条件：$\{A_1,A_2,\cdots,A_n\}=\{B_1,B_2,\cdots,B_m\} \cup \{C_1,C_2,\cdots,C_k\}$。</p>
-<p>第二个条件：关系$X$中的元组是关系$R$的所有元组在$\{B_1,B_2,\cdots,B_m\}$上的投影，包含相同元组。</p>
-<p>第三个条件：关系$Y$中的元组是关系$R$的所有元组在$\{C_1,C_2,\cdots,C_k\}$上的投影，不包含相同元组。</p>
-<p>例如：略。</p>
-<h2 id="关系模型的范式"><a href="#关系模型的范式" class="headerlink" title="关系模型的范式"></a>关系模型的范式</h2><h3 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h3><p>如果关系模式$R$中的所有属性值都是不可在分解的原子值，那么就称关系$R$是第一范式（first normal form，1NF）的关系模式。不是1NF的关系称为非规范化的关系，满足1NF的关系简称关系。在关系型数据库管理系统中，涉及到的研究对象都是满足1NF的规范化关系。</p>
-<h3 id="BCNF范式"><a href="#BCNF范式" class="headerlink" title="BCNF范式"></a>BCNF范式</h3><p>BCNF范式（Boyce-Codd normal form）的定义是，如果某个关系R有非平凡依赖$A_1,A_2,\cdots,A_n \xrightarrow{} B$，那么$\{A_1,A_2,\cdots,A_n\}$必然是关系R的超键码。满足这样条件的关系就属于BCNF。即BCNF条件的含义是每一个非平凡依赖的左边必须包含超键码。</p>
-<h3 id="分解成BCNF模式的算法"><a href="#分解成BCNF模式的算法" class="headerlink" title="分解成BCNF模式的算法"></a>分解成BCNF模式的算法</h3><p>第一步，找到一个违背BCNF的非平凡依赖，并在该依赖的右边加上尽量多的属性。</p>
-<p>第二步，把原始关系模型分解成两个属性重迭的关系模式，一个模式包含了违背BCNF的所有属性，另外一个模式包含了该依赖左边以及未包含在该依赖中的所有属性。</p>
-<p>第三步，判断新的关系模式是否满足BCNF。如果不满足，继续进行分解；如果满足，则停止。</p>
-<p><strong>任何包含了两个属性的关系模式都自然满足BCNF条件。</strong></p>
-<h3 id="函数依赖的投影"><a href="#函数依赖的投影" class="headerlink" title="函数依赖的投影"></a>函数依赖的投影</h3><p>在分解关系模式时，需要确定新关系模式是否满足BCNF条件。这种判断的前提是知道新关系模式中成立的函数依赖，这些函数依赖是原关系模式的函数依赖在新关系模式上的投影。下面介绍一种找到新关系模式中函数依赖的方法。</p>
-<p>假设把关系$R$分解成关系$S$和$T$，$F$是$R$中已知的函数依赖集。现在计算$S$中成立的函数依赖。考虑包含于$S$的属性集的每个属性集$X$，计算$X^+$。于是，满足下列条件的每个属性$B$，函数$X \xrightarrow{} B$在关系$S$中成立：</p>
-<ul>
-<li>$B$是$S$的一个属性；</li>
-<li>$B$属于$X^+$;</li>
-<li>$B$不属于$X$。</li>
-</ul>
-<h3 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h3><p>在某些情况下，按照BCNF进行分解，但是当对得到的关系模式进行连接时，却不能保证原先所有的函数依赖都能得到保持。这是，关系模式就不应该继续进行分解，该关系模式满足的范式称为第三范式。</p>
-<p>如果对于任何非平凡依赖$A_1,A_2,\cdots,\A_n \xrightarrow{} B$，那么或$\{A_1,A_2,\cdots,A_n\}$是关系$R$的超键码，或$B$是某个键码的组成部分。满足这样条件的关系就属于第三范式（third normal form, 3NF）。</p>
-<h3 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h3><p>在一个关系中，如果$\{A_1,A_2,\cdots,A_n\}$是关系$R$的键码，$B$是关系中的任意非键码，那么非平凡依赖$A_1,A_2,\cdots,A_n \xrightarrow{} B$都成立，则该关系模式属于第二范式（second normal form, 2NF）。</p>
-<h3 id="多值依赖"><a href="#多值依赖" class="headerlink" title="多值依赖"></a>多值依赖</h3><p>多值依赖的含义是如果确定了关系$R$的一个属性集的取值，则其他某些特征属性的取值与该关系的所有其他属性的取值无关。确切的说，如果限定关系$R$的元组在属于$A$的每个属性上取特定的值，结果属性$B$的属性取值的集合与既不属于$A$也不属于$B$但属于$R$的属性取值的集合无关，则称如下所示的多值依赖在关系$R$中成立：$$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$$</p>
-<p>多值依赖满足规则</p>
-<p>平凡依赖规则：在某个关系中，如果多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$成立，则多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$也成立，其中$C$是$B$加上$A$中的一个或多个属性。反之，也可以从$B$中删除一些属于$A$的属性，并推导出多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} D_1D_2 \cdots D_r$，其中，$D$是在$B$中而不属于$A$的属性。</p>
-<p>传递规则：在某个关系中，如果多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$和$B_1B_2 \cdots B_m \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$，则多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$成立。</p>
-<p>复制规则：在关系中，每个函数依赖都是多值依赖。</p>
-<p>互补规则：如果$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$是关系$R$的多值依赖，则$R$也满足$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$,其中，$C$是不属于$A$和$B$的$R$的所有其他属性。</p>
-<p>第四范式：如果$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$是非平凡的多值依赖，且$\{A_1,A_2,\cdots,A_n\}$是关系的超键码，那么该关系就属于第四范式（Fourth Normal Form, 4NF）。</p>
-<p>分解方法：</p>
-<p>第一步：找到一个4NF违例，例如$A \xrightarrow{}\xrightarrow{} B$.</p>
-<p>第二步：分解该关系模式，第一个关系模式包含$A$和$B$中的属性，第二个关系模式包含$A$中的属性以及不属于$A$也不属于$B$的$R$的所有其他属性。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/database/">database</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/problem-solution/">problem solution</a></li></ul>
     </div>
 
       
@@ -610,107 +408,6 @@
       
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/database/">database</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-python tk" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/blog/2016/04/02/python tk/" class="article-date">
-      <time datetime="2016-04-01T16:00:00.000Z" itemprop="datePublished">2016-04-02</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2016/04/02/python tk/">tk 编程</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h2 id="标准属性"><a href="#标准属性" class="headerlink" title="标准属性"></a>标准属性</h2><h3 id="dimensions"><a href="#dimensions" class="headerlink" title="dimensions"></a>dimensions</h3><p>尺寸包含4种</p>
-<table>
-<thead>
-<tr>
-<th>字母</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>c</td>
-<td>厘米</td>
-</tr>
-<tr>
-<td>i</td>
-<td>英寸</td>
-</tr>
-<tr>
-<td>m</td>
-<td>毫米</td>
-</tr>
-<tr>
-<td>p</td>
-<td>打印机的点？？</td>
-</tr>
-</tbody>
-</table>
-<h3 id="坐标"><a href="#坐标" class="headerlink" title="坐标"></a>坐标</h3><h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><p>||#rgb||four bits per color||<br>||#rrggbb||eight bits per color||<br>||#rrrgggbbb||twelve bits per color||</p>
-<p>还一可以指定关键词’white’,’black’,’red’,’green’,’blue’,’cyan’,’yellow’,’magenta’</p>
-<h3 id="fonts"><a href="#fonts" class="headerlink" title="fonts"></a>fonts</h3><p>1.元组表示,第一表示字体，第二个表示大小，正数为points，负数为像素点，后续为其他一些特别设置<br>(‘Helvetica’,’16’)<br>(‘Times’,’24’,’bold italic’)<br>(‘Times’,-20,’bold’)</p>
-<p>2.字体对象 tkFont</p>
-<p>3.X font names.</p>
-<h3 id="锚"><a href="#锚" class="headerlink" title="锚"></a>锚</h3><p>N S W E CENTER<br>NW NE SW SE</p>
-<h3 id="释放样式"><a href="#释放样式" class="headerlink" title="释放样式"></a>释放样式</h3><p>FLAT RAISED SUNKEN GROOVE RIDGE</p>
-<h3 id="Bitmaps"><a href="#Bitmaps" class="headerlink" title="Bitmaps"></a>Bitmaps</h3><p>button支持 error gray75 gray50 gray25 gray12 hourglass info questhead question warning</p>
-<p>也可以使用.xbm(X bit map)使用@path</p>
-<h3 id="cursors"><a href="#cursors" class="headerlink" title="cursors"></a>cursors</h3><h3 id="images"><a href="#images" class="headerlink" title="images"></a>images</h3><p>BitmapImage 支持 .xbm<br>PhotoImage 支持 .gif .pgm .ppm<br>ImageTk 支持更多格式</p>
-<h4 id="the-BitmapImage-class"><a href="#the-BitmapImage-class" class="headerlink" title="the BitmapImage class"></a>the BitmapImage class</h4><p>原型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tk.BitmapImage(file=f[, background=b][, foreground=c])</span><br></pre></td></tr></table></figure></p>
-<p>实例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logo = tk.BitmapImage(<span class="string">'logo.xbm'</span>, foreground=<span class="string">'red'</span>)</span><br><span class="line">Label(image=logo).grid()</span><br></pre></td></tr></table></figure></p>
-<h4 id="the-PhotoImage-class"><a href="#the-PhotoImage-class" class="headerlink" title="the PhotoImage class"></a>the PhotoImage class</h4><p>原型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tk.PhotoImage(file=f)</span><br></pre></td></tr></table></figure></p>
-<h3 id="Geometry-strings"><a href="#Geometry-strings" class="headerlink" title="Geometry strings"></a>Geometry strings</h3><p>A geometry string is a standard way of describing the size and location of a top-level window on a desktop.<br>format: ‘wxh±x±y’<br>+x left side<br>-x right side<br>+y top<br>-y bottom</p>
-<h3 id="window-names"><a href="#window-names" class="headerlink" title="window names"></a>window names</h3><p>hierarchical window path name<br>root window ‘.’<br>child name ‘.n’<br>child windows of child ‘p.n’, p is the name of the parent window</p>
-<p>str(w): to get the path name of a widget w</p>
-<h3 id="cap-and-join-styles"><a href="#cap-and-join-styles" class="headerlink" title="cap and join styles"></a>cap and join styles</h3><p>cap style: tk.BUTT, tk.PROJECTING, tk.ROUND<br>join style: tk.ROUND, tk.BEVEL, tk.MITER</p>
-<h3 id="dash-patterns"><a href="#dash-patterns" class="headerlink" title="dash patterns"></a>dash patterns</h3><p>dash=(3,5)<br>dash=(7,1,1,1)<br>dash=(5,1,2,1),dashoff=3</p>
-<h2 id="tk-TclError"><a href="#tk-TclError" class="headerlink" title="tk.TclError"></a>tk.TclError</h2>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/GUI/">GUI</a></li></ul>
     </div>
 
       
@@ -946,10 +643,10 @@
 
 
   
-    <article id="post-LoadLibrary 126" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-python tk" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/blog/2016/04/02/LoadLibrary 126/" class="article-date">
+      <a href="/blog/2016/04/02/python tk/" class="article-date">
       <time datetime="2016-04-01T16:00:00.000Z" itemprop="datePublished">2016-04-02</time>
 </a>
     </div>
@@ -963,7 +660,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/blog/2016/04/02/LoadLibrary 126/">LoadLibrary error 126</a>
+      <a class="article-title" href="/blog/2016/04/02/python tk/">tk 编程</a>
     </h1>
   
 
@@ -973,7 +670,52 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>可能是UNICODE和ASCII字符的问题。</p>
+        <h2 id="标准属性"><a href="#标准属性" class="headerlink" title="标准属性"></a>标准属性</h2><h3 id="dimensions"><a href="#dimensions" class="headerlink" title="dimensions"></a>dimensions</h3><p>尺寸包含4种</p>
+<table>
+<thead>
+<tr>
+<th>字母</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>c</td>
+<td>厘米</td>
+</tr>
+<tr>
+<td>i</td>
+<td>英寸</td>
+</tr>
+<tr>
+<td>m</td>
+<td>毫米</td>
+</tr>
+<tr>
+<td>p</td>
+<td>打印机的点？？</td>
+</tr>
+</tbody>
+</table>
+<h3 id="坐标"><a href="#坐标" class="headerlink" title="坐标"></a>坐标</h3><h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><p>||#rgb||four bits per color||<br>||#rrggbb||eight bits per color||<br>||#rrrgggbbb||twelve bits per color||</p>
+<p>还一可以指定关键词’white’,’black’,’red’,’green’,’blue’,’cyan’,’yellow’,’magenta’</p>
+<h3 id="fonts"><a href="#fonts" class="headerlink" title="fonts"></a>fonts</h3><p>1.元组表示,第一表示字体，第二个表示大小，正数为points，负数为像素点，后续为其他一些特别设置<br>(‘Helvetica’,’16’)<br>(‘Times’,’24’,’bold italic’)<br>(‘Times’,-20,’bold’)</p>
+<p>2.字体对象 tkFont</p>
+<p>3.X font names.</p>
+<h3 id="锚"><a href="#锚" class="headerlink" title="锚"></a>锚</h3><p>N S W E CENTER<br>NW NE SW SE</p>
+<h3 id="释放样式"><a href="#释放样式" class="headerlink" title="释放样式"></a>释放样式</h3><p>FLAT RAISED SUNKEN GROOVE RIDGE</p>
+<h3 id="Bitmaps"><a href="#Bitmaps" class="headerlink" title="Bitmaps"></a>Bitmaps</h3><p>button支持 error gray75 gray50 gray25 gray12 hourglass info questhead question warning</p>
+<p>也可以使用.xbm(X bit map)使用@path</p>
+<h3 id="cursors"><a href="#cursors" class="headerlink" title="cursors"></a>cursors</h3><h3 id="images"><a href="#images" class="headerlink" title="images"></a>images</h3><p>BitmapImage 支持 .xbm<br>PhotoImage 支持 .gif .pgm .ppm<br>ImageTk 支持更多格式</p>
+<h4 id="the-BitmapImage-class"><a href="#the-BitmapImage-class" class="headerlink" title="the BitmapImage class"></a>the BitmapImage class</h4><p>原型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tk.BitmapImage(file=f[, background=b][, foreground=c])</span><br></pre></td></tr></table></figure></p>
+<p>实例<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">logo = tk.BitmapImage(<span class="string">'logo.xbm'</span>, foreground=<span class="string">'red'</span>)</span><br><span class="line">Label(image=logo).grid()</span><br></pre></td></tr></table></figure></p>
+<h4 id="the-PhotoImage-class"><a href="#the-PhotoImage-class" class="headerlink" title="the PhotoImage class"></a>the PhotoImage class</h4><p>原型<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tk.PhotoImage(file=f)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Geometry-strings"><a href="#Geometry-strings" class="headerlink" title="Geometry strings"></a>Geometry strings</h3><p>A geometry string is a standard way of describing the size and location of a top-level window on a desktop.<br>format: ‘wxh±x±y’<br>+x left side<br>-x right side<br>+y top<br>-y bottom</p>
+<h3 id="window-names"><a href="#window-names" class="headerlink" title="window names"></a>window names</h3><p>hierarchical window path name<br>root window ‘.’<br>child name ‘.n’<br>child windows of child ‘p.n’, p is the name of the parent window</p>
+<p>str(w): to get the path name of a widget w</p>
+<h3 id="cap-and-join-styles"><a href="#cap-and-join-styles" class="headerlink" title="cap and join styles"></a>cap and join styles</h3><p>cap style: tk.BUTT, tk.PROJECTING, tk.ROUND<br>join style: tk.ROUND, tk.BEVEL, tk.MITER</p>
+<h3 id="dash-patterns"><a href="#dash-patterns" class="headerlink" title="dash patterns"></a>dash patterns</h3><p>dash=(3,5)<br>dash=(7,1,1,1)<br>dash=(5,1,2,1),dashoff=3</p>
+<h2 id="tk-TclError"><a href="#tk-TclError" class="headerlink" title="tk.TclError"></a>tk.TclError</h2>
       
     </div>
     
@@ -983,7 +725,154 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/problem-solution/">problem solution</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/GUI/">GUI</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-数据库系统原理与应用（第三版）1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/blog/2016/04/02/数据库系统原理与应用（第三版）1/" class="article-date">
+      <time datetime="2016-04-01T16:00:00.000Z" itemprop="datePublished">2016-04-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/04/02/数据库系统原理与应用（第三版）1/">第五章 关系模型</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>关系模型是一种以二维表的形式表示实体数据和实体之间关系等信息的数据库模型。</p>
+<p>在关系模型中，基本元素包括属性、模式、元祖、域、键码、关系等价表示法以及关系实例等。</p>
+<p><strong>属性</strong> 在二维表中，关系的第一行成为属性（attribute），它描述了属性所在列各项的含义。</p>
+<p><strong>模式</strong> 关系名和关系的属性集成为关系的模式。一般地，模式的表示形式有两种。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">第一种：</span><br><span class="line">	模式名(属性1,属性2,...,属性n)</span><br><span class="line">	例如：</span><br><span class="line">	Book(isbn,titlle,page,bookType,year,price)</span><br><span class="line">第二种：</span><br><span class="line">	模式名=(属性1,属性2,...,属性n)</span><br><span class="line">	例如：</span><br><span class="line">	Book=(isbn,titlle,page,bookType,year,price)</span><br></pre></td></tr></table></figure>
+<p>关系的概念对应于程序设计语言中变量的概念，而关系模式的概念对应于程序设计语言中类型定义的概念。</p>
+<p>关系模式中的属性是一个<strong>集合</strong>，而不是<strong>列表</strong>，所以关系模式中属性的顺序不重要。但是便于讨论，一般为关系模式中的属性规定一个标准的排列顺序。</p>
+<p>当谈论数据库时，还必须区分关系模式和关系实例的概念。关系模式是一个逻辑设计包括了关系名和关系属性，相对比较稳定。而关系实例是定义的关系模式中数据的快照，相对来说经常发生变化。</p>
+<p>在关系模型中，数据库设计包含了一个或多个关系模式。关系数据库模式就是关系模式的集合，简称数据库模式。</p>
+<p><strong>元祖</strong> 在关系模式中，除了第一行是标题栏之外，关系中的其他行成为元组。元组实际上是关系中的数据。</p>
+<p><strong>域</strong> 一般地，把关系中的每个属性相关的特定类型称为域，那么关系中任何元组的每个分量都必须在相应列的域中取指。在关系模型中，要求组成元组的每个分量都是不可再分割的原子型，即这些分量必须属于某种基本类型，例如整数型、浮点型和字符型等。不允许将某个属性值属于记录结构、集合、列表、数组或可以合理地分割成更小分量的任何类型。</p>
+<p><strong>关系的等价表示方法</strong> 前面已经讲过，关系的模式和元组都是集合，不是列表。因此，关系的模式和元组的顺序不重要，无论模式中属性顺序或元组顺序如何变换，只要是模式中的属性和元组本身没有变化，那么得到的关系模式都是相同的。这种方式称为关系的等价表示方法。</p>
+<p><strong>关系实例</strong> 习惯上，把给定关系中元组的集合称为关系实例。</p>
+<p><strong>键码</strong> 如果关系中的所有元组在一个属性或多个属性的集合中都互不相同，即可以使用该属性或属性的集合来确定关系中的元组，那么该属性或属性的集合称为关系中的键码。</p>
+<ul>
+<li>第六章 关系模式的规范化设计*</li>
+</ul>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="异常问题"><a href="#异常问题" class="headerlink" title="异常问题"></a>异常问题</h3><p>在设计关系模式时，应该避免出现异常现象。这些异常现象包括数据冗余、修改异常、插入异常和删除冗余。</p>
+<p><strong>数据冗余</strong>的含义是表示相同信息的数据在关系的多个元组中重复出现。<br><strong>修改异常</strong>是指当修改了关系中某一个元组中的信息后，该关系中的另一个元组中相同的信息却没有修改。<br><strong>插入异常</strong>是指当向关系中插入一个元组数据时，仅知道该元组的一部分数据，结果这些已知的数据由于那些未知的数据而很难在关系中正确地插入。<br><strong>删除异常</strong>的含义是如果某些属性的值变为空，可能会丢失其他一些有用的信息。</p>
+<h3 id="泛关系模式和数据库模式"><a href="#泛关系模式和数据库模式" class="headerlink" title="泛关系模式和数据库模式"></a>泛关系模式和数据库模式</h3><p>在关系模式设计过程中，应当采取一些方法消除这些数据异常现象，把最初的关系模式分解成最终的合适的关系模式。这种最初设计的关系模式也成为泛关系模式（universal relation scheme）。关系模式的当前值称为关系实例，关系实例是特定元组的集合。可以把泛关系模式分解成一系列小的符合规范化要求的关系模式集合，这种比较小的最终的关系模式的集合称为数据库模式（database scheme）。对数据库模式的每个关系模式赋予一个当前值，这时称为数据库实例。</p>
+<h2 id="函数依赖"><a href="#函数依赖" class="headerlink" title="函数依赖"></a>函数依赖</h2><p>数据依赖是数据之间存在的各种联系现象。数据异常现象与数据依赖有着紧密的关联。在数据依赖中，函数依赖是最基本的一种依赖形式。</p>
+<h3 id="函数依赖的定义"><a href="#函数依赖的定义" class="headerlink" title="函数依赖的定义"></a>函数依赖的定义</h3><p>函数依赖（Function Dependency，FD）的定义可以叙述为：如果关系$R$的两个元组在属性$A_1,A_2,\cdots,A_n$上一致，那么它在另一属性$B$上也一致。这种函数依赖记作$A_1A_2 \cdots A_n \xrightarrow{} B$,读作属性$A_1,A_2,\cdots,A_n$函数决定属性$B$,或属性$B$函数依赖于属性$A_1,A_2,\cdots,A_n$。</p>
+<p>函数依赖的逻辑定义：设关系模式$R$的属性集是$U$,$X$和$Y$是$U$的子集，函数依赖是形如$X \xrightarrow{} Y$的命题，即$r$是$R$的当前实例值，对r中的任意两个元组$t$和$s$，如果$t[X]=s[X]$，则$t[Y]=s[Y]$,那么$X \xrightarrow{} Y$在关系模式$R$中成立。其中，$t[X]$表示元组$t$在属性集$X$上的值。</p>
+<p>函数依赖的定义表示了关系模式属性集$X$值和$Y$值之间的多对一联系。</p>
+<p>如果一组属性$A_1,A_2,\cdots,A_n$函数决定一组属性$B_1,B_2,\cdots,B_m$,那么可以把这组依赖关系简记为：$$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$$</p>
+<p>对于关系Book(isbn,title,page,bookType,price,pressName,authorName)，根据客观现实和经验，可以得到以下函数依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">isbn-&gt;title</span><br><span class="line">isbn-&gt;page</span><br><span class="line">isbn-&gt;bookType</span><br><span class="line">isbn-&gt;price</span><br><span class="line">isbn-&gt;pressName</span><br></pre></td></tr></table></figure>
+<p>简写为$$isbn \xrightarrow{} title\ page\ bookType\ price\ pressName$$.<br>不能得到$isbn \xrightarrow{} authorName$因为其中一个isbn对应了3个作者。</p>
+<h3 id="函数依赖和键码"><a href="#函数依赖和键码" class="headerlink" title="函数依赖和键码"></a>函数依赖和键码</h3><h4 id="超键码"><a href="#超键码" class="headerlink" title="超键码"></a>超键码</h4><p>在某个关系中，如果一个或多个属性的集合${A_1,A_2,\cdots,A_n}$函数决定该关系的其他属性，那么称该属性的集合为该关系的超键码。超键码的含义是关系中不可能存在两个不同的元组在属性$A_1,A_2,\cdots,A_n$的取值完全相同。根据上面的定义可以看到，在一个关系中，超键码的数量是没有限制的，例如如果属性集合${A_1,A_2,\cdots,A_n}$是超键码，那么包含该属性集合的所有属性集合都是超键码。</p>
+<h4 id="键码"><a href="#键码" class="headerlink" title="键码"></a>键码</h4><p>在某个关系中，如果一个或多个属性的集合${A_1,A_2,\cdots,A_n}$函数决定该关系的其他属性，并且集合${A_1,A_2,\cdots,A_n}$的任何真子集都不能函数决定该关系的所有其他属性，那么称该属性的集合为该属性的键码。</p>
+<p>在一个关系中，有时会有多个不同的键码。如果这样，可以把其中一个最为重要的键码指定为主键码，把其他键码成为候选键码。</p>
+<h3 id="逻辑蕴含"><a href="#逻辑蕴含" class="headerlink" title="逻辑蕴含"></a>逻辑蕴含</h3><p>在讨论函数依赖时，经常需要从一些已知的函数依赖去判断另外一些函数依赖是否成立。例如，如果$A \xrightarrow{} B$和$B \xrightarrow{} C$在某个关系中成立，那么$ A \xrightarrow{} C$在该关系中是否成立的问题成为逻辑蕴含问题。</p>
+<p>假定$F$是在某个关系上成立的函数依赖集，$T$是在该关系上成立的另外一个函数依赖集，如果对于该关系中满足$F$的每一个关系实例都满足$T$，那么称函数依赖集$F$蕴含于函数依赖集$T$，记作$F$蕴含于$T$。</p>
+<p>如果$F$蕴含于$T$，且$T$蕴含于$F$，那么函数依赖集$F$和$T$等价。</p>
+<p>函数关系$R(A,B,C)$具有函数依赖$A \xrightarrow{} B$和$B \xrightarrow{} C$，那么可以证明$A \xrightarrow{} C$在该关系中成立。证明思路：在关系$R$中任取两个元组，如果这两个元组在属性$A$上一致，那么证明这两个元组在属性$C$上一致。</p>
+<p>在这里可以把函数依赖$A \xrightarrow{} B$和$B \xrightarrow{} C$记作函数依赖集$F$，把$A \xrightarrow{} C$记作函数依赖集$T$，那么已经证明了满足$F$的每一个关系实例都满足$T$，因此可以说函数依赖集$F$蕴含于函数依赖集$T$。</p>
+<h3 id="函数依赖的推理规则"><a href="#函数依赖的推理规则" class="headerlink" title="函数依赖的推理规则"></a>函数依赖的推理规则</h3><p><strong>分解规则</strong>：可以把一个函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$用一组函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1,A_1A_2 \cdots A_n \xrightarrow{} B_2,\cdots,A_1A_2 \cdots A_n \xrightarrow{} B_m$来代替。<br><strong>合并规则</strong>：可以把一组函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1,A_1A_2 \cdots A_n \xrightarrow{} B_2,\cdots,A_1A_2 \cdots A_n \xrightarrow{} B_m$用一个函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$来代替。</p>
+<p>对于函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$，设$A={A_1A_2 \cdots A_n},B={B_1B_2 \cdots B_m}$，如果$B$是$A$的子集，那么称该依赖为平凡依赖；如果$B$中至少有一个属性不在$A$中，那么称该依赖是非平凡依赖；如果$B$中的任何一个属性都不在$A$中，那么称该依赖是完全非平凡依赖。</p>
+<p>Armstrong公理。<br><strong>自反律</strong>：如果${B_1B_2 \cdots B_m} \subset {A_1A_2 \cdots A_n}$，则$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$。这是平凡依赖。</p>
+<p><strong>增长率</strong>：如果$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m$，则对于任何属性集$C_1,C_2,\cdots,C_k$，都存在$A_1A_2 \cdots A_nC_1C_2 \cdots C_k \xrightarrow{} B_1B_2 \cdots B_mC_1C_2 \cdots C_k$。</p>
+<p><strong>传递率</strong>：如果$A_1A_2 \cdots A_n \xrightarrow{} B_1B_2 \cdots B_m,B_1B_2 \cdots B_m \xrightarrow{} C_1C_2 \cdots C_k$，则$A_1A_2 \cdots A_n \xrightarrow{} C_1C_2 \cdots C_k$。</p>
+<h3 id="属性集的闭包"><a href="#属性集的闭包" class="headerlink" title="属性集的闭包"></a>属性集的闭包</h3><p>假设${A_1A_2 \cdots A_n}$是属性集，$S$是函数依赖集。属性集${A_1A_2 \cdots A_n}$在函数依赖集$S$下的闭包是这样的属性集$B$，它使得满足依赖集$S$中所有依赖的每一个关系都满足$A_1A_2 \cdots A_n \xrightarrow{} B$。即$A_1A_2 \cdots A_n \xrightarrow{} B$蕴含于$S$中的函数依赖。使用${A_1A_2 \cdots A_n}^+$表示属性集${A_1A_2 \cdots A_n}$的闭包。</p>
+<p>计算属性集${A_1A_2 \cdots A_n}$闭包的步骤如下：</p>
+<p>第一步，设最终将成为闭包的属性集是$X$,把$X$初始化为${A_1A_2 \cdots A_n}$。</p>
+<p>第二步，重复搜索和判断函数依赖$B_1B_2 \cdots B_m \xrightarrow{} C$。如果左边所有的属性$B_1,B_2,\cdots,B_m$都在属性集$X$中，但是属性$C$不在$X$中，则将$C$添加到属性集$X$中。</p>
+<p>第三步，重复第二步，知道没有属性可以添加到属性集$X$中为止。</p>
+<p>第四步，最后得到的不能再添加的属性集$X$就是${A_1A_2 \cdots A_n}^+$。</p>
+<p>如果用户知道了如何计算任意属性的闭包，就能检验给定的任意函数依赖$A_1A_2 \cdots A_n \xrightarrow{} B$是否蕴含于函数依赖集$S$。检验步骤如下：</p>
+<p>第一步，计算闭包。根据函数依赖集$S$计算${A_1A_2 \cdots A_n}^+$。</p>
+<p>第二步，判断。如果$B$在${A_1A_2 \cdots A_n}^+$中，则$A_1A_2 \cdots A_n \xrightarrow{} B$蕴含于函数依赖集$S$；如果$B$不在${A_1A_2 \cdots A_n}^+$中，则该函数不蕴含于函数依赖集$S$。</p>
+<h3 id="正则覆盖"><a href="#正则覆盖" class="headerlink" title="正则覆盖"></a>正则覆盖</h3><p>如果可以去掉一个函数依赖集中的属性而不改变函数依赖集的闭包，那么称该属性是无关的。无关属性可以形式化的定义如下，考虑函数依赖集$S$和$S$中的某个函数依赖$X \xrightarrow{} Y$。</p>
+<p>如果$A \in X$，且$S$逻辑蕴含$(S-\{X \xrightarrow{} Y\}) \cup \{(X-A) \xrightarrow{} Y\}$，那么属性$A$在$X$中是无关的。</p>
+<p>如果$A \in Y$，且$S$逻辑蕴含$(S-\{X \xrightarrow{} Y\}) \cup \{X \xrightarrow{} (Y-A)\}$，那么属性$A$在$Y$中是无关的。</p>
+<p>$S$的正则覆盖是一个函数依赖集$S_C$，含义是$S$逻辑蕴含$S_C$中的所有依赖，并且$S_C$逻辑蕴含$S$中的所有依赖。此外，$S_C$具有如下三个性质：</p>
+<ul>
+<li>$S_C$的闭包与$S$的闭包相同，即${S}^+ ={S_C}^+$。</li>
+<li>$S_C$的任何函数依赖都不包含无关属性。</li>
+<li>$S_C$中的函数依赖的左半部都是唯一的，即$S_C$中不存在两个函数依赖$X_1 \xrightarrow{} Y_1$和$X_2 \xrightarrow{} Y_2$，且$X_1 = X_2$。</li>
+</ul>
+<h2 id="关系模式的分解"><a href="#关系模式的分解" class="headerlink" title="关系模式的分解"></a>关系模式的分解</h2><p>消除关系模式中数据异常的常用办法是分解关系模式。关系模式$R$的分解就是把关系$R$中的属性分开，以构成两个新的关系模式。</p>
+<p>在分解关系模式时，一定要注意两个问题：第一，保证分解前后关系模式的信息不能丢失和增加，保持原有的信息不变，这称为无损连接；第二，保持分解前后猿猴的函数依赖依然成立。</p>
+<p>给定一个关系模式$R$，其属性集合为$\{A_1,A_2,\cdots,A_n\}$，现在把其分解成两个关系模式$X$和$Y$，其属性集合分别是$\{B_1,B_2,\cdots,B_m\}$和$\{C_1,C_2,\cdots,C_k\}$，这种分解应该满足如下条件：</p>
+<p>第一个条件：$\{A_1,A_2,\cdots,A_n\}=\{B_1,B_2,\cdots,B_m\} \cup \{C_1,C_2,\cdots,C_k\}$。</p>
+<p>第二个条件：关系$X$中的元组是关系$R$的所有元组在$\{B_1,B_2,\cdots,B_m\}$上的投影，包含相同元组。</p>
+<p>第三个条件：关系$Y$中的元组是关系$R$的所有元组在$\{C_1,C_2,\cdots,C_k\}$上的投影，不包含相同元组。</p>
+<p>例如：略。</p>
+<h2 id="关系模型的范式"><a href="#关系模型的范式" class="headerlink" title="关系模型的范式"></a>关系模型的范式</h2><h3 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h3><p>如果关系模式$R$中的所有属性值都是不可在分解的原子值，那么就称关系$R$是第一范式（first normal form，1NF）的关系模式。不是1NF的关系称为非规范化的关系，满足1NF的关系简称关系。在关系型数据库管理系统中，涉及到的研究对象都是满足1NF的规范化关系。</p>
+<h3 id="BCNF范式"><a href="#BCNF范式" class="headerlink" title="BCNF范式"></a>BCNF范式</h3><p>BCNF范式（Boyce-Codd normal form）的定义是，如果某个关系R有非平凡依赖$A_1,A_2,\cdots,A_n \xrightarrow{} B$，那么$\{A_1,A_2,\cdots,A_n\}$必然是关系R的超键码。满足这样条件的关系就属于BCNF。即BCNF条件的含义是每一个非平凡依赖的左边必须包含超键码。</p>
+<h3 id="分解成BCNF模式的算法"><a href="#分解成BCNF模式的算法" class="headerlink" title="分解成BCNF模式的算法"></a>分解成BCNF模式的算法</h3><p>第一步，找到一个违背BCNF的非平凡依赖，并在该依赖的右边加上尽量多的属性。</p>
+<p>第二步，把原始关系模型分解成两个属性重迭的关系模式，一个模式包含了违背BCNF的所有属性，另外一个模式包含了该依赖左边以及未包含在该依赖中的所有属性。</p>
+<p>第三步，判断新的关系模式是否满足BCNF。如果不满足，继续进行分解；如果满足，则停止。</p>
+<p><strong>任何包含了两个属性的关系模式都自然满足BCNF条件。</strong></p>
+<h3 id="函数依赖的投影"><a href="#函数依赖的投影" class="headerlink" title="函数依赖的投影"></a>函数依赖的投影</h3><p>在分解关系模式时，需要确定新关系模式是否满足BCNF条件。这种判断的前提是知道新关系模式中成立的函数依赖，这些函数依赖是原关系模式的函数依赖在新关系模式上的投影。下面介绍一种找到新关系模式中函数依赖的方法。</p>
+<p>假设把关系$R$分解成关系$S$和$T$，$F$是$R$中已知的函数依赖集。现在计算$S$中成立的函数依赖。考虑包含于$S$的属性集的每个属性集$X$，计算$X^+$。于是，满足下列条件的每个属性$B$，函数$X \xrightarrow{} B$在关系$S$中成立：</p>
+<ul>
+<li>$B$是$S$的一个属性；</li>
+<li>$B$属于$X^+$;</li>
+<li>$B$不属于$X$。</li>
+</ul>
+<h3 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h3><p>在某些情况下，按照BCNF进行分解，但是当对得到的关系模式进行连接时，却不能保证原先所有的函数依赖都能得到保持。这是，关系模式就不应该继续进行分解，该关系模式满足的范式称为第三范式。</p>
+<p>如果对于任何非平凡依赖$A_1,A_2,\cdots,\A_n \xrightarrow{} B$，那么或$\{A_1,A_2,\cdots,A_n\}$是关系$R$的超键码，或$B$是某个键码的组成部分。满足这样条件的关系就属于第三范式（third normal form, 3NF）。</p>
+<h3 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h3><p>在一个关系中，如果$\{A_1,A_2,\cdots,A_n\}$是关系$R$的键码，$B$是关系中的任意非键码，那么非平凡依赖$A_1,A_2,\cdots,A_n \xrightarrow{} B$都成立，则该关系模式属于第二范式（second normal form, 2NF）。</p>
+<h3 id="多值依赖"><a href="#多值依赖" class="headerlink" title="多值依赖"></a>多值依赖</h3><p>多值依赖的含义是如果确定了关系$R$的一个属性集的取值，则其他某些特征属性的取值与该关系的所有其他属性的取值无关。确切的说，如果限定关系$R$的元组在属于$A$的每个属性上取特定的值，结果属性$B$的属性取值的集合与既不属于$A$也不属于$B$但属于$R$的属性取值的集合无关，则称如下所示的多值依赖在关系$R$中成立：$$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$$</p>
+<p>多值依赖满足规则</p>
+<p>平凡依赖规则：在某个关系中，如果多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$成立，则多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$也成立，其中$C$是$B$加上$A$中的一个或多个属性。反之，也可以从$B$中删除一些属于$A$的属性，并推导出多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} D_1D_2 \cdots D_r$，其中，$D$是在$B$中而不属于$A$的属性。</p>
+<p>传递规则：在某个关系中，如果多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$和$B_1B_2 \cdots B_m \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$，则多值依赖$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$成立。</p>
+<p>复制规则：在关系中，每个函数依赖都是多值依赖。</p>
+<p>互补规则：如果$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$是关系$R$的多值依赖，则$R$也满足$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} C_1C_2 \cdots C_k$,其中，$C$是不属于$A$和$B$的$R$的所有其他属性。</p>
+<p>第四范式：如果$A_1A_2 \cdots A_n \xrightarrow{}\xrightarrow{} B_1B_2 \cdots B_m$是非平凡的多值依赖，且$\{A_1,A_2,\cdots,A_n\}$是关系的超键码，那么该关系就属于第四范式（Fourth Normal Form, 4NF）。</p>
+<p>分解方法：</p>
+<p>第一步：找到一个4NF违例，例如$A \xrightarrow{}\xrightarrow{} B$.</p>
+<p>第二步：分解该关系模式，第一个关系模式包含$A$和$B$中的属性，第二个关系模式包含$A$中的属性以及不属于$A$也不属于$B$的$R$的所有其他属性。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/database/">database</a></li></ul>
     </div>
 
       
@@ -1072,7 +961,7 @@
 <p>如果有疑问，可以在linux-kernel邮件列表上询问。</p>
 <p>###在邮件主题上加上[PATCH]</p>
 <p>###签名</p>
-<p>为了方便跟踪作者和管理复杂的更改，引入了签名机制。如果确认一下4点就可以在对patch的描述后加上一句：<br>Signed-off-by: Random J Developer <a href="&#x6d;&#97;&#x69;&#108;&#116;&#111;&#58;&#114;&#97;&#110;&#x64;&#x6f;&#109;&#x40;&#100;&#101;&#118;&#x65;&#x6c;&#111;&#112;&#x65;&#x72;&#x2e;&#101;&#120;&#x61;&#x6d;&#112;&#108;&#x65;&#46;&#x6f;&#x72;&#x67;">&#114;&#97;&#110;&#x64;&#x6f;&#109;&#x40;&#100;&#101;&#118;&#x65;&#x6c;&#111;&#112;&#x65;&#x72;&#x2e;&#101;&#120;&#x61;&#x6d;&#112;&#108;&#x65;&#46;&#x6f;&#x72;&#x67;</a></p>
+<p>为了方便跟踪作者和管理复杂的更改，引入了签名机制。如果确认一下4点就可以在对patch的描述后加上一句：<br>Signed-off-by: Random J Developer <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#111;&#x3a;&#114;&#97;&#x6e;&#100;&#x6f;&#109;&#64;&#x64;&#x65;&#118;&#x65;&#108;&#x6f;&#x70;&#x65;&#x72;&#46;&#101;&#x78;&#x61;&#x6d;&#112;&#108;&#101;&#x2e;&#x6f;&#114;&#103;">&#114;&#97;&#x6e;&#100;&#x6f;&#109;&#64;&#x64;&#x65;&#118;&#x65;&#108;&#x6f;&#x70;&#x65;&#x72;&#46;&#101;&#x78;&#x61;&#x6d;&#112;&#108;&#101;&#x2e;&#x6f;&#114;&#103;</a></p>
 <ul>
 <li>更改部分或者全部由我完成。我有权利开源</li>
 <li>更改基于一个开源项目，需提交到同一个开源license下。否则可以提交给别的开源license</li>
@@ -1124,6 +1013,117 @@
       
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/kernel/">kernel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/linux/">linux</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Windows API hook 开发环境配置" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/blog/2016/04/02/Windows API hook 开发环境配置/" class="article-date">
+      <time datetime="2016-04-01T16:00:00.000Z" itemprop="datePublished">2016-04-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2016/04/02/Windows API hook 开发环境配置/">Windows API Hook 开发环境配置</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><span id="top"></span><br><!-- MarkdownTOC --></p>
+<ul>
+<li><a href="#detours安装和配置">Detours安装和配置</a><ul>
+<li><a href="#detours介绍">Detours介绍</a></li>
+<li><a href="#detours安装">Detours安装</a></li>
+<li><a href="#detours编译">Detours编译</a></li>
+</ul>
+</li>
+<li><a href="#windows-api-hook例子">Windows API Hook例子</a><ul>
+<li><a href="#加入detours头文件和动态库文件">加入detours头文件和动态库文件</a></li>
+</ul>
+</li>
+<li><a href="#利用withdll进行远程dll注入">利用withdll进行远程dll注入</a></li>
+</ul>
+<!-- /MarkdownTOC -->
+<p><a name="detours安装和配置"></a></p>
+<h2 id="Detours安装和配置"><a href="#Detours安装和配置" class="headerlink" title="Detours安装和配置"></a>Detours安装和配置</h2><p><a name="detours介绍"></a></p>
+<h3 id="Detours介绍"><a href="#Detours介绍" class="headerlink" title="Detours介绍"></a>Detours介绍</h3><p>Detours是Windows下一个API Hook 开源框架。<br><a href="http://research.microsoft.com/en-us/projects/detours/" target="_blank" rel="external">Detours官网</a><br><a href="http://research.microsoft.com/en-us/downloads/d36340fb-4d3c-4ddd-bf5b-1db25d03713d/default.aspx" target="_blank" rel="external">Detours 3.0下载地址</a></p>
+<p><a name="detours安装"></a></p>
+<h3 id="Detours安装"><a href="#Detours安装" class="headerlink" title="Detours安装"></a>Detours安装</h3><p>msi文件一路next。记下安装目录。</p>
+<p><a name="detours编译"></a></p>
+<h3 id="Detours编译"><a href="#Detours编译" class="headerlink" title="Detours编译"></a>Detours编译</h3><p>安装完成后，进入目录<code>C:\Program Files\Microsoft Research\Detours Express 3.0</code>会看到下面的目录结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">samples\</span><br><span class="line">	...</span><br><span class="line">	simple\</span><br><span class="line">	...</span><br><span class="line">	withdll\</span><br><span class="line">	...</span><br><span class="line">src\</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>其中src是需要编译的detours源码。simple和withdll是实现windows API Hook需要用到的2个示例。</p>
+<p>编译步骤如下:</p>
+<ul>
+<li>以管理员权限启动cmd</li>
+<li><p>设置环境变量，不然nmake会出错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &quot;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\vcvars32.bat&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入detours的src文件夹并进行编译</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\src</span><br><span class="line"># nmake</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>编译在src和samples同一目录会生成lib.X86文件夹，里面的detours.lib就是我们需要的。</p>
+<p><a name="windows-api-hook例子"></a></p>
+<h2 id="Windows-API-Hook例子"><a href="#Windows-API-Hook例子" class="headerlink" title="Windows API Hook例子"></a>Windows API Hook例子</h2><p><a name="加入detours头文件和动态库文件"></a></p>
+<h3 id="加入detours头文件和动态库文件"><a href="#加入detours头文件和动态库文件" class="headerlink" title="加入detours头文件和动态库文件"></a>加入detours头文件和动态库文件</h3><p>在vs中新建windows控制台程序，设置解决方案的属性。</p>
+<ul>
+<li>打开<strong>项目</strong>–<strong>XXX 属性</strong></li>
+<li><p><strong>配置属性</strong>–<strong>C/C++</strong>–<strong>常规</strong> 在<strong>附加目录项</strong>中加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\include</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>配置属性</strong>–<strong>链接器</strong>–<strong>常规</strong> 在<strong>附加库目录</strong>中加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Program Files (x86)\Microsoft Research\Detours Express 3.0\lib.X86</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>配置属性</strong>–<strong>链接器</strong>–<strong>输入</strong> 在<strong>附加依赖项</strong>中加入<code>detours.lib</code></p>
+</li>
+<li><strong>配置属性</strong>–<strong>C/C++</strong>–<strong>代码生成</strong> 在<strong>运行库</strong>选择<code>/MT</code></li>
+<li><strong>配置属性</strong>–<strong>常规</strong> 在<strong>字符集</strong>选择<code>未设置</code></li>
+<li>在命令栏中选择<code>release</code>版本</li>
+</ul>
+<h4 id="withdll的编译"><a href="#withdll的编译" class="headerlink" title="withdll的编译"></a>withdll的编译</h4><p>在源文件中新建cpp文件，拷贝detours安装目录下的<code>samples\withdll\withdll.cpp</code>内容到cpp中。编译。</p>
+<h4 id="simple的编译"><a href="#simple的编译" class="headerlink" title="simple的编译"></a>simple的编译</h4><p>在vs新建项目时，选择windows控制台程序，并选择dll。设置解决方案属性。拷贝<code>samples\simple\simple.cpp</code>到新建的cpp文件中，编译。</p>
+<p><a name="利用withdll进行远程dll注入"></a></p>
+<h2 id="利用withdll进行远程dll注入"><a href="#利用withdll进行远程dll注入" class="headerlink" title="利用withdll进行远程dll注入"></a>利用withdll进行远程dll注入</h2><p><code>withdll /d:simple.dll a.exe</code>会将simple.dll注入到a.exe中。注意<code>/d:simple.dll</code>分号后不要有空格。exe和dll用绝对地址和相对地址都可以。</p>
+<p><a href="#top">回到顶部</a></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Windows/">Windows</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/hook/">hook</a></li></ul>
     </div>
 
       
@@ -1307,10 +1307,10 @@
 
 
   
-    <article id="post-libvmi介绍" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-fgetc 0x1A EOF" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/blog/2016/04/01/libvmi介绍/" class="article-date">
+      <a href="/blog/2016/04/01/fgetc 0x1A EOF/" class="article-date">
       <time datetime="2016-04-01T08:19:00.000Z" itemprop="datePublished">2016-04-01</time>
 </a>
     </div>
@@ -1324,7 +1324,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/blog/2016/04/01/libvmi介绍/">libvmi介绍</a>
+      <a class="article-title" href="/blog/2016/04/01/fgetc 0x1A EOF/">fgetc 0x1A EOF</a>
     </h1>
   
 
@@ -1334,89 +1334,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>libvmi提供了大量的库函数用于开发基于VMI的安全软件。</p>
-<h2 id="libvmi的接口"><a href="#libvmi的接口" class="headerlink" title="libvmi的接口"></a>libvmi的接口</h2><ol>
-<li>VMI构造和析构</li>
-<li>VM基本信息获取</li>
-<li>VM地址转换、pid页表转换</li>
-<li>VM读写内存</li>
-<li>VMIcache操作函数</li>
-<li>事件注册通知</li>
-</ol>
-<h3 id="VMI构造和析构"><a href="#VMI构造和析构" class="headerlink" title="VMI构造和析构"></a>VMI构造和析构</h3><p>接口包括下面这些</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vmi_init</span><br><span class="line">vmi_init_custom</span><br><span class="line">vmi_init_complete</span><br><span class="line">vmi_init_complete_custom</span><br><span class="line">vmi_init_paging</span><br><span class="line">vmi_destroy</span><br></pre></td></tr></table></figure>
-<p>带有custom表示从内存结构中读取配置，否则从文件中读取配置。<br>complete用在vmi_init中以partial方式初始化后（这种状态下只提供物理地址读写），经过启发式方法确定了特别偏移量后，进行完全初始化，这样才能够用其他方式比如符号、虚拟地址读写。</p>
-<h3 id="VM基本信息获取"><a href="#VM基本信息获取" class="headerlink" title="VM基本信息获取"></a>VM基本信息获取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vmi_get_name -&gt;driver_get_name</span><br><span class="line">vmi_get_vmid -&gt;driver_get_id</span><br><span class="line">vmi_get_access_mode //xen kvm file</span><br><span class="line">vmi_get_page_mode</span><br><span class="line">vmi_get_address_width</span><br><span class="line">vmi_get_ostype</span><br><span class="line">vmi_get_winver</span><br><span class="line">vmi_get_winver_str</span><br><span class="line">vmi_get_winver_manual</span><br><span class="line">vmi_get_offset</span><br><span class="line">vmi_get_memsize</span><br></pre></td></tr></table></figure>
-<p>windows能够设置和得到的符号包括如下表</p>
-<table>
-<thead>
-<tr>
-<th>符号名字</th>
-<th>意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>win_ntoskrnl</td>
-<td></td>
-</tr>
-<tr>
-<td>win_tasks</td>
-<td></td>
-</tr>
-<tr>
-<td>win_pdbase</td>
-<td></td>
-</tr>
-<tr>
-<td>win_pid</td>
-<td></td>
-</tr>
-<tr>
-<td>win_pname</td>
-<td></td>
-</tr>
-<tr>
-<td>win_kdvb</td>
-<td></td>
-</tr>
-<tr>
-<td>win_sysproc</td>
-<td></td>
-</tr>
-<tr>
-<td>win_kpcr</td>
-<td></td>
-</tr>
-<tr>
-<td>win_kdbg</td>
-<td></td>
-</tr>
-<tr>
-<td>ostype<br>os_type</td>
-<td></td>
-</tr>
-<tr>
-<td>sysmap</td>
-<td></td>
-</tr>
-<tr>
-<td>name</td>
-<td></td>
-</tr>
-<tr>
-<td>domid</td>
-</tr>
-</tbody>
-</table>
-<h3 id="VM地址转换、pid页表转换"><a href="#VM地址转换、pid页表转换" class="headerlink" title="VM地址转换、pid页表转换"></a>VM地址转换、pid页表转换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vmi_translate_kv2p</span><br><span class="line">vmi_translate_uv2p</span><br><span class="line">vmi_translate_ksym2v</span><br><span class="line">vmi_translate_sym2v  //遍历PE导出表</span><br><span class="line">vmi_translate_v2sym</span><br><span class="line">vmi_pid_to_dtb</span><br><span class="line">vmi_dtb_to_pid</span><br><span class="line">vmi_pagetable_lookup //虚拟地址转化为物理地址</span><br><span class="line">vmi_pagetable_lookup_extended</span><br></pre></td></tr></table></figure>
-<h3 id="VM读写内存"><a href="#VM读写内存" class="headerlink" title="VM读写内存"></a>VM读写内存</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vmi_read(write)</span><br><span class="line">vmi_read(write)_a_b //a=[8,16,32,64,addr,str],b=[pa,va,ksym]</span><br><span class="line">vmi_read_unicode_str_va</span><br><span class="line">vmi_convert_str_encoding</span><br><span class="line">vmi_print_hex_a //a=[pa,va,ksym]</span><br></pre></td></tr></table></figure>
-<h3 id="VMIcache操作函数"><a href="#VMIcache操作函数" class="headerlink" title="VMIcache操作函数"></a>VMIcache操作函数</h3><p>v2pcache表示内部虚拟地址到物理地址转换</p>
-<p>symcache 符号到虚拟地址转换</p>
-<p>rvacache rva到符号的转换</p>
-<p>pidcache pid到dtb的转换</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vmi_a_add //a=[v2pcache,symcache,rvacache,pidcache]</span><br><span class="line">vmi_a_flush //a=[v2pcache,symcache,rvacache,pidcache]</span><br></pre></td></tr></table></figure>
-<h3 id="事件注册通知"><a href="#事件注册通知" class="headerlink" title="事件注册通知"></a>事件注册通知</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">static inline status_t</span><br><span class="line">driver_xen_setup(vmi_instance_t vmi)</span><br><span class="line">&#123;</span><br><span class="line">    driver_interface_t driver = &#123; 0 &#125;;</span><br><span class="line">    driver.initialized = true;</span><br><span class="line">    driver.init_ptr = &amp;xen_init;</span><br><span class="line">    driver.init_vmi_ptr = &amp;xen_init_vmi;</span><br><span class="line">    driver.destroy_ptr = &amp;xen_destroy;</span><br><span class="line">    driver.get_id_from_name_ptr = &amp;xen_get_domainid_from_name;</span><br><span class="line">    driver.get_name_from_id_ptr = &amp;xen_get_name_from_domainid;</span><br><span class="line">    driver.get_id_ptr = &amp;xen_get_domainid;</span><br><span class="line">    driver.set_id_ptr = &amp;xen_set_domainid;</span><br><span class="line">    driver.check_id_ptr = &amp;xen_check_domainid;</span><br><span class="line">    driver.get_name_ptr = &amp;xen_get_domainname;</span><br><span class="line">    driver.set_name_ptr = &amp;xen_set_domainname;</span><br><span class="line">    driver.get_memsize_ptr = &amp;xen_get_memsize;</span><br><span class="line">    driver.get_vcpureg_ptr = &amp;xen_get_vcpureg;</span><br><span class="line">    driver.set_vcpureg_ptr = &amp;xen_set_vcpureg;</span><br><span class="line">    driver.get_address_width_ptr = &amp;xen_get_address_width;</span><br><span class="line">    driver.read_page_ptr = &amp;xen_read_page;</span><br><span class="line">    driver.write_ptr = &amp;xen_write;</span><br><span class="line">    driver.is_pv_ptr = &amp;xen_is_pv;</span><br><span class="line">    driver.pause_vm_ptr = &amp;xen_pause_vm;</span><br><span class="line">    driver.resume_vm_ptr = &amp;xen_resume_vm;</span><br><span class="line">#if ENABLE_SHM_SNAPSHOT == 1</span><br><span class="line">    driver.create_shm_snapshot_ptr = &amp;xen_create_shm_snapshot;</span><br><span class="line">    driver.destroy_shm_snapshot_ptr = &amp;xen_destroy_shm_snapshot;</span><br><span class="line">    driver.get_dgpma_ptr = &amp;xen_get_dgpma;</span><br><span class="line">#endif</span><br><span class="line">#if ENABLE_XEN_EVENTS == 1</span><br><span class="line">    driver.events_listen_ptr = &amp;xen_events_listen;</span><br><span class="line">    driver.are_events_pending_ptr = &amp;xen_are_events_pending;</span><br><span class="line">    driver.set_reg_access_ptr = &amp;xen_set_reg_access;</span><br><span class="line">    driver.set_intr_access_ptr = &amp;xen_set_intr_access;</span><br><span class="line">    driver.set_mem_access_ptr = &amp;xen_set_mem_access;</span><br><span class="line">    driver.start_single_step_ptr = &amp;xen_start_single_step;</span><br><span class="line">    driver.stop_single_step_ptr = &amp;xen_stop_single_step;</span><br><span class="line">    driver.shutdown_single_step_ptr = &amp;xen_shutdown_single_step;</span><br><span class="line">#endif</span><br><span class="line">    vmi-&gt;driver = driver;</span><br><span class="line">    return VMI_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>历史遗留问题，将fopen中的r改为rb即可</p>
       
     </div>
     
@@ -1426,7 +1344,7 @@
 
       
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/virtualization/">virtualization</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/problem-solution/">problem solution</a></li></ul>
     </div>
 
       
@@ -1458,14 +1376,14 @@
                 &copy; 2016 mrgao1008
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题">Yelee</a> by MOxFIVE
+                <a href="http://hexo.io/" target="_blank" title="A fast, simple &amp; powerful blog framework">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="Another simple and elegant theme for Hexo">Yelee</a> by MOxFIVE
             </div>
         </div>
         
             <div class="visit">
                 
                     <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" >本站到访数: 
+                        <span id="site-visit" >Site Visitors: 
                             <span id="busuanzi_value_site_uv"></span>
                         </span>
                     </span>
@@ -1475,7 +1393,7 @@
                 
                 
                     <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit">本页阅读量: 
+                        <span id="page-visit">Page Hits: 
                             <span id="busuanzi_value_page_pv"></span>
                         </span>
                     </span>
@@ -1529,9 +1447,9 @@ MathJax.Hub.Queue(function() {
 
 
 <div class="scroll" id="scroll">
-    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+    <a href="#" title="Back to Top"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="Comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="Go to Bottom"><i class="fa fa-arrow-down"></i></a>
 </div>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
