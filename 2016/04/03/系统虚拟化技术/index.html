@@ -3,18 +3,44 @@
 <head>
   <meta charset="utf-8">
   
-  <title>tags | Mrgao1008&#39;s blog</title>
+  <title>系统虚拟化技术 | Mrgao1008&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Some documents when reading books">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://mrgao1008.github.io/blog/tags/index.html">
+  <meta name="description" content="第一章虚拟化关系到虚拟化资源.虚拟化资源有物理资源时间分时,空间分割,可以一分多,也可以多分一.
+粗略划分:
+
+硬件层次ISA,Qemu,Xen
+操作系统层次chroot,容器
+库函数wine
+编程语言JVM,CLR
+
+X86架构和操作系统概述内存CPU使用物理地址索引资源.物理地址空间的大小,由CPU物理地址位数所决定,物理地址位数和CPU数据处理能力(即CPU位数)没有必然联系.内存和其他硬件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系统虚拟化技术">
+<meta property="og:url" content="http://mrgao1008.github.io/blog/2016/04/03/系统虚拟化技术/index.html">
 <meta property="og:site_name" content="Mrgao1008's blog">
-<meta property="og:description" content="Some documents when reading books">
-<meta property="og:updated_time" content="2016-04-02T03:51:41.579Z">
+<meta property="og:description" content="第一章虚拟化关系到虚拟化资源.虚拟化资源有物理资源时间分时,空间分割,可以一分多,也可以多分一.
+粗略划分:
+
+硬件层次ISA,Qemu,Xen
+操作系统层次chroot,容器
+库函数wine
+编程语言JVM,CLR
+
+X86架构和操作系统概述内存CPU使用物理地址索引资源.物理地址空间的大小,由CPU物理地址位数所决定,物理地址位数和CPU数据处理能力(即CPU位数)没有必然联系.内存和其他硬件">
+<meta property="og:image" content="http://mrgao1008.github.io/blog/images/x86地址转换流程.jpg">
+<meta property="og:updated_time" content="2016-04-03T15:10:15.396Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags">
-<meta name="twitter:description" content="Some documents when reading books">
+<meta name="twitter:title" content="系统虚拟化技术">
+<meta name="twitter:description" content="第一章虚拟化关系到虚拟化资源.虚拟化资源有物理资源时间分时,空间分割,可以一分多,也可以多分一.
+粗略划分:
+
+硬件层次ISA,Qemu,Xen
+操作系统层次chroot,容器
+库函数wine
+编程语言JVM,CLR
+
+X86架构和操作系统概述内存CPU使用物理地址索引资源.物理地址空间的大小,由CPU物理地址位数所决定,物理地址位数和CPU数据处理能力(即CPU位数)没有必然联系.内存和其他硬件">
+<meta name="twitter:image" content="http://mrgao1008.github.io/blog/images/x86地址转换流程.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Mrgao1008&#39;s blog" type="application/atom+xml">
   
@@ -43,7 +69,7 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
+          isPost: true,
           isArchive: false,
           isTag: false,
           isCategory: false,
@@ -226,11 +252,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-系统虚拟化技术" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/blog/tags/index.html" class="article-date">
-      <time datetime="2016-04-02T03:51:41.000Z" itemprop="datePublished">2016-04-02</time>
+      <a href="/blog/2016/04/03/系统虚拟化技术/" class="article-date">
+      <time datetime="2016-04-03T14:23:00.000Z" itemprop="datePublished">2016-04-03</time>
 </a>
     </div>
   
@@ -243,7 +269,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      tags
+      系统虚拟化技术
     </h1>
   
 
@@ -253,6 +279,10 @@
         
 
         
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Intel/">Intel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/虚拟化技术/">虚拟化技术</a></li></ul>
+    </div>
+
         <div class="clearfix"></div>
       </div>
       
@@ -260,119 +290,103 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-              <style>
-    .article-meta {
-        display: none;
-    }
-    #container .article .article-title {
-        padding-right: 0;
-    }
-    .article-header {
-        padding: 0;
-        padding-top: 26px;
-        border-left: none;
-        text-align: center;
-    }
-    .article-header:hover {
-        border-left: none;
-    }
-    .article-title {
-        font-size: 1.6em
-    }
-    .article-meta {
-        display: none;
-    }
-    .article-entry hr {
-        margin: 0;
-    }
-    #container .article-info-post.article-info {
-      display: none;
-      }
-    #container .article .article-title {
-    padding: 0;
-    }
-</style>
-
-
-    <!-- Tag Cloud Page -->
-    <hr>
-    <br>
-    
-
-    <p class="count"></p>
-
-    <div class="tags">
-        <a href="/blog/tags/Django/" style="font-size: 35px; color: #000">Django</a> <a href="/blog/tags/GUI/" style="font-size: 16px; color: #808080">GUI</a> <a href="/blog/tags/Intel/" style="font-size: 16px; color: #808080">Intel</a> <a href="/blog/tags/None/" style="font-size: 16px; color: #808080">None</a> <a href="/blog/tags/Windows/" style="font-size: 16px; color: #808080">Windows</a> <a href="/blog/tags/benchmark/" style="font-size: 16px; color: #808080">benchmark</a> <a href="/blog/tags/c/" style="font-size: 16px; color: #808080">c++</a> <a href="/blog/tags/database/" style="font-size: 35px; color: #000">database</a> <a href="/blog/tags/hook/" style="font-size: 16px; color: #808080">hook</a> <a href="/blog/tags/kernel/" style="font-size: 16px; color: #808080">kernel</a> <a href="/blog/tags/linux/" style="font-size: 16px; color: #808080">linux</a> <a href="/blog/tags/problem-solution/" style="font-size: 35px; color: #000">problem solution</a> <a href="/blog/tags/site/" style="font-size: 16px; color: #808080">site</a> <a href="/blog/tags/virtualization/" style="font-size: 16px; color: #808080">virtualization</a> <a href="/blog/tags/分布式计算/" style="font-size: 16px; color: #808080">分布式计算</a> <a href="/blog/tags/安装/" style="font-size: 35px; color: #000">安装</a> <a href="/blog/tags/并行计算/" style="font-size: 16px; color: #808080">并行计算</a> <a href="/blog/tags/虚拟化技术/" style="font-size: 16px; color: #808080">虚拟化技术</a> <a href="/blog/tags/锁/" style="font-size: 16px; color: #808080">锁</a>
-    </div>
-    <style>
-        .category-list li{
-            display: inline-block;
-            margin: 0 1em .5em 0;
-            padding: 4px;
-            border: 1px solid lightgray;
-            font-size: 1.2em;
-        }
-        .category-list a {
-            color: gray;
-        }
-        .category-list-item:hover a {
-            color: gray;
-            text-decoration: none;
-        }
-        .category-list-count {
-            margin-left: 2px;
-            font-size: .9em;
-        }
-        .article-entry ul li:before{
-            display: none;
-        }
-        .article-inner  {
-            text-align: center;
-        }
-        .tags {
-            max-width: 40em;
-            margin: 2em auto;
-            margin-top: 0em;
-        }
-        .tags a {
-            margin-right: 1em;
-            line-height: 65px;
-            border-bottom: 1px solid gray;
-            white-space: nowrap;
-        }
-        .tags a:hover {
-            border-bottom: 2px solid black;
-            text-decoration: none;
-            font-style: italic;
-        }
-        #count > span {
-            margin: auto .2em;
-            font-weight: bold;
-        }
-    </style>
-
-    <!-- Count tags and categories -->
-    <p id="count">
-            已有<span><script>document.write($(".category-list-item").length)</script></span>个分类，
-            共计<span><script>document.write($(".tags > a").length)</script></span>个标签。
-    </p>
-    <script>
-        $('#count').appendTo('.count');
-    </script>
-
-
-          
-        
+        <h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><p>虚拟化关系到虚拟化资源.虚拟化资源有物理资源时间分时,空间分割,可以一分多,也可以多分一.</p>
+<p>粗略划分:</p>
+<ul>
+<li>硬件层次<br>ISA,Qemu,Xen</li>
+<li>操作系统层次<br>chroot,容器</li>
+<li>库函数<br>wine</li>
+<li>编程语言<br>JVM,CLR</li>
+</ul>
+<h2 id="X86架构和操作系统概述"><a href="#X86架构和操作系统概述" class="headerlink" title="X86架构和操作系统概述"></a>X86架构和操作系统概述</h2><h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><p>CPU使用物理地址索引资源.物理地址空间的大小,由CPU物理地址位数所决定,物理地址位数和CPU数据处理能力(即CPU位数)没有必然联系.内存和其他硬件设备的I/O寄存器被映射到 物理地址内.</p>
+<p>对物理地址空间的虚拟化是线性地址空间,为每个进程提供抽象的相互隔离的内存资源.和物理地址一样,线性地址空间的大小取决于CPU实现的线性地址位数,与物理地址空间大小没有必然联系.</p>
+<p><strong>逻辑地址:</strong>程序使用的地址<br><strong>线性地址:</strong>又称虚拟地址,逻辑地址分段转换后的地址,未开启分页时等于物理地址.<br><strong>物理地址:</strong>CPU提交到总线用于访问平台内存和硬件设备的最终地址.<br><em>总线地址是因为给设备分配的物理地址和设备的从0开始地址不同,两者之间存在映射关系.x86下物理地址有时也称为总线地址</em></p>
+<p>TLB(translation lookaside buffer)对最近用到的页面映射进行缓存,保存VFN到PFN的转换.<br><strong>存放:</strong>TLB作为缓存,其能存放的条目有限,替换哪个条目由CPU决定.<br><strong>一致:</strong>当操作系统更改页表后,TLB中条目和页表存在不一致.x86提供了2中刷新TLB的方式:</p>
+<ul>
+<li>更新CR3:此操作导致TLB中所有条目失效.进程切换时用到.</li>
+<li>INVLPG指令:对TLB中单独的页目录项,页表项进行刷新.通常在操作系统修改页表后进行(如分配/释放页面).</li>
+</ul>
+<p><img src="/images/x86地址转换流程.jpg" alt="x86地址转换流程"></p>
       
     </div>
     
   </div>
   
     
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/blog/2016/04/03/系统虚拟化技术/">系统虚拟化技术</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">mrgao1008</a></p>
+        <p><span>发布时间:</span>2016-04-03, 22:23:00</p>
+        <p><span>最后更新:</span>2016-04-03, 23:10:15</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/blog/2016/04/03/系统虚拟化技术/" title="系统虚拟化技术">http://mrgao1008.github.io/blog/blog/2016/04/03/系统虚拟化技术/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://mrgao1008.github.io/blog/blog/2016/04/03/系统虚拟化技术/　　作者: mrgao1008" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
 
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/blog/2016/04/02/性能测试/">
+                    性能测试
+                </a>
+            </div>
+        
+    </nav>
 
   
 </article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一章"><span class="toc-number">1.</span> <span class="toc-text">第一章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#X86架构和操作系统概述"><span class="toc-number">2.</span> <span class="toc-text">X86架构和操作系统概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#内存"><span class="toc-number">2.1.</span> <span class="toc-text">内存</span></a></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
 
 
     <div class="share">
@@ -400,6 +414,24 @@
 
     
 
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/blog/2016/04/02/性能测试/" title="下一篇: 性能测试">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/03/系统虚拟化技术/">系统虚拟化技术</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/02/性能测试/">性能测试</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/02/锁与进程间通信/">锁与进程间通信</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/02/Windows API hook 开发环境配置/">Windows API Hook 开发环境配置</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/02/数据库系统原理与应用（第三版）2/">分布式数据库技术</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/02/数据库系统原理与应用（第三版）1/">第五章 关系模型</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/02/LoadLibrary 126/">LoadLibrary error 126</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/02/如何给Linux kernel提交代码/">如何给Linux Kernel提交代码</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/02/python tk/">tk 编程</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/02/并行计算与分布式计算原理/">并行计算与分布式计算原理</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/01/libvmi介绍/">libvmi介绍</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/01/fgetc 0x1A EOF/">fgetc 0x1A EOF</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/01/Django(2)视图和Urls/">Django(2)视图和Urls</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/01/Django(1) 安装和使用/">Django(1) 安装和使用</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/01/怎么在sublime中写markdown/">怎么在sublime中写markdown</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/01/hello-world/">Hello World</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/01/exe文件分解/">exe文件分解</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/01/c++学习文档/">c++ 学习文档</a></li><li class="post-list-item"><a class="post-list-link" href="/blog/2016/04/01/网站访问记录/">网站访问记录</a></li></ul>
 
 
 
